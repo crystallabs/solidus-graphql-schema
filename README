@@ -1,0 +1,11 @@
+Shopify -> Solidus GraphQL Schema Verifier
+
+Daniel Honig of Boomer Digital suggested that we model Solidus' GraphQL
+schema as closely to Shopify as possible.
+
+This is worth an attempt, but to be sure that the effort is not a one-time
+action, we need a set of tools that can download and compare the schemas
+between two systems at any point in time.
+
+Currently it works like this:
+
