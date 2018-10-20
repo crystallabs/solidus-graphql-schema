@@ -18,6 +18,8 @@ end
 # Types are by far the largest group.
 
 schema_text= File.read ARGV.shift
+#schema_text.gsub! /hopify.com/, 'olidus.io'
+schema_text.gsub! /hopify(?!\.com)/, 'tore'
 schema = JSON.parse schema_text
 $schema = schema['data']['__schema']
 
@@ -129,48 +131,47 @@ def parse_types(v)
     #end
     #stats[un]+= 1
 
-		# Determine exact type of this type
-		dir = 'types'
-		helper = { 'group' => 'Types'}
-		if t['kind'] == 'INTERFACE'
-			dir= 'interfaces'
-			helper['group']= 'Interfaces'
-		elsif t['kind'] == 'INPUT_OBJECT'
-			dir= 'inputs'
-			helper['group']= 'Inputs'
-		#elsif t['kind'] == 'SCALAR'
-		#	dir= 'scalar_types'
-		#	helper['group']= 'ScalarTypes'
-		elsif n.sub!(/Input$/, '')
-			dir= 'inputs'
-			helper['group']= 'Inputs'
-			$log.warn "Found type '#{t['name']}' which appears to be (and which we'll treat as) an input type, but it does not have 'kind' set to INPUT_OBJECT"
-		elsif n.sub!(/Payload$/, '')
-			dir= 'payloads'
-			helper['group']= 'Payloads'
-		end
+    # Determine exact type of this type
+    dir = 'types'
+    helper = { 'group' => 'Types'}
+    if t['kind'] == 'INTERFACE'
+      dir= 'interfaces'
+      helper['group']= 'Interfaces'
+    elsif t['kind'] == 'INPUT_OBJECT'
+      dir= 'inputs'
+      helper['group']= 'Inputs'
+    #elsif t['kind'] == 'SCALAR'
+    # dir= 'scalar_types'
+    # helper['group']= 'ScalarTypes'
+    elsif n.sub!(/Input(V\d+)?$/, '\1')
+      dir= 'inputs'
+      helper['group']= 'Inputs'
+      $log.warn "Found type '#{t['name']}' which appears to be (and which we'll treat as) an input type, but it does not have 'kind' set to INPUT_OBJECT"
+    elsif n.sub!(/Payload(V\d+)?$/, '\1')
+      dir= 'payloads'
+      helper['group']= 'Payloads'
+    end
 
-		n.sub!(/(?:Input|Payload)$/, '')
+    n.sub!(/(?:Input|Payload)(V\d+)?$/, '\1')
 
-		outfile= "#{dir}/#{n.underscore}.rb"
+    outfile= "#{dir}/#{n.underscore}.rb"
 
     $output[outfile] ||= []
     $output[outfile].push template 'type_header', t, helper
 
     if t['fields']
+      $output[outfile].push ''
       t['fields'].each do |f|
         helper = { 'name' => f['name'].underscore}
-				helper['by'] = ([$query, $mutation, $subscription].include? n) ? 'All' : "By#{name_to_class n}"
+        helper['by'] = ([$query, $mutation, $subscription].include? n) ? 'All' : "By#{name_to_class n}"
 
         chain = []
-
         if ft = f['type']
           while ft
             chain.unshift ft
             ft = ft['ofType']
           end
         end
-
         string = ''
         chain.each do |t|
           # Implementation 1:
@@ -182,16 +183,52 @@ def parse_types(v)
           # Implementation 2:
           if t['kind'] == 'NON_NULL' and !t['name']; string.sub! /true$/, 'false'
           elsif t['kind'] == 'LIST' and !t['name']; string = "[#{string}], null: true"
-          else string = "#{t['name']}, null: true"
+          else
+            name = t['name']
+            if name.sub! /Input(V\d+)?$/, '\1'
+              name= 'Inputs::'+ name
+            elsif name.sub! /Payload(V\d+)?$/, '\1'
+              name= 'Payloads::'+ name
+            end
+            string = "#{name}, null: true"
+          end
+        end
+        helper['type_string']= string
+        $output[outfile].push template 'field_header', f, helper
+
+          if f['args']
+            $output[outfile].push ''
+            f['args'].each do |f|
+              helper = { 'name' => f['name'].underscore}
+              helper['by'] = ([$query, $mutation, $subscription].include? n) ? 'All' : "By#{name_to_class n}"
+
+              chain = []
+              if ft = f['type']
+                while ft
+                  chain.unshift ft
+                  ft = ft['ofType']
+                end
+              end
+              string = ''
+              chain.each do |t|
+                if t['kind'] == 'NON_NULL' and !t['name']; string.sub! /false$/, 'true'
+                elsif t['kind'] == 'LIST' and !t['name']; string = "[#{string}], required: false"
+                else
+                  name = t['name']
+                  if name.sub! /Input(V\d+)?$/, '\1'
+                    name= 'Inputs::'+ name
+                  elsif name.sub! /Payload(V\d+)?$/, '\1'
+                    name= 'Payloads::'+ name
+                  end
+                  string = "#{name}, required: false"
+                end
+              end
+              helper['type_string']= string
+              $output[outfile].push template 'argument', f, helper
+            end
           end
 
-        end
-        # Implementation 1:
-        #string.gsub! /\](?!, null: false)/, '], null: true'
-
-        helper['type_string']= string
-
-        $output[outfile].push template 'field', f, helper
+        $output[outfile].push template 'field_footer'
       end
     end
 
@@ -203,12 +240,18 @@ def parse_types(v)
 end
 
 def output_files
-  $output.each do |file, content|
+  all_files = []
+  $output.keys.reverse.each do |file|
+    content = $output[file]
     content = (Array === content) ? content.flatten.join('') : content
-		outfile = "#{$out_dir}/#{file}"
-		FileUtils.mkdir_p File.dirname outfile
+    outfile = "#{$out_dir}/#{file}"
+    FileUtils.mkdir_p File.dirname outfile
     File.open(outfile, 'w') { |f| f.write content }
+    all_files.push outfile
   end
+
+  outfile = "#{$out_dir}/all.rb"
+  File.open(outfile, 'w') { |f| f.write all_files.join "\n" }
 end
 
 def new(f)
@@ -233,10 +276,13 @@ end
       class #{args['name']} < BaseObject
 ",
         #field :#{helper['name']}, #{helper['type_string']}, resolve: Resolvers::#{helper['name']}::#{helper['by']} do
-'field' => "
+'field_header' => "
         field :#{helper['name']}, #{helper['type_string']} do
           description %q{#{args['description']}}
-        end",
+",
+'argument' => "          argument :#{helper['name']}, #{helper['type_string']}
+",
+'field_footer' => "        end",
 'type_footer' => "
 
       end
@@ -249,8 +295,8 @@ end
 end
 
 def name_to_class(n)
-	n.sub! /^(?:Connection)$/, ''
-	n.camelize
+  n.sub! /^(?:Connection)$/, ''
+  n.camelize
 end
 
 ####
