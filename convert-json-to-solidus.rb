@@ -251,7 +251,7 @@ def output_files
   end
 
   outfile = "#{$out_dir}/all.rb"
-  File.open(outfile, 'w') { |f| f.write all_files.join "\n" }
+  File.open(outfile, 'w') { |f| f.write $output.keys.reverse.map{|f| %Q{require_relative "./#{f}"}}.join "\n" }
 end
 
 def new(f)
@@ -273,7 +273,7 @@ end
 'type_header' => "module Spree
   module GraphQL
     module #{helper['group']}
-      class #{args['name']} < BaseObject
+      class #{args['name']} < Types::BaseObject
 ",
         #field :#{helper['name']}, #{helper['type_string']}, resolve: Resolvers::#{helper['name']}::#{helper['by']} do
 'field_header' => "
