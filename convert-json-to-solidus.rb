@@ -332,6 +332,14 @@ def parse_types_2(v)
         $catalog[:schema_contents][new_name].push template 'schema/field_footer'
       end # t['fields'].each
     end # endif t['fields']
+
+    # Parse enum values
+    if t['enumValues']
+      t['enumValues'].each do |v|
+        $catalog[:schema_contents][new_name].push template 'schema/enum_value', v, helper
+      end
+    end
+
     $catalog[:schema_contents][new_name].push template 'schema/type_footer'
     $catalog[:contents][new_name].push template 'type_footer'
   end
@@ -481,6 +489,7 @@ end
     description %q{#{type['description']}}
 ",
 'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']}\n",
+'schema/enum_value' => "  value '#{type['name']}', %q{#{type['description']}}\n",
 'schema/field_footer' => "  end",
 'schema/type_footer' => "\nend\n",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
