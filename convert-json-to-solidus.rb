@@ -250,9 +250,9 @@ def parse_types_2(v)
               #helper['preamble']= "module Spree::GraphQL::#{ret_name}; end\n\n"
             end
 
-						unless ret_name=~ /^::/
-							ret_name= '::Spree::GraphQL::Schema::'+ ret_name
-						end
+            unless ret_name=~ /^::/
+              ret_name= '::Spree::GraphQL::Schema::'+ ret_name
+            end
             string = "#{ret_name}, null: true"
           end
         end # chain.each do |t2|
@@ -286,17 +286,17 @@ def parse_types_2(v)
               if t['kind'] == 'NON_NULL' and !t['name']; string.sub! /false$/, 'true'
               elsif t['kind'] == 'LIST' and !t['name']; string = "[#{string}], required: false"
               else
-                arg_name= t['name']
+                arg_type= t['name']
                 suffix = ''
-                if arg_name.sub! /Connection$/, ''
+                if arg_type.sub! /Connection$/, ''
                   suffix = '.connection_type'
                 end
-                helper = { 'name' => arg_name.underscore }
-                arg_name = $catalog[:names][arg_name]
-								unless arg_name=~ /^::/
-									arg_name= '::Spree::GraphQL::Schema::'+ arg_name
-								end
-                string = "#{arg_name + suffix}, required: false"
+                helper = { 'name' => arg_type.underscore }
+                arg_type = $catalog[:names][arg_type]
+                unless arg_type=~ /^::/
+                  arg_type= '::Spree::GraphQL::Schema::'+ arg_type
+                end
+                string = "#{arg_type + suffix}, required: false"
               end
             end
             helper['type_name']= string
@@ -379,6 +379,9 @@ def output_files
   }
 end
 
+# Beware here that all variable interpolations must pass. E.g., if you have
+# `type['name'].underscore` in any part of content, then either all calls to template()
+# must have `type['name']` non-nil, or you need to wrap it into (type['name']||'').underscore.
 def template(file, type = {}, helper = {})
 {
 'file_list.rb' => %q{# This file lists all the files that were auto-generated.
@@ -427,7 +430,7 @@ end
   field :#{(type['name'] || '').underscore}, #{helper['type_name']} do
     description %q{#{type['description']}}
 ",
-'schema/argument' => "    argument :#{helper['name']}, #{helper['type_name']}\n",
+'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']}\n",
 'schema/field_footer' => "  end",
 'schema/type_footer' => "\nend\n",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
