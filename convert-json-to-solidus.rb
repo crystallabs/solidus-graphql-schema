@@ -210,10 +210,21 @@ def parse_types_2(v)
       exit 1
     end
 
-    $catalog[:schema_contents][new_name]= [template('schema/type_header', t)]
-    $catalog[:contents][new_name]= [template('type_header', t)]
-
     helper= {}
+
+    case t['kind']
+    when 'ENUM'
+      helper['base_type']= 'BaseEnum'
+    when 'SCALAR'
+      helper['base_type']= 'BaseScalar'
+    when 'INPUT_OBJECT'
+      helper['base_type']= 'BaseInput'
+    else
+      helper['base_type']= 'BaseObject'
+    end
+
+    $catalog[:schema_contents][new_name]= [template('schema/type_header', t, helper)]
+    $catalog[:contents][new_name]= [template('type_header', t, helper)]
 
     # Main block - parsing of type's fields
     if t['fields']
@@ -253,9 +264,16 @@ def parse_types_2(v)
             unless ret_name=~ /^::/
               ret_name= '::Spree::GraphQL::Schema::'+ ret_name
             end
+
             string = "#{ret_name}, null: true"
           end
         end # chain.each do |t2|
+
+        # graphql-ruby has two specifics:
+        # 1) Types have null: true/false
+        # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
+        # So the following is needed to comply with that:
+        string.gsub! ', null: false]', ']'
 
         helper['type_name']= string
         if helper['schema_preamble']
@@ -299,6 +317,14 @@ def parse_types_2(v)
                 string = "#{arg_type + suffix}, required: false"
               end
             end
+
+            # graphql-ruby has two specifics:
+            # 1) Types have null: true/false, while arguments have required: true/false
+            # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
+            # So the following is needed to comply with that:
+            string.gsub! ', required: true]', ', null: true]'
+            string.gsub! ', required: false]', ']'
+
             helper['type_name']= string
             $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper
           end
@@ -351,6 +377,27 @@ def output_files
   # User part:
   $catalog[:contents][name]= template('types/base_object')
   $catalog[:outputs][name]= 'types/base_object'
+
+  name= 'Types::BaseEnum'
+  $catalog[:schema_contents][name]= template('schema/types/base_enum')
+  $catalog[:schema_outputs][name]= 'types/base_enum'
+  # User part:
+  $catalog[:contents][name]= template('types/base_enum')
+  $catalog[:outputs][name]= 'types/base_enum'
+
+  name= 'Types::BaseScalar'
+  $catalog[:schema_contents][name]= template('schema/types/base_scalar')
+  $catalog[:schema_outputs][name]= 'types/base_scalar'
+  # User part:
+  $catalog[:contents][name]= template('types/base_scalar')
+  $catalog[:outputs][name]= 'types/base_scalar'
+
+  name= 'Types::BaseInput'
+  $catalog[:schema_contents][name]= template('schema/types/base_input')
+  $catalog[:schema_outputs][name]= 'types/base_input'
+  # User part:
+  $catalog[:contents][name]= template('types/base_input')
+  $catalog[:outputs][name]= 'types/base_input'
 
   # Output schema parts:
   $catalog[:schema_outputs].each do |name, file|
@@ -425,7 +472,10 @@ end
   mutation ::Spree::GraphQL::Schema::Types::#{type['mutation']}
 end
 ",
-'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::BaseObject\n  include ::Spree::GraphQL::#{$catalog[:names][type['name']]}\n",
+'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
+  graphql_name '#{type['name']}'
+  include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
+",
 'schema/field_header' => "
   field :#{(type['name'] || '').underscore}, #{helper['type_name']} do
     description %q{#{type['description']}}
@@ -437,15 +487,33 @@ end
   global_id_field :id
 end
 ',
+'schema/types/base_enum' => 'class Spree::GraphQL::Schema::Types::BaseEnum < GraphQL::Schema::Enum
+end
+',
+'schema/types/base_scalar' => 'class Spree::GraphQL::Schema::Types::BaseScalar < GraphQL::Schema::Scalar
+end
+',
+'schema/types/base_input' => 'class Spree::GraphQL::Schema::Types::BaseInput < GraphQL::Schema::InputObject
+end
+',
 # User parts:
 'types/base_object' => 'class Spree::GraphQL::Types::BaseObject
+end
+',
+'types/base_enum' => 'class Spree::GraphQL::Types::BaseEnum
+end
+',
+'types/base_scalar' => 'class Spree::GraphQL::Types::BaseScalar
+end
+',
+'types/base_input' => 'class Spree::GraphQL::Types::BaseInput
 end
 ',
 'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}\n",
 'field' => "
   # #{(type['description']||'').gsub /\s*\n+\s*/, ' '}
   # Returns: #{helper['type_name']}
-  def #{(type['name'] || '').underscore}(obj, args, ctx)
+  def #{(type['name'] || '').underscore}() # TODO obj, args, ctx
   end
 ",
 'type_footer' => "\nend\n",

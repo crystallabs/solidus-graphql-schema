@@ -26,6 +26,9 @@ end
 # Implementation parts:
 
 require_relative "./types/base_object.rb"
+require_relative "./types/base_enum.rb"
+require_relative "./types/base_scalar.rb"
+require_relative "./types/base_input.rb"
 require_relative "./interfaces/node.rb"
 require_relative "./types/page_info.rb"
 require_relative "./types/date_time.rb"
@@ -166,6 +169,9 @@ require_relative "./types/mutation.rb"
 # Schema parts:
 
 require_relative "./schema/types/base_object.rb"
+require_relative "./schema/types/base_enum.rb"
+require_relative "./schema/types/base_scalar.rb"
+require_relative "./schema/types/base_input.rb"
 require_relative "./schema/interfaces/node.rb"
 require_relative "./schema/types/page_info.rb"
 require_relative "./schema/types/date_time.rb"
