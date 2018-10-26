@@ -135,6 +135,8 @@ end
 def parse_directives(v)
   $log.info "Found %s directives." % [v.size]
   v.each do |d|
+    next if d['isDeprecated']
+
     n= d['name']
     if File.exists? "#{$graphql_ruby_dir}/lib/graphql/directive/#{n}_directive.rb"
       $log.debug "Skipping parsing of directive '#{n}' which is a built-in supported by graphql-ruby."
@@ -229,6 +231,7 @@ def parse_types_2(v)
     # Main block - parsing of type's fields
     if t['fields']
       t['fields'].each do |f|
+        next if f['isDeprecated']
 
         chain = []
         if ft = f['type']
@@ -292,6 +295,8 @@ def parse_types_2(v)
         if f['args']
           $catalog[:schema_contents][new_name].push ''
           f['args'].each do |f|
+            next if f['isDeprecated']
+
             helper2 = {}
             chain = []
             if ft = f['type']
@@ -356,6 +361,7 @@ def parse_types_2(v)
     # Parse enum values
     if t['scalarValues']
       t['enumValues'].each do |v|
+        next if v['isDeprecated']
         $catalog[:schema_contents][new_name].push template 'schema/enum_value', v, helper
       end
     end
@@ -490,6 +496,12 @@ module Spree
     end
     module Types
     end
+
+    class NotImplementedError < ::GraphQL::ExecutionError
+      def initialize
+        super "Not implemented yet"
+      end
+    end
   end
 end
 
@@ -541,8 +553,9 @@ end
 'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}\n",
 'field' => "
   # #{(type['description']||'').gsub /\s*\n+\s*/, ' '}
-  # Returns: #{helper['type_name']}
+  # Returns: #{(helper['type_name']||'').sub /^::Spree::GraphQL::Schema::/, ''}
   def #{(type['name'] || '').underscore}#{helper['method_args_string']}
+    raise ::Spree::GraphQL::NotImplementedError.new
   end
 ",
 'type_footer' => "\nend\n",
@@ -552,7 +565,7 @@ end
 def check_skip(t)
   # This method is only called for toplevel types. And in them, we are not
   # interested in Connection/Edge types.
-  return true if (t['name']=~ /(?:Connection|Edge)$/) || (t['name']=~ /^__/) || ($catalog[:builtins][t['name']])
+  return true if (t['name']=~ /(?:Connection|Edge)$/) || (t['name']=~ /^__/) || ($catalog[:builtins][t['name']]) || t['isDeprecated']
   false
 end
 
