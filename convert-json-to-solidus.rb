@@ -448,7 +448,11 @@ def output_files
     content = (Array === content) ? content.flatten.join('') : content
     outfile = "#{$out_dir}/#{file}.rb"
     FileUtils.mkdir_p File.dirname outfile
-    File.open(outfile, 'w') { |f| f.write "#{content}\n" }
+    if !File.exists? outfile
+      File.open(outfile, 'w') { |f| f.write "#{content}\n" }
+    else
+      $log.debug "Not overwriting #{outfile}"
+    end
   end
 
   # Output total file list:
