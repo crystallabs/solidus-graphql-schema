@@ -311,7 +311,7 @@ def parse_types_2(v)
                   suffix = '.connection_type'
                 end
                 helper2 = { 'name' => arg_type.underscore }
-                method_args.push f['name'].underscore+ ':'
+                method_args.push [f['name'].underscore+ ':']
                 arg_type = $catalog[:names][arg_type]
                 unless arg_type=~ /^::/
                   arg_type= '::Spree::GraphQL::Schema::'+ arg_type
@@ -328,12 +328,27 @@ def parse_types_2(v)
             string.gsub! ', required: false]', ']'
 
             helper2['type_name']= string
+            # Determine if default value needs to be set
+            if helper2['type_name']!~ /required: true/
+              helper2[:default_value]= ' nil'
+            end
+            if f['defaultValue']
+              if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
+                method_args[-1].push f['defaultValue']
+              else
+                method_args[-1].push %q{'}+ f['defaultValue']+ %q{'}
+              end
+            else
+              if !(string=~ /required: true/)
+                method_args[-1].push 'nil'
+              end
+            end
             $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper2
           end
         end # if f['args']
         $catalog[:schema_contents][new_name].push template 'schema/field_footer'
 
-        helper['method_args_string']= '(' + method_args.join(', ')+ ')'
+        helper['method_args_string']= '(' + method_args.map{|a| a.join ' '}.join(', ')+ ')'
         $catalog[:contents][new_name].push template 'field', f, helper
       end # t['fields'].each
     end # endif t['fields']
