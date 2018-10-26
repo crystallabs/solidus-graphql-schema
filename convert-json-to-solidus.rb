@@ -287,11 +287,12 @@ def parse_types_2(v)
           helper['preamble']= nil
         end
         $catalog[:schema_contents][new_name].push template 'schema/field_header', f, helper
-        $catalog[:contents][new_name].push template 'field', f, helper
 
+        method_args= []
         if f['args']
           $catalog[:schema_contents][new_name].push ''
           f['args'].each do |f|
+            helper2 = {}
             chain = []
             if ft = f['type']
               while ft
@@ -309,7 +310,8 @@ def parse_types_2(v)
                 if arg_type.sub! /Connection$/, ''
                   suffix = '.connection_type'
                 end
-                helper = { 'name' => arg_type.underscore }
+                helper2 = { 'name' => arg_type.underscore }
+                method_args.push f['name'].underscore+ ':'
                 arg_type = $catalog[:names][arg_type]
                 unless arg_type=~ /^::/
                   arg_type= '::Spree::GraphQL::Schema::'+ arg_type
@@ -325,16 +327,19 @@ def parse_types_2(v)
             string.gsub! ', required: true]', ', null: true]'
             string.gsub! ', required: false]', ']'
 
-            helper['type_name']= string
-            $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper
+            helper2['type_name']= string
+            $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper2
           end
-        end
+        end # if f['args']
         $catalog[:schema_contents][new_name].push template 'schema/field_footer'
+
+        helper['method_args_string']= '(' + method_args.join(', ')+ ')'
+        $catalog[:contents][new_name].push template 'field', f, helper
       end # t['fields'].each
     end # endif t['fields']
 
     # Parse enum values
-    if t['enumValues']
+    if t['scalarValues']
       t['enumValues'].each do |v|
         $catalog[:schema_contents][new_name].push template 'schema/enum_value', v, helper
       end
@@ -522,7 +527,7 @@ end
 'field' => "
   # #{(type['description']||'').gsub /\s*\n+\s*/, ' '}
   # Returns: #{helper['type_name']}
-  def #{(type['name'] || '').underscore}() # TODO obj, args, ctx
+  def #{(type['name'] || '').underscore}#{helper['method_args_string']}
   end
 ",
 'type_footer' => "\nend\n",
