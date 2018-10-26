@@ -292,9 +292,10 @@ def parse_types_2(v)
         $catalog[:schema_contents][new_name].push template 'schema/field_header', f, helper
 
         method_args= []
-        if f['args']
+        args = f['args']
+        if args
           $catalog[:schema_contents][new_name].push ''
-          f['args'].each do |f|
+          args.each do |f|
             next if f['isDeprecated']
 
             helper2 = {}
@@ -357,6 +358,73 @@ def parse_types_2(v)
         $catalog[:contents][new_name].push template 'field', f, helper
       end # t['fields'].each
     end # endif t['fields']
+
+
+    # Parsing of type's input fields (they behave like arguments and code is basically copy-paste)
+    method_args= []
+    fields = t['inputFields']
+    if fields
+      $catalog[:schema_contents][new_name].push ''
+      fields.each do |f|
+        next if f['isDeprecated']
+
+        helper2 = {}
+        chain = []
+        if ft = f['type']
+          while ft
+            chain.unshift ft
+            ft = ft['ofType']
+          end
+        end
+        string= ''
+        chain.each do |t|
+          if t['kind'] == 'NON_NULL' and !t['name']; string.sub! /false$/, 'true'
+          elsif t['kind'] == 'LIST' and !t['name']; string = "[#{string}], required: false"
+          else
+            arg_type= t['name']
+            suffix = ''
+            if arg_type.sub! /Connection$/, ''
+              suffix = '.connection_type'
+            end
+            helper2 = { 'name' => arg_type.underscore }
+            method_args.push [f['name'].underscore+ ':']
+            arg_type = $catalog[:names][arg_type]
+            unless arg_type=~ /^::/
+              arg_type= '::Spree::GraphQL::Schema::'+ arg_type
+            end
+            string = "#{arg_type + suffix}, required: false"
+          end
+        end
+
+        # graphql-ruby has two specifics:
+        # 1) Types have null: true/false, while arguments have required: true/false
+        # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
+        # So the following is needed to comply with that:
+        string.gsub! ', required: true]', ', null: true]'
+        string.gsub! ', required: false]', ']'
+
+        helper2['type_name']= string
+        # Determine if default value needs to be set
+        if helper2['type_name']!~ /required: true/
+          helper2[:default_value]= ' nil'
+        end
+        if f['defaultValue']
+          if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
+            method_args[-1].push f['defaultValue']
+          else
+            method_args[-1].push %q{'}+ f['defaultValue']+ %q{'}
+          end
+        else
+          if !(string=~ /required: true/)
+            method_args[-1].push 'nil'
+          end
+        end
+        $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper2
+      end
+    end # if f['inputFields']
+    helper['method_args_string']= '(' + method_args.map{|a| a.join ' '}.join(', ')+ ')'
+    $catalog[:contents][new_name].push template 'field', t, helper
+
 
     # Parse enum values
     if t['scalarValues']
@@ -482,6 +550,7 @@ require 'graphql'
 
 module Spree
   module GraphQL
+
     module Schema
       module Inputs
       end
@@ -492,6 +561,7 @@ module Spree
       module Types
       end
     end
+
     module Inputs
     end
     module Interfaces

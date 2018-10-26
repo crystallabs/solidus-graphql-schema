@@ -2,16 +2,18 @@ require 'graphql'
 
 module Spree
   module GraphQL
-		module Schema
-			module Inputs
-			end
-			module Interfaces
-			end
-			module Payloads
-			end
-			module Types
-			end
-		end
+
+    module Schema
+      module Inputs
+      end
+      module Interfaces
+      end
+      module Payloads
+      end
+      module Types
+      end
+    end
+
     module Inputs
     end
     module Interfaces
@@ -19,6 +21,12 @@ module Spree
     module Payloads
     end
     module Types
+    end
+
+    class NotImplementedError < ::GraphQL::ExecutionError
+      def initialize
+        super "Not implemented yet"
+      end
     end
   end
 end
@@ -112,6 +120,9 @@ require_relative "./types/payment_settings.rb"
 require_relative "./types/shop.rb"
 require_relative "./types/pricing_percentage_value.rb"
 
+require_relative "./inputs/attribute.rb"
+require_relative "./inputs/mailing_address.rb"
+require_relative "./inputs/money.rb"
 require_relative "./inputs/customer_update.rb"
 require_relative "./inputs/customer_reset.rb"
 require_relative "./inputs/customer_create.rb"
@@ -121,13 +132,10 @@ require_relative "./inputs/checkout_line_item_update.rb"
 require_relative "./inputs/checkout_line_item.rb"
 require_relative "./inputs/checkout_create.rb"
 require_relative "./inputs/tokenized_payment_v2.rb"
-require_relative "./inputs/money.rb"
 require_relative "./inputs/credit_card_payment_v2.rb"
 require_relative "./inputs/checkout_attributes_update_v2.rb"
-require_relative "./inputs/mailing_address.rb"
 require_relative "./inputs/tokenized_payment.rb"
 require_relative "./inputs/credit_card_payment.rb"
-require_relative "./inputs/attribute.rb"
 require_relative "./inputs/checkout_attributes_update.rb"
 require_relative "./payloads/customer_update.rb"
 require_relative "./payloads/customer_reset_by_url.rb"
@@ -255,6 +263,9 @@ require_relative "./schema/types/payment_settings.rb"
 require_relative "./schema/types/shop.rb"
 require_relative "./schema/types/pricing_percentage_value.rb"
 
+require_relative "./schema/inputs/attribute.rb"
+require_relative "./schema/inputs/mailing_address.rb"
+require_relative "./schema/inputs/money.rb"
 require_relative "./schema/inputs/customer_update.rb"
 require_relative "./schema/inputs/customer_reset.rb"
 require_relative "./schema/inputs/customer_create.rb"
@@ -264,13 +275,10 @@ require_relative "./schema/inputs/checkout_line_item_update.rb"
 require_relative "./schema/inputs/checkout_line_item.rb"
 require_relative "./schema/inputs/checkout_create.rb"
 require_relative "./schema/inputs/tokenized_payment_v2.rb"
-require_relative "./schema/inputs/money.rb"
 require_relative "./schema/inputs/credit_card_payment_v2.rb"
 require_relative "./schema/inputs/checkout_attributes_update_v2.rb"
-require_relative "./schema/inputs/mailing_address.rb"
 require_relative "./schema/inputs/tokenized_payment.rb"
 require_relative "./schema/inputs/credit_card_payment.rb"
-require_relative "./schema/inputs/attribute.rb"
 require_relative "./schema/inputs/checkout_attributes_update.rb"
 require_relative "./schema/payloads/customer_update.rb"
 require_relative "./schema/payloads/customer_reset_by_url.rb"
