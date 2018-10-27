@@ -189,8 +189,11 @@ def parse_types_1(v)
     of.gsub! '::', '/'
     # This is the schema-related part (should be non-modifiable by user)
     $catalog[:schema_outputs][name]= of.underscore
-    # This is the implementation-related part (user should add implementation code)
-    $catalog[:outputs][name]= of.underscore
+
+    unless name=~ /^(?:Payloads|Inputs|Interfaces)::/
+      # This is the implementation-related part (user should add implementation code)
+      $catalog[:outputs][name]= of.underscore
+    end
   end
 end
 
@@ -225,7 +228,11 @@ def parse_types_2(v)
       helper['base_type']= 'BaseObject'
     end
 
-    $catalog[:schema_contents][new_name]= [template('schema/type_header', t, helper)]
+    if new_name=~ /^(?:Payloads|Inputs|Interfaces)::/
+      $catalog[:schema_contents][new_name]= [template('schema/type_header', t, helper)]
+    else
+      $catalog[:schema_contents][new_name]= [template('schema/type_header_include', t, helper)]
+    end
     $catalog[:contents][new_name]= [template('type_header', t, helper)]
 
     # Main block - parsing of type's fields
@@ -294,7 +301,6 @@ def parse_types_2(v)
         method_args= []
         args = f['args']
         if args
-          $catalog[:schema_contents][new_name].push ''
           args.each do |f|
             next if f['isDeprecated']
 
@@ -364,7 +370,6 @@ def parse_types_2(v)
     method_args= []
     fields = t['inputFields']
     if fields
-      $catalog[:schema_contents][new_name].push ''
       fields.each do |f|
         next if f['isDeprecated']
 
@@ -419,7 +424,7 @@ def parse_types_2(v)
             method_args[-1].push 'nil'
           end
         end
-        $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper2
+        $catalog[:schema_contents][new_name].push template 'schema/input_field', f, helper2
       end
     end # if f['inputFields']
     helper['method_args_string']= '(' + method_args.map{|a| a.join ' '}.join(', ')+ ')'
@@ -588,6 +593,9 @@ end
 ",
 'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
   graphql_name '#{type['name']}'
+",
+'schema/type_header_include' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
+  graphql_name '#{type['name']}'
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
 ",
 'schema/field_header' => "
@@ -595,6 +603,7 @@ end
     description %q{#{type['description']}}
 ",
 'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']}\n",
+'schema/input_field' => "  argument :#{(type['name']||'').underscore}, #{helper['type_name']}\n",
 'schema/enum_value' => "  value '#{type['name']}', %q{#{type['description']}}\n",
 'schema/field_footer' => "  end",
 'schema/type_footer' => "\nend\n",
@@ -627,7 +636,7 @@ end
 'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}\n",
 'field' => "
   # #{(type['description']||'').gsub /\s*\n+\s*/, ' '}
-  # Returns: #{(helper['type_name']||'').sub /^::Spree::GraphQL::Schema::/, ''}
+  # Returns: #{(helper['type_name']||'').gsub /::Spree::GraphQL::Schema::/, ''}
   def #{(type['name'] || '').underscore}#{helper['method_args_string']}
     raise ::Spree::GraphQL::NotImplementedError.new
   end
