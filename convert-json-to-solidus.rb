@@ -190,10 +190,8 @@ def parse_types_1(v)
     # This is the schema-related part (should be non-modifiable by user)
     $catalog[:schema_outputs][name]= of.underscore
 
-    unless name=~ /^(?:Payloads|Inputs|Interfaces)::/
-      # This is the implementation-related part (user should add implementation code)
-      $catalog[:outputs][name]= of.underscore
-    end
+    # This is the implementation-related part (user should add implementation code)
+    $catalog[:outputs][name]= of.underscore
   end
 end
 
@@ -215,7 +213,7 @@ def parse_types_2(v)
       exit 1
     end
 
-    helper= {}
+    helper= { 'interfaces' => []}
 
     case t['kind']
     when 'ENUM'
@@ -224,16 +222,33 @@ def parse_types_2(v)
       helper['base_type']= 'BaseScalar'
     when 'INPUT_OBJECT'
       helper['base_type']= 'BaseInput'
+    when 'INTERFACE'
+      helper['base_type']= 'BaseInterface'
     else
       helper['base_type']= 'BaseObject'
     end
 
-    if new_name=~ /^(?:Payloads|Inputs|Interfaces)::/
-      $catalog[:schema_contents][new_name]= [template('schema/type_header', t, helper)]
+
+    # Parse interfaces.
+    # This is done here so that any 'include's would appear at the top of generated files.
+    if t['interfaces']
+      t['interfaces'].each do |i|
+        if i['ofType'] or i['kind']!= 'INTERFACE'
+          $log.error "Found type #{t['name']} which implements interface #{i['name']}, but can't parse that interface because of its 'kind' and/or 'ofType' fields. This needs to be looked into and improved in the generator script; exiting."
+          exit 1
+        end
+        # XXX i['name'] here makes it impossible to rename an interface via $catalog[:names]
+        helper['interfaces'].push i['name']
+      end
+    end
+
+    if helper['base_type']== 'BaseInterface'
+      $catalog[:schema_contents][new_name]= [template('schema/type_header_module', t, helper)]
     else
-      $catalog[:schema_contents][new_name]= [template('schema/type_header_include', t, helper)]
+      $catalog[:schema_contents][new_name]= [template('schema/type_header', t, helper)]
     end
     $catalog[:contents][new_name]= [template('type_header', t, helper)]
+
 
     # Main block - parsing of type's fields
     if t['fields']
@@ -439,6 +454,7 @@ def parse_types_2(v)
       end
     end
 
+
     $catalog[:schema_contents][new_name].push template 'schema/type_footer'
     $catalog[:contents][new_name].push template 'type_footer'
   end
@@ -498,6 +514,13 @@ def output_files
   # User part:
   $catalog[:contents][name]= template('types/base_scalar')
   $catalog[:outputs][name]= 'types/base_scalar'
+
+  name= 'Types::BaseInterface'
+  $catalog[:schema_contents][name]= template('schema/types/base_interface')
+  $catalog[:schema_outputs][name]= 'types/base_interface'
+  # User part:
+  $catalog[:contents][name]= template('types/base_interface')
+  $catalog[:outputs][name]= 'types/base_interface'
 
   name= 'Types::BaseInput'
   $catalog[:schema_contents][name]= template('schema/types/base_input')
@@ -593,10 +616,17 @@ end
 ",
 'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
   graphql_name '#{type['name']}'
-",
-'schema/type_header_include' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
-  graphql_name '#{type['name']}'
+#{(helper['interfaces']||[]).map{|i| "  implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join "\n"}
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
+",
+'schema/type_header_module' => "module Spree::GraphQL::Schema::#{$catalog[:names][type['name']]}
+  include ::Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
+  graphql_name '#{type['name']}'
+#{(helper['interfaces']||[]).map{|i| "  implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join "\n"}
+  include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
+
+  definition_methods do
+  end
 ",
 'schema/field_header' => "
   field :#{(type['name'] || '').underscore}, #{helper['type_name']} do
@@ -609,31 +639,44 @@ end
 'schema/type_footer' => "\nend\n",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
   global_id_field :id
+  include ::Spree::GraphQL::Types::BaseObject
 end
 ',
 'schema/types/base_enum' => 'class Spree::GraphQL::Schema::Types::BaseEnum < GraphQL::Schema::Enum
+  include ::Spree::GraphQL::Types::BaseEnum
 end
 ',
 'schema/types/base_scalar' => 'class Spree::GraphQL::Schema::Types::BaseScalar < GraphQL::Schema::Scalar
+  include ::Spree::GraphQL::Types::BaseScalar
+end
+',
+'schema/types/base_interface' => 'module Spree::GraphQL::Schema::Types::BaseInterface
+  include ::GraphQL::Schema::Interface
+  include ::Spree::GraphQL::Types::BaseInterface
 end
 ',
 'schema/types/base_input' => 'class Spree::GraphQL::Schema::Types::BaseInput < GraphQL::Schema::InputObject
 end
 ',
 # User parts:
-'types/base_object' => 'class Spree::GraphQL::Types::BaseObject
+'types/base_object' => 'module Spree::GraphQL::Types::BaseObject
 end
 ',
-'types/base_enum' => 'class Spree::GraphQL::Types::BaseEnum
+'types/base_enum' => 'module Spree::GraphQL::Types::BaseEnum
 end
 ',
-'types/base_scalar' => 'class Spree::GraphQL::Types::BaseScalar
+'types/base_scalar' => 'module Spree::GraphQL::Types::BaseScalar
 end
 ',
-'types/base_input' => 'class Spree::GraphQL::Types::BaseInput
+'types/base_input' => 'module Spree::GraphQL::Types::BaseInput
 end
 ',
-'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}\n",
+'types/base_interface' => 'module Spree::GraphQL::Types::BaseInterface
+end
+',
+'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}
+#{(helper['interfaces']||[]).map{|i| "  include ::Spree::GraphQL::Interfaces::#{i}"}.join "\n"}
+",
 'field' => "
   # #{(type['description']||'').gsub /\s*\n+\s*/, ' '}
   # Returns: #{(helper['type_name']||'').gsub /::Spree::GraphQL::Schema::/, ''}
