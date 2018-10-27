@@ -28,14 +28,16 @@ def run
   schema2 = schema['data']['__schema']
 
   # Remove descriptions which are not controlled by us and are known to be different
-  remove(schema1)
-  remove(schema2)
+  remov(schema1)
+  remov(schema2)
 
   schema1['types'].each do |t1|
-    next if t1['isDeprecated']
+    next if t1['isDeprecated'] or t1['name']=~ /^__/
     t2= schema2['types'].find{|x| x['name']== t1['name']}
 
-    if !equal(t1,t2)
+    # The 'and t2' is here to make sure we only compare types existing in both,
+    # and not old/deprecated types from t1 which we never had in t2.
+    if !equal(t1,t2) and t2
       File.write "diffs/#{t1['name']}.orig", JSON.pretty_generate(t1)
       File.write "diffs/#{t1['name']}.solidus", JSON.pretty_generate(t2)
     else
@@ -52,33 +54,20 @@ def equal(t1,t2)
   true
 end
 
-def remove(s)
+def remov(s)
   if s.is_a? Hash
     s.delete 'description'
     s.each do |k,v|
-      if v.is_a?(Hash)
-        v.delete 'description'
-        if v['isDeprecated']
-          s.delete v
-        else
-          remove v
-        end
+      if (v.is_a?(Hash) and v['isDeprecated'])
+        s.delete k
       else
-        remove v
+        remov v
       end
     end
   elsif s.is_a? Array
+    s.reject!{|x| x.is_a?(Hash) and x['isDeprecated']}
     s.each do |v|
-      if v.is_a?(Hash)
-        v.delete 'description'
-        if v['isDeprecated']
-          s.delete v
-        else
-          remove v
-        end
-      else
-        remove v
-      end
+      remov v
     end
   end
 end
