@@ -267,17 +267,19 @@ def parse_types_2(v)
       helper['possible_types_string']= "possible_types \\\n    "+ helper['possible_types'].map{|t| "::Spree::GraphQL::Schema::#{t}"}.join(",\n    ")+ "\n"
       classes_preamble= helper['possible_types'].map{|t| "class Spree::GraphQL::Schema::#{t} < Spree::GraphQL::Schema::Types::BaseObject; end"}.join("\n")+ "\n\n"
       $catalog[:schema_contents][new_name].unshift classes_preamble
-      helper['possible_types']= []
     end
 
-
     # Prepare type for output by generating its headers for both output files
+    helper['description']= t['description'] ? "%q{#{t['description']}}" : 'nil'
     if helper['base_type']== 'BaseInterface'
       $catalog[:schema_contents][new_name].push [template('schema/type_header_module', t, helper)]
     else
       $catalog[:schema_contents][new_name].push [template('schema/type_header', t, helper)]
     end
     $catalog[:contents][new_name].push [template('type_header', t, helper)]
+
+    helper['possible_types']= []
+    helper['possible_types_string']= nil
 
 
     # Main block - parsing of type's fields
@@ -341,6 +343,7 @@ def parse_types_2(v)
           arr.unshift helper['preamble'] unless arr.include? helper['preamble']
           helper['preamble']= nil
         end
+        helper['description']= f['description'] ? "%q{#{f['description']}}" : 'nil'
         $catalog[:schema_contents][new_name].push template 'schema/field_header', f, helper
 
         method_args= []
@@ -400,11 +403,13 @@ def parse_types_2(v)
                 method_args[-1].push 'nil'
               end
             end
+            helper2['description']= f['description'] ? "%q{#{f['description']}}" : 'nil'
             $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper2
           end
         end # if f['args']
         $catalog[:schema_contents][new_name].push template 'schema/field_footer'
 
+        helper['description']= f['description'] ? "%q{%{f['description']}}" : 'nil'
         helper['method_args_string']= '(' + method_args.map{|a| a.join ' '}.join(', ')+ ')'
         $catalog[:contents][new_name].push template 'field', f, helper
       end # t['fields'].each
@@ -469,21 +474,23 @@ def parse_types_2(v)
             method_args[-1].push 'nil'
           end
         end
+        helper2['description']= f['description'] ? "%q{#{f['description']}}" : 'nil'
         $catalog[:schema_contents][new_name].push template 'schema/input_field', f, helper2
       end
     end # if f['inputFields']
+    helper['description']= t['description'] ? "%q{#{t['description']}}" : 'nil'
     helper['method_args_string']= '(' + method_args.map{|a| a.join ' '}.join(', ')+ ')'
     $catalog[:contents][new_name].push template 'field', t, helper
 
 
     # Parse enum values
-    if t['scalarValues']
+    if t['enumValues']
       t['enumValues'].each do |v|
         next if v['isDeprecated']
+        helper['description']= v['description'] ? "%q{#{v['description']}}" : 'nil'
         $catalog[:schema_contents][new_name].push template 'schema/enum_value', v, helper
       end
     end
-
 
     $catalog[:schema_contents][new_name].push template 'schema/type_footer'
     $catalog[:contents][new_name].push template 'type_footer'
@@ -649,10 +656,20 @@ end
 'schema' => "class Spree::GraphQL::Schema::Schema < GraphQL::Schema
   query ::Spree::GraphQL::Schema::Types::#{type['query']}
   mutation ::Spree::GraphQL::Schema::Types::#{type['mutation']}
+
+  #def self.resolve_type(type, obj, ctx)
+  #end
+
+  #def self.object_from_id(node_id, ctx)
+  #end
+
+  #def self.id_from_object(object, type, ctx)
+  #end
 end
 ",
 'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
   graphql_name '#{type['name']}'
+  description #{helper['description']}
 #{(helper['interfaces']||[]).map{|i| "  implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join "\n"}
   #{helper['possible_types_string']}
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
@@ -669,15 +686,14 @@ end
 ",
 'schema/field_header' => "
   field :#{(type['name'] || '').underscore}, #{helper['type_name']} do
-    description %q{#{type['description']}}
+    description #{helper['description']}
 ",
-'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']}\n",
-'schema/input_field' => "  argument :#{(type['name']||'').underscore}, #{helper['type_name']}\n",
-'schema/enum_value' => "  value '#{type['name']}', %q{#{type['description']}}\n",
+'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']}, description: #{helper['description']}\n",
+'schema/input_field' => "  argument :#{(type['name']||'').underscore}, #{helper['type_name']}, description: #{helper['description']}\n",
+'schema/enum_value' => "  value '#{type['name']}', #{helper['description']}\n",
 'schema/field_footer' => "  end",
 'schema/type_footer' => "\nend\n",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
-  global_id_field :id
   include ::Spree::GraphQL::Types::BaseObject
 end
 ',
