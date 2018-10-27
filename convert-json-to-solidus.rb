@@ -295,11 +295,11 @@ def parse_types_2(v)
           end
         end
         string = ''
+        suffix= ''
         chain.each do |t2|
           if t2['kind'] == 'NON_NULL' and !t2['name']; string.sub! /true$/, 'false'
           elsif t2['kind'] == 'LIST' and !t2['name']; string = "[#{string}], null: true"
           else
-            suffix= ''
             ret_name= t2['name']
             if ret_name.sub! /Connection$/, ''
               suffix = '.connection_type'
@@ -322,7 +322,7 @@ def parse_types_2(v)
               ret_name= '::Spree::GraphQL::Schema::'+ ret_name
             end
 
-            string = "#{ret_name}, null: true"
+            string = "#{ret_name+ suffix}, null: true"
           end
         end # chain.each do |t2|
 
@@ -351,6 +351,9 @@ def parse_types_2(v)
         if args
           args.each do |f|
             next if f['isDeprecated']
+            if suffix=~ /connection/
+              next if %w/first last before after pageInfo/.include? f['name']
+            end
 
             helper2 = {}
             chain = []
@@ -361,11 +364,11 @@ def parse_types_2(v)
               end
             end
             string= ''
-            chain.each do |t|
-              if t['kind'] == 'NON_NULL' and !t['name']; string.sub! /false$/, 'true'
-              elsif t['kind'] == 'LIST' and !t['name']; string = "[#{string}], required: false"
+            chain.each do |t2|
+              if t2['kind'] == 'NON_NULL' and !t2['name']; string.sub! /false$/, 'true'
+              elsif t2['kind'] == 'LIST' and !t2['name']; string = "[#{string}], required: false"
               else
-                arg_type= t['name']
+                arg_type= t2['name']
                 suffix = ''
                 if arg_type.sub! /Connection$/, ''
                   suffix = '.connection_type'
@@ -384,7 +387,7 @@ def parse_types_2(v)
             # 1) Types have null: true/false, while arguments have required: true/false
             # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
             # So the following is needed to comply with that:
-            string.gsub! ', required: true]', ', null: true]'
+            string.gsub! ', required: true]', ']' # 'null: false]'
             string.gsub! ', required: false]', ']'
 
             helper2['type_name']= string
@@ -392,16 +395,29 @@ def parse_types_2(v)
             if helper2['type_name']!~ /required: true/
               helper2[:default_value]= ' nil'
             end
+            # If default value is handled in this way, the default is not visible in schema.
+            # So it needs to be handled via default_value: argument in argument definition
+            #if f['defaultValue']
+            #  if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
+            #    method_args[-1].push f['defaultValue']
+            #  else
+            #    method_args[-1].push %q{'}+ f['defaultValue']+ %q{'}
+            #  end
+            #else
+            #  if !(string=~ /required: true/)
+            #    method_args[-1].push 'nil'
+            #  end
+            #end
             if f['defaultValue']
-              if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
-                method_args[-1].push f['defaultValue']
-              else
-                method_args[-1].push %q{'}+ f['defaultValue']+ %q{'}
-              end
+              helper2['default_value_string']= ' default_value: '+
+                (if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
+                  f['defaultValue']
+                else
+                  %q{'}+ f['defaultValue']+ %q{'}
+                end)+
+                ','
             else
-              if !(string=~ /required: true/)
-                method_args[-1].push 'nil'
-              end
+              helper2['default_value_string']= ''
             end
             helper2['description']= f['description'] ? "%q{#{f['description']}}" : 'nil'
             $catalog[:schema_contents][new_name].push template 'schema/argument', f, helper2
@@ -455,7 +471,7 @@ def parse_types_2(v)
         # 1) Types have null: true/false, while arguments have required: true/false
         # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
         # So the following is needed to comply with that:
-        string.gsub! ', required: true]', ', null: true]'
+        string.gsub! ', required: true]', ']' # , null: true]'
         string.gsub! ', required: false]', ']'
 
         helper2['type_name']= string
@@ -463,16 +479,27 @@ def parse_types_2(v)
         if helper2['type_name']!~ /required: true/
           helper2[:default_value]= ' nil'
         end
+        #if f['defaultValue']
+        #  if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
+        #    method_args[-1].push f['defaultValue']
+        #  else
+        #    method_args[-1].push %q{'}+ f['defaultValue']+ %q{'}
+        #  end
+        #else
+        #  if !(string=~ /required: true/)
+        #    method_args[-1].push 'nil'
+        #  end
+        #end
         if f['defaultValue']
-          if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
-            method_args[-1].push f['defaultValue']
-          else
-            method_args[-1].push %q{'}+ f['defaultValue']+ %q{'}
-          end
+          helper2['default_value_string']= ' default_value: '+
+            (if f['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
+              f['defaultValue']
+            else
+              %q{'}+ f['defaultValue']+ %q{'}
+            end)+
+            ','
         else
-          if !(string=~ /required: true/)
-            method_args[-1].push 'nil'
-          end
+          helper2['default_value_string']= ''
         end
         helper2['description']= f['description'] ? "%q{#{f['description']}}" : 'nil'
         $catalog[:schema_contents][new_name].push template 'schema/input_field', f, helper2
@@ -677,6 +704,7 @@ end
 'schema/type_header_module' => "module Spree::GraphQL::Schema::#{$catalog[:names][type['name']]}
   include ::Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
   graphql_name '#{type['name']}'
+  description #{helper['description']}
 #{(helper['interfaces']||[]).map{|i| "  implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join "\n"}
   #{helper['possible_types_string']}
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
@@ -688,8 +716,8 @@ end
   field :#{(type['name'] || '').underscore}, #{helper['type_name']} do
     description #{helper['description']}
 ",
-'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']}, description: #{helper['description']}\n",
-'schema/input_field' => "  argument :#{(type['name']||'').underscore}, #{helper['type_name']}, description: #{helper['description']}\n",
+'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}\n",
+'schema/input_field' => "  argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}\n",
 'schema/enum_value' => "  value '#{type['name']}', #{helper['description']}\n",
 'schema/field_footer' => "  end",
 'schema/type_footer' => "\nend\n",
@@ -738,7 +766,6 @@ end
 ',
 'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}
 #{(helper['interfaces']||[]).map{|i| "  include ::Spree::GraphQL::Interfaces::#{i}"}.join "\n"}
-  #{helper['possible_types_string']}
 ",
 'field' => "
   # #{(type['description']||'').gsub /\s*\n+\s*/, ' '}
