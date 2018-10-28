@@ -20,6 +20,7 @@ module Spree::GraphQL::Types::Order
   end
 
   # Discounts that have been applied on the order.
+  # Defaults: reverse = false
   # Returns: Interfaces::DiscountApplication.connection_type, null: false
   def discount_applications(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -38,6 +39,7 @@ module Spree::GraphQL::Types::Order
   end
 
   # List of the order’s line items.
+  # Defaults: reverse = false
   # Returns: Types::OrderLineItem.connection_type, null: false
   def line_items(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new

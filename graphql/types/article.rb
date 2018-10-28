@@ -14,6 +14,7 @@ module Spree::GraphQL::Types::Article
   end
 
   # List of comments posted on the article.
+  # Defaults: reverse = false
   # Returns: Types::Comment.connection_type, null: false
   def comments(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -56,6 +57,7 @@ module Spree::GraphQL::Types::Article
   end
 
   # The image associated with the article.
+  # Defaults: scale = 1
   # Returns: Types::Image, null: true
   def image(max_width:, max_height:, crop:, scale:)
     raise ::Spree::GraphQL::NotImplementedError.new

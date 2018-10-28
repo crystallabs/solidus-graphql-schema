@@ -8,6 +8,7 @@ module Spree::GraphQL::Types::Product
   end
 
   # List of collections a product belongs to.
+  # Defaults: reverse = false
   # Returns: Types::Collection.connection_type, null: false
   def collections(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -44,6 +45,7 @@ module Spree::GraphQL::Types::Product
   end
 
   # List of images associated with the product.
+  # Defaults: reverse = false, sort_key = 'POSITION', scale = 1
   # Returns: Types::Image.connection_type, null: false
   def images(reverse:, sort_key:, max_width:, max_height:, crop:, scale:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -104,6 +106,7 @@ module Spree::GraphQL::Types::Product
   end
 
   # List of the product’s variants.
+  # Defaults: reverse = false, sort_key = 'POSITION'
   # Returns: Types::ProductVariant.connection_type, null: false
   def variants(reverse:, sort_key:)
     raise ::Spree::GraphQL::NotImplementedError.new

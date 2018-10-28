@@ -2,6 +2,7 @@ module Spree::GraphQL::Types::QueryRoot
 
 
   # List of the shop's articles.
+  # Defaults: reverse = false, sort_key = 'ID'
   # Returns: Types::Article.connection_type, null: false
   def articles(reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -14,6 +15,7 @@ module Spree::GraphQL::Types::QueryRoot
   end
 
   # List of the shop's blogs.
+  # Defaults: reverse = false, sort_key = 'ID'
   # Returns: Types::Blog.connection_type, null: false
   def blogs(reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new

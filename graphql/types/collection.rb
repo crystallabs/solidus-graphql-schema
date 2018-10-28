@@ -26,12 +26,14 @@ module Spree::GraphQL::Types::Collection
   end
 
   # Image associated with the collection.
+  # Defaults: scale = 1
   # Returns: Types::Image, null: true
   def image(max_width:, max_height:, crop:, scale:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # List of products in the collection.
+  # Defaults: reverse = false, sort_key = 'COLLECTION_DEFAULT'
   # Returns: Types::Product.connection_type, null: false
   def products(reverse:, sort_key:)
     raise ::Spree::GraphQL::NotImplementedError.new

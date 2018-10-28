@@ -20,6 +20,7 @@ module Spree::GraphQL::Types::Image
   end
 
   # The location of the transformed image as a URL. All transformation arguments are considered "best-effort". If they can be applied to an image, they will be. Otherwise any transformations which an image type does not support will be ignored. 
+  # Defaults: scale = 1
   # Returns: Types::URL, null: false
   def transformed_src(max_width:, max_height:, crop:, scale:, preferred_content_type:)
     raise ::Spree::GraphQL::NotImplementedError.new

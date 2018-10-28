@@ -20,6 +20,7 @@ module Spree::GraphQL::Types::ProductVariant
   end
 
   # Image associated with the product variant. This field falls back to the product image if no image is available.
+  # Defaults: scale = 1
   # Returns: Types::Image, null: true
   def image(max_width:, max_height:, crop:, scale:)
     raise ::Spree::GraphQL::NotImplementedError.new

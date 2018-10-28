@@ -44,6 +44,7 @@ module Spree::GraphQL::Types::MailingAddress
   end
 
   # A formatted version of the address, customized by the provided arguments.
+  # Defaults: with_name = false, with_company = true
   # Returns: [::GraphQL::Types::String], null: false
   def formatted(with_name:, with_company:)
     raise ::Spree::GraphQL::NotImplementedError.new

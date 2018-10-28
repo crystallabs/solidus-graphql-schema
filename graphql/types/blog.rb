@@ -8,6 +8,7 @@ module Spree::GraphQL::Types::Blog
   end
 
   # List of the blog's articles.
+  # Defaults: reverse = false
   # Returns: Types::Article.connection_type, null: false
   def articles(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new

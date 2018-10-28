@@ -8,6 +8,7 @@ module Spree::GraphQL::Types::Shop
   end
 
   # List of the shop’s collections.
+  # Defaults: reverse = false, sort_key = 'ID'
   # Returns: Types::Collection.connection_type, null: false
   def collections(reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -62,6 +63,7 @@ module Spree::GraphQL::Types::Shop
   end
 
   # List of the shop’s products.
+  # Defaults: reverse = false, sort_key = 'ID'
   # Returns: Types::Product.connection_type, null: false
   def products(reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new

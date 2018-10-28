@@ -38,6 +38,7 @@ module Spree::GraphQL::Types::Checkout
   end
 
   # Discounts that have been applied on the checkout.
+  # Defaults: reverse = false
   # Returns: Interfaces::DiscountApplication.connection_type, null: false
   def discount_applications(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -56,6 +57,7 @@ module Spree::GraphQL::Types::Checkout
   end
 
   # A list of line item objects, each one containing information about an item in the checkout.
+  # Defaults: reverse = false
   # Returns: Types::CheckoutLineItem.connection_type, null: false
   def line_items(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new

@@ -8,6 +8,7 @@ module Spree::GraphQL::Types::Customer
   end
 
   # A list of addresses for the customer.
+  # Defaults: reverse = false
   # Returns: Types::MailingAddress.connection_type, null: false
   def addresses(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -62,6 +63,7 @@ module Spree::GraphQL::Types::Customer
   end
 
   # The orders associated with the customer.
+  # Defaults: reverse = false, sort_key = 'ID'
   # Returns: Types::Order.connection_type, null: false
   def orders(reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new

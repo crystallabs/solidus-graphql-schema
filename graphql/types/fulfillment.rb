@@ -2,6 +2,7 @@ module Spree::GraphQL::Types::Fulfillment
 
 
   # List of the fulfillment's line items.
+  # Defaults: reverse = false
   # Returns: Types::FulfillmentLineItem.connection_type, null: false
   def fulfillment_line_items(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
