@@ -38,7 +38,7 @@ Please note that because the GraphQL schema namespace is flat, and also to prese
 
 Since the schema files are managed by the generator script, actual Solidus GraphQL API method implementations which are inserted and maintained manually cannot be placed there.
 
-Every GraphQL schema file expects its corresponding implementation file placed in the same directory structure and using the same class/module name, just with the `schema/` and `Schema::` prefixes removed.
+Every Solidus schema file expects its corresponding implementation file placed in the same directory structure and using the same class/module name, just with the `schema/` and `Schema::` prefixes removed.
 
 For example, GraphQL type `Schema::Types::Shop` expects to find its implementation methods in the module `Types::Shop` and automatically includes that module in its class.
 
