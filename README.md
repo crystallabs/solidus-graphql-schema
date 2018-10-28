@@ -97,13 +97,13 @@ Currently, the smaller points of difference between Shopify and Solidus GraphQL 
 Possibly more significant differences:
 
 1. GraphQL types `Order`, `Checkout`, and `DiscountAllocation` in Solidus do not include the fields related to type `DiscountApplication`. This will be fixed.
-1. In Solidus, all Connection types can return nil whereas in Shopify they are explicitly not nil. The nil comes from default graphql-ruby behavior, and this may be kept so permanently unless more detailed reasons for making it not nil come to our attention.
+1. In Solidus, all Connection types can return nil whereas in Shopify they are explicitly not nil. The nil comes from default graphql-ruby behavior, and this may be kept as it is, unless more detailed reasons for making it not nil come to attention.
 
 ## TODO
 
 1. Some types contain lists of accepted values, such as `Schema::Types::CountryCode`. These types and names are currently converted from original schema into Solidus schema as fixed strings. Instead, they should be populated dynamically from Solidus' own country list.
 1. The generator script currently simply discards all deprecated parts of schema and they are not created in Solidus. If/when supporting deprecated elements becomes important, the generator will have to be modified to not skip deprecated elements, but to output them while honoring their `isDeprecated` status.
-1. Default values for arguments need to be kept in schema files (rather than provided as default values in method definitions) so that they would be known to GraphQL. These values also need to be included in comments above method implementation stubs for maximum convenience when one is working on adding the method implementations.
+1. Default values for arguments are kept in schema files (rather than provided as default values in method definitions) so that they would be known to GraphQL. However, then in method definitions it is not clear what the default values are since they are not specified in the arguments list. So, the default values need to be included in comments above method implementation stubs for maximum convenience when one is working on adding the method implementations.
 1. In some places, first/last/before/after/pageInfo may still appear mentioned literally. If so, the generator should be updated to avoid outputting these since they are handled automatically by Connection types.
 1. Determine why `Order`, `Checkout`, and `DiscountAllocation` do not include the field related to discount applications, and consequently the `DiscountApplication` interface.
 1. See whether it is possible to make `Shop.productTypes` connection only support argument `first` (like in the upstream API) rather than all four arguments (`first`, `last`, `before`, `after`)
