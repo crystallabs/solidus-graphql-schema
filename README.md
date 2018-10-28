@@ -26,7 +26,7 @@ In GraphQL, almost everything is a Type. This is excellent for the simplificatio
 Therefore, Solidus GraphQL API splits all types into the main distinctive groups they belong to:
 
 1. Inputs - Input Object types mainly used when invoking mutations. They are kept in the subdirectory `inputs/` and prefixed with `Inputs::` in class names.
-1. Payloads - Response object types mainly used for receiving responses from mutations. They are kept in the subdirectory `payloads/` and prefixed with `Payload::` in class names.
+1. Payloads - Response object types mainly used for receiving responses from mutations. They are kept in the subdirectory `payloads/` and prefixed with `Payloads::` in class names.
 1. Interfaces - Non-instantiable types which other types may implement. They are kept in the subdirectory `interfaces/` and prefixed with `Interfaces::` in module names. 
 1. Types - All other types. They are kept in the subdirectory `types/` and prefixed with `Types::` in class names.
 
