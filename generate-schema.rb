@@ -645,39 +645,6 @@ def template(file, type = {}, helper = {})
 # all.rb manually, taking the necessary order of includes
 # into account.
 
-require 'graphql'
-
-module Spree
-  module GraphQL
-
-    module Schema
-      module Inputs
-      end
-      module Interfaces
-      end
-      module Payloads
-      end
-      module Types
-      end
-    end
-
-    module Inputs
-    end
-    module Interfaces
-    end
-    module Payloads
-    end
-    module Types
-    end
-
-    class NotImplementedError < ::GraphQL::ExecutionError
-      def initialize
-        super "Not implemented yet"
-      end
-    end
-  end
-end
-
 },
 # Schema parts:
 'schema' => "class Spree::GraphQL::Schema::Schema < GraphQL::Schema

@@ -44,6 +44,8 @@ For example, GraphQL type `Schema::Types::Shop` expects to find its implementati
 
 When the schema generator is run, it also generates the stub implementation files if they don't yet exist. These files are generated with ready-made templates for all defined GraphQL fields, including mentioning their description, arguments, and expected return value in the comments above the method definitions.
 
+All auto-generated method stubs contain one default line of code which raises error `::Spree::GraphQL::NotImplementedError`.
+
 To implement a particular GraphQL field, one can use all approaches mentioned in [graphql-ruby Fields Guides](http://graphql-ruby.org/guides#fields-guides), but most often this will come down to one of two choices:
 
 1. Remove the NotImplemented error for a particular call and replace it with the actual implementation. In this case, as per graphql-ruby, the underlying object is automatically available in helper variable `object`, context in `context`, and arguments are accessed directly as arguments passed to the method.

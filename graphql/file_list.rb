@@ -7,39 +7,6 @@
 # all.rb manually, taking the necessary order of includes
 # into account.
 
-require 'graphql'
-
-module Spree
-  module GraphQL
-
-    module Schema
-      module Inputs
-      end
-      module Interfaces
-      end
-      module Payloads
-      end
-      module Types
-      end
-    end
-
-    module Inputs
-    end
-    module Interfaces
-    end
-    module Payloads
-    end
-    module Types
-    end
-
-    class NotImplementedError < ::GraphQL::ExecutionError
-      def initialize
-        super "Not implemented yet"
-      end
-    end
-  end
-end
-
 require_relative "./types/query_root"
 require_relative "./interfaces/node"
 require_relative "./types/customer"
