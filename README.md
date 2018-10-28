@@ -65,7 +65,7 @@ To generate GraphQL schema files or to update them from upstream, you would use 
 1. Copy and commit desired changes in contents from `./graphql/` into solidus_graphql_api
 1. If new files were created, add them to solidus_graphql_api's file `lib/solidus_graphql_api/graphql/all.rb`
 
-Please note that the generator will, by default, output all files to subdirectory `./graphql/`. You can compare existing solidus_graphql_api files (directory lib/solidus_graphql_api/graphql/) with it (that's item (7) in the above list) in generally one of two ways:
+Please note that the generator will, by default, output all files to subdirectory `./graphql/`. You can compare existing solidus_graphql_api files with it (that's item (7) in the above list) in generally one of two ways:
 
 1. Compare the two directories with a command like `diff -ruNP /path/to/solidus_graphql_api/lib/solidus_graphql_api/graphql/ ./graphql/`. This approach is good for a quick check, but you will still need to copy over the files or changes you intend to keep and commit to solidus_graphql_api.
 1. Make `graphql` be a symlink to `/path/to/solidus_graphql_api/lib/solidus_graphql_api/graphql/`. This approach will effectively generate the files directly in solidus_graphql_api source tree and you can check for any changes by going to that directory and running `git diff`/`git status`.
