@@ -522,7 +522,7 @@ def parse_types_2(v)
     if helper['method_args_description'].size>0
       helper['method_args_description']= "\n  # Defaults: "+ helper['method_args_description']
     end
-    $catalog[:contents][new_name].push template 'field', t, helper
+    #$catalog[:contents][new_name].push template 'field', t, helper
 
 
     # Parse enum values
@@ -750,7 +750,7 @@ end
 #{(helper['interfaces']||[]).map{|i| "  include ::Spree::GraphQL::Interfaces::#{i}"}.join "\n"}
 ",
 'field' => "
-  # #{(type['description']||'').gsub /\s*\n+\s*/, ' '}#{helper['method_args_description']}
+  # Field: #{type['name']}#{( type['description'] ? ': '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}#{helper['method_args_description']}
   # Returns: #{(helper['type_name']||'').gsub /::Spree::GraphQL::Schema::/, ''}
   def #{(type['name'] || '').underscore}#{helper['method_args_string']}
     raise ::Spree::GraphQL::NotImplementedError.new
