@@ -103,6 +103,5 @@ Possibly more significant differences:
 
 1. Some types contain lists of accepted values, such as `Schema::Types::CountryCode`. These types and names are currently converted from original schema into Solidus schema as fixed strings. Instead, they should be populated dynamically from Solidus' own country list.
 1. The generator script currently simply discards all deprecated parts of schema and they are not created in Solidus. If/when supporting deprecated elements becomes important, the generator will have to be modified to not skip deprecated elements, but to output them while honoring their `isDeprecated` status.
-1. In some places, first/last/before/after/pageInfo may still appear mentioned literally. If so, the generator should be updated to avoid outputting these since they are handled automatically by Connection types.
 1. Determine why `Order`, `Checkout`, and `DiscountAllocation` do not include the field related to discount applications, and consequently the `DiscountApplication` interface.
 1. See whether it is possible to make `Shop.productTypes` connection only support argument `first` (like in the upstream API) rather than all four arguments (`first`, `last`, `before`, `after`)
