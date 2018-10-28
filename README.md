@@ -92,7 +92,7 @@ The schema is generated automatically and so depends on the specifics of the gen
 Currently, the smaller points of difference between Shopify and Solidus GraphQL schema are:
 
 1. Solidus uses newer versions of `graphql-ruby` which may include more verbose field and argument descriptions, and more data in the `pageInfo` type.
-1. GraphQL field `Shop.productTypes` in Shopify only supports argument `first`, while in Solidus it is a regular Connection with four default arguments (first, last, before, after).
+1. GraphQL field `Shop.productTypes` in Shopify only supports argument `first`, while in Solidus it is a regular Connection with four default arguments (`first`, `last`, `before`, `after`).
 
 Possibly more significant differences:
 
