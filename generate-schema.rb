@@ -1,4 +1,4 @@
-#!/usr/bin/env/ruby
+#!/usr/bin/env ruby
 
 if ARGV.size < 2
   STDERR.puts "Usage: $0 <schema_json_file> <graphql-ruby-git_dir> [output_dir || ./graphql/]"
@@ -11,7 +11,7 @@ require 'fileutils'
 require 'active_support/core_ext/string/inflections'
 
 $log= Logger.new STDOUT
-$log.level = Logger::DEBUG
+$log.level = Logger::WARN
 $log.formatter = proc do |severity, datetime, progname, msg| "#{severity.to_s}: #{msg}\n" end
 
 # Schema contains:

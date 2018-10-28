@@ -1,4 +1,4 @@
-#!/usr/bin/env/ruby
+#!/usr/bin/env ruby
 
 if ARGV.size < 2
   STDERR.puts "Usage: $0 <schema_json_file_1> <schema_json_file_2>"
