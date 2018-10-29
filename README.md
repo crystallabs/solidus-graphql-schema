@@ -124,3 +124,4 @@ Possibly more significant differences:
 1. Object IDs need to be turned into globally unique IDs, as mentioned in https://github.com/boomerdigital/solidus_graphql_api/issues/18
 1. Authentication in solidus_graphql_api should be sorted out as mentioned in https://github.com/boomerdigital/solidus_graphql_api/issues/14
 1. When the schema stabilizes over time and when there will be much more individual field/method additions than whole file replacements, the current method of generating whole files won't suffice. This will be solved by additionally also generating "snippets" for individual fields which the user can then simply copy into existing files.
+1. Some GraphQL types are not marked as deprecated, but they are effectively unused because only deprecated fields used them. Currently, these cases are not detected and these types are output to disk along with all other types. This should be detected and those types should be omitted just like the deprecated fields.
