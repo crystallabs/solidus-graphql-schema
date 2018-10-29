@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'Domain' do
     #let!(:domain) {create(:domain)}
 
-    # Field: host: The host name of the domain (eg: `example.com`).
-    # Args: 
-    # Returns: Types::String!
+    # @graphql host The host name of the domain (eg: `example.com`).
+    # @return [Types::String!]
     #it 'host' do
     #  query = <<-GRAPHQL
     #    { domain { host() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['host']).to eq domain.host
     #end
 
-    # Field: sslEnabled: Whether SSL is enabled or not.
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql sslEnabled Whether SSL is enabled or not.
+    # @return [Types::Boolean!]
     #it 'ssl_enabled' do
     #  query = <<-GRAPHQL
     #    { domain { sslEnabled() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['sslEnabled']).to eq domain.ssl_enabled
     #end
 
-    # Field: url: The URL of the domain (eg: `https://example.com`).
-    # Args: 
-    # Returns: Types::URL!
+    # @graphql url The URL of the domain (eg: `https://example.com`).
+    # @return [Types::URL!]
     #it 'url' do
     #  query = <<-GRAPHQL
     #    { domain { url() }}

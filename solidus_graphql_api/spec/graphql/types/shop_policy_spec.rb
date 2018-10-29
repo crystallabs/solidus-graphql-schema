@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'ShopPolicy' do
     #let!(:shop_policy) {create(:shop_policy)}
 
-    # Field: body: Policy text, maximum size of 64kb.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql body Policy text, maximum size of 64kb.
+    # @return [Types::String!]
     #it 'body' do
     #  query = <<-GRAPHQL
     #    { shop_policy { body() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['body']).to eq shop_policy.body
     #end
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { shop_policy { id() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['id']).to eq shop_policy.id
     #end
 
-    # Field: title: Policy’s title.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql title Policy’s title.
+    # @return [Types::String!]
     #it 'title' do
     #  query = <<-GRAPHQL
     #    { shop_policy { title() }}
@@ -40,9 +37,8 @@ describe 'Types' do
     #  expect(result['title']).to eq shop_policy.title
     #end
 
-    # Field: url: Public URL to the policy.
-    # Args: 
-    # Returns: Types::URL!
+    # @graphql url Public URL to the policy.
+    # @return [Types::URL!]
     #it 'url' do
     #  query = <<-GRAPHQL
     #    { shop_policy { url() }}

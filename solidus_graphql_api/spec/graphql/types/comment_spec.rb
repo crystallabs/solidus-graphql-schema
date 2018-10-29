@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'Comment' do
     #let!(:comment) {create(:comment)}
 
-    # Field: author: The comment’s author.
-    # Args: 
-    # Returns: Types::CommentAuthor!
+    # @graphql author The comment’s author.
+    # @return [Types::CommentAuthor!]
     #it 'author' do
     #  query = <<-GRAPHQL
     #    { comment { author() }}
@@ -16,9 +15,9 @@ describe 'Types' do
     #  expect(result['author']).to eq comment.author
     #end
 
-    # Field: content: Stripped content of the comment, single line with HTML tags removed.
-    # Args: truncate_at : Types::Int
-    # Returns: Types::String!
+    # @graphql content Stripped content of the comment, single line with HTML tags removed.
+    # @param truncate_at [Types::Int]
+    # @return [Types::String!]
     #it 'content' do
     #  query = <<-GRAPHQL
     #    { comment { content(truncate_at:) }}
@@ -28,9 +27,8 @@ describe 'Types' do
     #  expect(result['content']).to eq comment.content
     #end
 
-    # Field: contentHtml: The content of the comment, complete with HTML formatting.
-    # Args: 
-    # Returns: Types::HTML!
+    # @graphql contentHtml The content of the comment, complete with HTML formatting.
+    # @return [Types::HTML!]
     #it 'content_html' do
     #  query = <<-GRAPHQL
     #    { comment { contentHtml() }}
@@ -40,9 +38,8 @@ describe 'Types' do
     #  expect(result['contentHtml']).to eq comment.content_html
     #end
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { comment { id() }}

@@ -4,9 +4,9 @@ describe 'Types' do
   describe 'Blog' do
     #let!(:blog) {create(:blog)}
 
-    # Field: articleByHandle: Find an article by its handle.
-    # Args: handle : Types::String!
-    # Returns: Types::Article
+    # @graphql articleByHandle Find an article by its handle.
+    # @param handle [Types::String!]
+    # @return [Types::Article]
     #it 'article_by_handle' do
     #  query = <<-GRAPHQL
     #    { blog { articleByHandle(handle:) }}
@@ -16,9 +16,9 @@ describe 'Types' do
     #  expect(result['articleByHandle']).to eq blog.article_by_handle
     #end
 
-    # Field: articles: List of the blog's articles.
-    # Args: reverse : Types::Boolean = false
-    # Returns: Types::Article.connection_type!
+    # @graphql articles List of the blog's articles.
+    # @param reverse [Types::Boolean] (false)
+    # @return [Types::Article.connection_type!]
     #it 'articles' do
     #  query = <<-GRAPHQL
     #    { blog { articles(reverse:) }}
@@ -28,9 +28,8 @@ describe 'Types' do
     #  expect(result['articles']).to eq blog.articles
     #end
 
-    # Field: authors: The authors who have contributed to the blog.
-    # Args: 
-    # Returns: [Types::ArticleAuthor!]!
+    # @graphql authors The authors who have contributed to the blog.
+    # @return [[Types::ArticleAuthor!]!]
     #it 'authors' do
     #  query = <<-GRAPHQL
     #    { blog { authors() }}
@@ -40,9 +39,8 @@ describe 'Types' do
     #  expect(result['authors']).to eq blog.authors
     #end
 
-    # Field: handle: A human-friendly unique string for the Blog automatically generated from its title. 
-    # Args: 
-    # Returns: Types::String!
+    # @graphql handle A human-friendly unique string for the Blog automatically generated from its title. 
+    # @return [Types::String!]
     #it 'handle' do
     #  query = <<-GRAPHQL
     #    { blog { handle() }}
@@ -52,9 +50,8 @@ describe 'Types' do
     #  expect(result['handle']).to eq blog.handle
     #end
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { blog { id() }}
@@ -64,9 +61,8 @@ describe 'Types' do
     #  expect(result['id']).to eq blog.id
     #end
 
-    # Field: title: The blogs’s title.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql title The blogs’s title.
+    # @return [Types::String!]
     #it 'title' do
     #  query = <<-GRAPHQL
     #    { blog { title() }}
@@ -76,9 +72,8 @@ describe 'Types' do
     #  expect(result['title']).to eq blog.title
     #end
 
-    # Field: url: The url pointing to the blog accessible from the web.
-    # Args: 
-    # Returns: Types::URL!
+    # @graphql url The url pointing to the blog accessible from the web.
+    # @return [Types::URL!]
     #it 'url' do
     #  query = <<-GRAPHQL
     #    { blog { url() }}

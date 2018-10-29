@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'CommentAuthor' do
     #let!(:comment_author) {create(:comment_author)}
 
-    # Field: email: The author's email.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql email The author's email.
+    # @return [Types::String!]
     #it 'email' do
     #  query = <<-GRAPHQL
     #    { comment_author { email() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['email']).to eq comment_author.email
     #end
 
-    # Field: name: The author’s name.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql name The author’s name.
+    # @return [Types::String!]
     #it 'name' do
     #  query = <<-GRAPHQL
     #    { comment_author { name() }}

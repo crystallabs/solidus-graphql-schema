@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'FulfillmentTrackingInfo' do
     #let!(:fulfillment_tracking_info) {create(:fulfillment_tracking_info)}
 
-    # Field: number: The tracking number of the fulfillment.
-    # Args: 
-    # Returns: Types::String
+    # @graphql number The tracking number of the fulfillment.
+    # @return [Types::String]
     #it 'number' do
     #  query = <<-GRAPHQL
     #    { fulfillment_tracking_info { number() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['number']).to eq fulfillment_tracking_info.number
     #end
 
-    # Field: url: The URL to track the fulfillment.
-    # Args: 
-    # Returns: Types::URL
+    # @graphql url The URL to track the fulfillment.
+    # @return [Types::URL]
     #it 'url' do
     #  query = <<-GRAPHQL
     #    { fulfillment_tracking_info { url() }}

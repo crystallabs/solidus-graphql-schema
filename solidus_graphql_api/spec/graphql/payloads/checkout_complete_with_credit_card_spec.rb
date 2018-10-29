@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CheckoutCompleteWithCreditCard' do
     #let!(:checkout_complete_with_credit_card_payload) {create(:checkout_complete_with_credit_card_payload)}
 
-    # Field: checkout: The checkout on which the payment was applied.
-    # Args: 
-    # Returns: Types::Checkout!
+    # @graphql checkout The checkout on which the payment was applied.
+    # @return [Types::Checkout!]
     #it 'checkout' do
     #  query = <<-GRAPHQL
     #    { checkout_complete_with_credit_card_payload { checkout() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['checkout']).to eq checkout_complete_with_credit_card_payload.checkout
     #end
 
-    # Field: payment: A representation of the attempted payment.
-    # Args: 
-    # Returns: Types::Payment
+    # @graphql payment A representation of the attempted payment.
+    # @return [Types::Payment]
     #it 'payment' do
     #  query = <<-GRAPHQL
     #    { checkout_complete_with_credit_card_payload { payment() }}
@@ -28,9 +26,8 @@ describe 'Payloads' do
     #  expect(result['payment']).to eq checkout_complete_with_credit_card_payload.payment
     #end
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { checkout_complete_with_credit_card_payload { userErrors() }}

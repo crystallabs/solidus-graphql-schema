@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CheckoutGiftCardApply' do
     #let!(:checkout_gift_card_apply_payload) {create(:checkout_gift_card_apply_payload)}
 
-    # Field: checkout: The updated checkout object.
-    # Args: 
-    # Returns: Types::Checkout!
+    # @graphql checkout The updated checkout object.
+    # @return [Types::Checkout!]
     #it 'checkout' do
     #  query = <<-GRAPHQL
     #    { checkout_gift_card_apply_payload { checkout() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['checkout']).to eq checkout_gift_card_apply_payload.checkout
     #end
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { checkout_gift_card_apply_payload { userErrors() }}

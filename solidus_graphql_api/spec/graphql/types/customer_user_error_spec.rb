@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'CustomerUserError' do
     #let!(:customer_user_error) {create(:customer_user_error)}
 
-    # Field: code: Error code to uniquely identify the error.
-    # Args: 
-    # Returns: Types::CustomerErrorCode
+    # @graphql code Error code to uniquely identify the error.
+    # @return [Types::CustomerErrorCode]
     #it 'code' do
     #  query = <<-GRAPHQL
     #    { customer_user_error { code() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['code']).to eq customer_user_error.code
     #end
 
-    # Field: field: Path to the input field which caused the error.
-    # Args: 
-    # Returns: [Types::String!]
+    # @graphql field Path to the input field which caused the error.
+    # @return [[Types::String!]]
     #it 'field' do
     #  query = <<-GRAPHQL
     #    { customer_user_error { field() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['field']).to eq customer_user_error.field
     #end
 
-    # Field: message: The error message.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql message The error message.
+    # @return [Types::String!]
     #it 'message' do
     #  query = <<-GRAPHQL
     #    { customer_user_error { message() }}

@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CustomerAccessTokenDelete' do
     #let!(:customer_access_token_delete_payload) {create(:customer_access_token_delete_payload)}
 
-    # Field: deletedAccessToken: The destroyed access token.
-    # Args: 
-    # Returns: Types::String
+    # @graphql deletedAccessToken The destroyed access token.
+    # @return [Types::String]
     #it 'deleted_access_token' do
     #  query = <<-GRAPHQL
     #    { customer_access_token_delete_payload { deletedAccessToken() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['deletedAccessToken']).to eq customer_access_token_delete_payload.deleted_access_token
     #end
 
-    # Field: deletedCustomerAccessTokenId: ID of the destroyed customer access token.
-    # Args: 
-    # Returns: Types::String
+    # @graphql deletedCustomerAccessTokenId ID of the destroyed customer access token.
+    # @return [Types::String]
     #it 'deleted_customer_access_token_id' do
     #  query = <<-GRAPHQL
     #    { customer_access_token_delete_payload { deletedCustomerAccessTokenId() }}
@@ -28,9 +26,8 @@ describe 'Payloads' do
     #  expect(result['deletedCustomerAccessTokenId']).to eq customer_access_token_delete_payload.deleted_customer_access_token_id
     #end
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { customer_access_token_delete_payload { userErrors() }}

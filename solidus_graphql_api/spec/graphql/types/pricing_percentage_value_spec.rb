@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'PricingPercentageValue' do
     #let!(:pricing_percentage_value) {create(:pricing_percentage_value)}
 
-    # Field: percentage: The percentage value of the object.
-    # Args: 
-    # Returns: Types::Float!
+    # @graphql percentage The percentage value of the object.
+    # @return [Types::Float!]
     #it 'percentage' do
     #  query = <<-GRAPHQL
     #    { pricing_percentage_value { percentage() }}

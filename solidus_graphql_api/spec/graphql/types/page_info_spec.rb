@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'PageInfo' do
     #let!(:page_info) {create(:page_info)}
 
-    # Field: hasNextPage: Indicates if there are more pages to fetch.
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql hasNextPage Indicates if there are more pages to fetch.
+    # @return [Types::Boolean!]
     #it 'has_next_page' do
     #  query = <<-GRAPHQL
     #    { page_info { hasNextPage() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['hasNextPage']).to eq page_info.has_next_page
     #end
 
-    # Field: hasPreviousPage: Indicates if there are any pages prior to the current page.
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql hasPreviousPage Indicates if there are any pages prior to the current page.
+    # @return [Types::Boolean!]
     #it 'has_previous_page' do
     #  query = <<-GRAPHQL
     #    { page_info { hasPreviousPage() }}

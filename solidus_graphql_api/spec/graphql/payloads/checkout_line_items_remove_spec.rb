@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CheckoutLineItemsRemove' do
     #let!(:checkout_line_items_remove_payload) {create(:checkout_line_items_remove_payload)}
 
-    # Field: checkout
-    # Args: 
-    # Returns: Types::Checkout
+    # @graphql checkout
+    # @return [Types::Checkout]
     #it 'checkout' do
     #  query = <<-GRAPHQL
     #    { checkout_line_items_remove_payload { checkout() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['checkout']).to eq checkout_line_items_remove_payload.checkout
     #end
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { checkout_line_items_remove_payload { userErrors() }}

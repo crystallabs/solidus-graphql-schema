@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CustomerAddressUpdate' do
     #let!(:customer_address_update_payload) {create(:customer_address_update_payload)}
 
-    # Field: customerAddress: The customer’s updated mailing address.
-    # Args: 
-    # Returns: Types::MailingAddress
+    # @graphql customerAddress The customer’s updated mailing address.
+    # @return [Types::MailingAddress]
     #it 'customer_address' do
     #  query = <<-GRAPHQL
     #    { customer_address_update_payload { customerAddress() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['customerAddress']).to eq customer_address_update_payload.customer_address
     #end
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { customer_address_update_payload { userErrors() }}

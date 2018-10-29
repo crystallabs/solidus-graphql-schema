@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'UserError' do
     #let!(:user_error) {create(:user_error)}
 
-    # Field: field: Path to the input field which caused the error.
-    # Args: 
-    # Returns: [Types::String!]
+    # @graphql field Path to the input field which caused the error.
+    # @return [[Types::String!]]
     #it 'field' do
     #  query = <<-GRAPHQL
     #    { user_error { field() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['field']).to eq user_error.field
     #end
 
-    # Field: message: The error message.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql message The error message.
+    # @return [Types::String!]
     #it 'message' do
     #  query = <<-GRAPHQL
     #    { user_error { message() }}

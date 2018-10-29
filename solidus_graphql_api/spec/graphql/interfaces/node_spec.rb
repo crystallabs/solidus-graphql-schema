@@ -4,9 +4,8 @@ describe 'Interfaces' do
   describe 'Node' do
     #let!(:node) {create(:node)}
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { node { id() }}

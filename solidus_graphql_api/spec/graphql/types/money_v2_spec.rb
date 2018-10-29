@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'MoneyV2' do
     #let!(:money_v2) {create(:money_v2)}
 
-    # Field: amount: Decimal money amount.
-    # Args: 
-    # Returns: Types::Decimal!
+    # @graphql amount Decimal money amount.
+    # @return [Types::Decimal!]
     #it 'amount' do
     #  query = <<-GRAPHQL
     #    { money_v2 { amount() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['amount']).to eq money_v2.amount
     #end
 
-    # Field: currencyCode: Currency of the money.
-    # Args: 
-    # Returns: Types::CurrencyCode!
+    # @graphql currencyCode Currency of the money.
+    # @return [Types::CurrencyCode!]
     #it 'currency_code' do
     #  query = <<-GRAPHQL
     #    { money_v2 { currencyCode() }}

@@ -1,58 +1,50 @@
 module Spree::GraphQL::Types::CreditCard
 
 
-  # Field: brand
-  # Args: 
-  # Returns: Types::String
+  # @graphql brand
+  # @return [Types::String]
   def brand()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: expiryMonth
-  # Args: 
-  # Returns: Types::Int
+  # @graphql expiryMonth
+  # @return [Types::Int]
   def expiry_month()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: expiryYear
-  # Args: 
-  # Returns: Types::Int
+  # @graphql expiryYear
+  # @return [Types::Int]
   def expiry_year()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: firstDigits
-  # Args: 
-  # Returns: Types::String
+  # @graphql firstDigits
+  # @return [Types::String]
   def first_digits()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: firstName
-  # Args: 
-  # Returns: Types::String
+  # @graphql firstName
+  # @return [Types::String]
   def first_name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: lastDigits
-  # Args: 
-  # Returns: Types::String
+  # @graphql lastDigits
+  # @return [Types::String]
   def last_digits()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: lastName
-  # Args: 
-  # Returns: Types::String
+  # @graphql lastName
+  # @return [Types::String]
   def last_name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: maskedNumber: Masked credit card number with only the last 4 digits displayed
-  # Args: 
-  # Returns: Types::String
+  # @graphql maskedNumber Masked credit card number with only the last 4 digits displayed
+  # @return [Types::String]
   def masked_number()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

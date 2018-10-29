@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'ProductPriceRange' do
     #let!(:product_price_range) {create(:product_price_range)}
 
-    # Field: maxVariantPrice: The highest variant's price.
-    # Args: 
-    # Returns: Types::MoneyV2!
+    # @graphql maxVariantPrice The highest variant's price.
+    # @return [Types::MoneyV2!]
     #it 'max_variant_price' do
     #  query = <<-GRAPHQL
     #    { product_price_range { maxVariantPrice() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['maxVariantPrice']).to eq product_price_range.max_variant_price
     #end
 
-    # Field: minVariantPrice: The lowest variant's price.
-    # Args: 
-    # Returns: Types::MoneyV2!
+    # @graphql minVariantPrice The lowest variant's price.
+    # @return [Types::MoneyV2!]
     #it 'min_variant_price' do
     #  query = <<-GRAPHQL
     #    { product_price_range { minVariantPrice() }}

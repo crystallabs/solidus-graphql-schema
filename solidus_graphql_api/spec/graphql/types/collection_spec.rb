@@ -4,9 +4,9 @@ describe 'Types' do
   describe 'Collection' do
     #let!(:collection) {create(:collection)}
 
-    # Field: description: Stripped description of the collection, single line with HTML tags removed.
-    # Args: truncate_at : Types::Int
-    # Returns: Types::String!
+    # @graphql description Stripped description of the collection, single line with HTML tags removed.
+    # @param truncate_at [Types::Int]
+    # @return [Types::String!]
     #it 'description' do
     #  query = <<-GRAPHQL
     #    { collection { description(truncate_at:) }}
@@ -16,9 +16,8 @@ describe 'Types' do
     #  expect(result['description']).to eq collection.description
     #end
 
-    # Field: descriptionHtml: The description of the collection, complete with HTML formatting.
-    # Args: 
-    # Returns: Types::HTML!
+    # @graphql descriptionHtml The description of the collection, complete with HTML formatting.
+    # @return [Types::HTML!]
     #it 'description_html' do
     #  query = <<-GRAPHQL
     #    { collection { descriptionHtml() }}
@@ -28,9 +27,8 @@ describe 'Types' do
     #  expect(result['descriptionHtml']).to eq collection.description_html
     #end
 
-    # Field: handle: A human-friendly unique string for the collection automatically generated from its title. Limit of 255 characters. 
-    # Args: 
-    # Returns: Types::String!
+    # @graphql handle A human-friendly unique string for the collection automatically generated from its title. Limit of 255 characters. 
+    # @return [Types::String!]
     #it 'handle' do
     #  query = <<-GRAPHQL
     #    { collection { handle() }}
@@ -40,9 +38,8 @@ describe 'Types' do
     #  expect(result['handle']).to eq collection.handle
     #end
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { collection { id() }}
@@ -52,9 +49,12 @@ describe 'Types' do
     #  expect(result['id']).to eq collection.id
     #end
 
-    # Field: image: Image associated with the collection.
-    # Args: max_width : Types::Int, max_height : Types::Int, crop : Types::CropRegion, scale : Types::Int = 1
-    # Returns: Types::Image
+    # @graphql image Image associated with the collection.
+    # @param max_width [Types::Int]
+    # @param max_height [Types::Int]
+    # @param crop [Types::CropRegion]
+    # @param scale [Types::Int] (1)
+    # @return [Types::Image]
     #it 'image' do
     #  query = <<-GRAPHQL
     #    { collection { image(max_width:, max_height:, crop:, scale:) }}
@@ -64,9 +64,10 @@ describe 'Types' do
     #  expect(result['image']).to eq collection.image
     #end
 
-    # Field: products: List of products in the collection.
-    # Args: reverse : Types::Boolean = false, sort_key : Types::ProductCollectionSortKeys = 'COLLECTION_DEFAULT'
-    # Returns: Types::Product.connection_type!
+    # @graphql products List of products in the collection.
+    # @param reverse [Types::Boolean] (false)
+    # @param sort_key [Types::ProductCollectionSortKeys] ('COLLECTION_DEFAULT')
+    # @return [Types::Product.connection_type!]
     #it 'products' do
     #  query = <<-GRAPHQL
     #    { collection { products(reverse:, sort_key:) }}
@@ -76,9 +77,8 @@ describe 'Types' do
     #  expect(result['products']).to eq collection.products
     #end
 
-    # Field: title: The collection’s name. Limit of 255 characters.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql title The collection’s name. Limit of 255 characters.
+    # @return [Types::String!]
     #it 'title' do
     #  query = <<-GRAPHQL
     #    { collection { title() }}
@@ -88,9 +88,8 @@ describe 'Types' do
     #  expect(result['title']).to eq collection.title
     #end
 
-    # Field: updatedAt: The date and time when the collection was last modified.
-    # Args: 
-    # Returns: Types::DateTime!
+    # @graphql updatedAt The date and time when the collection was last modified.
+    # @return [Types::DateTime!]
     #it 'updated_at' do
     #  query = <<-GRAPHQL
     #    { collection { updatedAt() }}

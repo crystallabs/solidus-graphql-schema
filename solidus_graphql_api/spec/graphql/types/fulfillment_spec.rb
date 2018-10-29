@@ -4,9 +4,9 @@ describe 'Types' do
   describe 'Fulfillment' do
     #let!(:fulfillment) {create(:fulfillment)}
 
-    # Field: fulfillmentLineItems: List of the fulfillment's line items.
-    # Args: reverse : Types::Boolean = false
-    # Returns: Types::FulfillmentLineItem.connection_type!
+    # @graphql fulfillmentLineItems List of the fulfillment's line items.
+    # @param reverse [Types::Boolean] (false)
+    # @return [Types::FulfillmentLineItem.connection_type!]
     #it 'fulfillment_line_items' do
     #  query = <<-GRAPHQL
     #    { fulfillment { fulfillmentLineItems(reverse:) }}
@@ -16,9 +16,8 @@ describe 'Types' do
     #  expect(result['fulfillmentLineItems']).to eq fulfillment.fulfillment_line_items
     #end
 
-    # Field: trackingCompany: The name of the tracking company.
-    # Args: 
-    # Returns: Types::String
+    # @graphql trackingCompany The name of the tracking company.
+    # @return [Types::String]
     #it 'tracking_company' do
     #  query = <<-GRAPHQL
     #    { fulfillment { trackingCompany() }}
@@ -28,9 +27,9 @@ describe 'Types' do
     #  expect(result['trackingCompany']).to eq fulfillment.tracking_company
     #end
 
-    # Field: trackingInfo: Tracking information associated with the fulfillment, such as the tracking number and tracking URL. 
-    # Args: first : Types::Int
-    # Returns: [Types::FulfillmentTrackingInfo!]!
+    # @graphql trackingInfo Tracking information associated with the fulfillment, such as the tracking number and tracking URL. 
+    # @param first [Types::Int]
+    # @return [[Types::FulfillmentTrackingInfo!]!]
     #it 'tracking_info' do
     #  query = <<-GRAPHQL
     #    { fulfillment { trackingInfo(first:) }}

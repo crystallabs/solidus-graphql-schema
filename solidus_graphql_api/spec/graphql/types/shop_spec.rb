@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe 'Types' do
   describe 'Shop' do
-    #let!(:shop) {create(:shop)}
+    let!(:shop) {create(:store)}
 
-    # Field: collectionByHandle: Find a collection by its handle.
-    # Args: handle : Types::String!
-    # Returns: Types::Collection
+    # @graphql collectionByHandle Find a collection by its handle.
+    # @param handle [Types::String!]
+    # @return [Types::Collection]
     #it 'collection_by_handle' do
     #  query = <<-GRAPHQL
     #    { shop { collectionByHandle(handle:) }}
@@ -16,9 +16,11 @@ describe 'Types' do
     #  expect(result['collectionByHandle']).to eq shop.collection_by_handle
     #end
 
-    # Field: collections: List of the shop’s collections.
-    # Args: reverse : Types::Boolean = false, sort_key : Types::CollectionSortKeys = 'ID', query : Types::String
-    # Returns: Types::Collection.connection_type!
+    # @graphql collections List of the shop’s collections.
+    # @param reverse [Types::Boolean] (false)
+    # @param sort_key [Types::CollectionSortKeys] ('ID')
+    # @param query [Types::String]
+    # @return [Types::Collection.connection_type!]
     #it 'collections' do
     #  query = <<-GRAPHQL
     #    { shop { collections(reverse:, sort_key:, query:) }}
@@ -28,21 +30,21 @@ describe 'Types' do
     #  expect(result['collections']).to eq shop.collections
     #end
 
-    # Field: description: A description of the shop.
-    # Args: 
-    # Returns: Types::String
-    #it 'description' do
-    #  query = <<-GRAPHQL
-    #    { shop { description() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['description']).to eq shop.description
-    #end
+    # @graphql description A description of the shop.
+    # @return [Types::String]
+    it 'description' do
+      shop.meta_description = 'Shop Description'
+      shop.save
+      query = <<-GRAPHQL
+        { shop { description() }}
+      GRAPHQL
+      response = ::Spree::GraphQL::Schema::Schema.execute(query)
+      result = response.dig('data', 'shop')
+      expect(result['description']).to eq shop.meta_description
+    end
 
-    # Field: moneyFormat: A string representing the way currency is formatted when the currency isn’t specified.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql moneyFormat A string representing the way currency is formatted when the currency isn’t specified.
+    # @return [Types::String!]
     #it 'money_format' do
     #  query = <<-GRAPHQL
     #    { shop { moneyFormat() }}
@@ -52,21 +54,19 @@ describe 'Types' do
     #  expect(result['moneyFormat']).to eq shop.money_format
     #end
 
-    # Field: name: The shop’s name.
-    # Args: 
-    # Returns: Types::String!
-    #it 'name' do
-    #  query = <<-GRAPHQL
-    #    { shop { name() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['name']).to eq shop.name
-    #end
+    # @graphql name The shop’s name.
+    # @return [Types::String!]
+    it 'name' do
+      query = <<-GRAPHQL
+        { shop { name() }}
+      GRAPHQL
+      response = ::Spree::GraphQL::Schema::Schema.execute(query)
+      result = response.dig('data', 'shop')
+      expect(result['name']).to eq shop.name
+    end
 
-    # Field: paymentSettings: Settings related to payments.
-    # Args: 
-    # Returns: Types::PaymentSettings!
+    # @graphql paymentSettings Settings related to payments.
+    # @return [Types::PaymentSettings!]
     #it 'payment_settings' do
     #  query = <<-GRAPHQL
     #    { shop { paymentSettings() }}
@@ -76,9 +76,8 @@ describe 'Types' do
     #  expect(result['paymentSettings']).to eq shop.payment_settings
     #end
 
-    # Field: primaryDomain: The shop’s primary domain.
-    # Args: 
-    # Returns: Types::Domain!
+    # @graphql primaryDomain The shop’s primary domain.
+    # @return [Types::Domain!]
     #it 'primary_domain' do
     #  query = <<-GRAPHQL
     #    { shop { primaryDomain() }}
@@ -88,9 +87,8 @@ describe 'Types' do
     #  expect(result['primaryDomain']).to eq shop.primary_domain
     #end
 
-    # Field: privacyPolicy: The shop’s privacy policy.
-    # Args: 
-    # Returns: Types::ShopPolicy
+    # @graphql privacyPolicy The shop’s privacy policy.
+    # @return [Types::ShopPolicy]
     #it 'privacy_policy' do
     #  query = <<-GRAPHQL
     #    { shop { privacyPolicy() }}
@@ -100,9 +98,9 @@ describe 'Types' do
     #  expect(result['privacyPolicy']).to eq shop.privacy_policy
     #end
 
-    # Field: productByHandle: Find a product by its handle.
-    # Args: handle : Types::String!
-    # Returns: Types::Product
+    # @graphql productByHandle Find a product by its handle.
+    # @param handle [Types::String!]
+    # @return [Types::Product]
     #it 'product_by_handle' do
     #  query = <<-GRAPHQL
     #    { shop { productByHandle(handle:) }}
@@ -112,9 +110,8 @@ describe 'Types' do
     #  expect(result['productByHandle']).to eq shop.product_by_handle
     #end
 
-    # Field: productTypes: List of the shop’s product types.
-    # Args: 
-    # Returns: Types::String.connection_type!
+    # @graphql productTypes List of the shop’s product types.
+    # @return [Types::String.connection_type!]
     #it 'product_types' do
     #  query = <<-GRAPHQL
     #    { shop { productTypes() }}
@@ -124,9 +121,11 @@ describe 'Types' do
     #  expect(result['productTypes']).to eq shop.product_types
     #end
 
-    # Field: products: List of the shop’s products.
-    # Args: reverse : Types::Boolean = false, sort_key : Types::ProductSortKeys = 'ID', query : Types::String
-    # Returns: Types::Product.connection_type!
+    # @graphql products List of the shop’s products.
+    # @param reverse [Types::Boolean] (false)
+    # @param sort_key [Types::ProductSortKeys] ('ID')
+    # @param query [Types::String]
+    # @return [Types::Product.connection_type!]
     #it 'products' do
     #  query = <<-GRAPHQL
     #    { shop { products(reverse:, sort_key:, query:) }}
@@ -136,9 +135,8 @@ describe 'Types' do
     #  expect(result['products']).to eq shop.products
     #end
 
-    # Field: refundPolicy: The shop’s refund policy.
-    # Args: 
-    # Returns: Types::ShopPolicy
+    # @graphql refundPolicy The shop’s refund policy.
+    # @return [Types::ShopPolicy]
     #it 'refund_policy' do
     #  query = <<-GRAPHQL
     #    { shop { refundPolicy() }}
@@ -148,9 +146,8 @@ describe 'Types' do
     #  expect(result['refundPolicy']).to eq shop.refund_policy
     #end
 
-    # Field: shipsToCountries: Countries that the shop ships to.
-    # Args: 
-    # Returns: [Types::CountryCode!]!
+    # @graphql shipsToCountries Countries that the shop ships to.
+    # @return [[Types::CountryCode!]!]
     #it 'ships_to_countries' do
     #  query = <<-GRAPHQL
     #    { shop { shipsToCountries() }}
@@ -160,9 +157,8 @@ describe 'Types' do
     #  expect(result['shipsToCountries']).to eq shop.ships_to_countries
     #end
 
-    # Field: termsOfService: The shop’s terms of service.
-    # Args: 
-    # Returns: Types::ShopPolicy
+    # @graphql termsOfService The shop’s terms of service.
+    # @return [Types::ShopPolicy]
     #it 'terms_of_service' do
     #  query = <<-GRAPHQL
     #    { shop { termsOfService() }}

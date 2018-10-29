@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'Payment' do
     #let!(:payment) {create(:payment)}
 
-    # Field: amount: The amount of the payment.
-    # Args: 
-    # Returns: Types::Money!
+    # @graphql amount The amount of the payment.
+    # @return [Types::Money!]
     #it 'amount' do
     #  query = <<-GRAPHQL
     #    { payment { amount() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['amount']).to eq payment.amount
     #end
 
-    # Field: billingAddress: The billing address for the payment.
-    # Args: 
-    # Returns: Types::MailingAddress
+    # @graphql billingAddress The billing address for the payment.
+    # @return [Types::MailingAddress]
     #it 'billing_address' do
     #  query = <<-GRAPHQL
     #    { payment { billingAddress() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['billingAddress']).to eq payment.billing_address
     #end
 
-    # Field: checkout: The checkout to which the payment belongs.
-    # Args: 
-    # Returns: Types::Checkout!
+    # @graphql checkout The checkout to which the payment belongs.
+    # @return [Types::Checkout!]
     #it 'checkout' do
     #  query = <<-GRAPHQL
     #    { payment { checkout() }}
@@ -40,9 +37,8 @@ describe 'Types' do
     #  expect(result['checkout']).to eq payment.checkout
     #end
 
-    # Field: creditCard: The credit card used for the payment in the case of direct payments.
-    # Args: 
-    # Returns: Types::CreditCard
+    # @graphql creditCard The credit card used for the payment in the case of direct payments.
+    # @return [Types::CreditCard]
     #it 'credit_card' do
     #  query = <<-GRAPHQL
     #    { payment { creditCard() }}
@@ -52,9 +48,8 @@ describe 'Types' do
     #  expect(result['creditCard']).to eq payment.credit_card
     #end
 
-    # Field: errorMessage: An message describing a processing error during asynchronous processing.
-    # Args: 
-    # Returns: Types::String
+    # @graphql errorMessage An message describing a processing error during asynchronous processing.
+    # @return [Types::String]
     #it 'error_message' do
     #  query = <<-GRAPHQL
     #    { payment { errorMessage() }}
@@ -64,9 +59,8 @@ describe 'Types' do
     #  expect(result['errorMessage']).to eq payment.error_message
     #end
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { payment { id() }}
@@ -76,9 +70,8 @@ describe 'Types' do
     #  expect(result['id']).to eq payment.id
     #end
 
-    # Field: idempotencyKey: A client-side generated token to identify a payment and perform idempotent operations.
-    # Args: 
-    # Returns: Types::String
+    # @graphql idempotencyKey A client-side generated token to identify a payment and perform idempotent operations.
+    # @return [Types::String]
     #it 'idempotency_key' do
     #  query = <<-GRAPHQL
     #    { payment { idempotencyKey() }}
@@ -88,9 +81,8 @@ describe 'Types' do
     #  expect(result['idempotencyKey']).to eq payment.idempotency_key
     #end
 
-    # Field: ready: Whether or not the payment is still processing asynchronously.
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql ready Whether or not the payment is still processing asynchronously.
+    # @return [Types::Boolean!]
     #it 'ready' do
     #  query = <<-GRAPHQL
     #    { payment { ready() }}
@@ -100,9 +92,8 @@ describe 'Types' do
     #  expect(result['ready']).to eq payment.ready
     #end
 
-    # Field: test: A flag to indicate if the payment is to be done in test mode for gateways that support it.
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql test A flag to indicate if the payment is to be done in test mode for gateways that support it.
+    # @return [Types::Boolean!]
     #it 'test' do
     #  query = <<-GRAPHQL
     #    { payment { test() }}
@@ -112,9 +103,8 @@ describe 'Types' do
     #  expect(result['test']).to eq payment.test
     #end
 
-    # Field: transaction: The actual transaction recorded by Solidus after having processed the payment with the gateway.
-    # Args: 
-    # Returns: Types::Transaction
+    # @graphql transaction The actual transaction recorded by Solidus after having processed the payment with the gateway.
+    # @return [Types::Transaction]
     #it 'transaction' do
     #  query = <<-GRAPHQL
     #    { payment { transaction() }}

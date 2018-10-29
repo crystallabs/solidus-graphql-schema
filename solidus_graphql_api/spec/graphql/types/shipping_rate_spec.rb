@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'ShippingRate' do
     #let!(:shipping_rate) {create(:shipping_rate)}
 
-    # Field: handle: Human-readable unique identifier for this shipping rate.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql handle Human-readable unique identifier for this shipping rate.
+    # @return [Types::String!]
     #it 'handle' do
     #  query = <<-GRAPHQL
     #    { shipping_rate { handle() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['handle']).to eq shipping_rate.handle
     #end
 
-    # Field: price: Price of this shipping rate.
-    # Args: 
-    # Returns: Types::Money!
+    # @graphql price Price of this shipping rate.
+    # @return [Types::Money!]
     #it 'price' do
     #  query = <<-GRAPHQL
     #    { shipping_rate { price() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['price']).to eq shipping_rate.price
     #end
 
-    # Field: title: Title of this shipping rate.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql title Title of this shipping rate.
+    # @return [Types::String!]
     #it 'title' do
     #  query = <<-GRAPHQL
     #    { shipping_rate { title() }}

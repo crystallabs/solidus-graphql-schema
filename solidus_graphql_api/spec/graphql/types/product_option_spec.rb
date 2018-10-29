@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'ProductOption' do
     #let!(:product_option) {create(:product_option)}
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { product_option { id() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['id']).to eq product_option.id
     #end
 
-    # Field: name: The product option’s name.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql name The product option’s name.
+    # @return [Types::String!]
     #it 'name' do
     #  query = <<-GRAPHQL
     #    { product_option { name() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['name']).to eq product_option.name
     #end
 
-    # Field: values: The corresponding value to the product option name.
-    # Args: 
-    # Returns: [Types::String!]!
+    # @graphql values The corresponding value to the product option name.
+    # @return [[Types::String!]!]
     #it 'values' do
     #  query = <<-GRAPHQL
     #    { product_option { values() }}

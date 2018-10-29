@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'Product' do
     #let!(:product) {create(:product)}
 
-    # Field: availableForSale: Indicates if at least one product variant is available for sale.
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql availableForSale Indicates if at least one product variant is available for sale.
+    # @return [Types::Boolean!]
     #it 'available_for_sale' do
     #  query = <<-GRAPHQL
     #    { product { availableForSale() }}
@@ -16,9 +15,9 @@ describe 'Types' do
     #  expect(result['availableForSale']).to eq product.available_for_sale
     #end
 
-    # Field: collections: List of collections a product belongs to.
-    # Args: reverse : Types::Boolean = false
-    # Returns: Types::Collection.connection_type!
+    # @graphql collections List of collections a product belongs to.
+    # @param reverse [Types::Boolean] (false)
+    # @return [Types::Collection.connection_type!]
     #it 'collections' do
     #  query = <<-GRAPHQL
     #    { product { collections(reverse:) }}
@@ -28,9 +27,8 @@ describe 'Types' do
     #  expect(result['collections']).to eq product.collections
     #end
 
-    # Field: createdAt: The date and time when the product was created.
-    # Args: 
-    # Returns: Types::DateTime!
+    # @graphql createdAt The date and time when the product was created.
+    # @return [Types::DateTime!]
     #it 'created_at' do
     #  query = <<-GRAPHQL
     #    { product { createdAt() }}
@@ -40,9 +38,9 @@ describe 'Types' do
     #  expect(result['createdAt']).to eq product.created_at
     #end
 
-    # Field: description: Stripped description of the product, single line with HTML tags removed.
-    # Args: truncate_at : Types::Int
-    # Returns: Types::String!
+    # @graphql description Stripped description of the product, single line with HTML tags removed.
+    # @param truncate_at [Types::Int]
+    # @return [Types::String!]
     #it 'description' do
     #  query = <<-GRAPHQL
     #    { product { description(truncate_at:) }}
@@ -52,9 +50,8 @@ describe 'Types' do
     #  expect(result['description']).to eq product.description
     #end
 
-    # Field: descriptionHtml: The description of the product, complete with HTML formatting.
-    # Args: 
-    # Returns: Types::HTML!
+    # @graphql descriptionHtml The description of the product, complete with HTML formatting.
+    # @return [Types::HTML!]
     #it 'description_html' do
     #  query = <<-GRAPHQL
     #    { product { descriptionHtml() }}
@@ -64,9 +61,8 @@ describe 'Types' do
     #  expect(result['descriptionHtml']).to eq product.description_html
     #end
 
-    # Field: handle: A human-friendly unique string for the Product automatically generated from its title. They are used by the Liquid templating language to refer to objects. 
-    # Args: 
-    # Returns: Types::String!
+    # @graphql handle A human-friendly unique string for the Product automatically generated from its title. They are used by the Liquid templating language to refer to objects. 
+    # @return [Types::String!]
     #it 'handle' do
     #  query = <<-GRAPHQL
     #    { product { handle() }}
@@ -76,9 +72,8 @@ describe 'Types' do
     #  expect(result['handle']).to eq product.handle
     #end
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { product { id() }}
@@ -88,9 +83,14 @@ describe 'Types' do
     #  expect(result['id']).to eq product.id
     #end
 
-    # Field: images: List of images associated with the product.
-    # Args: reverse : Types::Boolean = false, sort_key : Types::ProductImageSortKeys = 'POSITION', max_width : Types::Int, max_height : Types::Int, crop : Types::CropRegion, scale : Types::Int = 1
-    # Returns: Types::Image.connection_type!
+    # @graphql images List of images associated with the product.
+    # @param reverse [Types::Boolean] (false)
+    # @param sort_key [Types::ProductImageSortKeys] ('POSITION')
+    # @param max_width [Types::Int]
+    # @param max_height [Types::Int]
+    # @param crop [Types::CropRegion]
+    # @param scale [Types::Int] (1)
+    # @return [Types::Image.connection_type!]
     #it 'images' do
     #  query = <<-GRAPHQL
     #    { product { images(reverse:, sort_key:, max_width:, max_height:, crop:, scale:) }}
@@ -100,9 +100,8 @@ describe 'Types' do
     #  expect(result['images']).to eq product.images
     #end
 
-    # Field: onlineStoreUrl: The online store URL for the product. A value of `null` indicates that the product is not published to the Online Store sales channel. 
-    # Args: 
-    # Returns: Types::URL
+    # @graphql onlineStoreUrl The online store URL for the product. A value of `null` indicates that the product is not published to the Online Store sales channel. 
+    # @return [Types::URL]
     #it 'online_store_url' do
     #  query = <<-GRAPHQL
     #    { product { onlineStoreUrl() }}
@@ -112,9 +111,9 @@ describe 'Types' do
     #  expect(result['onlineStoreUrl']).to eq product.online_store_url
     #end
 
-    # Field: options: List of custom product options (maximum of 3 per product).
-    # Args: first : Types::Int
-    # Returns: [Types::ProductOption!]!
+    # @graphql options List of custom product options (maximum of 3 per product).
+    # @param first [Types::Int]
+    # @return [[Types::ProductOption!]!]
     #it 'options' do
     #  query = <<-GRAPHQL
     #    { product { options(first:) }}
@@ -124,9 +123,8 @@ describe 'Types' do
     #  expect(result['options']).to eq product.options
     #end
 
-    # Field: priceRange: The price range.
-    # Args: 
-    # Returns: Types::ProductPriceRange!
+    # @graphql priceRange The price range.
+    # @return [Types::ProductPriceRange!]
     #it 'price_range' do
     #  query = <<-GRAPHQL
     #    { product { priceRange() }}
@@ -136,9 +134,8 @@ describe 'Types' do
     #  expect(result['priceRange']).to eq product.price_range
     #end
 
-    # Field: productType: A categorization that a product can be tagged with, commonly used for filtering and searching.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql productType A categorization that a product can be tagged with, commonly used for filtering and searching.
+    # @return [Types::String!]
     #it 'product_type' do
     #  query = <<-GRAPHQL
     #    { product { productType() }}
@@ -148,9 +145,8 @@ describe 'Types' do
     #  expect(result['productType']).to eq product.product_type
     #end
 
-    # Field: publishedAt: The date and time when the product was published to the channel.
-    # Args: 
-    # Returns: Types::DateTime!
+    # @graphql publishedAt The date and time when the product was published to the channel.
+    # @return [Types::DateTime!]
     #it 'published_at' do
     #  query = <<-GRAPHQL
     #    { product { publishedAt() }}
@@ -160,9 +156,8 @@ describe 'Types' do
     #  expect(result['publishedAt']).to eq product.published_at
     #end
 
-    # Field: tags: A categorization that a product can be tagged with, commonly used for filtering and searching. Each comma-separated tag has a character limit of 255. 
-    # Args: 
-    # Returns: [Types::String!]!
+    # @graphql tags A categorization that a product can be tagged with, commonly used for filtering and searching. Each comma-separated tag has a character limit of 255. 
+    # @return [[Types::String!]!]
     #it 'tags' do
     #  query = <<-GRAPHQL
     #    { product { tags() }}
@@ -172,9 +167,8 @@ describe 'Types' do
     #  expect(result['tags']).to eq product.tags
     #end
 
-    # Field: title: The product’s title.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql title The product’s title.
+    # @return [Types::String!]
     #it 'title' do
     #  query = <<-GRAPHQL
     #    { product { title() }}
@@ -184,9 +178,8 @@ describe 'Types' do
     #  expect(result['title']).to eq product.title
     #end
 
-    # Field: updatedAt: The date and time when the product was last modified.
-    # Args: 
-    # Returns: Types::DateTime!
+    # @graphql updatedAt The date and time when the product was last modified.
+    # @return [Types::DateTime!]
     #it 'updated_at' do
     #  query = <<-GRAPHQL
     #    { product { updatedAt() }}
@@ -196,9 +189,9 @@ describe 'Types' do
     #  expect(result['updatedAt']).to eq product.updated_at
     #end
 
-    # Field: variantBySelectedOptions: Find a product’s variant based on its selected options. This is useful for converting a user’s selection of product options into a single matching variant. If there is not a variant for the selected options, `null` will be returned. 
-    # Args: selected_options : [Inputs::SelectedOption!]!
-    # Returns: Types::ProductVariant
+    # @graphql variantBySelectedOptions Find a product’s variant based on its selected options. This is useful for converting a user’s selection of product options into a single matching variant. If there is not a variant for the selected options, `null` will be returned. 
+    # @param selected_options [[Inputs::SelectedOption!]!]
+    # @return [Types::ProductVariant]
     #it 'variant_by_selected_options' do
     #  query = <<-GRAPHQL
     #    { product { variantBySelectedOptions(selected_options:) }}
@@ -208,9 +201,10 @@ describe 'Types' do
     #  expect(result['variantBySelectedOptions']).to eq product.variant_by_selected_options
     #end
 
-    # Field: variants: List of the product’s variants.
-    # Args: reverse : Types::Boolean = false, sort_key : Types::ProductVariantSortKeys = 'POSITION'
-    # Returns: Types::ProductVariant.connection_type!
+    # @graphql variants List of the product’s variants.
+    # @param reverse [Types::Boolean] (false)
+    # @param sort_key [Types::ProductVariantSortKeys] ('POSITION')
+    # @return [Types::ProductVariant.connection_type!]
     #it 'variants' do
     #  query = <<-GRAPHQL
     #    { product { variants(reverse:, sort_key:) }}
@@ -220,9 +214,8 @@ describe 'Types' do
     #  expect(result['variants']).to eq product.variants
     #end
 
-    # Field: vendor: The product’s vendor name.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql vendor The product’s vendor name.
+    # @return [Types::String!]
     #it 'vendor' do
     #  query = <<-GRAPHQL
     #    { product { vendor() }}

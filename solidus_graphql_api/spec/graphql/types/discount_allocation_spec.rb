@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'DiscountAllocation' do
     #let!(:discount_allocation) {create(:discount_allocation)}
 
-    # Field: allocatedAmount: Amount of discount allocated.
-    # Args: 
-    # Returns: Types::MoneyV2!
+    # @graphql allocatedAmount Amount of discount allocated.
+    # @return [Types::MoneyV2!]
     #it 'allocated_amount' do
     #  query = <<-GRAPHQL
     #    { discount_allocation { allocatedAmount() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['allocatedAmount']).to eq discount_allocation.allocated_amount
     #end
 
-    # Field: discountApplication: The discount this allocated amount originated from.
-    # Args: 
-    # Returns: Interfaces::DiscountApplication!
+    # @graphql discountApplication The discount this allocated amount originated from.
+    # @return [Interfaces::DiscountApplication!]
     #it 'discount_application' do
     #  query = <<-GRAPHQL
     #    { discount_allocation { discountApplication() }}

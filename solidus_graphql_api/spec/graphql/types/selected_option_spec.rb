@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'SelectedOption' do
     #let!(:selected_option) {create(:selected_option)}
 
-    # Field: name: The product option’s name.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql name The product option’s name.
+    # @return [Types::String!]
     #it 'name' do
     #  query = <<-GRAPHQL
     #    { selected_option { name() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['name']).to eq selected_option.name
     #end
 
-    # Field: value: The product option’s value.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql value The product option’s value.
+    # @return [Types::String!]
     #it 'value' do
     #  query = <<-GRAPHQL
     #    { selected_option { value() }}

@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CustomerRecover' do
     #let!(:customer_recover_payload) {create(:customer_recover_payload)}
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { customer_recover_payload { userErrors() }}

@@ -1,30 +1,26 @@
 module Spree::GraphQL::Types::ShopPolicy
   include ::Spree::GraphQL::Interfaces::Node
 
-  # Field: body: Policy text, maximum size of 64kb.
-  # Args: 
-  # Returns: Types::String!
+  # @graphql body Policy text, maximum size of 64kb.
+  # @return [Types::String!]
   def body()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: id: Globally unique identifier.
-  # Args: 
-  # Returns: Types::ID!
+  # @graphql id Globally unique identifier.
+  # @return [Types::ID!]
   def id()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: title: Policy’s title.
-  # Args: 
-  # Returns: Types::String!
+  # @graphql title Policy’s title.
+  # @return [Types::String!]
   def title()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: url: Public URL to the policy.
-  # Args: 
-  # Returns: Types::URL!
+  # @graphql url Public URL to the policy.
+  # @return [Types::URL!]
   def url()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

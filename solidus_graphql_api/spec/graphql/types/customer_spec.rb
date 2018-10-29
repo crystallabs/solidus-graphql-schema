@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'Customer' do
     #let!(:customer) {create(:customer)}
 
-    # Field: acceptsMarketing: Indicates whether the customer has consented to be sent marketing material via email.
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql acceptsMarketing Indicates whether the customer has consented to be sent marketing material via email.
+    # @return [Types::Boolean!]
     #it 'accepts_marketing' do
     #  query = <<-GRAPHQL
     #    { customer { acceptsMarketing() }}
@@ -16,9 +15,9 @@ describe 'Types' do
     #  expect(result['acceptsMarketing']).to eq customer.accepts_marketing
     #end
 
-    # Field: addresses: A list of addresses for the customer.
-    # Args: reverse : Types::Boolean = false
-    # Returns: Types::MailingAddress.connection_type!
+    # @graphql addresses A list of addresses for the customer.
+    # @param reverse [Types::Boolean] (false)
+    # @return [Types::MailingAddress.connection_type!]
     #it 'addresses' do
     #  query = <<-GRAPHQL
     #    { customer { addresses(reverse:) }}
@@ -28,9 +27,8 @@ describe 'Types' do
     #  expect(result['addresses']).to eq customer.addresses
     #end
 
-    # Field: createdAt: The date and time when the customer was created.
-    # Args: 
-    # Returns: Types::DateTime!
+    # @graphql createdAt The date and time when the customer was created.
+    # @return [Types::DateTime!]
     #it 'created_at' do
     #  query = <<-GRAPHQL
     #    { customer { createdAt() }}
@@ -40,9 +38,8 @@ describe 'Types' do
     #  expect(result['createdAt']).to eq customer.created_at
     #end
 
-    # Field: defaultAddress: The customer’s default address.
-    # Args: 
-    # Returns: Types::MailingAddress
+    # @graphql defaultAddress The customer’s default address.
+    # @return [Types::MailingAddress]
     #it 'default_address' do
     #  query = <<-GRAPHQL
     #    { customer { defaultAddress() }}
@@ -52,9 +49,8 @@ describe 'Types' do
     #  expect(result['defaultAddress']).to eq customer.default_address
     #end
 
-    # Field: displayName: The customer’s name, email or phone number.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql displayName The customer’s name, email or phone number.
+    # @return [Types::String!]
     #it 'display_name' do
     #  query = <<-GRAPHQL
     #    { customer { displayName() }}
@@ -64,9 +60,8 @@ describe 'Types' do
     #  expect(result['displayName']).to eq customer.display_name
     #end
 
-    # Field: email: The customer’s email address.
-    # Args: 
-    # Returns: Types::String
+    # @graphql email The customer’s email address.
+    # @return [Types::String]
     #it 'email' do
     #  query = <<-GRAPHQL
     #    { customer { email() }}
@@ -76,9 +71,8 @@ describe 'Types' do
     #  expect(result['email']).to eq customer.email
     #end
 
-    # Field: firstName: The customer’s first name.
-    # Args: 
-    # Returns: Types::String
+    # @graphql firstName The customer’s first name.
+    # @return [Types::String]
     #it 'first_name' do
     #  query = <<-GRAPHQL
     #    { customer { firstName() }}
@@ -88,9 +82,8 @@ describe 'Types' do
     #  expect(result['firstName']).to eq customer.first_name
     #end
 
-    # Field: id: A unique identifier for the customer.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id A unique identifier for the customer.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { customer { id() }}
@@ -100,9 +93,8 @@ describe 'Types' do
     #  expect(result['id']).to eq customer.id
     #end
 
-    # Field: lastIncompleteCheckout: The customer's most recently updated, incomplete checkout.
-    # Args: 
-    # Returns: Types::Checkout
+    # @graphql lastIncompleteCheckout The customer's most recently updated, incomplete checkout.
+    # @return [Types::Checkout]
     #it 'last_incomplete_checkout' do
     #  query = <<-GRAPHQL
     #    { customer { lastIncompleteCheckout() }}
@@ -112,9 +104,8 @@ describe 'Types' do
     #  expect(result['lastIncompleteCheckout']).to eq customer.last_incomplete_checkout
     #end
 
-    # Field: lastName: The customer’s last name.
-    # Args: 
-    # Returns: Types::String
+    # @graphql lastName The customer’s last name.
+    # @return [Types::String]
     #it 'last_name' do
     #  query = <<-GRAPHQL
     #    { customer { lastName() }}
@@ -124,9 +115,11 @@ describe 'Types' do
     #  expect(result['lastName']).to eq customer.last_name
     #end
 
-    # Field: orders: The orders associated with the customer.
-    # Args: reverse : Types::Boolean = false, sort_key : Types::OrderSortKeys = 'ID', query : Types::String
-    # Returns: Types::Order.connection_type!
+    # @graphql orders The orders associated with the customer.
+    # @param reverse [Types::Boolean] (false)
+    # @param sort_key [Types::OrderSortKeys] ('ID')
+    # @param query [Types::String]
+    # @return [Types::Order.connection_type!]
     #it 'orders' do
     #  query = <<-GRAPHQL
     #    { customer { orders(reverse:, sort_key:, query:) }}
@@ -136,9 +129,8 @@ describe 'Types' do
     #  expect(result['orders']).to eq customer.orders
     #end
 
-    # Field: phone: The customer’s phone number.
-    # Args: 
-    # Returns: Types::String
+    # @graphql phone The customer’s phone number.
+    # @return [Types::String]
     #it 'phone' do
     #  query = <<-GRAPHQL
     #    { customer { phone() }}
@@ -148,9 +140,8 @@ describe 'Types' do
     #  expect(result['phone']).to eq customer.phone
     #end
 
-    # Field: updatedAt: The date and time when the customer information was updated.
-    # Args: 
-    # Returns: Types::DateTime!
+    # @graphql updatedAt The date and time when the customer information was updated.
+    # @return [Types::DateTime!]
     #it 'updated_at' do
     #  query = <<-GRAPHQL
     #    { customer { updatedAt() }}

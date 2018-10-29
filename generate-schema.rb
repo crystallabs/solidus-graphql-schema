@@ -353,11 +353,11 @@ def parse_types_2(v)
           arr.unshift helper['schema_preamble'] unless arr.include? helper['schema_preamble']
           helper['schema_preamble']= nil
         end
-        if helper['preamble']
-          arr= $catalog[:contents][new_name]
-          arr.unshift helper['preamble'] unless arr.include? helper['preamble']
-          helper['preamble']= nil
-        end
+        #if helper['preamble']
+        #  arr= $catalog[:contents][new_name]
+        #  arr.unshift helper['preamble'] unless arr.include? helper['preamble']
+        #  helper['preamble']= nil
+        #end
         helper['description']= f['description'] ? "%q{#{f['description']}}" : 'nil'
         $catalog[:schema_contents][new_name].push template 'schema/field_header', f, helper
 
@@ -435,7 +435,9 @@ def parse_types_2(v)
         helper['method_args_description']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''} #{oneline a[2]}"}.join("\n")
         helper['method_args_description_spec']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
 
-        $catalog[:contents][new_name].push template 'field', f, helper
+        if new_name=~ /^(?:Types|Interfaces)::/
+          $catalog[:contents][new_name].push template 'field', f, helper
+        end
         helper['class']= t['name'].underscore
         $catalog[:spec_contents][new_name].push template 'spec/it', f, helper
       end # t['fields'].each

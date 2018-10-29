@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'MailingAddress' do
     #let!(:mailing_address) {create(:mailing_address)}
 
-    # Field: address1: The first line of the address. Typically the street address or PO Box number. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql address1 The first line of the address. Typically the street address or PO Box number. 
+    # @return [Types::String]
     #it 'address1' do
     #  query = <<-GRAPHQL
     #    { mailing_address { address1() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['address1']).to eq mailing_address.address1
     #end
 
-    # Field: address2: The second line of the address. Typically the number of the apartment, suite, or unit. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql address2 The second line of the address. Typically the number of the apartment, suite, or unit. 
+    # @return [Types::String]
     #it 'address2' do
     #  query = <<-GRAPHQL
     #    { mailing_address { address2() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['address2']).to eq mailing_address.address2
     #end
 
-    # Field: city: The name of the city, district, village, or town. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql city The name of the city, district, village, or town. 
+    # @return [Types::String]
     #it 'city' do
     #  query = <<-GRAPHQL
     #    { mailing_address { city() }}
@@ -40,9 +37,8 @@ describe 'Types' do
     #  expect(result['city']).to eq mailing_address.city
     #end
 
-    # Field: company: The name of the customer's company or organization. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql company The name of the customer's company or organization. 
+    # @return [Types::String]
     #it 'company' do
     #  query = <<-GRAPHQL
     #    { mailing_address { company() }}
@@ -52,9 +48,8 @@ describe 'Types' do
     #  expect(result['company']).to eq mailing_address.company
     #end
 
-    # Field: country: The name of the country. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql country The name of the country. 
+    # @return [Types::String]
     #it 'country' do
     #  query = <<-GRAPHQL
     #    { mailing_address { country() }}
@@ -64,9 +59,8 @@ describe 'Types' do
     #  expect(result['country']).to eq mailing_address.country
     #end
 
-    # Field: countryCodeV2: The two-letter code for the country of the address. For example, US. 
-    # Args: 
-    # Returns: Types::CountryCode
+    # @graphql countryCodeV2 The two-letter code for the country of the address. For example, US. 
+    # @return [Types::CountryCode]
     #it 'country_code_v2' do
     #  query = <<-GRAPHQL
     #    { mailing_address { countryCodeV2() }}
@@ -76,9 +70,8 @@ describe 'Types' do
     #  expect(result['countryCodeV2']).to eq mailing_address.country_code_v2
     #end
 
-    # Field: firstName: The first name of the customer.
-    # Args: 
-    # Returns: Types::String
+    # @graphql firstName The first name of the customer.
+    # @return [Types::String]
     #it 'first_name' do
     #  query = <<-GRAPHQL
     #    { mailing_address { firstName() }}
@@ -88,9 +81,10 @@ describe 'Types' do
     #  expect(result['firstName']).to eq mailing_address.first_name
     #end
 
-    # Field: formatted: A formatted version of the address, customized by the provided arguments.
-    # Args: with_name : Types::Boolean = false, with_company : Types::Boolean = true
-    # Returns: [Types::String!]!
+    # @graphql formatted A formatted version of the address, customized by the provided arguments.
+    # @param with_name [Types::Boolean] (false)
+    # @param with_company [Types::Boolean] (true)
+    # @return [[Types::String!]!]
     #it 'formatted' do
     #  query = <<-GRAPHQL
     #    { mailing_address { formatted(with_name:, with_company:) }}
@@ -100,9 +94,8 @@ describe 'Types' do
     #  expect(result['formatted']).to eq mailing_address.formatted
     #end
 
-    # Field: formattedArea: A comma-separated list of the values for city, province, and country.
-    # Args: 
-    # Returns: Types::String
+    # @graphql formattedArea A comma-separated list of the values for city, province, and country.
+    # @return [Types::String]
     #it 'formatted_area' do
     #  query = <<-GRAPHQL
     #    { mailing_address { formattedArea() }}
@@ -112,9 +105,8 @@ describe 'Types' do
     #  expect(result['formattedArea']).to eq mailing_address.formatted_area
     #end
 
-    # Field: id: Globally unique identifier.
-    # Args: 
-    # Returns: Types::ID!
+    # @graphql id Globally unique identifier.
+    # @return [Types::ID!]
     #it 'id' do
     #  query = <<-GRAPHQL
     #    { mailing_address { id() }}
@@ -124,9 +116,8 @@ describe 'Types' do
     #  expect(result['id']).to eq mailing_address.id
     #end
 
-    # Field: lastName: The last name of the customer.
-    # Args: 
-    # Returns: Types::String
+    # @graphql lastName The last name of the customer.
+    # @return [Types::String]
     #it 'last_name' do
     #  query = <<-GRAPHQL
     #    { mailing_address { lastName() }}
@@ -136,9 +127,8 @@ describe 'Types' do
     #  expect(result['lastName']).to eq mailing_address.last_name
     #end
 
-    # Field: latitude: The latitude coordinate of the customer address.
-    # Args: 
-    # Returns: Types::Float
+    # @graphql latitude The latitude coordinate of the customer address.
+    # @return [Types::Float]
     #it 'latitude' do
     #  query = <<-GRAPHQL
     #    { mailing_address { latitude() }}
@@ -148,9 +138,8 @@ describe 'Types' do
     #  expect(result['latitude']).to eq mailing_address.latitude
     #end
 
-    # Field: longitude: The longitude coordinate of the customer address.
-    # Args: 
-    # Returns: Types::Float
+    # @graphql longitude The longitude coordinate of the customer address.
+    # @return [Types::Float]
     #it 'longitude' do
     #  query = <<-GRAPHQL
     #    { mailing_address { longitude() }}
@@ -160,9 +149,8 @@ describe 'Types' do
     #  expect(result['longitude']).to eq mailing_address.longitude
     #end
 
-    # Field: name: The full name of the customer, based on firstName and lastName. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql name The full name of the customer, based on firstName and lastName. 
+    # @return [Types::String]
     #it 'name' do
     #  query = <<-GRAPHQL
     #    { mailing_address { name() }}
@@ -172,9 +160,8 @@ describe 'Types' do
     #  expect(result['name']).to eq mailing_address.name
     #end
 
-    # Field: phone: A unique phone number for the customer. Formatted using E.164 standard. For example, _+16135551111_. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql phone A unique phone number for the customer. Formatted using E.164 standard. For example, _+16135551111_. 
+    # @return [Types::String]
     #it 'phone' do
     #  query = <<-GRAPHQL
     #    { mailing_address { phone() }}
@@ -184,9 +171,8 @@ describe 'Types' do
     #  expect(result['phone']).to eq mailing_address.phone
     #end
 
-    # Field: province: The region of the address, such as the province, state, or district.
-    # Args: 
-    # Returns: Types::String
+    # @graphql province The region of the address, such as the province, state, or district.
+    # @return [Types::String]
     #it 'province' do
     #  query = <<-GRAPHQL
     #    { mailing_address { province() }}
@@ -196,9 +182,8 @@ describe 'Types' do
     #  expect(result['province']).to eq mailing_address.province
     #end
 
-    # Field: provinceCode: The two-letter code for the region. For example, ON. 
-    # Args: 
-    # Returns: Types::String
+    # @graphql provinceCode The two-letter code for the region. For example, ON. 
+    # @return [Types::String]
     #it 'province_code' do
     #  query = <<-GRAPHQL
     #    { mailing_address { provinceCode() }}
@@ -208,9 +193,8 @@ describe 'Types' do
     #  expect(result['provinceCode']).to eq mailing_address.province_code
     #end
 
-    # Field: zip: The zip or postal code of the address.
-    # Args: 
-    # Returns: Types::String
+    # @graphql zip The zip or postal code of the address.
+    # @return [Types::String]
     #it 'zip' do
     #  query = <<-GRAPHQL
     #    { mailing_address { zip() }}

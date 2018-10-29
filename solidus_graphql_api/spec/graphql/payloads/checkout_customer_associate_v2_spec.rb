@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CheckoutCustomerAssociateV2' do
     #let!(:checkout_customer_associate_v2_payload) {create(:checkout_customer_associate_v2_payload)}
 
-    # Field: checkout: The updated checkout object.
-    # Args: 
-    # Returns: Types::Checkout
+    # @graphql checkout The updated checkout object.
+    # @return [Types::Checkout]
     #it 'checkout' do
     #  query = <<-GRAPHQL
     #    { checkout_customer_associate_v2_payload { checkout() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['checkout']).to eq checkout_customer_associate_v2_payload.checkout
     #end
 
-    # Field: customer: The associated customer object.
-    # Args: 
-    # Returns: Types::Customer
+    # @graphql customer The associated customer object.
+    # @return [Types::Customer]
     #it 'customer' do
     #  query = <<-GRAPHQL
     #    { checkout_customer_associate_v2_payload { customer() }}
@@ -28,9 +26,8 @@ describe 'Payloads' do
     #  expect(result['customer']).to eq checkout_customer_associate_v2_payload.customer
     #end
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { checkout_customer_associate_v2_payload { userErrors() }}

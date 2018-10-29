@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CustomerActivate' do
     #let!(:customer_activate_payload) {create(:customer_activate_payload)}
 
-    # Field: customer: The customer object.
-    # Args: 
-    # Returns: Types::Customer
+    # @graphql customer The customer object.
+    # @return [Types::Customer]
     #it 'customer' do
     #  query = <<-GRAPHQL
     #    { customer_activate_payload { customer() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['customer']).to eq customer_activate_payload.customer
     #end
 
-    # Field: customerAccessToken: A newly created customer access token object for the customer.
-    # Args: 
-    # Returns: Types::CustomerAccessToken
+    # @graphql customerAccessToken A newly created customer access token object for the customer.
+    # @return [Types::CustomerAccessToken]
     #it 'customer_access_token' do
     #  query = <<-GRAPHQL
     #    { customer_activate_payload { customerAccessToken() }}
@@ -28,9 +26,8 @@ describe 'Payloads' do
     #  expect(result['customerAccessToken']).to eq customer_activate_payload.customer_access_token
     #end
 
-    # Field: userErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::UserError!]!
+    # @graphql userErrors List of errors that occurred executing the mutation.
+    # @return [[Types::UserError!]!]
     #it 'user_errors' do
     #  query = <<-GRAPHQL
     #    { customer_activate_payload { userErrors() }}

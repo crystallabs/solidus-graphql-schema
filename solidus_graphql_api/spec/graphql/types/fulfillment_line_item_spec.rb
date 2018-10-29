@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'FulfillmentLineItem' do
     #let!(:fulfillment_line_item) {create(:fulfillment_line_item)}
 
-    # Field: lineItem: The associated order's line item.
-    # Args: 
-    # Returns: Types::OrderLineItem!
+    # @graphql lineItem The associated order's line item.
+    # @return [Types::OrderLineItem!]
     #it 'line_item' do
     #  query = <<-GRAPHQL
     #    { fulfillment_line_item { lineItem() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['lineItem']).to eq fulfillment_line_item.line_item
     #end
 
-    # Field: quantity: The amount fulfilled in this fulfillment.
-    # Args: 
-    # Returns: Types::Int!
+    # @graphql quantity The amount fulfilled in this fulfillment.
+    # @return [Types::Int!]
     #it 'quantity' do
     #  query = <<-GRAPHQL
     #    { fulfillment_line_item { quantity() }}

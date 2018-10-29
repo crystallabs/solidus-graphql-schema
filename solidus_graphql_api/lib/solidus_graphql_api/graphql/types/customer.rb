@@ -1,93 +1,84 @@
 module Spree::GraphQL::Types::Customer
 
 
-  # Field: acceptsMarketing: Indicates whether the customer has consented to be sent marketing material via email.
-  # Args: 
-  # Returns: Types::Boolean!
+  # @graphql acceptsMarketing Indicates whether the customer has consented to be sent marketing material via email.
+  # @return [Types::Boolean!]
   def accepts_marketing()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: addresses: A list of addresses for the customer.
-  # Args: reverse : Types::Boolean = false
-  # Returns: Types::MailingAddress.connection_type!
+  # @graphql addresses A list of addresses for the customer.
+  # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
+  # @return [Types::MailingAddress.connection_type!]
   def addresses(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: createdAt: The date and time when the customer was created.
-  # Args: 
-  # Returns: Types::DateTime!
+  # @graphql createdAt The date and time when the customer was created.
+  # @return [Types::DateTime!]
   def created_at()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: defaultAddress: The customer’s default address.
-  # Args: 
-  # Returns: Types::MailingAddress
+  # @graphql defaultAddress The customer’s default address.
+  # @return [Types::MailingAddress]
   def default_address()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: displayName: The customer’s name, email or phone number.
-  # Args: 
-  # Returns: Types::String!
+  # @graphql displayName The customer’s name, email or phone number.
+  # @return [Types::String!]
   def display_name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: email: The customer’s email address.
-  # Args: 
-  # Returns: Types::String
+  # @graphql email The customer’s email address.
+  # @return [Types::String]
   def email()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: firstName: The customer’s first name.
-  # Args: 
-  # Returns: Types::String
+  # @graphql firstName The customer’s first name.
+  # @return [Types::String]
   def first_name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: id: A unique identifier for the customer.
-  # Args: 
-  # Returns: Types::ID!
+  # @graphql id A unique identifier for the customer.
+  # @return [Types::ID!]
   def id()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: lastIncompleteCheckout: The customer's most recently updated, incomplete checkout.
-  # Args: 
-  # Returns: Types::Checkout
+  # @graphql lastIncompleteCheckout The customer's most recently updated, incomplete checkout.
+  # @return [Types::Checkout]
   def last_incomplete_checkout()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: lastName: The customer’s last name.
-  # Args: 
-  # Returns: Types::String
+  # @graphql lastName The customer’s last name.
+  # @return [Types::String]
   def last_name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: orders: The orders associated with the customer.
-  # Args: reverse : Types::Boolean = false, sort_key : Types::OrderSortKeys = 'ID', query : Types::String
-  # Returns: Types::Order.connection_type!
+  # @graphql orders The orders associated with the customer.
+  # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
+  # @param sort_key [Types::OrderSortKeys] ('ID') Sort the underlying list by the given key.
+  # @param query [Types::String] Supported filter parameters:  - `processed_at`  See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax). 
+  # @return [Types::Order.connection_type!]
   def orders(reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: phone: The customer’s phone number.
-  # Args: 
-  # Returns: Types::String
+  # @graphql phone The customer’s phone number.
+  # @return [Types::String]
   def phone()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: updatedAt: The date and time when the customer information was updated.
-  # Args: 
-  # Returns: Types::DateTime!
+  # @graphql updatedAt The date and time when the customer information was updated.
+  # @return [Types::DateTime!]
   def updated_at()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

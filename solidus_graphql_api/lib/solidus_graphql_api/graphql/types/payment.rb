@@ -1,72 +1,62 @@
 module Spree::GraphQL::Types::Payment
   include ::Spree::GraphQL::Interfaces::Node
 
-  # Field: amount: The amount of the payment.
-  # Args: 
-  # Returns: Types::Money!
+  # @graphql amount The amount of the payment.
+  # @return [Types::Money!]
   def amount()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: billingAddress: The billing address for the payment.
-  # Args: 
-  # Returns: Types::MailingAddress
+  # @graphql billingAddress The billing address for the payment.
+  # @return [Types::MailingAddress]
   def billing_address()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: checkout: The checkout to which the payment belongs.
-  # Args: 
-  # Returns: Types::Checkout!
+  # @graphql checkout The checkout to which the payment belongs.
+  # @return [Types::Checkout!]
   def checkout()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: creditCard: The credit card used for the payment in the case of direct payments.
-  # Args: 
-  # Returns: Types::CreditCard
+  # @graphql creditCard The credit card used for the payment in the case of direct payments.
+  # @return [Types::CreditCard]
   def credit_card()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: errorMessage: An message describing a processing error during asynchronous processing.
-  # Args: 
-  # Returns: Types::String
+  # @graphql errorMessage An message describing a processing error during asynchronous processing.
+  # @return [Types::String]
   def error_message()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: id: Globally unique identifier.
-  # Args: 
-  # Returns: Types::ID!
+  # @graphql id Globally unique identifier.
+  # @return [Types::ID!]
   def id()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: idempotencyKey: A client-side generated token to identify a payment and perform idempotent operations.
-  # Args: 
-  # Returns: Types::String
+  # @graphql idempotencyKey A client-side generated token to identify a payment and perform idempotent operations.
+  # @return [Types::String]
   def idempotency_key()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: ready: Whether or not the payment is still processing asynchronously.
-  # Args: 
-  # Returns: Types::Boolean!
+  # @graphql ready Whether or not the payment is still processing asynchronously.
+  # @return [Types::Boolean!]
   def ready()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: test: A flag to indicate if the payment is to be done in test mode for gateways that support it.
-  # Args: 
-  # Returns: Types::Boolean!
+  # @graphql test A flag to indicate if the payment is to be done in test mode for gateways that support it.
+  # @return [Types::Boolean!]
   def test()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: transaction: The actual transaction recorded by Solidus after having processed the payment with the gateway.
-  # Args: 
-  # Returns: Types::Transaction
+  # @graphql transaction The actual transaction recorded by Solidus after having processed the payment with the gateway.
+  # @return [Types::Transaction]
   def transaction()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

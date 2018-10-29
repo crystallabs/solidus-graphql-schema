@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'Attribute' do
     #let!(:attribute) {create(:attribute)}
 
-    # Field: key: Key or name of the attribute.
-    # Args: 
-    # Returns: Types::String!
+    # @graphql key Key or name of the attribute.
+    # @return [Types::String!]
     #it 'key' do
     #  query = <<-GRAPHQL
     #    { attribute { key() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['key']).to eq attribute.key
     #end
 
-    # Field: value: Value of the attribute.
-    # Args: 
-    # Returns: Types::String
+    # @graphql value Value of the attribute.
+    # @return [Types::String]
     #it 'value' do
     #  query = <<-GRAPHQL
     #    { attribute { value() }}

@@ -4,9 +4,8 @@ describe 'Payloads' do
   describe 'CheckoutCreate' do
     #let!(:checkout_create_payload) {create(:checkout_create_payload)}
 
-    # Field: checkout: The new checkout object.
-    # Args: 
-    # Returns: Types::Checkout
+    # @graphql checkout The new checkout object.
+    # @return [Types::Checkout]
     #it 'checkout' do
     #  query = <<-GRAPHQL
     #    { checkout_create_payload { checkout() }}
@@ -16,9 +15,8 @@ describe 'Payloads' do
     #  expect(result['checkout']).to eq checkout_create_payload.checkout
     #end
 
-    # Field: checkoutUserErrors: List of errors that occurred executing the mutation.
-    # Args: 
-    # Returns: [Types::CheckoutUserError!]!
+    # @graphql checkoutUserErrors List of errors that occurred executing the mutation.
+    # @return [[Types::CheckoutUserError!]!]
     #it 'checkout_user_errors' do
     #  query = <<-GRAPHQL
     #    { checkout_create_payload { checkoutUserErrors() }}

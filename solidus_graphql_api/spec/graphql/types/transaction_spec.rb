@@ -4,9 +4,8 @@ describe 'Types' do
   describe 'Transaction' do
     #let!(:transaction) {create(:transaction)}
 
-    # Field: amount: The amount of money that the transaction was for.
-    # Args: 
-    # Returns: Types::Money!
+    # @graphql amount The amount of money that the transaction was for.
+    # @return [Types::Money!]
     #it 'amount' do
     #  query = <<-GRAPHQL
     #    { transaction { amount() }}
@@ -16,9 +15,8 @@ describe 'Types' do
     #  expect(result['amount']).to eq transaction.amount
     #end
 
-    # Field: kind: The kind of the transaction.
-    # Args: 
-    # Returns: Types::TransactionKind!
+    # @graphql kind The kind of the transaction.
+    # @return [Types::TransactionKind!]
     #it 'kind' do
     #  query = <<-GRAPHQL
     #    { transaction { kind() }}
@@ -28,9 +26,8 @@ describe 'Types' do
     #  expect(result['kind']).to eq transaction.kind
     #end
 
-    # Field: status: The status of the transaction
-    # Args: 
-    # Returns: Types::TransactionStatus!
+    # @graphql status The status of the transaction
+    # @return [Types::TransactionStatus!]
     #it 'status' do
     #  query = <<-GRAPHQL
     #    { transaction { status() }}
@@ -40,9 +37,8 @@ describe 'Types' do
     #  expect(result['status']).to eq transaction.status
     #end
 
-    # Field: test: Whether the transaction was done in test mode or not
-    # Args: 
-    # Returns: Types::Boolean!
+    # @graphql test Whether the transaction was done in test mode or not
+    # @return [Types::Boolean!]
     #it 'test' do
     #  query = <<-GRAPHQL
     #    { transaction { test() }}

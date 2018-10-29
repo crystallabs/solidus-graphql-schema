@@ -1,16 +1,14 @@
 module Spree::GraphQL::Types::CommentAuthor
 
 
-  # Field: email: The author's email.
-  # Args: 
-  # Returns: Types::String!
+  # @graphql email The author's email.
+  # @return [Types::String!]
   def email()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: name: The author’s name.
-  # Args: 
-  # Returns: Types::String!
+  # @graphql name The author’s name.
+  # @return [Types::String!]
   def name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
