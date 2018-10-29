@@ -50,7 +50,7 @@ module Spree::GraphQL::Types::QueryRoot
   # @graphql shop
   # @return [Types::Shop!]
   def shop()
-    ::Spree::Store.where(default: true).first
+    raise ::Spree::GraphQL::NotImplementedError.new
   end
 
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Types' do
   describe 'Shop' do
-    let!(:shop) {create(:store)}
+    #let!(:shop) {create(:shop)}
 
     # @graphql collectionByHandle Find a collection by its handle.
     # @param handle [Types::String!]
@@ -32,16 +32,14 @@ describe 'Types' do
 
     # @graphql description A description of the shop.
     # @return [Types::String]
-    it 'description' do
-      shop.meta_description = 'Shop Description'
-      shop.save
-      query = <<-GRAPHQL
-        { shop { description() }}
-      GRAPHQL
-      response = ::Spree::GraphQL::Schema::Schema.execute(query)
-      result = response.dig('data', 'shop')
-      expect(result['description']).to eq shop.meta_description
-    end
+    #it 'description' do
+    #  query = <<-GRAPHQL
+    #    { shop { description() }}
+    #  GRAPHQL
+    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
+    #  result = response.dig('data', 'shop')
+    #  expect(result['description']).to eq shop.description
+    #end
 
     # @graphql moneyFormat A string representing the way currency is formatted when the currency isn’t specified.
     # @return [Types::String!]
@@ -56,14 +54,14 @@ describe 'Types' do
 
     # @graphql name The shop’s name.
     # @return [Types::String!]
-    it 'name' do
-      query = <<-GRAPHQL
-        { shop { name() }}
-      GRAPHQL
-      response = ::Spree::GraphQL::Schema::Schema.execute(query)
-      result = response.dig('data', 'shop')
-      expect(result['name']).to eq shop.name
-    end
+    #it 'name' do
+    #  query = <<-GRAPHQL
+    #    { shop { name() }}
+    #  GRAPHQL
+    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
+    #  result = response.dig('data', 'shop')
+    #  expect(result['name']).to eq shop.name
+    #end
 
     # @graphql paymentSettings Settings related to payments.
     # @return [Types::PaymentSettings!]
