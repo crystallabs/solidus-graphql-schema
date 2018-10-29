@@ -3,42 +3,42 @@ module Spree::GraphQL::Types::ManualDiscountApplication
 
   # Field: allocationMethod: The method by which the discount's value is allocated to its entitled items.
   # Args: 
-  # Returns: Types::DiscountApplicationAllocationMethod, null: false
+  # Returns: Types::DiscountApplicationAllocationMethod!
   def allocation_method()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: description: The description of the application.
   # Args: 
-  # Returns: ::GraphQL::Types::String, null: true
+  # Returns: Types::String
   def description()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: targetSelection: Which lines of targetType that the discount is allocated over.
   # Args: 
-  # Returns: Types::DiscountApplicationTargetSelection, null: false
+  # Returns: Types::DiscountApplicationTargetSelection!
   def target_selection()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: targetType: The type of line that the discount is applicable towards.
   # Args: 
-  # Returns: Types::DiscountApplicationTargetType, null: false
+  # Returns: Types::DiscountApplicationTargetType!
   def target_type()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: title: The title of the application.
   # Args: 
-  # Returns: ::GraphQL::Types::String, null: false
+  # Returns: Types::String!
   def title()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: value: The value of the discount application.
   # Args: 
-  # Returns: Types::PricingValue, null: false
+  # Returns: Types::PricingValue!
   def value()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

@@ -3,21 +3,21 @@ module Spree::GraphQL::Types::CheckoutUserError
 
   # Field: code: Error code to uniquely identify the error.
   # Args: 
-  # Returns: Types::CheckoutErrorCode, null: true
+  # Returns: Types::CheckoutErrorCode
   def code()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: field: Path to the input field which caused the error.
   # Args: 
-  # Returns: [::GraphQL::Types::String], null: true
+  # Returns: [Types::String!]
   def field()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: message: The error message.
   # Args: 
-  # Returns: ::GraphQL::Types::String, null: false
+  # Returns: Types::String!
   def message()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

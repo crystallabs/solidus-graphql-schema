@@ -3,14 +3,14 @@ module Spree::GraphQL::Payloads::CheckoutGiftCardsAppend
 
   # Field: checkout: The updated checkout object.
   # Args: 
-  # Returns: Types::Checkout, null: true
+  # Returns: Types::Checkout
   def checkout()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: userErrors: List of errors that occurred executing the mutation.
   # Args: 
-  # Returns: [Types::UserError], null: false
+  # Returns: [Types::UserError!]!
   def user_errors()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

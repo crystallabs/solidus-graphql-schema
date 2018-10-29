@@ -3,21 +3,21 @@ module Spree::GraphQL::Types::ProductOption
 
   # Field: id: Globally unique identifier.
   # Args: 
-  # Returns: ::GraphQL::Types::ID, null: false
+  # Returns: Types::ID!
   def id()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: name: The product option’s name.
   # Args: 
-  # Returns: ::GraphQL::Types::String, null: false
+  # Returns: Types::String!
   def name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # Field: values: The corresponding value to the product option name.
   # Args: 
-  # Returns: [::GraphQL::Types::String], null: false
+  # Returns: [Types::String!]!
   def values()
     raise ::Spree::GraphQL::NotImplementedError.new
   end

@@ -404,6 +404,9 @@ def parse_types_2(v)
             string.gsub! ', required: true]', ']' # 'null: false]'
             string.gsub! ', required: false]', ']'
 
+            # Derive short description of type (e.g. "[String!]!")
+            method_args[-1].push shorten(string)
+
             helper2['type_name']= string
             # Determine if default value needs to be set
             if helper2['type_name']!~ /required: true/
@@ -429,7 +432,7 @@ def parse_types_2(v)
 
         helper['description']= f['description'] ? "%q{%{f['description']}}" : 'nil'
         helper['method_args_string']= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
-        helper['method_args_description']= method_args.map{|a| a.join ' = '}.join(', ')
+        helper['method_args_description']= method_args.map{|a| [ a[0..1].join(' : '), a[2]].compact.join(' = ')}.join(', ')
         $catalog[:contents][new_name].push template 'field', f, helper
         helper['class']= t['name'].underscore
         $catalog[:spec_contents][new_name].push template 'spec/it', f, helper
@@ -479,6 +482,9 @@ def parse_types_2(v)
         string.gsub! ', required: true]', ']' # , null: true]'
         string.gsub! ', required: false]', ']'
 
+        # Derive short description of type (e.g. "[String!]!")
+        method_args[-1].push shorten(string)
+
         helper2['type_name']= string
         # Determine if default value needs to be set
         if helper2['type_name']!~ /required: true/
@@ -502,7 +508,7 @@ def parse_types_2(v)
     end # if f['inputFields']
     helper['description']= t['description'] ? "%q{#{t['description']}}" : 'nil'
     helper['method_args_string']= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
-    helper['method_args_description']= method_args.map{|a| a.join ' = '}.join(', ')
+    helper['method_args_description']= method_args.map{|a| [ a[0..1].join(' : '), a[2]].compact.join(' = ')}.join(', ')
     #$catalog[:contents][new_name].push template 'field', t, helper
 
 
@@ -744,7 +750,7 @@ end
 'field' => "
   # Field: #{type['name']}#{( type['description'] ? ': '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}
   # Args: #{helper['method_args_description']}
-  # Returns: #{(helper['type_name']||'').gsub /::Spree::GraphQL::Schema::/, ''}
+  # Returns: #{shorten(helper['type_name']||'')}
   def #{(type['name'] || '').underscore}#{helper['method_args_string']}
     raise ::Spree::GraphQL::NotImplementedError.new
   end
@@ -760,7 +766,7 @@ describe '#{($catalog[:names][type['name']]||'').split('::').first}' do
 'spec/it' => "
     # Field: #{type['name']}#{( type['description'] ? ': '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}
     # Args: #{helper['method_args_description']}
-    # Returns: #{(helper['type_name']||'').gsub /::Spree::GraphQL::Schema::/, ''}
+    # Returns: #{shorten(helper['type_name']||'')}
     #it '#{(type['name'] || '').underscore}' do
     #  query = <<-GRAPHQL
     #    { #{helper['class']} { #{type['name']}#{helper['method_args_string']} }}
@@ -780,6 +786,18 @@ def check_skip(t)
   # interested in Connection/Edge types.
   return true if (t['name']=~ /(?:Connection|Edge)$/) || (t['name']=~ /^__/) || ($catalog[:builtins][t['name']]) || t['isDeprecated']
   false
+end
+
+def shorten(s)
+  s= s.dup
+  s.gsub! '::Spree::GraphQL::Schema::', ''
+  s.gsub! '::GraphQL::', ''
+  s.gsub! /(?<!, null: true)\]/, '!]'
+  s.gsub! ', null: true', ''
+  s.gsub! ', null: false', '!'
+  s.gsub! ', required: false', ''
+  s.gsub! ', required: true', '!'
+  s
 end
 
 ####
