@@ -81,8 +81,8 @@ Please note that the generator will output all generated files to subdirectory `
 
 You can compare your existing solidus_graphql_api files with the generated contents in generally one of two ways:
 
-1. You can compare the two directories with a command like `cd solidus_graphql_api/lib/solidus_graphql_api/graphql/; diff -ruNP /path/to/.../graphql/ ./graphql/`. This approach is good for a quick check, but you will still need to copy the changes you intend to keep over to solidus_graphql_api.
-1. You can clone solidus_graphql_api into the directory of the same name. This approach would effectively generate the files directly in the solidus_graphql_api source tree and you would be able to check any changes directly, by entering that directory and running `git diff`/`git status`.
+1. You can compare the two directories with a command like `cd solidus_graphql_api/lib/solidus_graphql_api/graphql/; diff -ruNP /path/to/.../graphql/ ./graphql/`. This approach is good, but you will need to copy the changes you intend to keep over to solidus_graphql_api.
+1. You can clone solidus_graphql_api into the directory of the same name. This approach would effectively generate the files directly in the solidus_graphql_api source tree and you would be able to check any changes directly, by entering that directory and running `git diff`/`git status`. You will also most often want to limit the diffs to directory which is intended to be managed fully automatically, which is `lib/solidus_graphql_api/graphql/schema/`.
 
 Once the schema files are updated, the implementation files, the test files, and the file `all.rb` may need to be adjusted manually to reflect the changes, and then the whole set of changes should be committed to solidus_graphql_api.
 
