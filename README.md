@@ -70,7 +70,7 @@ To generate GraphQL schema files or to update them from upstream, you would use 
 1. Clone this repository and chdir into it
 1. Git clone graphql-ruby from https://github.com/rmosolgo/graphql-ruby into current directory
 1. Git clone solidus_graphql_api from https://github.com/boomerdigital/solidus_graphql_api into current directory (optional)
-1. Open Shopify GraphiQL at https://help.shopify.com/en/api/graphiql
+1. Open GraphiQL at https://help.shopify.com/en/api/graphiql
 1. Paste the contents of file `introspection_query.txt` into the opened GraphiQL and run the query
 1. Save the resulting JSON content to file `schema.json`
 1. Run `./generate-schema.rb schema.json graphql-ruby`
@@ -98,22 +98,22 @@ For troubleshooting, use the following guidelines:
 
 1. Open `generate-schema.rb` and change log level from WARN to DEBUG
 1. To access or print schema from Rails console in a Solidus app, run `rails c`, then see `Spree::GraphQL::Schema::Schema.to_graphql`
-1. To compare schemas, the best way is to run the introspection query against both Shopify and Solidus server, then compare the returned JSONs
+1. To compare schemas, the best way is to run the introspection query against both servers, then compare the returned JSONs
 1. To filter out insignificant differences in schemas before comparison, and to output each differing type as files on disk, first run the introspection query, then place the upstream result to `schema.json` and Solidus result to `solidus-schema.json` and run `./compare-schemas.rb  schema.json  solidus-schema.json`. The differences will be placed to directory `diffs/`.
 
 ## Known Differences
 
 The schema is generated automatically and so depends on the specifics of the generator and current version of `graphql-ruby`.
 
-Currently, the smaller points of difference between Shopify and Solidus GraphQL schema are:
+Currently, the smaller points of difference between GraphQL API schemas are:
 
 1. Solidus uses newer versions of `graphql-ruby` which may include more verbose field and argument descriptions, and more data in the `pageInfo` type.
-1. GraphQL field `Shop.productTypes` in Shopify only supports argument `first`, while in Solidus it is a regular Connection with four default arguments (`first`, `last`, `before`, `after`).
+1. GraphQL field `Shop.productTypes` in upstream API only supports argument `first`, while in Solidus it is a regular Connection with four default arguments (`first`, `last`, `before`, `after`).
 
 Possibly more significant differences:
 
 1. GraphQL types `Order`, `Checkout`, and `DiscountAllocation` in Solidus do not include the fields related to type `DiscountApplication`. This will be fixed.
-1. In Solidus, all Connection types can return nil whereas in Shopify they are explicitly not nil. The nil comes from default graphql-ruby behavior, and this may be kept as it is, unless more detailed reasons for making it not nil come to attention.
+1. In Solidus, all Connection types can return nil whereas in upstream they are explicitly not nil. The nil comes from default graphql-ruby behavior, and this may be kept as it is, unless more detailed reasons for making it not nil come to attention.
 
 ## TODO
 
