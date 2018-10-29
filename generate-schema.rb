@@ -673,6 +673,16 @@ def template(file, type = {}, helper = {})
 'schema' => "class Spree::GraphQL::Schema::Schema < GraphQL::Schema
   query ::Spree::GraphQL::Schema::Types::#{type['query']}
   mutation ::Spree::GraphQL::Schema::Types::#{type['mutation']}
+
+  def self.id_from_object(object, type_definition, query_context)
+    ::GraphQL::Schema::UniqueWithinType.encode(object.class.name, object.id)
+  end
+
+  def self.object_from_id(id, query_context)
+    class_name, item_id = ::GraphQL::Schema::UniqueWithinType.decode(id)
+    ::Object.const_get(class_name).find(item_id)
+  end
+
 end
 ",
 'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
@@ -703,6 +713,7 @@ end
 'schema/field_footer' => "  end",
 'schema/type_footer' => "\nend\n",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
+  global_id_field :id
   include ::Spree::GraphQL::Types::BaseObject
 end
 ',
