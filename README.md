@@ -51,30 +51,44 @@ To implement a particular GraphQL field, one can use all approaches mentioned in
 1. Remove the NotImplemented error for a particular call and replace it with the actual implementation. In this case, as per graphql-ruby, the underlying object is automatically available in helper variable `object`, context in `context`, and arguments are accessed directly as arguments passed to the method.
 1. Comment or remove the whole method definition and allow the underlying object to respond to the call directly. For example, in a GraphQL query `{ shop { name } }`, after the query root object resolves `shop` to an instance of `Schema::Types::Shop` (and in turn an instance of `::Spree:Store`), then `name` can either be implemented as `def name() object.name end`, or it can be left out so that the method `name` gets called on `::Spree::Store` directly.
 
+### The Tests
+
+By default, every Solidus implementation file has a corresponding test file placed in the same directory structure, but under the directory `./spec/`.
+
+For example, GraphQL type `Types::Shop` which is implemented in the file `lib/solidus_graphql_api/graphql/types/shop.rb` would have its test file in `spec/graphql/types/shop.rb`.
+
+When the schema generator is run, it also generates the stub test files if they don't yet exist. These files are generated with ready-made test templates for all defined GraphQL fields.
+
+Because the auto-generated test templates are simple and only cover basic use cases, the individual field tests are output in commented form and require manual review, modification, and uncommenting to activate them.
+
+To test a particular GraphQL field, we generally use a simple approach where a GraphQL string is passed to `GraphQL::Schema::Schema.execute` and its result is tested against the expected value.
+
 ## Generating or Updating Schema
 
 To generate GraphQL schema files or to update them from upstream, you would use the following general procedure:
 
-1. Clone this repository
+1. Clone this repository and chdir into it
+1. Git clone `graphql-ruby` from https://github.com/rmosolgo/graphql-ruby into current directory
+1. Git clone `solidus_graphql_api` from https://github.com/boomerdigital/solidus_graphql_api into current directory (optional)
 1. Open Shopify GraphiQL at https://help.shopify.com/en/api/graphiql
-1. Paste the contents of file `introspection_query.txt` into the opened GraphiQL
-1. Save the displayed JSON content to file `schema.json`
-1. Git clone or update module `graphql-ruby` from https://github.com/rmosolgo/graphql-ruby
+1. Paste the contents of file `introspection_query.txt` into the opened GraphiQL and run the query
+1. Save the resulting JSON content to file `schema.json`
 1. Run `./generate-schema.rb schema.json graphql-ruby`
-1. Compare contents of solidus_graphql_api's directory `lib/solidus_graphql_api/graphql/` with `./graphql/`
-1. Copy and commit desired changes in contents from `./graphql/` into solidus_graphql_api
-1. If new files were created, add them to solidus_graphql_api's file `lib/solidus_graphql_api/graphql/all.rb`
+1. Check for any differences with `git diff`/`git status`
+1. If new files were created, remember to add them to solidus_graphql_api's file `solidus_graphql_api/lib/solidus_graphql_api/graphql/all.rb`
 
-Please note that the generator will, by default, output all files to subdirectory `./graphql/`. You can compare existing solidus_graphql_api files with it (that's item (7) in the above list) in generally one of two ways:
+Please note that the generator will output all generated files to subdirectory `./solidus_graphql_api/`. You can compare existing solidus_graphql_api files with it in generally one of two ways:
 
-1. Compare the two directories with a command like `diff -ruNP /path/to/solidus_graphql_api/lib/solidus_graphql_api/graphql/ ./graphql/`. This approach is good for a quick check, but you will still need to copy over the files or changes you intend to keep and commit to solidus_graphql_api.
-1. Make `graphql` be a symlink to `/path/to/solidus_graphql_api/lib/solidus_graphql_api/graphql/`. This approach will effectively generate the files directly in solidus_graphql_api source tree and you can check for any changes by going to that directory and running `git diff`/`git status`.
+1. You can compare the two directories with a command like `cd solidus_graphql_api/lib/solidus_graphql_api/graphql/; diff -ruNP /path/to/.../graphql/ ./graphql/`. This approach is good for a quick check, but you will still need to copy the changes you intend to keep over to solidus_graphql_api.
+1. You can clone `solidus_graphql_api` into a directory of the same name. This approach will effectively generate the files directly in the `solidus_graphql_api` source tree and you will be able to check for any changes directly, by entering that directory and running `git diff`/`git status`.
 
-Once the schema files are updated, the implementation files, the test files, and the file `all.rb` may need to be updated manually, and then the whole set of changes should be committed to solidus_graphql_api.
+Once the schema files are updated, the implementation files, the test files, and the file `all.rb` may need to be adjusted manually to reflect the changes, and then the whole set of changes should be committed to solidus_graphql_api.
 
 ## Testing
 
-After running the generator, you should be able to syntax-check the generated files by simply running `ruby graphql/all.rb`. There should be no output or error displayed.
+After running the generator, you should be able to syntax-check the generated files by simply running `ruby solidus_graphql_api/lib/solidus_graphql_api/graphql/all.rb`. There should be no output or error displayed.
+
+In addition, when the generated files are copied over to `solidus_graphql_api`, you should see its README for instructions how to run the whole spec suite.
 
 ## Troubleshooting
 
@@ -105,3 +119,5 @@ Possibly more significant differences:
 1. The generator script currently simply discards all deprecated parts of schema and they are not created in Solidus. If/when supporting deprecated elements becomes important, the generator will have to be modified to not skip deprecated elements, but to output them while honoring their `isDeprecated` status.
 1. Determine why `Order`, `Checkout`, and `DiscountAllocation` do not include the field related to discount applications, and consequently the `DiscountApplication` interface.
 1. See whether it is possible to make `Shop.productTypes` connection only support argument `first` (like in the upstream API) rather than all four arguments (`first`, `last`, `before`, `after`)
+1. Object IDs need to be turned into globally unique IDs, as mentioned in https://github.com/boomerdigital/solidus_graphql_api/issues/18
+1. Authentication in solidus_graphql_api should be sorted out as mentioned in https://github.com/boomerdigital/solidus_graphql_api/issues/14
