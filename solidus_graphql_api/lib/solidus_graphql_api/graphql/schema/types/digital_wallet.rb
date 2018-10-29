@@ -7,6 +7,6 @@ class Spree::GraphQL::Schema::Types::DigitalWallet < Spree::GraphQL::Schema::Typ
   value 'APPLE_PAY', %q{Apple Pay}
   value 'ANDROID_PAY', %q{Android Pay}
   value 'GOOGLE_PAY', %q{Google Pay}
-  value 'SHOPIFY_PAY', %q{Store Pay}
+  value 'SOLIDUS_PAY', %q{Solidus Pay}
 
 end

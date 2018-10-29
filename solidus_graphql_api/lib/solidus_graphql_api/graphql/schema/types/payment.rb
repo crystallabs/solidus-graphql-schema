@@ -33,6 +33,6 @@ class Spree::GraphQL::Schema::Types::Payment < Spree::GraphQL::Schema::Types::Ba
     description %q{A flag to indicate if the payment is to be done in test mode for gateways that support it.}
   end
   field :transaction, ::Spree::GraphQL::Schema::Types::Transaction, null: true do
-    description %q{The actual transaction recorded by Store after having processed the payment with the gateway.}
+    description %q{The actual transaction recorded by Solidus after having processed the payment with the gateway.}
   end
 end

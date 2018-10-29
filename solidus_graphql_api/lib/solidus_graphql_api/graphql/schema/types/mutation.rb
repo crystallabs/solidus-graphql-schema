@@ -15,7 +15,7 @@ class Spree::GraphQL::Schema::Types::Mutation < Spree::GraphQL::Schema::Types::B
     argument :checkout_id, ::GraphQL::Types::ID, required: true, description: %q{The ID of the checkout.}
   end
   field :checkout_complete_with_credit_card_v2, ::Spree::GraphQL::Schema::Payloads::CheckoutCompleteWithCreditCardV2, null: true do
-    description %q{Completes a checkout using a credit card token from Store's Vault.}
+    description %q{Completes a checkout using a credit card token from Solidus's Vault.}
     argument :checkout_id, ::GraphQL::Types::ID, required: true, description: %q{The ID of the checkout.}
     argument :payment, ::Spree::GraphQL::Schema::Inputs::CreditCardPaymentV2, required: true, description: %q{The credit card info to apply as a payment.}
   end

@@ -43,7 +43,7 @@ class Spree::GraphQL::Schema::Types::Customer < Spree::GraphQL::Schema::Types::B
     argument :query, ::GraphQL::Types::String, required: false, description: %q{Supported filter parameters:
  - `processed_at`
 
-See the detailed [search syntax](https://help.shopify.com/api/getting-started/search-syntax).
+See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
 }
   end
   field :phone, ::GraphQL::Types::String, null: true do

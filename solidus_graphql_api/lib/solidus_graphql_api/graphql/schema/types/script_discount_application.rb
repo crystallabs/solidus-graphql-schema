@@ -1,7 +1,7 @@
 class Spree::GraphQL::Schema::Types::ScriptDiscountApplication < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'ScriptDiscountApplication'
   description %q{Script discount applications capture the intentions of a discount that
-was created by a Store Script.
+was created by a Solidus Script.
 }
   implements ::Spree::GraphQL::Schema::Interfaces::DiscountApplication
   

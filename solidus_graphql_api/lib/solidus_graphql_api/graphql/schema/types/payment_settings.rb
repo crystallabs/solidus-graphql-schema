@@ -17,8 +17,8 @@ class Spree::GraphQL::Schema::Types::PaymentSettings < Spree::GraphQL::Schema::T
   field :currency_code, ::Spree::GraphQL::Schema::Types::CurrencyCode, null: false do
     description %q{The three-letter code for the currency that the shop accepts.}
   end
-  field :store_payments_account_id, ::GraphQL::Types::String, null: true do
-    description %q{The shop’s Store Payments account id.}
+  field :solidus_payments_account_id, ::GraphQL::Types::String, null: true do
+    description %q{The shop’s Solidus Payments account id.}
   end
   field :supported_digital_wallets, [::Spree::GraphQL::Schema::Types::DigitalWallet], null: false do
     description %q{List of the digital wallets which the shop supports.}

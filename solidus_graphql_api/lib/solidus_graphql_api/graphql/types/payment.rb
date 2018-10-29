@@ -64,7 +64,7 @@ module Spree::GraphQL::Types::Payment
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: transaction: The actual transaction recorded by Store after having processed the payment with the gateway.
+  # Field: transaction: The actual transaction recorded by Solidus after having processed the payment with the gateway.
   # Args: 
   # Returns: Types::Transaction
   def transaction()

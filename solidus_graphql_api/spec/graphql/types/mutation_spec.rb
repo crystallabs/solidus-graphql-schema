@@ -28,7 +28,7 @@ describe 'Types' do
     #  expect(result['checkoutCompleteFree']).to eq mutation.checkout_complete_free
     #end
 
-    # Field: checkoutCompleteWithCreditCardV2: Completes a checkout using a credit card token from Store's Vault.
+    # Field: checkoutCompleteWithCreditCardV2: Completes a checkout using a credit card token from Solidus's Vault.
     # Args: checkout_id : Types::ID!, payment : Inputs::CreditCardPaymentV2!
     # Returns: Payloads::CheckoutCompleteWithCreditCardV2
     #it 'checkout_complete_with_credit_card_v2' do

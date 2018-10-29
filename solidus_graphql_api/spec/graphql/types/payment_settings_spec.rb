@@ -52,16 +52,16 @@ describe 'Types' do
     #  expect(result['currencyCode']).to eq payment_settings.currency_code
     #end
 
-    # Field: storePaymentsAccountId: The shop’s Store Payments account id.
+    # Field: solidusPaymentsAccountId: The shop’s Solidus Payments account id.
     # Args: 
     # Returns: Types::String
-    #it 'store_payments_account_id' do
+    #it 'solidus_payments_account_id' do
     #  query = <<-GRAPHQL
-    #    { payment_settings { storePaymentsAccountId() }}
+    #    { payment_settings { solidusPaymentsAccountId() }}
     #  GRAPHQL
     #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
     #  result = response.dig('data', 'payment_settings')
-    #  expect(result['storePaymentsAccountId']).to eq payment_settings.store_payments_account_id
+    #  expect(result['solidusPaymentsAccountId']).to eq payment_settings.solidus_payments_account_id
     #end
 
     # Field: supportedDigitalWallets: List of the digital wallets which the shop supports.

@@ -24,8 +24,9 @@ $log.formatter = proc do |severity, datetime, progname, msg| "#{severity.to_s}: 
 
 # Load schema Hash into $schema
 schema_text= File.read ARGV.shift
-#schema_text.gsub! /hopify.com/, 'olidus.io'
-schema_text.gsub! /hopify(?!\.com)/, 'tore'
+schema_text.gsub! /hopify\.com/, 'olidus.io'
+schema_text.gsub! /hopify/, 'olidus'
+schema_text.gsub! /HOPIFY/, 'OLIDUS'
 schema = JSON.parse schema_text
 $schema = schema['data']['__schema']
 

@@ -29,10 +29,10 @@ module Spree::GraphQL::Types::PaymentSettings
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: storePaymentsAccountId: The shop’s Store Payments account id.
+  # Field: solidusPaymentsAccountId: The shop’s Solidus Payments account id.
   # Args: 
   # Returns: Types::String
-  def store_payments_account_id()
+  def solidus_payments_account_id()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 

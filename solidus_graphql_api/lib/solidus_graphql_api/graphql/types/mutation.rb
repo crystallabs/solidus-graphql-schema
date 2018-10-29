@@ -15,7 +15,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # Field: checkoutCompleteWithCreditCardV2: Completes a checkout using a credit card token from Store's Vault.
+  # Field: checkoutCompleteWithCreditCardV2: Completes a checkout using a credit card token from Solidus's Vault.
   # Args: checkout_id : Types::ID!, payment : Inputs::CreditCardPaymentV2!
   # Returns: Payloads::CheckoutCompleteWithCreditCardV2
   def checkout_complete_with_credit_card_v2(checkout_id:, payment:)

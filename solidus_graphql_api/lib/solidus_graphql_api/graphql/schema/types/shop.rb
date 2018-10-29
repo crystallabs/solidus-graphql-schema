@@ -18,7 +18,7 @@ class Spree::GraphQL::Schema::Types::Shop < Spree::GraphQL::Schema::Types::BaseO
  - `collection_type`
  - `updated_at`
 
-See the detailed [search syntax](https://help.shopify.com/api/getting-started/search-syntax).
+See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
 }
   end
   field :description, ::GraphQL::Types::String, null: true do
@@ -59,7 +59,7 @@ See the detailed [search syntax](https://help.shopify.com/api/getting-started/se
  - `variants.price`
  - `tag`
 
-See the detailed [search syntax](https://help.shopify.com/api/getting-started/search-syntax).
+See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
 }
   end
   field :refund_policy, ::Spree::GraphQL::Schema::Types::ShopPolicy, null: true do

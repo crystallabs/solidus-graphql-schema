@@ -16,7 +16,7 @@ class Spree::GraphQL::Schema::Types::QueryRoot < Spree::GraphQL::Schema::Types::
  - `blog_title`
  - `tag`
 
-See the detailed [search syntax](https://help.shopify.com/api/getting-started/search-syntax).
+See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
 }
   end
   field :blog_by_handle, ::Spree::GraphQL::Schema::Types::Blog, null: true do
@@ -33,7 +33,7 @@ See the detailed [search syntax](https://help.shopify.com/api/getting-started/se
  - `updated_at`
  - `created_at`
 
-See the detailed [search syntax](https://help.shopify.com/api/getting-started/search-syntax).
+See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
 }
   end
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do
