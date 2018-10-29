@@ -407,6 +407,7 @@ def parse_types_2(v)
 
             # Derive short description of type (e.g. "[String!]!")
             method_args[-1].push shorten(string)
+            method_args[-1].push f['description']
 
             helper2['type_name']= string
             # Determine if default value needs to be set
@@ -430,10 +431,10 @@ def parse_types_2(v)
           end
         end # if f['args']
         $catalog[:schema_contents][new_name].push template 'schema/field_footer'
-
-        helper['description']= f['description'] ? "%q{%{f['description']}}" : 'nil'
         helper['method_args_string']= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
-        helper['method_args_description']= method_args.map{|a| [ a[0..1].join(' : '), a[2]].compact.join(' = ')}.join(', ')
+        helper['method_args_description']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''} #{oneline a[2]}"}.join("\n")
+        helper['method_args_description_spec']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
+
         $catalog[:contents][new_name].push template 'field', f, helper
         helper['class']= t['name'].underscore
         $catalog[:spec_contents][new_name].push template 'spec/it', f, helper
@@ -485,6 +486,7 @@ def parse_types_2(v)
 
         # Derive short description of type (e.g. "[String!]!")
         method_args[-1].push shorten(string)
+        method_args[-1].push f['description']
 
         helper2['type_name']= string
         # Determine if default value needs to be set
@@ -509,9 +511,8 @@ def parse_types_2(v)
     end # if f['inputFields']
     helper['description']= t['description'] ? "%q{#{t['description']}}" : 'nil'
     helper['method_args_string']= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
-    helper['method_args_description']= method_args.map{|a| [ a[0..1].join(' : '), a[2]].compact.join(' = ')}.join(', ')
-    #$catalog[:contents][new_name].push template 'field', t, helper
-
+    helper['method_args_description']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''} #{oneline a[2]}"}.join("\n")
+    helper['method_args_description_spec']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
 
     # Parse enum values
     if t['enumValues']
@@ -760,9 +761,8 @@ end
 #{(helper['interfaces']||[]).map{|i| "  include ::Spree::GraphQL::Interfaces::#{i}"}.join "\n"}
 ",
 'field' => "
-  # Field: #{type['name']}#{( type['description'] ? ': '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}
-  # Args: #{helper['method_args_description']}
-  # Returns: #{shorten(helper['type_name']||'')}
+  # @graphql #{type['name']}#{( type['description'] ? ' '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}#{(helper['method_args_description']||'').size>0 ? "\n"+ helper['method_args_description'].gsub(/^#/, '  #') : ''}
+  # @return [#{shorten(helper['type_name']||'')}]
   def #{(type['name'] || '').underscore}#{helper['method_args_string']}
     raise ::Spree::GraphQL::NotImplementedError.new
   end
@@ -776,9 +776,8 @@ describe '#{($catalog[:names][type['name']]||'').split('::').first}' do
     #let!(:#{helper['class']}) {create(:#{helper['class']})}
 ",
 'spec/it' => "
-    # Field: #{type['name']}#{( type['description'] ? ': '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}
-    # Args: #{helper['method_args_description']}
-    # Returns: #{shorten(helper['type_name']||'')}
+    # @graphql #{type['name']}#{( type['description'] ? ' '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}#{(helper['method_args_description_spec']||'').size>0 ? "\n"+ helper['method_args_description_spec'].gsub(/^#/, '    #') : ''}
+    # @return [#{shorten(helper['type_name']||'')}]
     #it '#{(type['name'] || '').underscore}' do
     #  query = <<-GRAPHQL
     #    { #{helper['class']} { #{type['name']}#{helper['method_args_string']} }}
@@ -809,6 +808,12 @@ def shorten(s)
   s.gsub! ', null: false', '!'
   s.gsub! ', required: false', ''
   s.gsub! ', required: true', '!'
+  s
+end
+
+def oneline(s)
+  return '' unless s
+  s.gsub! "\n", ' '
   s
 end
 
