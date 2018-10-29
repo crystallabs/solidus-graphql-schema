@@ -40,6 +40,7 @@ def run
     if !equal(t1,t2) and t2
       File.write "diffs/#{t1['name']}.orig", JSON.pretty_generate(t1)
       File.write "diffs/#{t1['name']}.solidus", JSON.pretty_generate(t2)
+      puts "MISMATCH: #{t1['name']}"
     else
       puts "OK: #{t1['name']}"
     end
