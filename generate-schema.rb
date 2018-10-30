@@ -213,7 +213,9 @@ def parse_types_1(v)
     $catalog[:outputs][name]= of.underscore
 
     # Implementation test (user should also review/modify test)
-    $catalog[:spec_outputs][name]= of.underscore
+    if name=~ /^(?:Types|Interfaces)::/
+      $catalog[:spec_outputs][name]= of.underscore
+    end
   end
 end
 
@@ -446,11 +448,11 @@ def parse_types_2(v)
         helper['method_args_description']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''} #{oneline a[2]}"}.join("\n")
         helper['method_args_description_spec']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
 
+        helper['class']= t['name'].underscore
         if new_name=~ /^(?:Types|Interfaces)::/
           $catalog[:contents][new_name].push template 'field', f, helper
+          $catalog[:spec_contents][new_name].push template 'spec/it', f, helper
         end
-        helper['class']= t['name'].underscore
-        $catalog[:spec_contents][new_name].push template 'spec/it', f, helper
       end # t['fields'].each
     end # endif t['fields']
 
