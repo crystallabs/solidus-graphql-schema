@@ -48,3 +48,4 @@ module Spree::GraphQL::Types::CreditCard
   end
 
 end
+

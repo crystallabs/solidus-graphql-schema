@@ -52,3 +52,4 @@ module Spree::GraphQL::Types::QueryRoot
   end
 
 end
+

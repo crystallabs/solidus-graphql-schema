@@ -25,3 +25,4 @@ module Spree::GraphQL::Types::AppliedGiftCard
   end
 
 end
+

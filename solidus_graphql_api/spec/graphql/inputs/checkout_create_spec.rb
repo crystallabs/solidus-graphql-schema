@@ -6,3 +6,4 @@ describe 'Inputs' do
 
   end
 end
+

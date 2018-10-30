@@ -37,3 +37,4 @@ module Spree::GraphQL::Types::CheckoutLineItem
   end
 
 end
+

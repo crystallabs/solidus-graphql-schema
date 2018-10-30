@@ -18,3 +18,4 @@ module Spree::GraphQL::Types::Domain
   end
 
 end
+

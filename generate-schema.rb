@@ -10,6 +10,8 @@ require 'logger'
 require 'fileutils'
 require 'active_support/core_ext/string/inflections'
 
+$overwrite = true
+
 $log= Logger.new STDOUT
 $log.level = Logger::WARN
 $log.formatter = proc do |severity, datetime, progname, msg| "#{severity.to_s}: #{msg}\n" end
@@ -36,8 +38,9 @@ $graphql_ruby_dir= ARGV.shift
 # Define directory where generated files will be output, defaults to ./graphql
 $out_dir= ARGV.shift || './solidus_graphql_api/'
 
-puts "Schema files in #{$out_dir} will be overwritten.
-Implementation files will be created if missing but not overwritten if existing.
+puts "Output dir is #{$out_dir}.
+Schema files will be overwritten.
+Implementation files will#{ $overwrite ? '' : ' not'} be overwritten.
 "
 
 # Names of query/mutation/subscription entry points
@@ -628,7 +631,7 @@ def output_files
     content = (Array === content) ? content.flatten.join('') : content
     outfile = "#{$out_dir}/lib/solidus_graphql_api/graphql/#{file}.rb"
     FileUtils.mkdir_p File.dirname outfile
-    if !File.exists? outfile
+    if !File.exists?(outfile) or $overwrite
       File.open(outfile, 'w') { |f| f.write "#{content}\n" }
     else
       $log.debug "Not overwriting #{outfile}"
@@ -640,7 +643,7 @@ def output_files
   FileUtils.mkdir_p File.dirname outfile
   File.open(outfile, 'w') { |f| f.write template('file_list.rb') +
     $catalog[:outputs].values.map{|f| %Q{require_relative "./#{f}"}}.join("\n") + "\n\n" +
-    $catalog[:schema_outputs].values.map{|f| %Q{require_relative "./schema/#{f}"}}.join("\n")
+    $catalog[:schema_outputs].values.map{|f| %Q{require_relative "./schema/#{f}"}}.join("\n") + "\n"
   }
 
   # Output specs:
@@ -649,7 +652,7 @@ def output_files
     content = (Array === content) ? content.flatten.join('') : content
     outfile = "#{$out_dir}/spec/graphql/#{file}_spec.rb"
     FileUtils.mkdir_p File.dirname outfile
-    if !File.exists? outfile
+    if !File.exists?(outfile) or $overwrite
       File.open(outfile, 'w') { |f| f.write "#{content}\n" }
     else
       $log.debug "Not overwriting #{outfile}"
@@ -713,7 +716,7 @@ newline('  ', helper['possible_types_string']) + "
 'schema/input_field' => "\n  argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}",
 'schema/enum_value' => "\n  value '#{type['name']}', #{helper['description']}",
 'schema/field_footer' => "\n  end",
-'schema/type_footer' => "\nend",
+'schema/type_footer' => "\nend\n",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
   global_id_field :id
   include ::Spree::GraphQL::Types::BaseObject
@@ -767,7 +770,7 @@ newline('', oneline((helper['interfaces']||[]).map{|i| "\n  include ::Spree::Gra
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 ",
-'type_footer' => "\nend",
+'type_footer' => "\nend\n",
 # Test parts:
 'spec/type_header' => "require 'spec_helper'
 
@@ -788,7 +791,7 @@ describe '#{($catalog[:names][type['name']]||'').split('::').first}' do
     #end
 ",
 'spec/type_footer' => "\n  end
-end",
+end\n",
 }[file]
 end
 

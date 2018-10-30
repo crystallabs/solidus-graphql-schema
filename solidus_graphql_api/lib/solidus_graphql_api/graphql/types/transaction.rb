@@ -24,3 +24,4 @@ module Spree::GraphQL::Types::Transaction
   end
 
 end
+

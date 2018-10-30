@@ -82,3 +82,4 @@ module Spree::GraphQL::Types::Customer
   end
 
 end
+

@@ -6,3 +6,4 @@ module Spree::GraphQL::Types::PricingPercentageValue
   end
 
 end
+

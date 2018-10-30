@@ -30,3 +30,4 @@ module Spree::GraphQL::Types::OrderLineItem
   end
 
 end
+

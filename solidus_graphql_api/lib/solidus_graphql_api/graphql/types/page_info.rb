@@ -12,3 +12,4 @@ module Spree::GraphQL::Types::PageInfo
   end
 
 end
+

@@ -26,3 +26,4 @@ module Spree::GraphQL::Types::Comment
   end
 
 end
+

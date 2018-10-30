@@ -19,3 +19,4 @@ module Spree::GraphQL::Types::CustomerUserError
   end
 
 end
+

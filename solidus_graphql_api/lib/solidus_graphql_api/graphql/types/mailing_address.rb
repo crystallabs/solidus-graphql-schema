@@ -111,3 +111,4 @@ module Spree::GraphQL::Types::MailingAddress
   end
 
 end
+

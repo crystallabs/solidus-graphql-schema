@@ -24,3 +24,4 @@ module Spree::GraphQL::Interfaces::DiscountApplication
   end
 
 end
+

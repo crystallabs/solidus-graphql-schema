@@ -12,3 +12,4 @@ module Spree::GraphQL::Types::FulfillmentLineItem
   end
 
 end
+

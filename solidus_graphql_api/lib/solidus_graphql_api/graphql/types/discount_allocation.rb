@@ -12,3 +12,4 @@ module Spree::GraphQL::Types::DiscountAllocation
   end
 
 end
+

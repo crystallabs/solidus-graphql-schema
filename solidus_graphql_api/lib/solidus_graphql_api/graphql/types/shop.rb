@@ -92,3 +92,4 @@ module Spree::GraphQL::Types::Shop
   end
 
 end
+

@@ -29,3 +29,4 @@ module Spree::GraphQL::Types::Image
   end
 
 end
+

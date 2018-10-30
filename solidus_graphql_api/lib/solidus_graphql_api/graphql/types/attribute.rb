@@ -12,3 +12,4 @@ module Spree::GraphQL::Types::Attribute
   end
 
 end
+

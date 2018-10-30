@@ -37,3 +37,4 @@ module Spree::GraphQL::Types::ManualDiscountApplication
   end
 
 end
+
