@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Collection
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql description Stripped description of the collection, single line with HTML tags removed.
   # @param truncate_at [Types::Int] Truncates string after the given length.
   # @return [Types::String!]
@@ -57,4 +56,3 @@ module Spree::GraphQL::Types::Collection
   end
 
 end
-

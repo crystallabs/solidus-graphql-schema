@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::ProductPriceRange
-
-
   # @graphql maxVariantPrice The highest variant's price.
   # @return [Types::MoneyV2!]
   def max_variant_price()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::ProductPriceRange
   end
 
 end
-

@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::CommentAuthor
-
-
   # @graphql email The author's email.
   # @return [Types::String!]
   def email()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::CommentAuthor
   end
 
 end
-

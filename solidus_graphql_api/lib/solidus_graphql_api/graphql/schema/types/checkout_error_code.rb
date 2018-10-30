@@ -2,6 +2,7 @@ class Spree::GraphQL::Schema::Types::CheckoutErrorCode < Spree::GraphQL::Schema:
   graphql_name 'CheckoutErrorCode'
   description %q{Possible error codes that could be returned by a checkout mutation.}
   include ::Spree::GraphQL::Types::CheckoutErrorCode
+
   value 'BLANK', %q{Input value is blank.}
   value 'INVALID', %q{Input value is invalid.}
   value 'TOO_LONG', %q{Input value is too long.}
@@ -24,5 +25,4 @@ class Spree::GraphQL::Schema::Types::CheckoutErrorCode < Spree::GraphQL::Schema:
   value 'CUSTOMER_ALREADY_USED_ONCE_PER_CUSTOMER_DISCOUNT_NOTICE', %q{Customer already used once per customer discount notice.}
   value 'EMPTY', %q{Checkout is already completed.}
   value 'NOT_ENOUGH_IN_STOCK', %q{Not enough in stock.}
-
 end

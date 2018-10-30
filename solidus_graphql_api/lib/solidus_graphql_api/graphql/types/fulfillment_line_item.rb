@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::FulfillmentLineItem
-
-
   # @graphql lineItem The associated order's line item.
   # @return [Types::OrderLineItem!]
   def line_item()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::FulfillmentLineItem
   end
 
 end
-

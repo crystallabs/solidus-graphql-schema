@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Blog
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql articleByHandle Find an article by its handle.
   # @param handle [Types::String!] The handle of the article.
   # @return [Types::Article]
@@ -46,4 +45,3 @@ module Spree::GraphQL::Types::Blog
   end
 
 end
-

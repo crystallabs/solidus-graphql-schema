@@ -2,6 +2,7 @@ class Spree::GraphQL::Schema::Types::ArticleSortKeys < Spree::GraphQL::Schema::T
   graphql_name 'ArticleSortKeys'
   description %q{The set of valid sort keys for the articles query.}
   include ::Spree::GraphQL::Types::ArticleSortKeys
+
   value 'TITLE', %q{Sort by the `title` value.}
   value 'BLOG_TITLE', %q{Sort by the `blog_title` value.}
   value 'AUTHOR', %q{Sort by the `author` value.}
@@ -12,5 +13,4 @@ class Spree::GraphQL::Schema::Types::ArticleSortKeys < Spree::GraphQL::Schema::T
 results by relevance to the search term(s). When no search query is specified, this sort key is not
 deterministic and should not be used.
 }
-
 end

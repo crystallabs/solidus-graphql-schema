@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::MailingAddress
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql address1 The first line of the address. Typically the street address or PO Box number. 
   # @return [Types::String]
   def address1()
@@ -112,4 +111,3 @@ module Spree::GraphQL::Types::MailingAddress
   end
 
 end
-

@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Checkout
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql appliedGiftCards
   # @return [[Types::AppliedGiftCard!]!]
   def applied_gift_cards()
@@ -160,4 +159,3 @@ module Spree::GraphQL::Types::Checkout
   end
 
 end
-

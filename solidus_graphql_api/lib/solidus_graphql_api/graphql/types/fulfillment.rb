@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::Fulfillment
-
-
   # @graphql fulfillmentLineItems List of the fulfillment's line items.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @return [Types::FulfillmentLineItem.connection_type!]
@@ -22,4 +20,3 @@ module Spree::GraphQL::Types::Fulfillment
   end
 
 end
-

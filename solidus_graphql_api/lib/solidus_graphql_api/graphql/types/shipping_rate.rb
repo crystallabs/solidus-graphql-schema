@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::ShippingRate
-
-
   # @graphql handle Human-readable unique identifier for this shipping rate.
   # @return [Types::String!]
   def handle()
@@ -20,4 +18,3 @@ module Spree::GraphQL::Types::ShippingRate
   end
 
 end
-

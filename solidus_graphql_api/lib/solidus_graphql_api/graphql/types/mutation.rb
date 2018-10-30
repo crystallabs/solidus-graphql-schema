@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::Mutation
-
-
   # @graphql checkoutAttributesUpdateV2 Updates the attributes of a checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param input [Inputs::CheckoutAttributesUpdateV2!] The checkout attributes to update.
@@ -234,4 +232,3 @@ module Spree::GraphQL::Types::Mutation
   end
 
 end
-

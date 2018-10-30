@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Article
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql authorV2 The article's author.
   # @return [Types::ArticleAuthor]
   def author_v2()
@@ -93,4 +92,3 @@ module Spree::GraphQL::Types::Article
   end
 
 end
-

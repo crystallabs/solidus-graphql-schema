@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::Transaction
-
-
   # @graphql amount The amount of money that the transaction was for.
   # @return [Types::Money!]
   def amount()
@@ -26,4 +24,3 @@ module Spree::GraphQL::Types::Transaction
   end
 
 end
-

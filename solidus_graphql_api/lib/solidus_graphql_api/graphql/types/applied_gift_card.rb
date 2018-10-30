@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::AppliedGiftCard
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql amountUsed The amount that was used taken from the Gift Card by applying it.
   # @return [Types::Money!]
   def amount_used()
@@ -26,4 +25,3 @@ module Spree::GraphQL::Types::AppliedGiftCard
   end
 
 end
-

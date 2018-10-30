@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::Attribute
-
-
   # @graphql key Key or name of the attribute.
   # @return [Types::String!]
   def key()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::Attribute
   end
 
 end
-

@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::CustomerAccessToken
-
-
   # @graphql accessToken The customer’s access token.
   # @return [Types::String!]
   def access_token()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::CustomerAccessToken
   end
 
 end
-

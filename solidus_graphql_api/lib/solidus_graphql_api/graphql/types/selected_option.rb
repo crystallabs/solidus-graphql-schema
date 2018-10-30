@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::SelectedOption
-
-
   # @graphql name The product option’s name.
   # @return [Types::String!]
   def name()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::SelectedOption
   end
 
 end
-

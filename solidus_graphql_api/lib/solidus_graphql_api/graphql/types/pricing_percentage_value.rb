@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::PricingPercentageValue
-
-
   # @graphql percentage The percentage value of the object.
   # @return [Types::Float!]
   def percentage()
@@ -8,4 +6,3 @@ module Spree::GraphQL::Types::PricingPercentageValue
   end
 
 end
-

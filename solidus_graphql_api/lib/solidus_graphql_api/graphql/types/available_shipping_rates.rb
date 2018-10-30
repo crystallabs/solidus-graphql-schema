@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::AvailableShippingRates
-
-
   # @graphql ready Whether or not the shipping rates are ready. The `shippingRates` field is `null` when this value is `false`. This field should be polled until its value becomes `true`. 
   # @return [Types::Boolean!]
   def ready()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::AvailableShippingRates
   end
 
 end
-

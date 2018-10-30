@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::ArticleAuthor
-
-
   # @graphql bio The author's bio.
   # @return [Types::String]
   def bio()
@@ -32,4 +30,3 @@ module Spree::GraphQL::Types::ArticleAuthor
   end
 
 end
-

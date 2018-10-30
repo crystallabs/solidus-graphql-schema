@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::CheckoutUserError
   include ::Spree::GraphQL::Interfaces::DisplayableError
-
   # @graphql code Error code to uniquely identify the error.
   # @return [Types::CheckoutErrorCode]
   def code()
@@ -20,4 +19,3 @@ module Spree::GraphQL::Types::CheckoutUserError
   end
 
 end
-

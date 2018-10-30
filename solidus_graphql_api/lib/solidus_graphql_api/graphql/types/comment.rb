@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Comment
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql author The comment’s author.
   # @return [Types::CommentAuthor!]
   def author()
@@ -27,4 +26,3 @@ module Spree::GraphQL::Types::Comment
   end
 
 end
-

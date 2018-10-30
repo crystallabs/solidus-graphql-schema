@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Product
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql availableForSale Indicates if at least one product variant is available for sale.
   # @return [Types::Boolean!]
   def available_for_sale()
@@ -128,4 +127,3 @@ module Spree::GraphQL::Types::Product
   end
 
 end
-

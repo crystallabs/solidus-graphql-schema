@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::OrderLineItem
-
-
   # @graphql customAttributes List of custom attributes associated to the line item.
   # @return [[Types::Attribute!]!]
   def custom_attributes()
@@ -32,4 +30,3 @@ module Spree::GraphQL::Types::OrderLineItem
   end
 
 end
-

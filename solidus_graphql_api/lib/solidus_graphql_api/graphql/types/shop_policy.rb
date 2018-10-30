@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::ShopPolicy
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql body Policy text, maximum size of 64kb.
   # @return [Types::String!]
   def body()
@@ -26,4 +25,3 @@ module Spree::GraphQL::Types::ShopPolicy
   end
 
 end
-

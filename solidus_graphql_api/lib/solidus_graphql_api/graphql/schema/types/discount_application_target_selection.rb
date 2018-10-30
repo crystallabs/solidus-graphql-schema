@@ -4,8 +4,8 @@ class Spree::GraphQL::Schema::Types::DiscountApplicationTargetSelection < Spree:
 defined by the Discount Application's target_type.
 }
   include ::Spree::GraphQL::Types::DiscountApplicationTargetSelection
+
   value 'ALL', %q{The discount is allocated onto all the lines.}
   value 'ENTITLED', %q{The discount is allocated onto only the lines it is entitled for.}
   value 'EXPLICIT', %q{The discount is allocated onto explicitly chosen lines.}
-
 end

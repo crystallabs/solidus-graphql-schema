@@ -2,6 +2,7 @@ class Spree::GraphQL::Schema::Types::BlogSortKeys < Spree::GraphQL::Schema::Type
   graphql_name 'BlogSortKeys'
   description %q{The set of valid sort keys for the blogs query.}
   include ::Spree::GraphQL::Types::BlogSortKeys
+
   value 'HANDLE', %q{Sort by the `handle` value.}
   value 'TITLE', %q{Sort by the `title` value.}
   value 'ID', %q{Sort by the `id` value.}
@@ -9,5 +10,4 @@ class Spree::GraphQL::Schema::Types::BlogSortKeys < Spree::GraphQL::Schema::Type
 results by relevance to the search term(s). When no search query is specified, this sort key is not
 deterministic and should not be used.
 }
-
 end

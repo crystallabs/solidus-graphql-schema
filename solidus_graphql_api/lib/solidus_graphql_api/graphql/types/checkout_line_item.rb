@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::CheckoutLineItem
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql customAttributes Extra information in the form of an array of Key-Value pairs about the line item.
   # @return [[Types::Attribute!]!]
   def custom_attributes()
@@ -38,4 +37,3 @@ module Spree::GraphQL::Types::CheckoutLineItem
   end
 
 end
-

@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::CustomerUserError
   include ::Spree::GraphQL::Interfaces::DisplayableError
-
   # @graphql code Error code to uniquely identify the error.
   # @return [Types::CustomerErrorCode]
   def code()
@@ -20,4 +19,3 @@ module Spree::GraphQL::Types::CustomerUserError
   end
 
 end
-

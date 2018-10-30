@@ -708,13 +708,12 @@ newline('  ', helper['possible_types_string']) + "
 ",
 'schema/field_header' => "
   field :#{(type['name'] || '').underscore}, #{helper['type_name']} do
-    description #{helper['description']}
-",
-'schema/argument' => "    argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}\n",
-'schema/input_field' => "  argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}\n",
-'schema/enum_value' => "  value '#{type['name']}', #{helper['description']}\n",
-'schema/field_footer' => "  end",
-'schema/type_footer' => "\nend\n",
+    description #{helper['description']}",
+'schema/argument' => "\n    argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}",
+'schema/input_field' => "\n  argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}",
+'schema/enum_value' => "\n  value '#{type['name']}', #{helper['description']}",
+'schema/field_footer' => "\n  end",
+'schema/type_footer' => "\nend",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
   global_id_field :id
   include ::Spree::GraphQL::Types::BaseObject
@@ -759,9 +758,8 @@ end
 'types/base_union' => 'module Spree::GraphQL::Types::BaseUnion
 end
 ',
-'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}
-#{(helper['interfaces']||[]).map{|i| "  include ::Spree::GraphQL::Interfaces::#{i}"}.join "\n"}
-",
+'type_header' => "module Spree::GraphQL::#{$catalog[:names][type['name']]}" +
+newline('', oneline((helper['interfaces']||[]).map{|i| "\n  include ::Spree::GraphQL::Interfaces::#{i}"}.join(''))),
 'field' => "
   # @graphql #{type['name']}#{( type['description'] ? ' '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}#{(helper['method_args_description']||'').size>0 ? "\n"+ helper['method_args_description'].gsub(/^#/, '  #') : ''}
   # @return [#{shorten(helper['type_name']||'')}]
@@ -769,7 +767,7 @@ end
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 ",
-'type_footer' => "\nend\n",
+'type_footer' => "\nend",
 # Test parts:
 'spec/type_header' => "require 'spec_helper'
 
@@ -790,7 +788,7 @@ describe '#{($catalog[:names][type['name']]||'').split('::').first}' do
     #end
 ",
 'spec/type_footer' => "\n  end
-end\n",
+end",
 }[file]
 end
 
@@ -815,6 +813,7 @@ end
 
 def oneline(s)
   return '' unless s
+  s.sub! /^\n+/, ''
   s.gsub! "\n", ' '
   s
 end

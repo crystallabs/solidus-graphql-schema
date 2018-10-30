@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::ProductOption
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql id Globally unique identifier.
   # @return [Types::ID!]
   def id()
@@ -20,4 +19,3 @@ module Spree::GraphQL::Types::ProductOption
   end
 
 end
-

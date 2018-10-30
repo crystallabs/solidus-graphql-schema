@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::MoneyV2
-
-
   # @graphql amount Decimal money amount.
   # @return [Types::Decimal!]
   def amount()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::MoneyV2
   end
 
 end
-

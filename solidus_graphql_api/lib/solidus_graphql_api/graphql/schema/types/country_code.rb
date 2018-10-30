@@ -2,6 +2,7 @@ class Spree::GraphQL::Schema::Types::CountryCode < Spree::GraphQL::Schema::Types
   graphql_name 'CountryCode'
   description %q{ISO 3166-1 alpha-2 country codes with some differences.}
   include ::Spree::GraphQL::Types::CountryCode
+
   value 'AF', %q{Afghanistan.}
   value 'AX', %q{Aland Islands.}
   value 'AL', %q{Albania.}
@@ -244,5 +245,4 @@ class Spree::GraphQL::Schema::Types::CountryCode < Spree::GraphQL::Schema::Types
   value 'YE', %q{Yemen.}
   value 'ZM', %q{Zambia.}
   value 'ZW', %q{Zimbabwe.}
-
 end

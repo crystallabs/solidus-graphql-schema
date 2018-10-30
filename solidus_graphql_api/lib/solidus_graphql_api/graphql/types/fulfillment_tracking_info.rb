@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::FulfillmentTrackingInfo
-
-
   # @graphql number The tracking number of the fulfillment.
   # @return [Types::String]
   def number()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::FulfillmentTrackingInfo
   end
 
 end
-

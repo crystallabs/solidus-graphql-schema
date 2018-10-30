@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::DiscountCodeApplication
   include ::Spree::GraphQL::Interfaces::DiscountApplication
-
   # @graphql allocationMethod The method by which the discount's value is allocated to its entitled items.
   # @return [Types::DiscountApplicationAllocationMethod!]
   def allocation_method()
@@ -38,4 +37,3 @@ module Spree::GraphQL::Types::DiscountCodeApplication
   end
 
 end
-

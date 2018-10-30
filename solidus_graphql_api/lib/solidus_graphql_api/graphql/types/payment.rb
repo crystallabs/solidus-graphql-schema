@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Payment
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql amount The amount of the payment.
   # @return [Types::Money!]
   def amount()
@@ -62,4 +61,3 @@ module Spree::GraphQL::Types::Payment
   end
 
 end
-

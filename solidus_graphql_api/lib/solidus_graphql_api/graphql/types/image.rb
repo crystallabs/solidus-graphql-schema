@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::Image
-
-
   # @graphql altText A word or phrase to share the nature or contents of an image.
   # @return [Types::String]
   def alt_text()
@@ -31,4 +29,3 @@ module Spree::GraphQL::Types::Image
   end
 
 end
-

@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::Domain
-
-
   # @graphql host The host name of the domain (eg: `example.com`).
   # @return [Types::String!]
   def host()
@@ -20,4 +18,3 @@ module Spree::GraphQL::Types::Domain
   end
 
 end
-

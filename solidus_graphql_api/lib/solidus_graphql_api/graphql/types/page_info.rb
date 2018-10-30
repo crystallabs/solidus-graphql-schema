@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::PageInfo
-
-
   # @graphql hasNextPage Indicates if there are more pages to fetch.
   # @return [Types::Boolean!]
   def has_next_page()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::PageInfo
   end
 
 end
-

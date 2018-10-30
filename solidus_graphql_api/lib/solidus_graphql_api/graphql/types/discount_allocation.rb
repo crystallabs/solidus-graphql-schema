@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::DiscountAllocation
-
-
   # @graphql allocatedAmount Amount of discount allocated.
   # @return [Types::MoneyV2!]
   def allocated_amount()
@@ -14,4 +12,3 @@ module Spree::GraphQL::Types::DiscountAllocation
   end
 
 end
-

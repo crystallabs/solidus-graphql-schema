@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::PaymentSettings
-
-
   # @graphql acceptedCardBrands List of the card brands which the shop accepts.
   # @return [[Types::CardBrand!]!]
   def accepted_card_brands()
@@ -38,4 +36,3 @@ module Spree::GraphQL::Types::PaymentSettings
   end
 
 end
-

@@ -1,6 +1,4 @@
 module Spree::GraphQL::Types::CreditCard
-
-
   # @graphql brand
   # @return [Types::String]
   def brand()
@@ -50,4 +48,3 @@ module Spree::GraphQL::Types::CreditCard
   end
 
 end
-

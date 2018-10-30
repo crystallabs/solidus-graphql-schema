@@ -2,6 +2,7 @@ class Spree::GraphQL::Schema::Inputs::MailingAddress < Spree::GraphQL::Schema::T
   graphql_name 'MailingAddressInput'
   description %q{Specifies the fields accepted to create or update a mailing address.}
   include ::Spree::GraphQL::Inputs::MailingAddress
+
   argument :address1, ::GraphQL::Types::String, required: false, description: nil
   argument :address2, ::GraphQL::Types::String, required: false, description: nil
   argument :city, ::GraphQL::Types::String, required: false, description: nil
@@ -12,5 +13,4 @@ class Spree::GraphQL::Schema::Inputs::MailingAddress < Spree::GraphQL::Schema::T
   argument :phone, ::GraphQL::Types::String, required: false, description: nil
   argument :province, ::GraphQL::Types::String, required: false, description: nil
   argument :zip, ::GraphQL::Types::String, required: false, description: nil
-
 end

@@ -1,6 +1,4 @@
 module Spree::GraphQL::Interfaces::Node
-
-
   # @graphql id Globally unique identifier.
   # @return [Types::ID!]
   def id()
@@ -8,4 +6,3 @@ module Spree::GraphQL::Interfaces::Node
   end
 
 end
-

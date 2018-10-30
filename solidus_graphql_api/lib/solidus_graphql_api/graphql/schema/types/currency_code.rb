@@ -2,6 +2,7 @@ class Spree::GraphQL::Schema::Types::CurrencyCode < Spree::GraphQL::Schema::Type
   graphql_name 'CurrencyCode'
   description %q{Currency codes}
   include ::Spree::GraphQL::Types::CurrencyCode
+
   value 'USD', %q{United States Dollars (USD).}
   value 'EUR', %q{Euro (EUR).}
   value 'GBP', %q{United Kingdom Pounds (GBP).}
@@ -142,5 +143,4 @@ class Spree::GraphQL::Schema::Types::CurrencyCode < Spree::GraphQL::Schema::Type
   value 'XOF', %q{West African CFA franc (XOF).}
   value 'YER', %q{Yemeni Rial (YER).}
   value 'ZMW', %q{Zambian Kwacha (ZMW).}
-
 end

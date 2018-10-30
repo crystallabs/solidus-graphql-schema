@@ -1,6 +1,5 @@
 module Spree::GraphQL::Types::Order
   include ::Spree::GraphQL::Interfaces::Node
-
   # @graphql currencyCode The code of the currency used for the payment.
   # @return [Types::CurrencyCode!]
   def currency_code()
@@ -125,4 +124,3 @@ module Spree::GraphQL::Types::Order
   end
 
 end
-
