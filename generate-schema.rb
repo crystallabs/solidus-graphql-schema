@@ -83,6 +83,8 @@ $catalog = {
   contents: Hash.new([]),
   spec_contents: Hash.new([]),
 
+  base_object: Hash.new('BaseObject'),
+
   # Dependencies -- used to detect/solve circular dependencies
   # Format is: ClassAString => ClassBString
   # E.g.   Checkout => Customer, Customer => Checkout
@@ -99,6 +101,10 @@ $catalog = {
     directives: {},
   },
 }
+
+# List types which aren't database models here!
+$catalog[:base_object]['Types::Domain'] = 'BaseObjectNoId'
+
 
 # This is the entry point into the program. It invokes all necessary functions,
 # writes results to disk and exits.
@@ -243,7 +249,8 @@ def parse_types_2(v)
     when 'UNION'
       helper['base_type']= 'BaseUnion'
     else
-      helper['base_type']= 'BaseObject'
+      # Will be looked up in $catalog[:base_object][new_name]
+      #helper['base_type']= 'BaseObject'
     end
 
     $catalog[:schema_contents][new_name]= []
@@ -282,7 +289,7 @@ def parse_types_2(v)
 
     if helper['possible_types'].size> 0
       helper['possible_types_string']= "possible_types \\\n    "+ helper['possible_types'].map{|t| "::Spree::GraphQL::Schema::#{t}"}.join(",\n    ")+ "\n"
-      classes_preamble= helper['possible_types'].map{|t| "class Spree::GraphQL::Schema::#{t} < Spree::GraphQL::Schema::Types::BaseObject; end"}.join("\n")+ "\n\n"
+      classes_preamble= helper['possible_types'].map{|t| "class Spree::GraphQL::Schema::#{t} < Spree::GraphQL::Schema::Types::#{$catalog[:base_object][t]}; end"}.join("\n")+ "\n\n"
       $catalog[:schema_contents][new_name].unshift classes_preamble
     end
 
@@ -333,7 +340,7 @@ def parse_types_2(v)
             $catalog[:depends][new_name][ret_name] = true
             if (new_name != ret_name) && ($catalog[:depends][ret_name]) && ($catalog[:depends][ret_name][new_name])
               $log.info "Class #{new_name} depends on #{ret_name} and vice-versa. Will handle accordingly."
-              helper['schema_preamble']= "class Spree::GraphQL::Schema::#{ret_name} < Spree::GraphQL::Schema::Types::BaseObject; end\n\n"
+              helper['schema_preamble']= "class Spree::GraphQL::Schema::#{ret_name} < Spree::GraphQL::Schema::Types::#{$catalog[:base_object][ret_name]}; end\n\n"
               #helper['preamble']= "module Spree::GraphQL::#{ret_name}; end\n\n"
             end
 
@@ -577,6 +584,11 @@ def output_files
   $catalog[:outputs][name]= 'types/base_object'
   $catalog[:spec_outputs][name]= 'types/base_object'
 
+  name= 'Types::BaseObjectNoId'
+  $catalog[:schema_contents][name]= template('schema/types/base_object_no_id')
+  $catalog[:schema_outputs][name]= 'types/base_object_no_id'
+  # (User part is the same as for BaseObject)
+
   name= 'Types::BaseEnum'
   $catalog[:schema_contents][name]= template('schema/types/base_enum')
   $catalog[:schema_outputs][name]= 'types/base_enum'
@@ -692,7 +704,7 @@ def template(file, type = {}, helper = {})
 
 end
 ",
-'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
+'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || $catalog[:base_object][$catalog[:names][type['name']]]}
   graphql_name '#{type['name']}'
   description #{helper['description']}" +
 newline('  ', (helper['interfaces']||[]).map{|i| "implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join("\n  ")) +
@@ -700,7 +712,7 @@ newline('  ', helper['possible_types_string']) + "
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
 ",
 'schema/type_header_module' => "module Spree::GraphQL::Schema::#{$catalog[:names][type['name']]}
-  include ::Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
+  include ::Spree::GraphQL::Schema::Types::#{helper['base_type'] || $catalog[:base_object][$catalog[:names][type['name']]]}
   graphql_name '#{type['name']}'
   description #{helper['description']}" +
 newline('  ', (helper['interfaces']||[]).map{|i| "implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join("\n  ")) +
@@ -720,6 +732,10 @@ newline('  ', helper['possible_types_string']) + "
 'schema/type_footer' => "\nend",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
   global_id_field :id
+  include ::Spree::GraphQL::Types::BaseObject
+end
+',
+'schema/types/base_object_no_id' => 'class Spree::GraphQL::Schema::Types::BaseObjectNoId < GraphQL::Schema::Object
   include ::Spree::GraphQL::Types::BaseObject
 end
 ',
