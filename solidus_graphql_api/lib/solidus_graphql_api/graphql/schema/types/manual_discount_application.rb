@@ -3,7 +3,6 @@ class Spree::GraphQL::Schema::Types::ManualDiscountApplication < Spree::GraphQL:
   description %q{Manual discount applications capture the intentions of a discount that was manually created.
 }
   implements ::Spree::GraphQL::Schema::Interfaces::DiscountApplication
-  
   include ::Spree::GraphQL::Types::ManualDiscountApplication
 
   field :allocation_method, ::Spree::GraphQL::Schema::Types::DiscountApplicationAllocationMethod, null: false do

@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CheckoutCompleteFree < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CheckoutCompleteFreePayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CheckoutCompleteFree
 
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: true do

@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::ArticleAuthor < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'ArticleAuthor'
   description nil
-
-  
   include ::Spree::GraphQL::Types::ArticleAuthor
 
   field :bio, ::GraphQL::Types::String, null: true do

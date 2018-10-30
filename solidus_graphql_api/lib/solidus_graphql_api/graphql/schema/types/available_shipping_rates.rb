@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::AvailableShippingRates < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'AvailableShippingRates'
   description %q{A collection of available shipping rates for a checkout.}
-
-  
   include ::Spree::GraphQL::Types::AvailableShippingRates
 
   field :ready, ::GraphQL::Types::Boolean, null: false do

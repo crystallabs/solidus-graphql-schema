@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CheckoutGiftCardRemove < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CheckoutGiftCardRemovePayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CheckoutGiftCardRemove
 
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: false do

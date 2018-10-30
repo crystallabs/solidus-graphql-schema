@@ -22,8 +22,6 @@ Other formatting libraries include:
 For a more general solution, the [Unicode CLDR number formatting database] is available with many implementations
 (such as [TwitterCldr](https://github.com/twitter/twitter-cldr-rb)).
 }
-
-  
   include ::Spree::GraphQL::Types::MoneyV2
 
   field :amount, ::Spree::GraphQL::Schema::Types::Decimal, null: false do

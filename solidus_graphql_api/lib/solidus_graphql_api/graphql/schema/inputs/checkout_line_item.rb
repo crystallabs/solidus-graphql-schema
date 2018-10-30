@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Inputs::CheckoutLineItem < Spree::GraphQL::Schema::Types::BaseInput
   graphql_name 'CheckoutLineItemInput'
   description %q{Specifies the input fields to create a line item on a checkout.}
-
-  
   include ::Spree::GraphQL::Inputs::CheckoutLineItem
   argument :custom_attributes, [::Spree::GraphQL::Schema::Inputs::Attribute], required: false, description: %q{Extra information in the form of an array of Key-Value pairs about the line item.}
   argument :quantity, ::GraphQL::Types::Int, required: true, description: %q{The quantity of the line item.}

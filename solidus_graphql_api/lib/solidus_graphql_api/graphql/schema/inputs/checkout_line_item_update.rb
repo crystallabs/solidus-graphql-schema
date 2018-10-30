@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Inputs::CheckoutLineItemUpdate < Spree::GraphQL::Schema::Types::BaseInput
   graphql_name 'CheckoutLineItemUpdateInput'
   description %q{Specifies the input fields to update a line item on the checkout.}
-
-  
   include ::Spree::GraphQL::Inputs::CheckoutLineItemUpdate
   argument :id, ::GraphQL::Types::ID, required: false, description: nil
   argument :variant_id, ::GraphQL::Types::ID, required: false, description: %q{The variant identifier of the line item.}

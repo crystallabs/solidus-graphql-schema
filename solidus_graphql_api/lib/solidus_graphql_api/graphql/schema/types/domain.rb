@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::Domain < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'Domain'
   description %q{Represents a web address.}
-
-  
   include ::Spree::GraphQL::Types::Domain
 
   field :host, ::GraphQL::Types::String, null: false do

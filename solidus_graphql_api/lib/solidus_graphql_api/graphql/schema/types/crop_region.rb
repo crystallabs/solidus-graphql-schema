@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::CropRegion < Spree::GraphQL::Schema::Types::BaseEnum
   graphql_name 'CropRegion'
   description %q{The part of the image that should remain after cropping.}
-
-  
   include ::Spree::GraphQL::Types::CropRegion
   value 'CENTER', %q{Keep the center of the image}
   value 'TOP', %q{Keep the top of the image}

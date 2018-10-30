@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerUpdate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerUpdatePayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CustomerUpdate
 
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do

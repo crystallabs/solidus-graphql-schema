@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::Blog < Spree::GraphQL::Schema::Types::BaseO
   graphql_name 'Blog'
   description nil
   implements ::Spree::GraphQL::Schema::Interfaces::Node
-  
   include ::Spree::GraphQL::Types::Blog
 
   field :article_by_handle, ::Spree::GraphQL::Schema::Types::Article, null: true do

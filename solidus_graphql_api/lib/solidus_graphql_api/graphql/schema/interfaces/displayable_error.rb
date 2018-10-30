@@ -2,8 +2,6 @@ module Spree::GraphQL::Schema::Interfaces::DisplayableError
   include ::Spree::GraphQL::Schema::Types::BaseInterface
   graphql_name 'DisplayableError'
   description %q{Represents an error in the input of a mutation.}
-
-  
   include ::Spree::GraphQL::Interfaces::DisplayableError
 
   definition_methods do

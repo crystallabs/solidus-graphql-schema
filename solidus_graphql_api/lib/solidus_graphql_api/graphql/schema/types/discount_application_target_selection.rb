@@ -3,8 +3,6 @@ class Spree::GraphQL::Schema::Types::DiscountApplicationTargetSelection < Spree:
   description %q{Which lines on the order that the discount is allocated over, of the type
 defined by the Discount Application's target_type.
 }
-
-  
   include ::Spree::GraphQL::Types::DiscountApplicationTargetSelection
   value 'ALL', %q{The discount is allocated onto all the lines.}
   value 'ENTITLED', %q{The discount is allocated onto only the lines it is entitled for.}

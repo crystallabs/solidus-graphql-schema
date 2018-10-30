@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::Customer < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'Customer'
   description %q{A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout.}
-
-  
   include ::Spree::GraphQL::Types::Customer
 
   field :accepts_marketing, ::GraphQL::Types::Boolean, null: false do

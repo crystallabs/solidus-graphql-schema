@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::ProductSortKeys < Spree::GraphQL::Schema::Types::BaseEnum
   graphql_name 'ProductSortKeys'
   description %q{The set of valid sort keys for the products query.}
-
-  
   include ::Spree::GraphQL::Types::ProductSortKeys
   value 'TITLE', %q{Sort by the `title` value.}
   value 'PRODUCT_TYPE', %q{Sort by the `product_type` value.}

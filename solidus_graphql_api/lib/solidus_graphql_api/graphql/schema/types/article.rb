@@ -4,7 +4,6 @@ class Spree::GraphQL::Schema::Types::Article < Spree::GraphQL::Schema::Types::Ba
   graphql_name 'Article'
   description nil
   implements ::Spree::GraphQL::Schema::Interfaces::Node
-  
   include ::Spree::GraphQL::Types::Article
 
   field :author_v2, ::Spree::GraphQL::Schema::Types::ArticleAuthor, null: true do

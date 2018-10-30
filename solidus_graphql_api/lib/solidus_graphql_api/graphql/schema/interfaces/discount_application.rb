@@ -4,8 +4,6 @@ module Spree::GraphQL::Schema::Interfaces::DiscountApplication
   description %q{Discount applications capture the intentions of a discount source at
 the time of application.
 }
-
-  
   include ::Spree::GraphQL::Interfaces::DiscountApplication
 
   definition_methods do

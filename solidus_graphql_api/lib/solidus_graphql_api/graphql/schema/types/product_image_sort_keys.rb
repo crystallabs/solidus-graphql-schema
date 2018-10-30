@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::ProductImageSortKeys < Spree::GraphQL::Schema::Types::BaseEnum
   graphql_name 'ProductImageSortKeys'
   description %q{The set of valid sort keys for the images query.}
-
-  
   include ::Spree::GraphQL::Types::ProductImageSortKeys
   value 'CREATED_AT', %q{Sort by the `created_at` value.}
   value 'POSITION', %q{Sort by the `position` value.}

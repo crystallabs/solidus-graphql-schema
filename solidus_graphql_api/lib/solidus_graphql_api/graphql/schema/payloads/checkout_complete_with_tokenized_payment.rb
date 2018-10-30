@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CheckoutCompleteWithTokenizedPayment < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CheckoutCompleteWithTokenizedPaymentPayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CheckoutCompleteWithTokenizedPayment
 
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: false do

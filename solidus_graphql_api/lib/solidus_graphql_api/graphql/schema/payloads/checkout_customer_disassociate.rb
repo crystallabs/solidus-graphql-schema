@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CheckoutCustomerDisassociate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CheckoutCustomerDisassociatePayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CheckoutCustomerDisassociate
 
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: false do

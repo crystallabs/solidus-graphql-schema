@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Inputs::CheckoutAttributesUpdateV2 < Spree::GraphQL::Schema::Types::BaseInput
   graphql_name 'CheckoutAttributesUpdateV2Input'
   description %q{Specifies the fields required to update a checkout's attributes.}
-
-  
   include ::Spree::GraphQL::Inputs::CheckoutAttributesUpdateV2
   argument :note, ::GraphQL::Types::String, required: false, description: %q{The text of an optional note that a shop owner can attach to the checkout.}
   argument :custom_attributes, [::Spree::GraphQL::Schema::Inputs::Attribute], required: false, description: %q{A list of extra information that is added to the checkout.}

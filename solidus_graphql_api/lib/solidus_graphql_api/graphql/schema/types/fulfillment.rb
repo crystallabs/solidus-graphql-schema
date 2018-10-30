@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::Fulfillment < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'Fulfillment'
   description %q{Represents a single fulfillment in an order.}
-
-  
   include ::Spree::GraphQL::Types::Fulfillment
 
   field :fulfillment_line_items, ::Spree::GraphQL::Schema::Types::FulfillmentLineItem.connection_type, null: false do

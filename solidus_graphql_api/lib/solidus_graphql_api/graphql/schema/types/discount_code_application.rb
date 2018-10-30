@@ -4,7 +4,6 @@ class Spree::GraphQL::Schema::Types::DiscountCodeApplication < Spree::GraphQL::S
 the time that it is applied.
 }
   implements ::Spree::GraphQL::Schema::Interfaces::DiscountApplication
-  
   include ::Spree::GraphQL::Types::DiscountCodeApplication
 
   field :allocation_method, ::Spree::GraphQL::Schema::Types::DiscountApplicationAllocationMethod, null: false do

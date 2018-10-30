@@ -4,7 +4,6 @@ class Spree::GraphQL::Schema::Types::Collection < Spree::GraphQL::Schema::Types:
   graphql_name 'Collection'
   description %q{A collection represents a grouping of products that a shop owner can create to organize them or make their shops easier to browse.}
   implements ::Spree::GraphQL::Schema::Interfaces::Node
-  
   include ::Spree::GraphQL::Types::Collection
 
   field :description, ::GraphQL::Types::String, null: false do

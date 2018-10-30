@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerCreate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerCreatePayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CustomerCreate
 
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do

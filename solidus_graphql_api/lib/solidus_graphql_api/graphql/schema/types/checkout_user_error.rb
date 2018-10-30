@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::CheckoutUserError < Spree::GraphQL::Schema:
   graphql_name 'CheckoutUserError'
   description %q{Represents an error that happens during execution of a checkout mutation.}
   implements ::Spree::GraphQL::Schema::Interfaces::DisplayableError
-  
   include ::Spree::GraphQL::Types::CheckoutUserError
 
   field :code, ::Spree::GraphQL::Schema::Types::CheckoutErrorCode, null: true do

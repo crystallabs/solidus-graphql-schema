@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerReset < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerResetPayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CustomerReset
 
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do

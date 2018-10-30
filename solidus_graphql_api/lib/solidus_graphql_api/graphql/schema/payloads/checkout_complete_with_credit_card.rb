@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CheckoutCompleteWithCreditCard < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CheckoutCompleteWithCreditCardPayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CheckoutCompleteWithCreditCard
 
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: false do

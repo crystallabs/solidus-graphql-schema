@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::CheckoutLineItem < Spree::GraphQL::Schema::
   graphql_name 'CheckoutLineItem'
   description %q{A single line item in the checkout, grouped by variant and attributes.}
   implements ::Spree::GraphQL::Schema::Interfaces::Node
-  
   include ::Spree::GraphQL::Types::CheckoutLineItem
 
   field :custom_attributes, [::Spree::GraphQL::Schema::Types::Attribute], null: false do

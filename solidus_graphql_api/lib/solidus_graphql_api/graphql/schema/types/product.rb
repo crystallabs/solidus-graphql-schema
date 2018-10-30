@@ -5,7 +5,6 @@ class Spree::GraphQL::Schema::Types::Product < Spree::GraphQL::Schema::Types::Ba
   description %q{A product represents an individual item for sale in a Solidus store. Products are often physical, but they don't have to be.
 For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).}
   implements ::Spree::GraphQL::Schema::Interfaces::Node
-  
   include ::Spree::GraphQL::Types::Product
 
   field :available_for_sale, ::GraphQL::Types::Boolean, null: false do

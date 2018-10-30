@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::ArticleSortKeys < Spree::GraphQL::Schema::Types::BaseEnum
   graphql_name 'ArticleSortKeys'
   description %q{The set of valid sort keys for the articles query.}
-
-  
   include ::Spree::GraphQL::Types::ArticleSortKeys
   value 'TITLE', %q{Sort by the `title` value.}
   value 'BLOG_TITLE', %q{Sort by the `blog_title` value.}

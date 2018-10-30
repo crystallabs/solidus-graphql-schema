@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::FulfillmentTrackingInfo < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'FulfillmentTrackingInfo'
   description %q{Tracking information associated with the fulfillment.}
-
-  
   include ::Spree::GraphQL::Types::FulfillmentTrackingInfo
 
   field :number, ::GraphQL::Types::String, null: true do

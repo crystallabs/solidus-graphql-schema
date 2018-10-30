@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Inputs::CustomerCreate < Spree::GraphQL::Schema::Types::BaseInput
   graphql_name 'CustomerCreateInput'
   description %q{Specifies the fields required to create a new Customer.}
-
-  
   include ::Spree::GraphQL::Inputs::CustomerCreate
   argument :first_name, ::GraphQL::Types::String, required: false, description: %q{The customer’s first name.}
   argument :last_name, ::GraphQL::Types::String, required: false, description: %q{The customer’s last name.}

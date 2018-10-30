@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::Image < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'Image'
   description %q{Represents an image resource.}
-
-  
   include ::Spree::GraphQL::Types::Image
 
   field :alt_text, ::GraphQL::Types::String, null: true do

@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::ShippingRate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'ShippingRate'
   description %q{A shipping rate to be applied to a checkout.}
-
-  
   include ::Spree::GraphQL::Types::ShippingRate
 
   field :handle, ::GraphQL::Types::String, null: false do

@@ -690,17 +690,17 @@ end
 ",
 'schema/type_header' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
   graphql_name '#{type['name']}'
-  description #{helper['description']}
-#{(helper['interfaces']||[]).map{|i| "  implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join "\n"}
-  #{helper['possible_types_string']}
+  description #{helper['description']}" +
+newline('  ', (helper['interfaces']||[]).map{|i| "implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join("\n  ")) +
+newline('  ', helper['possible_types_string']) + "
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
 ",
 'schema/type_header_module' => "module Spree::GraphQL::Schema::#{$catalog[:names][type['name']]}
   include ::Spree::GraphQL::Schema::Types::#{helper['base_type'] || 'BaseObject'}
   graphql_name '#{type['name']}'
-  description #{helper['description']}
-#{(helper['interfaces']||[]).map{|i| "  implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join "\n"}
-  #{helper['possible_types_string']}
+  description #{helper['description']}" +
+newline('  ', (helper['interfaces']||[]).map{|i| "implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join("\n  ")) +
+newline('  ', helper['possible_types_string']) + "
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
 
   definition_methods do
@@ -817,6 +817,13 @@ def oneline(s)
   return '' unless s
   s.gsub! "\n", ' '
   s
+end
+
+def newline(prefix, s)
+  if s and s.size > 0
+    return "\n#{prefix}" + s
+  end
+  ''
 end
 
 ####

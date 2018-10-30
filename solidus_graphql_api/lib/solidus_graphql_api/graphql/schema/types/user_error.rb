@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::UserError < Spree::GraphQL::Schema::Types::
   graphql_name 'UserError'
   description %q{Represents an error in the input of a mutation.}
   implements ::Spree::GraphQL::Schema::Interfaces::DisplayableError
-  
   include ::Spree::GraphQL::Types::UserError
 
   field :field, [::GraphQL::Types::String], null: true do

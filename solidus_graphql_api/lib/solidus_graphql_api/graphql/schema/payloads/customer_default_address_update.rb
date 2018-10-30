@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerDefaultAddressUpdate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerDefaultAddressUpdatePayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CustomerDefaultAddressUpdate
 
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do

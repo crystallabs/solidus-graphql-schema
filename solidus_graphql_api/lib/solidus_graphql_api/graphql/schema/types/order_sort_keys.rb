@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::OrderSortKeys < Spree::GraphQL::Schema::Types::BaseEnum
   graphql_name 'OrderSortKeys'
   description %q{The set of valid sort keys for the orders query.}
-
-  
   include ::Spree::GraphQL::Types::OrderSortKeys
   value 'PROCESSED_AT', %q{Sort by the `processed_at` value.}
   value 'TOTAL_PRICE', %q{Sort by the `total_price` value.}

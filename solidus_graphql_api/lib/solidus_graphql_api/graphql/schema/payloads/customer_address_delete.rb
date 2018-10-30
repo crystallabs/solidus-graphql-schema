@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerAddressDelete < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerAddressDeletePayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CustomerAddressDelete
 
   field :deleted_customer_address_id, ::GraphQL::Types::String, null: true do

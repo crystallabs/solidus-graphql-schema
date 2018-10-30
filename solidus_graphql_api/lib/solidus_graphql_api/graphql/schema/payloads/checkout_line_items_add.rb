@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CheckoutLineItemsAdd < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CheckoutLineItemsAddPayload'
   description nil
-
-  
   include ::Spree::GraphQL::Payloads::CheckoutLineItemsAdd
 
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: true do

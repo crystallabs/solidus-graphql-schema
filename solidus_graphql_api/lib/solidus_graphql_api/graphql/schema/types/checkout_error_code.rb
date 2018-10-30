@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::CheckoutErrorCode < Spree::GraphQL::Schema::Types::BaseEnum
   graphql_name 'CheckoutErrorCode'
   description %q{Possible error codes that could be returned by a checkout mutation.}
-
-  
   include ::Spree::GraphQL::Types::CheckoutErrorCode
   value 'BLANK', %q{Input value is blank.}
   value 'INVALID', %q{Input value is invalid.}

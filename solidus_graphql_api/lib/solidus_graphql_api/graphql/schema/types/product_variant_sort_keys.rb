@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::ProductVariantSortKeys < Spree::GraphQL::Schema::Types::BaseEnum
   graphql_name 'ProductVariantSortKeys'
   description %q{The set of valid sort keys for the variants query.}
-
-  
   include ::Spree::GraphQL::Types::ProductVariantSortKeys
   value 'TITLE', %q{Sort by the `title` value.}
   value 'SKU', %q{Sort by the `sku` value.}

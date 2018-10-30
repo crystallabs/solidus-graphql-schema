@@ -1,8 +1,6 @@
 class Spree::GraphQL::Schema::Types::Shop < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'Shop'
   description %q{Shop represents a collection of the general settings and information about the shop.}
-
-  
   include ::Spree::GraphQL::Types::Shop
 
   field :collection_by_handle, ::Spree::GraphQL::Schema::Types::Collection, null: true do

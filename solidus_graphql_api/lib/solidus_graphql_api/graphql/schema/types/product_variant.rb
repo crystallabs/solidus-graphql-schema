@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::ProductVariant < Spree::GraphQL::Schema::Ty
   graphql_name 'ProductVariant'
   description %q{A product variant represents a different version of a product, such as differing sizes or differing colors.}
   implements ::Spree::GraphQL::Schema::Interfaces::Node
-  
   include ::Spree::GraphQL::Types::ProductVariant
 
   field :available_for_sale, ::GraphQL::Types::Boolean, null: false do
