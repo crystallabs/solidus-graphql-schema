@@ -817,6 +817,7 @@ end
 def oneline(s)
   return '' unless s
   s.sub! /^\n+/, ''
+  s.sub! /\n+$/, ''
   s.gsub! "\n", ' '
   s
 end
