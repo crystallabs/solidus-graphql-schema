@@ -38,7 +38,6 @@ end
 # Implementation parts:
 
 require_relative "./types/base_object"
-require_relative "./types/base_object_no_id"
 require_relative "./types/base_enum"
 require_relative "./types/base_scalar"
 require_relative "./types/base_input"
@@ -184,6 +183,7 @@ require_relative "./types/mutation"
 # Schema parts:
 
 require_relative "./schema/types/base_object"
+require_relative "./schema/types/base_object_no_id"
 require_relative "./schema/types/base_enum"
 require_relative "./schema/types/base_scalar"
 require_relative "./schema/types/base_input"
