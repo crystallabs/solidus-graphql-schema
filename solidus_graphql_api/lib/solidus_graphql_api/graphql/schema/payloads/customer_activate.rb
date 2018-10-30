@@ -1,7 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerActivate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerActivatePayload'
   description nil
-  include ::Spree::GraphQL::Payloads::CustomerActivate
 
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do
     description %q{The customer object.}

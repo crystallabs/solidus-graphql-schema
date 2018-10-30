@@ -1,7 +1,6 @@
 class Spree::GraphQL::Schema::Inputs::MailingAddress < Spree::GraphQL::Schema::Types::BaseInput
   graphql_name 'MailingAddressInput'
   description %q{Specifies the fields accepted to create or update a mailing address.}
-  include ::Spree::GraphQL::Inputs::MailingAddress
 
   argument :address1, ::GraphQL::Types::String, required: false, description: nil
   argument :address2, ::GraphQL::Types::String, required: false, description: nil

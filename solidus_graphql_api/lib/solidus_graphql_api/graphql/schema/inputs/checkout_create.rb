@@ -1,7 +1,6 @@
 class Spree::GraphQL::Schema::Inputs::CheckoutCreate < Spree::GraphQL::Schema::Types::BaseInput
   graphql_name 'CheckoutCreateInput'
   description %q{Specifies the fields required to create a checkout.}
-  include ::Spree::GraphQL::Inputs::CheckoutCreate
 
   argument :email, ::GraphQL::Types::String, required: false, description: %q{The email with which the customer wants to checkout.}
   argument :line_items, [::Spree::GraphQL::Schema::Inputs::CheckoutLineItem], required: false, description: %q{A list of line item objects, each one containing information about an item in the checkout.}

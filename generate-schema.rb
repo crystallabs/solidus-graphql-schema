@@ -209,11 +209,11 @@ def parse_types_1(v)
     # This is the schema-related part (should be non-modifiable by user)
     $catalog[:schema_outputs][name]= of.underscore
 
-    # This is the implementation-related part (user should add implementation code)
-    $catalog[:outputs][name]= of.underscore
-
-    # Implementation test (user should also review/modify test)
     if name=~ /^(?:Types|Interfaces)::/
+      # This is the implementation-related part (user should add implementation code)
+      $catalog[:outputs][name]= of.underscore
+
+      # Implementation test (user should also review/modify test)
       $catalog[:spec_outputs][name]= of.underscore
     end
   end
@@ -300,7 +300,11 @@ def parse_types_2(v)
     if helper['base_type']== 'BaseInterface'
       $catalog[:schema_contents][new_name].push [template('schema/type_header_module', t, helper)]
     else
-      $catalog[:schema_contents][new_name].push [template('schema/type_header', t, helper)]
+      if new_name=~ /^(?:Types|Interfaces)::/
+        $catalog[:schema_contents][new_name].push [template('schema/type_header', t, helper)]
+      else
+        $catalog[:schema_contents][new_name].push [template('schema/type_header_no_include', t, helper)]
+      end
     end
     $catalog[:contents][new_name].push [template('type_header', t, helper)]
     helper['class']= t['name'].underscore
@@ -449,10 +453,8 @@ def parse_types_2(v)
         helper['method_args_description_spec']= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
 
         helper['class']= t['name'].underscore
-        if new_name=~ /^(?:Types|Interfaces)::/
-          $catalog[:contents][new_name].push template 'field', f, helper
-          $catalog[:spec_contents][new_name].push template 'spec/it', f, helper
-        end
+        $catalog[:contents][new_name].push template 'field', f, helper
+        $catalog[:spec_contents][new_name].push template 'spec/it', f, helper
       end # t['fields'].each
     end # endif t['fields']
 
@@ -712,6 +714,12 @@ end
 newline('  ', (helper['interfaces']||[]).map{|i| "implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join("\n  ")) +
 newline('  ', helper['possible_types_string']) + "
   include ::Spree::GraphQL::#{$catalog[:names][type['name']]}
+",
+'schema/type_header_no_include' => "class Spree::GraphQL::Schema::#{$catalog[:names][type['name']]} < Spree::GraphQL::Schema::Types::#{helper['base_type'] || $catalog[:base_object][$catalog[:names][type['name']]]}
+  graphql_name '#{type['name']}'
+  description #{helper['description']}" +
+newline('  ', (helper['interfaces']||[]).map{|i| "implements ::Spree::GraphQL::Schema::Interfaces::#{i}"}.join("\n  ")) +
+newline('  ', helper['possible_types_string']) + "
 ",
 'schema/type_header_module' => "module Spree::GraphQL::Schema::#{$catalog[:names][type['name']]}
   include ::Spree::GraphQL::Schema::Types::#{helper['base_type'] || $catalog[:base_object][$catalog[:names][type['name']]]}

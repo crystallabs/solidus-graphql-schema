@@ -3,7 +3,6 @@ class Spree::GraphQL::Schema::Inputs::TokenizedPayment < Spree::GraphQL::Schema:
   description %q{Specifies the fields required to complete a checkout with
 a tokenized payment.
 }
-  include ::Spree::GraphQL::Inputs::TokenizedPayment
 
   argument :amount, ::Spree::GraphQL::Schema::Types::Money, required: true, description: %q{The amount of the payment.}
   argument :idempotency_key, ::GraphQL::Types::String, required: true, description: %q{A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one.}

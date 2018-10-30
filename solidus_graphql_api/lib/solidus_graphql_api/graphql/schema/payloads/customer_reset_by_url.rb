@@ -1,7 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerResetByUrl < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerResetByUrlPayload'
   description nil
-  include ::Spree::GraphQL::Payloads::CustomerResetByUrl
 
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do
     description %q{The customer object which was reset.}

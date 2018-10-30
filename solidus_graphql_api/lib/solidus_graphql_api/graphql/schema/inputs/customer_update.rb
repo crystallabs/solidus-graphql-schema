@@ -1,7 +1,6 @@
 class Spree::GraphQL::Schema::Inputs::CustomerUpdate < Spree::GraphQL::Schema::Types::BaseInput
   graphql_name 'CustomerUpdateInput'
   description %q{Specifies the fields required to update the Customer information.}
-  include ::Spree::GraphQL::Inputs::CustomerUpdate
 
   argument :first_name, ::GraphQL::Types::String, required: false, description: %q{The customer’s first name.}
   argument :last_name, ::GraphQL::Types::String, required: false, description: %q{The customer’s last name.}

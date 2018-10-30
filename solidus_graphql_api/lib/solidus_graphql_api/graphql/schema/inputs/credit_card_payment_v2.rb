@@ -3,7 +3,6 @@ class Spree::GraphQL::Schema::Inputs::CreditCardPaymentV2 < Spree::GraphQL::Sche
   description %q{Specifies the fields required to complete a checkout with
 a Solidus vaulted credit card payment.
 }
-  include ::Spree::GraphQL::Inputs::CreditCardPaymentV2
 
   argument :payment_amount, ::Spree::GraphQL::Schema::Inputs::Money, required: true, description: %q{The amount and currency of the payment.}
   argument :idempotency_key, ::GraphQL::Types::String, required: true, description: %q{A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one.}

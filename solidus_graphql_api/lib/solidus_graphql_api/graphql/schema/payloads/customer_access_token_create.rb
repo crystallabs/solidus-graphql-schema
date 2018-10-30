@@ -1,7 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CustomerAccessTokenCreate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CustomerAccessTokenCreatePayload'
   description nil
-  include ::Spree::GraphQL::Payloads::CustomerAccessTokenCreate
 
   field :customer_access_token, ::Spree::GraphQL::Schema::Types::CustomerAccessToken, null: true do
     description %q{The newly created customer access token object.}

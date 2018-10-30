@@ -1,7 +1,6 @@
 class Spree::GraphQL::Schema::Payloads::CheckoutShippingAddressUpdate < Spree::GraphQL::Schema::Types::BaseObject
   graphql_name 'CheckoutShippingAddressUpdatePayload'
   description nil
-  include ::Spree::GraphQL::Payloads::CheckoutShippingAddressUpdate
 
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: false do
     description %q{The updated checkout object.}
