@@ -12,4 +12,3 @@ module Spree::GraphQL::Types::MoneyV2
   end
 
 end
-

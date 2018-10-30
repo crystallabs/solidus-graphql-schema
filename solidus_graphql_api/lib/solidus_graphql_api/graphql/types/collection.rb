@@ -56,4 +56,3 @@ module Spree::GraphQL::Types::Collection
   end
 
 end
-

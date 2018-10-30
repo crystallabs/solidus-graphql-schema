@@ -19,4 +19,3 @@ module Spree::GraphQL::Types::ProductOption
   end
 
 end
-

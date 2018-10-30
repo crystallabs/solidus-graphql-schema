@@ -18,4 +18,3 @@ module Spree::GraphQL::Types::ShippingRate
   end
 
 end
-

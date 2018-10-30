@@ -232,4 +232,3 @@ module Spree::GraphQL::Types::Mutation
   end
 
 end
-

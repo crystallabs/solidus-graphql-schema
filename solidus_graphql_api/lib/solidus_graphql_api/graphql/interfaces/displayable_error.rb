@@ -12,4 +12,3 @@ module Spree::GraphQL::Interfaces::DisplayableError
   end
 
 end
-

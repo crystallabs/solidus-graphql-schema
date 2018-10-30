@@ -13,4 +13,3 @@ module Spree::GraphQL::Types::UserError
   end
 
 end
-

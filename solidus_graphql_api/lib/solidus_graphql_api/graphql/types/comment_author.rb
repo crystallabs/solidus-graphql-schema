@@ -12,4 +12,3 @@ module Spree::GraphQL::Types::CommentAuthor
   end
 
 end
-

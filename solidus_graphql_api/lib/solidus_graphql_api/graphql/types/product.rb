@@ -127,4 +127,3 @@ module Spree::GraphQL::Types::Product
   end
 
 end
-

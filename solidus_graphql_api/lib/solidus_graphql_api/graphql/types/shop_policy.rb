@@ -25,4 +25,3 @@ module Spree::GraphQL::Types::ShopPolicy
   end
 
 end
-

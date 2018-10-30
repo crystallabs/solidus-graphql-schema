@@ -30,4 +30,3 @@ module Spree::GraphQL::Types::ArticleAuthor
   end
 
 end
-

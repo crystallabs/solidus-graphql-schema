@@ -71,4 +71,3 @@ module Spree::GraphQL::Types::ProductVariant
   end
 
 end
-

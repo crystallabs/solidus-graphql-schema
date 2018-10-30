@@ -45,4 +45,3 @@ module Spree::GraphQL::Types::Blog
   end
 
 end
-

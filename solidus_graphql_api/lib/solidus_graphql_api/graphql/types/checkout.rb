@@ -159,4 +159,3 @@ module Spree::GraphQL::Types::Checkout
   end
 
 end
-

@@ -36,4 +36,3 @@ module Spree::GraphQL::Types::PaymentSettings
   end
 
 end
-

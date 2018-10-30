@@ -124,4 +124,3 @@ module Spree::GraphQL::Types::Order
   end
 
 end
-

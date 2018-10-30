@@ -61,4 +61,3 @@ module Spree::GraphQL::Types::Payment
   end
 
 end
-

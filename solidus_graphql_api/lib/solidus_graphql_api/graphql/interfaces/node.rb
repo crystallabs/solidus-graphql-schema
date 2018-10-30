@@ -6,4 +6,3 @@ module Spree::GraphQL::Interfaces::Node
   end
 
 end
-

@@ -20,4 +20,3 @@ module Spree::GraphQL::Types::Fulfillment
   end
 
 end
-

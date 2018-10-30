@@ -92,4 +92,3 @@ module Spree::GraphQL::Types::Article
   end
 
 end
-

@@ -31,4 +31,3 @@ module Spree::GraphQL::Types::ScriptDiscountApplication
   end
 
 end
-

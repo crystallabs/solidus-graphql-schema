@@ -41,6 +41,7 @@ $out_dir= ARGV.shift || './solidus_graphql_api/'
 puts "Output dir is #{$out_dir}.
 Schema files will be overwritten.
 Implementation files will#{ $overwrite ? '' : ' not'} be overwritten.
+Spec files will#{ $overwrite ? '' : ' not'} be overwritten.
 "
 
 # Names of query/mutation/subscription entry points
@@ -716,7 +717,7 @@ newline('  ', helper['possible_types_string']) + "
 'schema/input_field' => "\n  argument :#{(type['name']||'').underscore}, #{helper['type_name']},#{helper['default_value_string']} description: #{helper['description']}",
 'schema/enum_value' => "\n  value '#{type['name']}', #{helper['description']}",
 'schema/field_footer' => "\n  end",
-'schema/type_footer' => "\nend\n",
+'schema/type_footer' => "\nend",
 'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
   global_id_field :id
   include ::Spree::GraphQL::Types::BaseObject
@@ -770,7 +771,7 @@ newline('', oneline((helper['interfaces']||[]).map{|i| "\n  include ::Spree::Gra
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 ",
-'type_footer' => "\nend\n",
+'type_footer' => "\nend",
 # Test parts:
 'spec/type_header' => "require 'spec_helper'
 
@@ -791,7 +792,7 @@ describe '#{($catalog[:names][type['name']]||'').split('::').first}' do
     #end
 ",
 'spec/type_footer' => "\n  end
-end\n",
+end",
 }[file]
 end
 
@@ -817,6 +818,7 @@ end
 def oneline(s)
   return '' unless s
   s.sub! /^\n+/, ''
+  s.sub! /\n+$/, ''
   s.gsub! "\n", ' '
   s
 end
