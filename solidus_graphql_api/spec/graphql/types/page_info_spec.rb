@@ -1,30 +1,33 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'PageInfo' do
-    #let!(:page_info) {create(:page_info)}
+module Spree::GraphQL
+  describe 'Types::PageInfo' do
+    #let!(:page_info) { create(:page_info) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql hasNextPage Indicates if there are more pages to fetch.
+    # hasNextPage: Indicates if there are more pages to fetch.
     # @return [Types::Boolean!]
-    #it 'has_next_page' do
-    #  query = <<-GRAPHQL
-    #    { page_info { hasNextPage() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'page_info')
-    #  expect(result['hasNextPage']).to eq page_info.has_next_page
-    #end
+    describe 'hasNextPage' do
+      let!(:query) { '{ page_info { hasNextPage } }' }
+      let!(:result) { { data: { page_info: { hasNextPage: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql hasPreviousPage Indicates if there are any pages prior to the current page.
+    # hasPreviousPage: Indicates if there are any pages prior to the current page.
     # @return [Types::Boolean!]
-    #it 'has_previous_page' do
-    #  query = <<-GRAPHQL
-    #    { page_info { hasPreviousPage() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'page_info')
-    #  expect(result['hasPreviousPage']).to eq page_info.has_previous_page
-    #end
+    describe 'hasPreviousPage' do
+      let!(:query) { '{ page_info { hasPreviousPage } }' }
+      let!(:result) { { data: { page_info: { hasPreviousPage: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

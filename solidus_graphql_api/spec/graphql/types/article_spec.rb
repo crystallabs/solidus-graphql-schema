@@ -1,169 +1,172 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Article' do
-    #let!(:article) {create(:article)}
+module Spree::GraphQL
+  describe 'Types::Article' do
+    #let!(:article) { create(:article) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql authorV2 The article's author.
+    # authorV2: The article's author.
     # @return [Types::ArticleAuthor]
-    #it 'author_v2' do
-    #  query = <<-GRAPHQL
-    #    { article { authorV2() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['authorV2']).to eq article.author_v2
-    #end
+    describe 'authorV2' do
+      let!(:query) { '{ article { authorV2 } }' }
+      let!(:result) { { data: { article: { authorV2: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql blog The blog that the article belongs to.
+    # blog: The blog that the article belongs to.
     # @return [Types::Blog!]
-    #it 'blog' do
-    #  query = <<-GRAPHQL
-    #    { article { blog() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['blog']).to eq article.blog
-    #end
+    describe 'blog' do
+      let!(:query) { '{ article { blog } }' }
+      let!(:result) { { data: { article: { blog: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql comments List of comments posted on the article.
+    # comments: List of comments posted on the article.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::Comment.connection_type!]
-    #it 'comments' do
-    #  query = <<-GRAPHQL
-    #    { article { comments(reverse:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['comments']).to eq article.comments
-    #end
+    describe 'comments' do
+      let!(:query) { '{ article { comments } }' }
+      let!(:result) { { data: { article: { comments: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql content Stripped content of the article, single line with HTML tags removed.
+    # content: Stripped content of the article, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String!]
-    #it 'content' do
-    #  query = <<-GRAPHQL
-    #    { article { content(truncate_at:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['content']).to eq article.content
-    #end
+    describe 'content' do
+      let!(:query) { '{ article { content } }' }
+      let!(:result) { { data: { article: { content: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql contentHtml The content of the article, complete with HTML formatting.
+    # contentHtml: The content of the article, complete with HTML formatting.
     # @return [Types::HTML!]
-    #it 'content_html' do
-    #  query = <<-GRAPHQL
-    #    { article { contentHtml() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['contentHtml']).to eq article.content_html
-    #end
+    describe 'contentHtml' do
+      let!(:query) { '{ article { contentHtml } }' }
+      let!(:result) { { data: { article: { contentHtml: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql excerpt Stripped excerpt of the article, single line with HTML tags removed.
+    # excerpt: Stripped excerpt of the article, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String]
-    #it 'excerpt' do
-    #  query = <<-GRAPHQL
-    #    { article { excerpt(truncate_at:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['excerpt']).to eq article.excerpt
-    #end
+    describe 'excerpt' do
+      let!(:query) { '{ article { excerpt } }' }
+      let!(:result) { { data: { article: { excerpt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql excerptHtml The excerpt of the article, complete with HTML formatting.
+    # excerptHtml: The excerpt of the article, complete with HTML formatting.
     # @return [Types::HTML]
-    #it 'excerpt_html' do
-    #  query = <<-GRAPHQL
-    #    { article { excerptHtml() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['excerptHtml']).to eq article.excerpt_html
-    #end
+    describe 'excerptHtml' do
+      let!(:query) { '{ article { excerptHtml } }' }
+      let!(:result) { { data: { article: { excerptHtml: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql handle A human-friendly unique string for the Article automatically generated from its title. 
+    # handle: A human-friendly unique string for the Article automatically generated from its title. 
     # @return [Types::String!]
-    #it 'handle' do
-    #  query = <<-GRAPHQL
-    #    { article { handle() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['handle']).to eq article.handle
-    #end
+    describe 'handle' do
+      let!(:query) { '{ article { handle } }' }
+      let!(:result) { { data: { article: { handle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { article { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['id']).to eq article.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ article { id } }' }
+      let!(:result) { { data: { article: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql image The image associated with the article.
+    # image: The image associated with the article.
     # @param max_width [Types::Int]
     # @param max_height [Types::Int]
     # @param crop [Types::CropRegion]
     # @param scale [Types::Int] (1)
     # @return [Types::Image]
-    #it 'image' do
-    #  query = <<-GRAPHQL
-    #    { article { image(max_width:, max_height:, crop:, scale:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['image']).to eq article.image
-    #end
+    describe 'image' do
+      let!(:query) { '{ article { image } }' }
+      let!(:result) { { data: { article: { image: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql publishedAt The date and time when the article was published.
+    # publishedAt: The date and time when the article was published.
     # @return [Types::DateTime!]
-    #it 'published_at' do
-    #  query = <<-GRAPHQL
-    #    { article { publishedAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['publishedAt']).to eq article.published_at
-    #end
+    describe 'publishedAt' do
+      let!(:query) { '{ article { publishedAt } }' }
+      let!(:result) { { data: { article: { publishedAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql tags A categorization that a article can be tagged with.
+    # tags: A categorization that a article can be tagged with.
     # @return [[Types::String!]!]
-    #it 'tags' do
-    #  query = <<-GRAPHQL
-    #    { article { tags() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['tags']).to eq article.tags
-    #end
+    describe 'tags' do
+      let!(:query) { '{ article { tags } }' }
+      let!(:result) { { data: { article: { tags: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title The article’s name.
+    # title: The article’s name.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { article { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['title']).to eq article.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ article { title } }' }
+      let!(:result) { { data: { article: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql url The url pointing to the article accessible from the web.
+    # url: The url pointing to the article accessible from the web.
     # @return [Types::URL!]
-    #it 'url' do
-    #  query = <<-GRAPHQL
-    #    { article { url() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article')
-    #  expect(result['url']).to eq article.url
-    #end
+    describe 'url' do
+      let!(:query) { '{ article { url } }' }
+      let!(:result) { { data: { article: { url: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

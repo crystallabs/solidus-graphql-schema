@@ -1,74 +1,77 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'PaymentSettings' do
-    #let!(:payment_settings) {create(:payment_settings)}
+module Spree::GraphQL
+  describe 'Types::PaymentSettings' do
+    #let!(:payment_settings) { create(:payment_settings) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql acceptedCardBrands List of the card brands which the shop accepts.
+    # acceptedCardBrands: List of the card brands which the shop accepts.
     # @return [[Types::CardBrand!]!]
-    #it 'accepted_card_brands' do
-    #  query = <<-GRAPHQL
-    #    { payment_settings { acceptedCardBrands() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment_settings')
-    #  expect(result['acceptedCardBrands']).to eq payment_settings.accepted_card_brands
-    #end
+    describe 'acceptedCardBrands' do
+      let!(:query) { '{ payment_settings { acceptedCardBrands } }' }
+      let!(:result) { { data: { payment_settings: { acceptedCardBrands: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql cardVaultUrl The url pointing to the endpoint to vault credit cards.
+    # cardVaultUrl: The url pointing to the endpoint to vault credit cards.
     # @return [Types::URL!]
-    #it 'card_vault_url' do
-    #  query = <<-GRAPHQL
-    #    { payment_settings { cardVaultUrl() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment_settings')
-    #  expect(result['cardVaultUrl']).to eq payment_settings.card_vault_url
-    #end
+    describe 'cardVaultUrl' do
+      let!(:query) { '{ payment_settings { cardVaultUrl } }' }
+      let!(:result) { { data: { payment_settings: { cardVaultUrl: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql countryCode The country where the shop is located.
+    # countryCode: The country where the shop is located.
     # @return [Types::CountryCode!]
-    #it 'country_code' do
-    #  query = <<-GRAPHQL
-    #    { payment_settings { countryCode() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment_settings')
-    #  expect(result['countryCode']).to eq payment_settings.country_code
-    #end
+    describe 'countryCode' do
+      let!(:query) { '{ payment_settings { countryCode } }' }
+      let!(:result) { { data: { payment_settings: { countryCode: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql currencyCode The three-letter code for the currency that the shop accepts.
+    # currencyCode: The three-letter code for the currency that the shop accepts.
     # @return [Types::CurrencyCode!]
-    #it 'currency_code' do
-    #  query = <<-GRAPHQL
-    #    { payment_settings { currencyCode() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment_settings')
-    #  expect(result['currencyCode']).to eq payment_settings.currency_code
-    #end
+    describe 'currencyCode' do
+      let!(:query) { '{ payment_settings { currencyCode } }' }
+      let!(:result) { { data: { payment_settings: { currencyCode: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql solidusPaymentsAccountId The shop’s Solidus Payments account id.
+    # solidusPaymentsAccountId: The shop’s Solidus Payments account id.
     # @return [Types::String]
-    #it 'solidus_payments_account_id' do
-    #  query = <<-GRAPHQL
-    #    { payment_settings { solidusPaymentsAccountId() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment_settings')
-    #  expect(result['solidusPaymentsAccountId']).to eq payment_settings.solidus_payments_account_id
-    #end
+    describe 'solidusPaymentsAccountId' do
+      let!(:query) { '{ payment_settings { solidusPaymentsAccountId } }' }
+      let!(:result) { { data: { payment_settings: { solidusPaymentsAccountId: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql supportedDigitalWallets List of the digital wallets which the shop supports.
+    # supportedDigitalWallets: List of the digital wallets which the shop supports.
     # @return [[Types::DigitalWallet!]!]
-    #it 'supported_digital_wallets' do
-    #  query = <<-GRAPHQL
-    #    { payment_settings { supportedDigitalWallets() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment_settings')
-    #  expect(result['supportedDigitalWallets']).to eq payment_settings.supported_digital_wallets
-    #end
+    describe 'supportedDigitalWallets' do
+      let!(:query) { '{ payment_settings { supportedDigitalWallets } }' }
+      let!(:result) { { data: { payment_settings: { supportedDigitalWallets: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

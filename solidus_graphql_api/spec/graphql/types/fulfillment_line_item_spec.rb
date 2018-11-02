@@ -1,30 +1,33 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'FulfillmentLineItem' do
-    #let!(:fulfillment_line_item) {create(:fulfillment_line_item)}
+module Spree::GraphQL
+  describe 'Types::FulfillmentLineItem' do
+    #let!(:fulfillment_line_item) { create(:fulfillment_line_item) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql lineItem The associated order's line item.
+    # lineItem: The associated order's line item.
     # @return [Types::OrderLineItem!]
-    #it 'line_item' do
-    #  query = <<-GRAPHQL
-    #    { fulfillment_line_item { lineItem() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'fulfillment_line_item')
-    #  expect(result['lineItem']).to eq fulfillment_line_item.line_item
-    #end
+    describe 'lineItem' do
+      let!(:query) { '{ fulfillment_line_item { lineItem } }' }
+      let!(:result) { { data: { fulfillment_line_item: { lineItem: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql quantity The amount fulfilled in this fulfillment.
+    # quantity: The amount fulfilled in this fulfillment.
     # @return [Types::Int!]
-    #it 'quantity' do
-    #  query = <<-GRAPHQL
-    #    { fulfillment_line_item { quantity() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'fulfillment_line_item')
-    #  expect(result['quantity']).to eq fulfillment_line_item.quantity
-    #end
+    describe 'quantity' do
+      let!(:query) { '{ fulfillment_line_item { quantity } }' }
+      let!(:result) { { data: { fulfillment_line_item: { quantity: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

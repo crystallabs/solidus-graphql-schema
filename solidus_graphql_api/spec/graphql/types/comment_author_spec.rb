@@ -1,30 +1,33 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'CommentAuthor' do
-    #let!(:comment_author) {create(:comment_author)}
+module Spree::GraphQL
+  describe 'Types::CommentAuthor' do
+    #let!(:comment_author) { create(:comment_author) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql email The author's email.
+    # email: The author's email.
     # @return [Types::String!]
-    #it 'email' do
-    #  query = <<-GRAPHQL
-    #    { comment_author { email() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'comment_author')
-    #  expect(result['email']).to eq comment_author.email
-    #end
+    describe 'email' do
+      let!(:query) { '{ comment_author { email } }' }
+      let!(:result) { { data: { comment_author: { email: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql name The author’s name.
+    # name: The author’s name.
     # @return [Types::String!]
-    #it 'name' do
-    #  query = <<-GRAPHQL
-    #    { comment_author { name() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'comment_author')
-    #  expect(result['name']).to eq comment_author.name
-    #end
+    describe 'name' do
+      let!(:query) { '{ comment_author { name } }' }
+      let!(:result) { { data: { comment_author: { name: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

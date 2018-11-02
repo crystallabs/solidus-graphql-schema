@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 module Spree::GraphQL::Types::CustomerAccessToken
-  # @graphql accessToken The customer’s access token.
+  # accessToken: The customer’s access token.
   # @return [Types::String!]
   def access_token()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql expiresAt The date and time when the customer access token expires.
+  # expiresAt: The date and time when the customer access token expires.
   # @return [Types::DateTime!]
   def expires_at()
     raise ::Spree::GraphQL::NotImplementedError.new

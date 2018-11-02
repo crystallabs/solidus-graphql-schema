@@ -1,74 +1,77 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'DiscountCodeApplication' do
-    #let!(:discount_code_application) {create(:discount_code_application)}
+module Spree::GraphQL
+  describe 'Types::DiscountCodeApplication' do
+    #let!(:discount_code_application) { create(:discount_code_application) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql allocationMethod The method by which the discount's value is allocated to its entitled items.
+    # allocationMethod: The method by which the discount's value is allocated to its entitled items.
     # @return [Types::DiscountApplicationAllocationMethod!]
-    #it 'allocation_method' do
-    #  query = <<-GRAPHQL
-    #    { discount_code_application { allocationMethod() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'discount_code_application')
-    #  expect(result['allocationMethod']).to eq discount_code_application.allocation_method
-    #end
+    describe 'allocationMethod' do
+      let!(:query) { '{ discount_code_application { allocationMethod } }' }
+      let!(:result) { { data: { discount_code_application: { allocationMethod: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql applicable Specifies whether the discount code was applied successfully.
+    # applicable: Specifies whether the discount code was applied successfully.
     # @return [Types::Boolean!]
-    #it 'applicable' do
-    #  query = <<-GRAPHQL
-    #    { discount_code_application { applicable() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'discount_code_application')
-    #  expect(result['applicable']).to eq discount_code_application.applicable
-    #end
+    describe 'applicable' do
+      let!(:query) { '{ discount_code_application { applicable } }' }
+      let!(:result) { { data: { discount_code_application: { applicable: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql code The string identifying the discount code that was used at the time of application.
+    # code: The string identifying the discount code that was used at the time of application.
     # @return [Types::String!]
-    #it 'code' do
-    #  query = <<-GRAPHQL
-    #    { discount_code_application { code() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'discount_code_application')
-    #  expect(result['code']).to eq discount_code_application.code
-    #end
+    describe 'code' do
+      let!(:query) { '{ discount_code_application { code } }' }
+      let!(:result) { { data: { discount_code_application: { code: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql targetSelection Which lines of targetType that the discount is allocated over.
+    # targetSelection: Which lines of targetType that the discount is allocated over.
     # @return [Types::DiscountApplicationTargetSelection!]
-    #it 'target_selection' do
-    #  query = <<-GRAPHQL
-    #    { discount_code_application { targetSelection() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'discount_code_application')
-    #  expect(result['targetSelection']).to eq discount_code_application.target_selection
-    #end
+    describe 'targetSelection' do
+      let!(:query) { '{ discount_code_application { targetSelection } }' }
+      let!(:result) { { data: { discount_code_application: { targetSelection: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql targetType The type of line that the discount is applicable towards.
+    # targetType: The type of line that the discount is applicable towards.
     # @return [Types::DiscountApplicationTargetType!]
-    #it 'target_type' do
-    #  query = <<-GRAPHQL
-    #    { discount_code_application { targetType() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'discount_code_application')
-    #  expect(result['targetType']).to eq discount_code_application.target_type
-    #end
+    describe 'targetType' do
+      let!(:query) { '{ discount_code_application { targetType } }' }
+      let!(:result) { { data: { discount_code_application: { targetType: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql value The value of the discount application.
+    # value: The value of the discount application.
     # @return [Types::PricingValue!]
-    #it 'value' do
-    #  query = <<-GRAPHQL
-    #    { discount_code_application { value() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'discount_code_application')
-    #  expect(result['value']).to eq discount_code_application.value
-    #end
+    describe 'value' do
+      let!(:query) { '{ discount_code_application { value } }' }
+      let!(:result) { { data: { discount_code_application: { value: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

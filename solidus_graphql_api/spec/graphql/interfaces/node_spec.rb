@@ -1,19 +1,22 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Interfaces' do
-  describe 'Node' do
-    #let!(:node) {create(:node)}
+module Spree::GraphQL
+  describe 'Interfaces::Node' do
+    #let!(:node) { create(:node) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { node { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'node')
-    #  expect(result['id']).to eq node.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ node { id } }' }
+      let!(:result) { { data: { node: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

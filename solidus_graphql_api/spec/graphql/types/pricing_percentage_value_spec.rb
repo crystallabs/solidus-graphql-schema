@@ -1,19 +1,22 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'PricingPercentageValue' do
-    #let!(:pricing_percentage_value) {create(:pricing_percentage_value)}
+module Spree::GraphQL
+  describe 'Types::PricingPercentageValue' do
+    #let!(:pricing_percentage_value) { create(:pricing_percentage_value) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql percentage The percentage value of the object.
+    # percentage: The percentage value of the object.
     # @return [Types::Float!]
-    #it 'percentage' do
-    #  query = <<-GRAPHQL
-    #    { pricing_percentage_value { percentage() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'pricing_percentage_value')
-    #  expect(result['percentage']).to eq pricing_percentage_value.percentage
-    #end
+    describe 'percentage' do
+      let!(:query) { '{ pricing_percentage_value { percentage } }' }
+      let!(:result) { { data: { pricing_percentage_value: { percentage: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

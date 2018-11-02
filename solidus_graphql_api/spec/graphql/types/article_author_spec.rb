@@ -1,63 +1,66 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'ArticleAuthor' do
-    #let!(:article_author) {create(:article_author)}
+module Spree::GraphQL
+  describe 'Types::ArticleAuthor' do
+    #let!(:article_author) { create(:article_author) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql bio The author's bio.
+    # bio: The author's bio.
     # @return [Types::String]
-    #it 'bio' do
-    #  query = <<-GRAPHQL
-    #    { article_author { bio() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article_author')
-    #  expect(result['bio']).to eq article_author.bio
-    #end
+    describe 'bio' do
+      let!(:query) { '{ article_author { bio } }' }
+      let!(:result) { { data: { article_author: { bio: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql email The author’s email.
+    # email: The author’s email.
     # @return [Types::String!]
-    #it 'email' do
-    #  query = <<-GRAPHQL
-    #    { article_author { email() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article_author')
-    #  expect(result['email']).to eq article_author.email
-    #end
+    describe 'email' do
+      let!(:query) { '{ article_author { email } }' }
+      let!(:result) { { data: { article_author: { email: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql firstName The author's first name.
+    # firstName: The author's first name.
     # @return [Types::String!]
-    #it 'first_name' do
-    #  query = <<-GRAPHQL
-    #    { article_author { firstName() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article_author')
-    #  expect(result['firstName']).to eq article_author.first_name
-    #end
+    describe 'firstName' do
+      let!(:query) { '{ article_author { firstName } }' }
+      let!(:result) { { data: { article_author: { firstName: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql lastName The author's last name.
+    # lastName: The author's last name.
     # @return [Types::String!]
-    #it 'last_name' do
-    #  query = <<-GRAPHQL
-    #    { article_author { lastName() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article_author')
-    #  expect(result['lastName']).to eq article_author.last_name
-    #end
+    describe 'lastName' do
+      let!(:query) { '{ article_author { lastName } }' }
+      let!(:result) { { data: { article_author: { lastName: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql name The author's full name.
+    # name: The author's full name.
     # @return [Types::String!]
-    #it 'name' do
-    #  query = <<-GRAPHQL
-    #    { article_author { name() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'article_author')
-    #  expect(result['name']).to eq article_author.name
-    #end
+    describe 'name' do
+      let!(:query) { '{ article_author { name } }' }
+      let!(:result) { { data: { article_author: { name: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

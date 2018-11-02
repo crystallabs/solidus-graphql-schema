@@ -1,87 +1,90 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Blog' do
-    #let!(:blog) {create(:blog)}
+module Spree::GraphQL
+  describe 'Types::Blog' do
+    #let!(:blog) { create(:blog) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql articleByHandle Find an article by its handle.
+    # articleByHandle: Find an article by its handle.
     # @param handle [Types::String!]
     # @return [Types::Article]
-    #it 'article_by_handle' do
-    #  query = <<-GRAPHQL
-    #    { blog { articleByHandle(handle:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'blog')
-    #  expect(result['articleByHandle']).to eq blog.article_by_handle
-    #end
+    describe 'articleByHandle' do
+      let!(:query) { '{ blog { articleByHandle } }' }
+      let!(:result) { { data: { blog: { articleByHandle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql articles List of the blog's articles.
+    # articles: List of the blog's articles.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::Article.connection_type!]
-    #it 'articles' do
-    #  query = <<-GRAPHQL
-    #    { blog { articles(reverse:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'blog')
-    #  expect(result['articles']).to eq blog.articles
-    #end
+    describe 'articles' do
+      let!(:query) { '{ blog { articles } }' }
+      let!(:result) { { data: { blog: { articles: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql authors The authors who have contributed to the blog.
+    # authors: The authors who have contributed to the blog.
     # @return [[Types::ArticleAuthor!]!]
-    #it 'authors' do
-    #  query = <<-GRAPHQL
-    #    { blog { authors() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'blog')
-    #  expect(result['authors']).to eq blog.authors
-    #end
+    describe 'authors' do
+      let!(:query) { '{ blog { authors } }' }
+      let!(:result) { { data: { blog: { authors: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql handle A human-friendly unique string for the Blog automatically generated from its title. 
+    # handle: A human-friendly unique string for the Blog automatically generated from its title. 
     # @return [Types::String!]
-    #it 'handle' do
-    #  query = <<-GRAPHQL
-    #    { blog { handle() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'blog')
-    #  expect(result['handle']).to eq blog.handle
-    #end
+    describe 'handle' do
+      let!(:query) { '{ blog { handle } }' }
+      let!(:result) { { data: { blog: { handle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { blog { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'blog')
-    #  expect(result['id']).to eq blog.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ blog { id } }' }
+      let!(:result) { { data: { blog: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title The blogs’s title.
+    # title: The blogs’s title.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { blog { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'blog')
-    #  expect(result['title']).to eq blog.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ blog { title } }' }
+      let!(:result) { { data: { blog: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql url The url pointing to the blog accessible from the web.
+    # url: The url pointing to the blog accessible from the web.
     # @return [Types::URL!]
-    #it 'url' do
-    #  query = <<-GRAPHQL
-    #    { blog { url() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'blog')
-    #  expect(result['url']).to eq blog.url
-    #end
+    describe 'url' do
+      let!(:query) { '{ blog { url } }' }
+      let!(:result) { { data: { blog: { url: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

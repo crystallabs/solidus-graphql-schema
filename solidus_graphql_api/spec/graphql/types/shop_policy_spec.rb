@@ -1,52 +1,55 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'ShopPolicy' do
-    #let!(:shop_policy) {create(:shop_policy)}
+module Spree::GraphQL
+  describe 'Types::ShopPolicy' do
+    #let!(:shop_policy) { create(:shop_policy) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql body Policy text, maximum size of 64kb.
+    # body: Policy text, maximum size of 64kb.
     # @return [Types::String!]
-    #it 'body' do
-    #  query = <<-GRAPHQL
-    #    { shop_policy { body() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop_policy')
-    #  expect(result['body']).to eq shop_policy.body
-    #end
+    describe 'body' do
+      let!(:query) { '{ shop_policy { body } }' }
+      let!(:result) { { data: { shop_policy: { body: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { shop_policy { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop_policy')
-    #  expect(result['id']).to eq shop_policy.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ shop_policy { id } }' }
+      let!(:result) { { data: { shop_policy: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title Policy’s title.
+    # title: Policy’s title.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { shop_policy { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop_policy')
-    #  expect(result['title']).to eq shop_policy.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ shop_policy { title } }' }
+      let!(:result) { { data: { shop_policy: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql url Public URL to the policy.
+    # url: Public URL to the policy.
     # @return [Types::URL!]
-    #it 'url' do
-    #  query = <<-GRAPHQL
-    #    { shop_policy { url() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop_policy')
-    #  expect(result['url']).to eq shop_policy.url
-    #end
+    describe 'url' do
+      let!(:query) { '{ shop_policy { url } }' }
+      let!(:result) { { data: { shop_policy: { url: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

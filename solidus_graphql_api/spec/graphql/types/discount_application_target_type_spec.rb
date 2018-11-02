@@ -1,8 +1,11 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'DiscountApplicationTargetType' do
-    #let!(:discount_application_target_type) {create(:discount_application_target_type)}
+module Spree::GraphQL
+  describe 'Types::DiscountApplicationTargetType' do
+    #let!(:discount_application_target_type) { create(:discount_application_target_type) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
   end
 end

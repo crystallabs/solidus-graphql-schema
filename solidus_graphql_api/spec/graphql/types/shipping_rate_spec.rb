@@ -1,41 +1,44 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'ShippingRate' do
-    #let!(:shipping_rate) {create(:shipping_rate)}
+module Spree::GraphQL
+  describe 'Types::ShippingRate' do
+    #let!(:shipping_rate) { create(:shipping_rate) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql handle Human-readable unique identifier for this shipping rate.
+    # handle: Human-readable unique identifier for this shipping rate.
     # @return [Types::String!]
-    #it 'handle' do
-    #  query = <<-GRAPHQL
-    #    { shipping_rate { handle() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shipping_rate')
-    #  expect(result['handle']).to eq shipping_rate.handle
-    #end
+    describe 'handle' do
+      let!(:query) { '{ shipping_rate { handle } }' }
+      let!(:result) { { data: { shipping_rate: { handle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql price Price of this shipping rate.
+    # price: Price of this shipping rate.
     # @return [Types::Money!]
-    #it 'price' do
-    #  query = <<-GRAPHQL
-    #    { shipping_rate { price() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shipping_rate')
-    #  expect(result['price']).to eq shipping_rate.price
-    #end
+    describe 'price' do
+      let!(:query) { '{ shipping_rate { price } }' }
+      let!(:result) { { data: { shipping_rate: { price: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title Title of this shipping rate.
+    # title: Title of this shipping rate.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { shipping_rate { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shipping_rate')
-    #  expect(result['title']).to eq shipping_rate.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ shipping_rate { title } }' }
+      let!(:result) { { data: { shipping_rate: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

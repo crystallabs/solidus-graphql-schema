@@ -1,103 +1,106 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Collection' do
-    #let!(:collection) {create(:collection)}
+module Spree::GraphQL
+  describe 'Types::Collection' do
+    #let!(:collection) { create(:collection) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql description Stripped description of the collection, single line with HTML tags removed.
+    # description: Stripped description of the collection, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String!]
-    #it 'description' do
-    #  query = <<-GRAPHQL
-    #    { collection { description(truncate_at:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['description']).to eq collection.description
-    #end
+    describe 'description' do
+      let!(:query) { '{ collection { description } }' }
+      let!(:result) { { data: { collection: { description: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql descriptionHtml The description of the collection, complete with HTML formatting.
+    # descriptionHtml: The description of the collection, complete with HTML formatting.
     # @return [Types::HTML!]
-    #it 'description_html' do
-    #  query = <<-GRAPHQL
-    #    { collection { descriptionHtml() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['descriptionHtml']).to eq collection.description_html
-    #end
+    describe 'descriptionHtml' do
+      let!(:query) { '{ collection { descriptionHtml } }' }
+      let!(:result) { { data: { collection: { descriptionHtml: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql handle A human-friendly unique string for the collection automatically generated from its title. Limit of 255 characters. 
+    # handle: A human-friendly unique string for the collection automatically generated from its title. Limit of 255 characters. 
     # @return [Types::String!]
-    #it 'handle' do
-    #  query = <<-GRAPHQL
-    #    { collection { handle() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['handle']).to eq collection.handle
-    #end
+    describe 'handle' do
+      let!(:query) { '{ collection { handle } }' }
+      let!(:result) { { data: { collection: { handle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { collection { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['id']).to eq collection.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ collection { id } }' }
+      let!(:result) { { data: { collection: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql image Image associated with the collection.
+    # image: Image associated with the collection.
     # @param max_width [Types::Int]
     # @param max_height [Types::Int]
     # @param crop [Types::CropRegion]
     # @param scale [Types::Int] (1)
     # @return [Types::Image]
-    #it 'image' do
-    #  query = <<-GRAPHQL
-    #    { collection { image(max_width:, max_height:, crop:, scale:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['image']).to eq collection.image
-    #end
+    describe 'image' do
+      let!(:query) { '{ collection { image } }' }
+      let!(:result) { { data: { collection: { image: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql products List of products in the collection.
+    # products: List of products in the collection.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ProductCollectionSortKeys] ('COLLECTION_DEFAULT')
     # @return [Types::Product.connection_type!]
-    #it 'products' do
-    #  query = <<-GRAPHQL
-    #    { collection { products(reverse:, sort_key:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['products']).to eq collection.products
-    #end
+    describe 'products' do
+      let!(:query) { '{ collection { products } }' }
+      let!(:result) { { data: { collection: { products: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title The collection’s name. Limit of 255 characters.
+    # title: The collection’s name. Limit of 255 characters.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { collection { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['title']).to eq collection.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ collection { title } }' }
+      let!(:result) { { data: { collection: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql updatedAt The date and time when the collection was last modified.
+    # updatedAt: The date and time when the collection was last modified.
     # @return [Types::DateTime!]
-    #it 'updated_at' do
-    #  query = <<-GRAPHQL
-    #    { collection { updatedAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'collection')
-    #  expect(result['updatedAt']).to eq collection.updated_at
-    #end
+    describe 'updatedAt' do
+      let!(:query) { '{ collection { updatedAt } }' }
+      let!(:result) { { data: { collection: { updatedAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

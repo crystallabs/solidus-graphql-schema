@@ -1,47 +1,48 @@
+# frozen_string_literal: true
 module Spree::GraphQL::Types::CreditCard
-  # @graphql brand
+  # brand
   # @return [Types::String]
   def brand()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql expiryMonth
+  # expiryMonth
   # @return [Types::Int]
   def expiry_month()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql expiryYear
+  # expiryYear
   # @return [Types::Int]
   def expiry_year()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql firstDigits
+  # firstDigits
   # @return [Types::String]
   def first_digits()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql firstName
+  # firstName
   # @return [Types::String]
   def first_name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql lastDigits
+  # lastDigits
   # @return [Types::String]
   def last_digits()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql lastName
+  # lastName
   # @return [Types::String]
   def last_name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql maskedNumber Masked credit card number with only the last 4 digits displayed
+  # maskedNumber: Masked credit card number with only the last 4 digits displayed
   # @return [Types::String]
   def masked_number()
     raise ::Spree::GraphQL::NotImplementedError.new

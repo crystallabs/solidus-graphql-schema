@@ -1,170 +1,173 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Shop' do
-    #let!(:shop) {create(:shop)}
+module Spree::GraphQL
+  describe 'Types::Shop' do
+    #let!(:shop) { create(:store) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql collectionByHandle Find a collection by its handle.
+    # collectionByHandle: Find a collection by its handle.
     # @param handle [Types::String!]
     # @return [Types::Collection]
-    #it 'collection_by_handle' do
-    #  query = <<-GRAPHQL
-    #    { shop { collectionByHandle(handle:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['collectionByHandle']).to eq shop.collection_by_handle
-    #end
+    describe 'collectionByHandle' do
+      let!(:query) { '{ shop { collectionByHandle } }' }
+      let!(:result) { { data: { shop: { collectionByHandle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql collections List of the shop’s collections.
+    # collections: List of the shop’s collections.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::CollectionSortKeys] ('ID')
     # @param query [Types::String]
     # @return [Types::Collection.connection_type!]
-    #it 'collections' do
-    #  query = <<-GRAPHQL
-    #    { shop { collections(reverse:, sort_key:, query:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['collections']).to eq shop.collections
-    #end
+    describe 'collections' do
+      let!(:query) { '{ shop { collections } }' }
+      let!(:result) { { data: { shop: { collections: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql description A description of the shop.
+    # description: A description of the shop.
     # @return [Types::String]
-    #it 'description' do
-    #  query = <<-GRAPHQL
-    #    { shop { description() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['description']).to eq shop.description
-    #end
+    describe 'description' do
+      let!(:query) { '{ shop { description } }' }
+      let!(:result) { { data: { shop: { description: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql moneyFormat A string representing the way currency is formatted when the currency isn’t specified.
+    # moneyFormat: A string representing the way currency is formatted when the currency isn’t specified.
     # @return [Types::String!]
-    #it 'money_format' do
-    #  query = <<-GRAPHQL
-    #    { shop { moneyFormat() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['moneyFormat']).to eq shop.money_format
-    #end
+    describe 'moneyFormat' do
+      let!(:query) { '{ shop { moneyFormat } }' }
+      let!(:result) { { data: { shop: { moneyFormat: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql name The shop’s name.
+    # name: The shop’s name.
     # @return [Types::String!]
-    #it 'name' do
-    #  query = <<-GRAPHQL
-    #    { shop { name() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['name']).to eq shop.name
-    #end
+    describe 'name' do
+      let!(:query) { '{ shop { name } }' }
+      let!(:result) { { data: { shop: { name: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql paymentSettings Settings related to payments.
+    # paymentSettings: Settings related to payments.
     # @return [Types::PaymentSettings!]
-    #it 'payment_settings' do
-    #  query = <<-GRAPHQL
-    #    { shop { paymentSettings() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['paymentSettings']).to eq shop.payment_settings
-    #end
+    describe 'paymentSettings' do
+      let!(:query) { '{ shop { paymentSettings } }' }
+      let!(:result) { { data: { shop: { paymentSettings: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql primaryDomain The shop’s primary domain.
+    # primaryDomain: The shop’s primary domain.
     # @return [Types::Domain!]
-    #it 'primary_domain' do
-    #  query = <<-GRAPHQL
-    #    { shop { primaryDomain() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['primaryDomain']).to eq shop.primary_domain
-    #end
+    describe 'primaryDomain' do
+      let!(:query) { '{ shop { primaryDomain } }' }
+      let!(:result) { { data: { shop: { primaryDomain: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql privacyPolicy The shop’s privacy policy.
+    # privacyPolicy: The shop’s privacy policy.
     # @return [Types::ShopPolicy]
-    #it 'privacy_policy' do
-    #  query = <<-GRAPHQL
-    #    { shop { privacyPolicy() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['privacyPolicy']).to eq shop.privacy_policy
-    #end
+    describe 'privacyPolicy' do
+      let!(:query) { '{ shop { privacyPolicy } }' }
+      let!(:result) { { data: { shop: { privacyPolicy: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql productByHandle Find a product by its handle.
+    # productByHandle: Find a product by its handle.
     # @param handle [Types::String!]
     # @return [Types::Product]
-    #it 'product_by_handle' do
-    #  query = <<-GRAPHQL
-    #    { shop { productByHandle(handle:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['productByHandle']).to eq shop.product_by_handle
-    #end
+    describe 'productByHandle' do
+      let!(:query) { '{ shop { productByHandle } }' }
+      let!(:result) { { data: { shop: { productByHandle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql productTypes List of the shop’s product types.
+    # productTypes: List of the shop’s product types.
     # @return [Types::String.connection_type!]
-    #it 'product_types' do
-    #  query = <<-GRAPHQL
-    #    { shop { productTypes() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['productTypes']).to eq shop.product_types
-    #end
+    describe 'productTypes' do
+      let!(:query) { '{ shop { productTypes } }' }
+      let!(:result) { { data: { shop: { productTypes: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql products List of the shop’s products.
+    # products: List of the shop’s products.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ProductSortKeys] ('ID')
     # @param query [Types::String]
     # @return [Types::Product.connection_type!]
-    #it 'products' do
-    #  query = <<-GRAPHQL
-    #    { shop { products(reverse:, sort_key:, query:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['products']).to eq shop.products
-    #end
+    describe 'products' do
+      let!(:query) { '{ shop { products } }' }
+      let!(:result) { { data: { shop: { products: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql refundPolicy The shop’s refund policy.
+    # refundPolicy: The shop’s refund policy.
     # @return [Types::ShopPolicy]
-    #it 'refund_policy' do
-    #  query = <<-GRAPHQL
-    #    { shop { refundPolicy() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['refundPolicy']).to eq shop.refund_policy
-    #end
+    describe 'refundPolicy' do
+      let!(:query) { '{ shop { refundPolicy } }' }
+      let!(:result) { { data: { shop: { refundPolicy: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql shipsToCountries Countries that the shop ships to.
+    # shipsToCountries: Countries that the shop ships to.
     # @return [[Types::CountryCode!]!]
-    #it 'ships_to_countries' do
-    #  query = <<-GRAPHQL
-    #    { shop { shipsToCountries() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['shipsToCountries']).to eq shop.ships_to_countries
-    #end
+    describe 'shipsToCountries' do
+      let!(:query) { '{ shop { shipsToCountries } }' }
+      let!(:result) { { data: { shop: { shipsToCountries: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql termsOfService The shop’s terms of service.
+    # termsOfService: The shop’s terms of service.
     # @return [Types::ShopPolicy]
-    #it 'terms_of_service' do
-    #  query = <<-GRAPHQL
-    #    { shop { termsOfService() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'shop')
-    #  expect(result['termsOfService']).to eq shop.terms_of_service
-    #end
+    describe 'termsOfService' do
+      let!(:query) { '{ shop { termsOfService } }' }
+      let!(:result) { { data: { shop: { termsOfService: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

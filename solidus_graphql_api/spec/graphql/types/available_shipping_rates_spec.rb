@@ -1,30 +1,33 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'AvailableShippingRates' do
-    #let!(:available_shipping_rates) {create(:available_shipping_rates)}
+module Spree::GraphQL
+  describe 'Types::AvailableShippingRates' do
+    #let!(:available_shipping_rates) { create(:available_shipping_rates) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql ready Whether or not the shipping rates are ready. The `shippingRates` field is `null` when this value is `false`. This field should be polled until its value becomes `true`. 
+    # ready: Whether or not the shipping rates are ready. The `shippingRates` field is `null` when this value is `false`. This field should be polled until its value becomes `true`. 
     # @return [Types::Boolean!]
-    #it 'ready' do
-    #  query = <<-GRAPHQL
-    #    { available_shipping_rates { ready() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'available_shipping_rates')
-    #  expect(result['ready']).to eq available_shipping_rates.ready
-    #end
+    describe 'ready' do
+      let!(:query) { '{ available_shipping_rates { ready } }' }
+      let!(:result) { { data: { available_shipping_rates: { ready: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql shippingRates The fetched shipping rates. `null` until the `ready` field is `true`.
+    # shippingRates: The fetched shipping rates. `null` until the `ready` field is `true`.
     # @return [[Types::ShippingRate!]]
-    #it 'shipping_rates' do
-    #  query = <<-GRAPHQL
-    #    { available_shipping_rates { shippingRates() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'available_shipping_rates')
-    #  expect(result['shippingRates']).to eq available_shipping_rates.shipping_rates
-    #end
+    describe 'shippingRates' do
+      let!(:query) { '{ available_shipping_rates { shippingRates } }' }
+      let!(:result) { { data: { available_shipping_rates: { shippingRates: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

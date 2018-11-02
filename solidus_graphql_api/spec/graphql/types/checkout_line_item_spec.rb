@@ -1,74 +1,77 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'CheckoutLineItem' do
-    #let!(:checkout_line_item) {create(:checkout_line_item)}
+module Spree::GraphQL
+  describe 'Types::CheckoutLineItem' do
+    #let!(:checkout_line_item) { create(:checkout_line_item) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql customAttributes Extra information in the form of an array of Key-Value pairs about the line item.
+    # customAttributes: Extra information in the form of an array of Key-Value pairs about the line item.
     # @return [[Types::Attribute!]!]
-    #it 'custom_attributes' do
-    #  query = <<-GRAPHQL
-    #    { checkout_line_item { customAttributes() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout_line_item')
-    #  expect(result['customAttributes']).to eq checkout_line_item.custom_attributes
-    #end
+    describe 'customAttributes' do
+      let!(:query) { '{ checkout_line_item { customAttributes } }' }
+      let!(:result) { { data: { checkout_line_item: { customAttributes: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql discountAllocations The discounts that have been allocated onto the checkout line item by discount applications.
+    # discountAllocations: The discounts that have been allocated onto the checkout line item by discount applications.
     # @return [[Types::DiscountAllocation!]!]
-    #it 'discount_allocations' do
-    #  query = <<-GRAPHQL
-    #    { checkout_line_item { discountAllocations() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout_line_item')
-    #  expect(result['discountAllocations']).to eq checkout_line_item.discount_allocations
-    #end
+    describe 'discountAllocations' do
+      let!(:query) { '{ checkout_line_item { discountAllocations } }' }
+      let!(:result) { { data: { checkout_line_item: { discountAllocations: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { checkout_line_item { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout_line_item')
-    #  expect(result['id']).to eq checkout_line_item.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ checkout_line_item { id } }' }
+      let!(:result) { { data: { checkout_line_item: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql quantity The quantity of the line item.
+    # quantity: The quantity of the line item.
     # @return [Types::Int!]
-    #it 'quantity' do
-    #  query = <<-GRAPHQL
-    #    { checkout_line_item { quantity() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout_line_item')
-    #  expect(result['quantity']).to eq checkout_line_item.quantity
-    #end
+    describe 'quantity' do
+      let!(:query) { '{ checkout_line_item { quantity } }' }
+      let!(:result) { { data: { checkout_line_item: { quantity: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title Title of the line item. Defaults to the product's title.
+    # title: Title of the line item. Defaults to the product's title.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { checkout_line_item { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout_line_item')
-    #  expect(result['title']).to eq checkout_line_item.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ checkout_line_item { title } }' }
+      let!(:result) { { data: { checkout_line_item: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql variant Product variant of the line item.
+    # variant: Product variant of the line item.
     # @return [Types::ProductVariant]
-    #it 'variant' do
-    #  query = <<-GRAPHQL
-    #    { checkout_line_item { variant() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout_line_item')
-    #  expect(result['variant']).to eq checkout_line_item.variant
-    #end
+    describe 'variant' do
+      let!(:query) { '{ checkout_line_item { variant } }' }
+      let!(:result) { { data: { checkout_line_item: { variant: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

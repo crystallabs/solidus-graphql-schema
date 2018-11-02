@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 module Spree::GraphQL::Types::Mutation
-  # @graphql checkoutAttributesUpdateV2 Updates the attributes of a checkout.
+  # checkoutAttributesUpdateV2: Updates the attributes of a checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param input [Inputs::CheckoutAttributesUpdateV2!] The checkout attributes to update.
   # @return [Payloads::CheckoutAttributesUpdateV2]
@@ -7,14 +8,14 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutCompleteFree
+  # checkoutCompleteFree
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutCompleteFree]
   def checkout_complete_free(checkout_id:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutCompleteWithCreditCardV2 Completes a checkout using a credit card token from Solidus's Vault.
+  # checkoutCompleteWithCreditCardV2: Completes a checkout using a credit card token from Solidus's Vault.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param payment [Inputs::CreditCardPaymentV2!] The credit card info to apply as a payment.
   # @return [Payloads::CheckoutCompleteWithCreditCardV2]
@@ -22,7 +23,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutCompleteWithTokenizedPaymentV2 Completes a checkout with a tokenized payment.
+  # checkoutCompleteWithTokenizedPaymentV2: Completes a checkout with a tokenized payment.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param payment [Inputs::TokenizedPaymentV2!] The info to apply as a tokenized payment.
   # @return [Payloads::CheckoutCompleteWithTokenizedPaymentV2]
@@ -30,14 +31,14 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutCreate Creates a new checkout.
+  # checkoutCreate: Creates a new checkout.
   # @param input [Inputs::CheckoutCreate!] 
   # @return [Payloads::CheckoutCreate]
   def checkout_create(input:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutCustomerAssociateV2 Associates a customer to the checkout.
+  # checkoutCustomerAssociateV2: Associates a customer to the checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param customer_access_token [Types::String!] The customer access token of the customer to associate.
   # @return [Payloads::CheckoutCustomerAssociateV2]
@@ -45,14 +46,14 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutCustomerDisassociate Disassociates the current checkout customer from the checkout.
+  # checkoutCustomerDisassociate: Disassociates the current checkout customer from the checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutCustomerDisassociate]
   def checkout_customer_disassociate(checkout_id:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutDiscountCodeApply Applies a discount to an existing checkout using a discount code.
+  # checkoutDiscountCodeApply: Applies a discount to an existing checkout using a discount code.
   # @param discount_code [Types::String!] The discount code to apply to the checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutDiscountCodeApply]
@@ -60,14 +61,14 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutDiscountCodeRemove Removes the applied discount from an existing checkout.
+  # checkoutDiscountCodeRemove: Removes the applied discount from an existing checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutDiscountCodeRemove]
   def checkout_discount_code_remove(checkout_id:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutEmailUpdate Updates the email on an existing checkout.
+  # checkoutEmailUpdate: Updates the email on an existing checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param email [Types::String!] The email to update the checkout with.
   # @return [Payloads::CheckoutEmailUpdate]
@@ -75,7 +76,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutGiftCardRemove Removes an applied gift card from the checkout.
+  # checkoutGiftCardRemove: Removes an applied gift card from the checkout.
   # @param applied_gift_card_id [Types::ID!] The ID of the Applied Gift Card to remove from the Checkout
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutGiftCardRemove]
@@ -83,7 +84,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutGiftCardsAppend Appends gift cards to an existing checkout.
+  # checkoutGiftCardsAppend: Appends gift cards to an existing checkout.
   # @param gift_card_codes [[Types::String!]!] A list of gift card codes to append to the checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutGiftCardsAppend]
@@ -91,7 +92,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutLineItemsAdd Adds a list of line items to a checkout.
+  # checkoutLineItemsAdd: Adds a list of line items to a checkout.
   # @param line_items [[Inputs::CheckoutLineItem!]!] A list of line item objects to add to the checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutLineItemsAdd]
@@ -99,7 +100,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutLineItemsRemove Removes line items from an existing checkout
+  # checkoutLineItemsRemove: Removes line items from an existing checkout
   # @param checkout_id [Types::ID!] the checkout on which to remove line items
   # @param line_item_ids [[Types::ID!]!] line item ids to remove
   # @return [Payloads::CheckoutLineItemsRemove]
@@ -107,7 +108,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutLineItemsUpdate Updates line items on a checkout.
+  # checkoutLineItemsUpdate: Updates line items on a checkout.
   # @param checkout_id [Types::ID!] the checkout on which to update line items.
   # @param line_items [[Inputs::CheckoutLineItemUpdate!]!] line items to update.
   # @return [Payloads::CheckoutLineItemsUpdate]
@@ -115,7 +116,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutShippingAddressUpdate Updates the shipping address of an existing checkout.
+  # checkoutShippingAddressUpdate: Updates the shipping address of an existing checkout.
   # @param shipping_address [Inputs::MailingAddress!] The shipping address to where the line items will be shipped.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @return [Payloads::CheckoutShippingAddressUpdate]
@@ -123,7 +124,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql checkoutShippingLineUpdate Updates the shipping lines on an existing checkout.
+  # checkoutShippingLineUpdate: Updates the shipping lines on an existing checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param shipping_rate_handle [Types::String!] A concatenation of a Checkout’s shipping provider, price, and title, enabling the customer to select the availableShippingRates.
   # @return [Payloads::CheckoutShippingLineUpdate]
@@ -131,28 +132,28 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerAccessTokenCreate Creates a customer access token. The customer access token is required to modify the customer object in any way. 
+  # customerAccessTokenCreate: Creates a customer access token. The customer access token is required to modify the customer object in any way. 
   # @param input [Inputs::CustomerAccessTokenCreate!] 
   # @return [Payloads::CustomerAccessTokenCreate]
   def customer_access_token_create(input:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerAccessTokenDelete Permanently destroys a customer access token.
+  # customerAccessTokenDelete: Permanently destroys a customer access token.
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @return [Payloads::CustomerAccessTokenDelete]
   def customer_access_token_delete(customer_access_token:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerAccessTokenRenew Renews a customer access token. Access token renewal must happen *before* a token expires. If a token has already expired, a new one should be created instead via `customerAccessTokenCreate`. 
+  # customerAccessTokenRenew: Renews a customer access token. Access token renewal must happen *before* a token expires. If a token has already expired, a new one should be created instead via `customerAccessTokenCreate`. 
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @return [Payloads::CustomerAccessTokenRenew]
   def customer_access_token_renew(customer_access_token:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerActivate Activates a customer.
+  # customerActivate: Activates a customer.
   # @param id [Types::ID!] Specifies the customer to activate.
   # @param input [Inputs::CustomerActivate!] 
   # @return [Payloads::CustomerActivate]
@@ -160,7 +161,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerAddressCreate Creates a new address for a customer.
+  # customerAddressCreate: Creates a new address for a customer.
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @param address [Inputs::MailingAddress!] The customer mailing address to create.
   # @return [Payloads::CustomerAddressCreate]
@@ -168,7 +169,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerAddressDelete Permanently deletes the address of an existing customer.
+  # customerAddressDelete: Permanently deletes the address of an existing customer.
   # @param id [Types::ID!] Specifies the address to delete.
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @return [Payloads::CustomerAddressDelete]
@@ -176,7 +177,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerAddressUpdate Updates the address of an existing customer.
+  # customerAddressUpdate: Updates the address of an existing customer.
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @param id [Types::ID!] Specifies the customer address to update.
   # @param address [Inputs::MailingAddress!] The customer’s mailing address.
@@ -185,14 +186,14 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerCreate Creates a new customer.
+  # customerCreate: Creates a new customer.
   # @param input [Inputs::CustomerCreate!] 
   # @return [Payloads::CustomerCreate]
   def customer_create(input:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerDefaultAddressUpdate Updates the default address of an existing customer.
+  # customerDefaultAddressUpdate: Updates the default address of an existing customer.
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @param address_id [Types::ID!] ID of the address to set as the new default for the customer.
   # @return [Payloads::CustomerDefaultAddressUpdate]
@@ -200,14 +201,14 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerRecover Sends a reset password email to the customer, as the first step in the reset password process.
+  # customerRecover: Sends a reset password email to the customer, as the first step in the reset password process.
   # @param email [Types::String!] The email address of the customer to recover.
   # @return [Payloads::CustomerRecover]
   def customer_recover(email:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerReset Resets a customer’s password with a token received from `CustomerRecover`.
+  # customerReset: Resets a customer’s password with a token received from `CustomerRecover`.
   # @param id [Types::ID!] Specifies the customer to reset.
   # @param input [Inputs::CustomerReset!] 
   # @return [Payloads::CustomerReset]
@@ -215,7 +216,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerResetByUrl Resets a customer’s password with the reset password url received from `CustomerRecover`.
+  # customerResetByUrl: Resets a customer’s password with the reset password url received from `CustomerRecover`.
   # @param reset_url [Types::URL!] The customer's reset password url.
   # @param password [Types::String!] New password that will be set as part of the reset password process.
   # @return [Payloads::CustomerResetByUrl]
@@ -223,7 +224,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql customerUpdate Updates an existing customer.
+  # customerUpdate: Updates an existing customer.
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @param customer [Inputs::CustomerUpdate!] The customer object input.
   # @return [Payloads::CustomerUpdate]

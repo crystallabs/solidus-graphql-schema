@@ -1,133 +1,136 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'ProductVariant' do
-    #let!(:product_variant) {create(:product_variant)}
+module Spree::GraphQL
+  describe 'Types::ProductVariant' do
+    #let!(:product_variant) { create(:product_variant) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql availableForSale Indicates if the product variant is available for sale.
+    # availableForSale: Indicates if the product variant is available for sale.
     # @return [Types::Boolean!]
-    #it 'available_for_sale' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { availableForSale() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['availableForSale']).to eq product_variant.available_for_sale
-    #end
+    describe 'availableForSale' do
+      let!(:query) { '{ product_variant { availableForSale } }' }
+      let!(:result) { { data: { product_variant: { availableForSale: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql compareAtPrice The compare at price of the variant. This can be used to mark a variant as on sale, when `compareAtPrice` is higher than `price`.
+    # compareAtPrice: The compare at price of the variant. This can be used to mark a variant as on sale, when `compareAtPrice` is higher than `price`.
     # @return [Types::Money]
-    #it 'compare_at_price' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { compareAtPrice() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['compareAtPrice']).to eq product_variant.compare_at_price
-    #end
+    describe 'compareAtPrice' do
+      let!(:query) { '{ product_variant { compareAtPrice } }' }
+      let!(:result) { { data: { product_variant: { compareAtPrice: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['id']).to eq product_variant.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ product_variant { id } }' }
+      let!(:result) { { data: { product_variant: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql image Image associated with the product variant. This field falls back to the product image if no image is available.
+    # image: Image associated with the product variant. This field falls back to the product image if no image is available.
     # @param max_width [Types::Int]
     # @param max_height [Types::Int]
     # @param crop [Types::CropRegion]
     # @param scale [Types::Int] (1)
     # @return [Types::Image]
-    #it 'image' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { image(max_width:, max_height:, crop:, scale:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['image']).to eq product_variant.image
-    #end
+    describe 'image' do
+      let!(:query) { '{ product_variant { image } }' }
+      let!(:result) { { data: { product_variant: { image: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql price The product variant’s price.
+    # price: The product variant’s price.
     # @return [Types::Money!]
-    #it 'price' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { price() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['price']).to eq product_variant.price
-    #end
+    describe 'price' do
+      let!(:query) { '{ product_variant { price } }' }
+      let!(:result) { { data: { product_variant: { price: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql product The product object that the product variant belongs to.
+    # product: The product object that the product variant belongs to.
     # @return [Types::Product!]
-    #it 'product' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { product() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['product']).to eq product_variant.product
-    #end
+    describe 'product' do
+      let!(:query) { '{ product_variant { product } }' }
+      let!(:result) { { data: { product_variant: { product: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql selectedOptions List of product options applied to the variant.
+    # selectedOptions: List of product options applied to the variant.
     # @return [[Types::SelectedOption!]!]
-    #it 'selected_options' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { selectedOptions() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['selectedOptions']).to eq product_variant.selected_options
-    #end
+    describe 'selectedOptions' do
+      let!(:query) { '{ product_variant { selectedOptions } }' }
+      let!(:result) { { data: { product_variant: { selectedOptions: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql sku The SKU (stock keeping unit) associated with the variant.
+    # sku: The SKU (stock keeping unit) associated with the variant.
     # @return [Types::String]
-    #it 'sku' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { sku() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['sku']).to eq product_variant.sku
-    #end
+    describe 'sku' do
+      let!(:query) { '{ product_variant { sku } }' }
+      let!(:result) { { data: { product_variant: { sku: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title The product variant’s title.
+    # title: The product variant’s title.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['title']).to eq product_variant.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ product_variant { title } }' }
+      let!(:result) { { data: { product_variant: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql weight The weight of the product variant in the unit system specified with `weight_unit`.
+    # weight: The weight of the product variant in the unit system specified with `weight_unit`.
     # @return [Types::Float]
-    #it 'weight' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { weight() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['weight']).to eq product_variant.weight
-    #end
+    describe 'weight' do
+      let!(:query) { '{ product_variant { weight } }' }
+      let!(:result) { { data: { product_variant: { weight: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql weightUnit Unit of measurement for weight.
+    # weightUnit: Unit of measurement for weight.
     # @return [Types::WeightUnit!]
-    #it 'weight_unit' do
-    #  query = <<-GRAPHQL
-    #    { product_variant { weightUnit() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_variant')
-    #  expect(result['weightUnit']).to eq product_variant.weight_unit
-    #end
+    describe 'weightUnit' do
+      let!(:query) { '{ product_variant { weightUnit } }' }
+      let!(:result) { { data: { product_variant: { weightUnit: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

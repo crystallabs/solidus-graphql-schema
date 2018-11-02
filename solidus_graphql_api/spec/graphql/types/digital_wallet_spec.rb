@@ -1,8 +1,11 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'DigitalWallet' do
-    #let!(:digital_wallet) {create(:digital_wallet)}
+module Spree::GraphQL
+  describe 'Types::DigitalWallet' do
+    #let!(:digital_wallet) { create(:digital_wallet) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
   end
 end

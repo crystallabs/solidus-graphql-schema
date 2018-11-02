@@ -1,41 +1,44 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'ProductOption' do
-    #let!(:product_option) {create(:product_option)}
+module Spree::GraphQL
+  describe 'Types::ProductOption' do
+    #let!(:product_option) { create(:product_option) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { product_option { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_option')
-    #  expect(result['id']).to eq product_option.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ product_option { id } }' }
+      let!(:result) { { data: { product_option: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql name The product option’s name.
+    # name: The product option’s name.
     # @return [Types::String!]
-    #it 'name' do
-    #  query = <<-GRAPHQL
-    #    { product_option { name() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_option')
-    #  expect(result['name']).to eq product_option.name
-    #end
+    describe 'name' do
+      let!(:query) { '{ product_option { name } }' }
+      let!(:result) { { data: { product_option: { name: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql values The corresponding value to the product option name.
+    # values: The corresponding value to the product option name.
     # @return [[Types::String!]!]
-    #it 'values' do
-    #  query = <<-GRAPHQL
-    #    { product_option { values() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product_option')
-    #  expect(result['values']).to eq product_option.values
-    #end
+    describe 'values' do
+      let!(:query) { '{ product_option { values } }' }
+      let!(:result) { { data: { product_option: { values: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

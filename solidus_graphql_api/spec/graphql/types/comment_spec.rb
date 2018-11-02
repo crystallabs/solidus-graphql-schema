@@ -1,53 +1,56 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Comment' do
-    #let!(:comment) {create(:comment)}
+module Spree::GraphQL
+  describe 'Types::Comment' do
+    #let!(:comment) { create(:comment) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql author The comment’s author.
+    # author: The comment’s author.
     # @return [Types::CommentAuthor!]
-    #it 'author' do
-    #  query = <<-GRAPHQL
-    #    { comment { author() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'comment')
-    #  expect(result['author']).to eq comment.author
-    #end
+    describe 'author' do
+      let!(:query) { '{ comment { author } }' }
+      let!(:result) { { data: { comment: { author: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql content Stripped content of the comment, single line with HTML tags removed.
+    # content: Stripped content of the comment, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String!]
-    #it 'content' do
-    #  query = <<-GRAPHQL
-    #    { comment { content(truncate_at:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'comment')
-    #  expect(result['content']).to eq comment.content
-    #end
+    describe 'content' do
+      let!(:query) { '{ comment { content } }' }
+      let!(:result) { { data: { comment: { content: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql contentHtml The content of the comment, complete with HTML formatting.
+    # contentHtml: The content of the comment, complete with HTML formatting.
     # @return [Types::HTML!]
-    #it 'content_html' do
-    #  query = <<-GRAPHQL
-    #    { comment { contentHtml() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'comment')
-    #  expect(result['contentHtml']).to eq comment.content_html
-    #end
+    describe 'contentHtml' do
+      let!(:query) { '{ comment { contentHtml } }' }
+      let!(:result) { { data: { comment: { contentHtml: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { comment { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'comment')
-    #  expect(result['id']).to eq comment.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ comment { id } }' }
+      let!(:result) { { data: { comment: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

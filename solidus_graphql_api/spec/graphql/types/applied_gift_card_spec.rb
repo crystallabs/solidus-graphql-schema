@@ -1,52 +1,55 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'AppliedGiftCard' do
-    #let!(:applied_gift_card) {create(:applied_gift_card)}
+module Spree::GraphQL
+  describe 'Types::AppliedGiftCard' do
+    #let!(:applied_gift_card) { create(:applied_gift_card) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql amountUsed The amount that was used taken from the Gift Card by applying it.
+    # amountUsed: The amount that was used taken from the Gift Card by applying it.
     # @return [Types::Money!]
-    #it 'amount_used' do
-    #  query = <<-GRAPHQL
-    #    { applied_gift_card { amountUsed() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'applied_gift_card')
-    #  expect(result['amountUsed']).to eq applied_gift_card.amount_used
-    #end
+    describe 'amountUsed' do
+      let!(:query) { '{ applied_gift_card { amountUsed } }' }
+      let!(:result) { { data: { applied_gift_card: { amountUsed: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql balance The amount left on the Gift Card.
+    # balance: The amount left on the Gift Card.
     # @return [Types::Money!]
-    #it 'balance' do
-    #  query = <<-GRAPHQL
-    #    { applied_gift_card { balance() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'applied_gift_card')
-    #  expect(result['balance']).to eq applied_gift_card.balance
-    #end
+    describe 'balance' do
+      let!(:query) { '{ applied_gift_card { balance } }' }
+      let!(:result) { { data: { applied_gift_card: { balance: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { applied_gift_card { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'applied_gift_card')
-    #  expect(result['id']).to eq applied_gift_card.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ applied_gift_card { id } }' }
+      let!(:result) { { data: { applied_gift_card: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql lastCharacters The last characters of the Gift Card code
+    # lastCharacters: The last characters of the Gift Card code
     # @return [Types::String!]
-    #it 'last_characters' do
-    #  query = <<-GRAPHQL
-    #    { applied_gift_card { lastCharacters() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'applied_gift_card')
-    #  expect(result['lastCharacters']).to eq applied_gift_card.last_characters
-    #end
+    describe 'lastCharacters' do
+      let!(:query) { '{ applied_gift_card { lastCharacters } }' }
+      let!(:result) { { data: { applied_gift_card: { lastCharacters: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

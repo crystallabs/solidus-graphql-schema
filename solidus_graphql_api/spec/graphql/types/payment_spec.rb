@@ -1,118 +1,121 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Payment' do
-    #let!(:payment) {create(:payment)}
+module Spree::GraphQL
+  describe 'Types::Payment' do
+    #let!(:payment) { create(:payment) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql amount The amount of the payment.
+    # amount: The amount of the payment.
     # @return [Types::Money!]
-    #it 'amount' do
-    #  query = <<-GRAPHQL
-    #    { payment { amount() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['amount']).to eq payment.amount
-    #end
+    describe 'amount' do
+      let!(:query) { '{ payment { amount } }' }
+      let!(:result) { { data: { payment: { amount: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql billingAddress The billing address for the payment.
+    # billingAddress: The billing address for the payment.
     # @return [Types::MailingAddress]
-    #it 'billing_address' do
-    #  query = <<-GRAPHQL
-    #    { payment { billingAddress() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['billingAddress']).to eq payment.billing_address
-    #end
+    describe 'billingAddress' do
+      let!(:query) { '{ payment { billingAddress } }' }
+      let!(:result) { { data: { payment: { billingAddress: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql checkout The checkout to which the payment belongs.
+    # checkout: The checkout to which the payment belongs.
     # @return [Types::Checkout!]
-    #it 'checkout' do
-    #  query = <<-GRAPHQL
-    #    { payment { checkout() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['checkout']).to eq payment.checkout
-    #end
+    describe 'checkout' do
+      let!(:query) { '{ payment { checkout } }' }
+      let!(:result) { { data: { payment: { checkout: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql creditCard The credit card used for the payment in the case of direct payments.
+    # creditCard: The credit card used for the payment in the case of direct payments.
     # @return [Types::CreditCard]
-    #it 'credit_card' do
-    #  query = <<-GRAPHQL
-    #    { payment { creditCard() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['creditCard']).to eq payment.credit_card
-    #end
+    describe 'creditCard' do
+      let!(:query) { '{ payment { creditCard } }' }
+      let!(:result) { { data: { payment: { creditCard: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql errorMessage An message describing a processing error during asynchronous processing.
+    # errorMessage: An message describing a processing error during asynchronous processing.
     # @return [Types::String]
-    #it 'error_message' do
-    #  query = <<-GRAPHQL
-    #    { payment { errorMessage() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['errorMessage']).to eq payment.error_message
-    #end
+    describe 'errorMessage' do
+      let!(:query) { '{ payment { errorMessage } }' }
+      let!(:result) { { data: { payment: { errorMessage: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { payment { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['id']).to eq payment.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ payment { id } }' }
+      let!(:result) { { data: { payment: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql idempotencyKey A client-side generated token to identify a payment and perform idempotent operations.
+    # idempotencyKey: A client-side generated token to identify a payment and perform idempotent operations.
     # @return [Types::String]
-    #it 'idempotency_key' do
-    #  query = <<-GRAPHQL
-    #    { payment { idempotencyKey() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['idempotencyKey']).to eq payment.idempotency_key
-    #end
+    describe 'idempotencyKey' do
+      let!(:query) { '{ payment { idempotencyKey } }' }
+      let!(:result) { { data: { payment: { idempotencyKey: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql ready Whether or not the payment is still processing asynchronously.
+    # ready: Whether or not the payment is still processing asynchronously.
     # @return [Types::Boolean!]
-    #it 'ready' do
-    #  query = <<-GRAPHQL
-    #    { payment { ready() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['ready']).to eq payment.ready
-    #end
+    describe 'ready' do
+      let!(:query) { '{ payment { ready } }' }
+      let!(:result) { { data: { payment: { ready: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql test A flag to indicate if the payment is to be done in test mode for gateways that support it.
+    # test: A flag to indicate if the payment is to be done in test mode for gateways that support it.
     # @return [Types::Boolean!]
-    #it 'test' do
-    #  query = <<-GRAPHQL
-    #    { payment { test() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['test']).to eq payment.test
-    #end
+    describe 'test' do
+      let!(:query) { '{ payment { test } }' }
+      let!(:result) { { data: { payment: { test: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql transaction The actual transaction recorded by Solidus after having processed the payment with the gateway.
+    # transaction: The actual transaction recorded by Solidus after having processed the payment with the gateway.
     # @return [Types::Transaction]
-    #it 'transaction' do
-    #  query = <<-GRAPHQL
-    #    { payment { transaction() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'payment')
-    #  expect(result['transaction']).to eq payment.transaction
-    #end
+    describe 'transaction' do
+      let!(:query) { '{ payment { transaction } }' }
+      let!(:result) { { data: { payment: { transaction: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 module Spree::GraphQL::Types::PricingPercentageValue
-  # @graphql percentage The percentage value of the object.
+  # percentage: The percentage value of the object.
   # @return [Types::Float!]
   def percentage()
     raise ::Spree::GraphQL::NotImplementedError.new

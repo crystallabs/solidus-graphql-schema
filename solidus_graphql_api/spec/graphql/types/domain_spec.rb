@@ -1,41 +1,44 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Domain' do
-    #let!(:domain) {create(:domain)}
+module Spree::GraphQL
+  describe 'Types::Domain' do
+    #let!(:domain) { create(:domain) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql host The host name of the domain (eg: `example.com`).
+    # host: The host name of the domain (eg: `example.com`).
     # @return [Types::String!]
-    #it 'host' do
-    #  query = <<-GRAPHQL
-    #    { domain { host() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'domain')
-    #  expect(result['host']).to eq domain.host
-    #end
+    describe 'host' do
+      let!(:query) { '{ domain { host } }' }
+      let!(:result) { { data: { domain: { host: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql sslEnabled Whether SSL is enabled or not.
+    # sslEnabled: Whether SSL is enabled or not.
     # @return [Types::Boolean!]
-    #it 'ssl_enabled' do
-    #  query = <<-GRAPHQL
-    #    { domain { sslEnabled() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'domain')
-    #  expect(result['sslEnabled']).to eq domain.ssl_enabled
-    #end
+    describe 'sslEnabled' do
+      let!(:query) { '{ domain { sslEnabled } }' }
+      let!(:result) { { data: { domain: { sslEnabled: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql url The URL of the domain (eg: `https://example.com`).
+    # url: The URL of the domain (eg: `https://example.com`).
     # @return [Types::URL!]
-    #it 'url' do
-    #  query = <<-GRAPHQL
-    #    { domain { url() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'domain')
-    #  expect(result['url']).to eq domain.url
-    #end
+    describe 'url' do
+      let!(:query) { '{ domain { url } }' }
+      let!(:result) { { data: { domain: { url: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

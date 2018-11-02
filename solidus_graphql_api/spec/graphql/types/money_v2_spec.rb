@@ -1,30 +1,33 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'MoneyV2' do
-    #let!(:money_v2) {create(:money_v2)}
+module Spree::GraphQL
+  describe 'Types::MoneyV2' do
+    #let!(:money_v2) { create(:money_v2) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql amount Decimal money amount.
+    # amount: Decimal money amount.
     # @return [Types::Decimal!]
-    #it 'amount' do
-    #  query = <<-GRAPHQL
-    #    { money_v2 { amount() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'money_v2')
-    #  expect(result['amount']).to eq money_v2.amount
-    #end
+    describe 'amount' do
+      let!(:query) { '{ money_v2 { amount } }' }
+      let!(:result) { { data: { money_v2: { amount: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql currencyCode Currency of the money.
+    # currencyCode: Currency of the money.
     # @return [Types::CurrencyCode!]
-    #it 'currency_code' do
-    #  query = <<-GRAPHQL
-    #    { money_v2 { currencyCode() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'money_v2')
-    #  expect(result['currencyCode']).to eq money_v2.currency_code
-    #end
+    describe 'currencyCode' do
+      let!(:query) { '{ money_v2 { currencyCode } }' }
+      let!(:result) { { data: { money_v2: { currencyCode: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

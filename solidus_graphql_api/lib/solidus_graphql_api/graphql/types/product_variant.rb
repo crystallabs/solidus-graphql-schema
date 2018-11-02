@@ -1,24 +1,25 @@
+# frozen_string_literal: true
 module Spree::GraphQL::Types::ProductVariant
   include ::Spree::GraphQL::Interfaces::Node
-  # @graphql availableForSale Indicates if the product variant is available for sale.
+  # availableForSale: Indicates if the product variant is available for sale.
   # @return [Types::Boolean!]
   def available_for_sale()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql compareAtPrice The compare at price of the variant. This can be used to mark a variant as on sale, when `compareAtPrice` is higher than `price`.
+  # compareAtPrice: The compare at price of the variant. This can be used to mark a variant as on sale, when `compareAtPrice` is higher than `price`.
   # @return [Types::Money]
   def compare_at_price()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql id Globally unique identifier.
+  # id: Globally unique identifier.
   # @return [Types::ID!]
   def id()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql image Image associated with the product variant. This field falls back to the product image if no image is available.
+  # image: Image associated with the product variant. This field falls back to the product image if no image is available.
   # @param max_width [Types::Int] Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.
   # @param max_height [Types::Int] Image height in pixels between 1 and 2048. This argument is deprecated: Use `maxHeight` on `Image.transformedSrc` instead.
   # @param crop [Types::CropRegion] Crops the image according to the specified region. This argument is deprecated: Use `crop` on `Image.transformedSrc` instead.
@@ -28,43 +29,43 @@ module Spree::GraphQL::Types::ProductVariant
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql price The product variant’s price.
+  # price: The product variant’s price.
   # @return [Types::Money!]
   def price()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql product The product object that the product variant belongs to.
+  # product: The product object that the product variant belongs to.
   # @return [Types::Product!]
   def product()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql selectedOptions List of product options applied to the variant.
+  # selectedOptions: List of product options applied to the variant.
   # @return [[Types::SelectedOption!]!]
   def selected_options()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql sku The SKU (stock keeping unit) associated with the variant.
+  # sku: The SKU (stock keeping unit) associated with the variant.
   # @return [Types::String]
   def sku()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql title The product variant’s title.
+  # title: The product variant’s title.
   # @return [Types::String!]
   def title()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql weight The weight of the product variant in the unit system specified with `weight_unit`.
+  # weight: The weight of the product variant in the unit system specified with `weight_unit`.
   # @return [Types::Float]
   def weight()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql weightUnit Unit of measurement for weight.
+  # weightUnit: Unit of measurement for weight.
   # @return [Types::WeightUnit!]
   def weight_unit()
     raise ::Spree::GraphQL::NotImplementedError.new

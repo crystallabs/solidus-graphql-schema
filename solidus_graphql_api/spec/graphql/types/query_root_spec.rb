@@ -1,95 +1,98 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'QueryRoot' do
-    #let!(:query_root) {create(:query_root)}
+module Spree::GraphQL
+  describe 'Types::QueryRoot' do
+    #let!(:query_root) { create(:query_root) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql articles List of the shop's articles.
+    # articles: List of the shop's articles.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ArticleSortKeys] ('ID')
     # @param query [Types::String]
     # @return [Types::Article.connection_type!]
-    #it 'articles' do
-    #  query = <<-GRAPHQL
-    #    { query_root { articles(reverse:, sort_key:, query:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'query_root')
-    #  expect(result['articles']).to eq query_root.articles
-    #end
+    describe 'articles' do
+      let!(:query) { '{ query_root { articles } }' }
+      let!(:result) { { data: { query_root: { articles: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql blogByHandle Find a blog by its handle.
+    # blogByHandle: Find a blog by its handle.
     # @param handle [Types::String!]
     # @return [Types::Blog]
-    #it 'blog_by_handle' do
-    #  query = <<-GRAPHQL
-    #    { query_root { blogByHandle(handle:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'query_root')
-    #  expect(result['blogByHandle']).to eq query_root.blog_by_handle
-    #end
+    describe 'blogByHandle' do
+      let!(:query) { '{ query_root { blogByHandle } }' }
+      let!(:result) { { data: { query_root: { blogByHandle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql blogs List of the shop's blogs.
+    # blogs: List of the shop's blogs.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::BlogSortKeys] ('ID')
     # @param query [Types::String]
     # @return [Types::Blog.connection_type!]
-    #it 'blogs' do
-    #  query = <<-GRAPHQL
-    #    { query_root { blogs(reverse:, sort_key:, query:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'query_root')
-    #  expect(result['blogs']).to eq query_root.blogs
-    #end
+    describe 'blogs' do
+      let!(:query) { '{ query_root { blogs } }' }
+      let!(:result) { { data: { query_root: { blogs: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql customer
+    # customer
     # @param customer_access_token [Types::String!]
     # @return [Types::Customer]
-    #it 'customer' do
-    #  query = <<-GRAPHQL
-    #    { query_root { customer(customer_access_token:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'query_root')
-    #  expect(result['customer']).to eq query_root.customer
-    #end
+    describe 'customer' do
+      let!(:query) { '{ query_root { customer } }' }
+      let!(:result) { { data: { query_root: { customer: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql node
+    # node
     # @param id [Types::ID!]
     # @return [Interfaces::Node]
-    #it 'node' do
-    #  query = <<-GRAPHQL
-    #    { query_root { node(id:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'query_root')
-    #  expect(result['node']).to eq query_root.node
-    #end
+    describe 'node' do
+      let!(:query) { '{ query_root { node } }' }
+      let!(:result) { { data: { query_root: { node: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql nodes
+    # nodes
     # @param ids [[Types::ID!]!]
     # @return [[Interfaces::Node]!]
-    #it 'nodes' do
-    #  query = <<-GRAPHQL
-    #    { query_root { nodes(ids:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'query_root')
-    #  expect(result['nodes']).to eq query_root.nodes
-    #end
+    describe 'nodes' do
+      let!(:query) { '{ query_root { nodes } }' }
+      let!(:result) { { data: { query_root: { nodes: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql shop
+    # shop
     # @return [Types::Shop!]
-    #it 'shop' do
-    #  query = <<-GRAPHQL
-    #    { query_root { shop() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'query_root')
-    #  expect(result['shop']).to eq query_root.shop
-    #end
+    describe 'shop' do
+      let!(:query) { '{ query_root { shop } }' }
+      let!(:result) { { data: { query_root: { shop: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

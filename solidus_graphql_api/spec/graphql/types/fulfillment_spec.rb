@@ -1,43 +1,46 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Fulfillment' do
-    #let!(:fulfillment) {create(:fulfillment)}
+module Spree::GraphQL
+  describe 'Types::Fulfillment' do
+    #let!(:fulfillment) { create(:fulfillment) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql fulfillmentLineItems List of the fulfillment's line items.
+    # fulfillmentLineItems: List of the fulfillment's line items.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::FulfillmentLineItem.connection_type!]
-    #it 'fulfillment_line_items' do
-    #  query = <<-GRAPHQL
-    #    { fulfillment { fulfillmentLineItems(reverse:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'fulfillment')
-    #  expect(result['fulfillmentLineItems']).to eq fulfillment.fulfillment_line_items
-    #end
+    describe 'fulfillmentLineItems' do
+      let!(:query) { '{ fulfillment { fulfillmentLineItems } }' }
+      let!(:result) { { data: { fulfillment: { fulfillmentLineItems: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql trackingCompany The name of the tracking company.
+    # trackingCompany: The name of the tracking company.
     # @return [Types::String]
-    #it 'tracking_company' do
-    #  query = <<-GRAPHQL
-    #    { fulfillment { trackingCompany() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'fulfillment')
-    #  expect(result['trackingCompany']).to eq fulfillment.tracking_company
-    #end
+    describe 'trackingCompany' do
+      let!(:query) { '{ fulfillment { trackingCompany } }' }
+      let!(:result) { { data: { fulfillment: { trackingCompany: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql trackingInfo Tracking information associated with the fulfillment, such as the tracking number and tracking URL. 
+    # trackingInfo: Tracking information associated with the fulfillment, such as the tracking number and tracking URL. 
     # @param first [Types::Int]
     # @return [[Types::FulfillmentTrackingInfo!]!]
-    #it 'tracking_info' do
-    #  query = <<-GRAPHQL
-    #    { fulfillment { trackingInfo(first:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'fulfillment')
-    #  expect(result['trackingInfo']).to eq fulfillment.tracking_info
-    #end
+    describe 'trackingInfo' do
+      let!(:query) { '{ fulfillment { trackingInfo } }' }
+      let!(:result) { { data: { fulfillment: { trackingInfo: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

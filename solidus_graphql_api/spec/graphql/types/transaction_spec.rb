@@ -1,52 +1,55 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Transaction' do
-    #let!(:transaction) {create(:transaction)}
+module Spree::GraphQL
+  describe 'Types::Transaction' do
+    #let!(:transaction) { create(:transaction) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql amount The amount of money that the transaction was for.
+    # amount: The amount of money that the transaction was for.
     # @return [Types::Money!]
-    #it 'amount' do
-    #  query = <<-GRAPHQL
-    #    { transaction { amount() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'transaction')
-    #  expect(result['amount']).to eq transaction.amount
-    #end
+    describe 'amount' do
+      let!(:query) { '{ transaction { amount } }' }
+      let!(:result) { { data: { transaction: { amount: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql kind The kind of the transaction.
+    # kind: The kind of the transaction.
     # @return [Types::TransactionKind!]
-    #it 'kind' do
-    #  query = <<-GRAPHQL
-    #    { transaction { kind() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'transaction')
-    #  expect(result['kind']).to eq transaction.kind
-    #end
+    describe 'kind' do
+      let!(:query) { '{ transaction { kind } }' }
+      let!(:result) { { data: { transaction: { kind: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql status The status of the transaction
+    # status: The status of the transaction
     # @return [Types::TransactionStatus!]
-    #it 'status' do
-    #  query = <<-GRAPHQL
-    #    { transaction { status() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'transaction')
-    #  expect(result['status']).to eq transaction.status
-    #end
+    describe 'status' do
+      let!(:query) { '{ transaction { status } }' }
+      let!(:result) { { data: { transaction: { status: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql test Whether the transaction was done in test mode or not
+    # test: Whether the transaction was done in test mode or not
     # @return [Types::Boolean!]
-    #it 'test' do
-    #  query = <<-GRAPHQL
-    #    { transaction { test() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'transaction')
-    #  expect(result['test']).to eq transaction.test
-    #end
+    describe 'test' do
+      let!(:query) { '{ transaction { test } }' }
+      let!(:result) { { data: { transaction: { test: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

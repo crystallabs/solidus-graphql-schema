@@ -1,89 +1,92 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Product' do
-    #let!(:product) {create(:product)}
+module Spree::GraphQL
+  describe 'Types::Product' do
+    #let!(:product) { create(:product) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql availableForSale Indicates if at least one product variant is available for sale.
+    # availableForSale: Indicates if at least one product variant is available for sale.
     # @return [Types::Boolean!]
-    #it 'available_for_sale' do
-    #  query = <<-GRAPHQL
-    #    { product { availableForSale() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['availableForSale']).to eq product.available_for_sale
-    #end
+    describe 'availableForSale' do
+      let!(:query) { '{ product { availableForSale } }' }
+      let!(:result) { { data: { product: { availableForSale: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql collections List of collections a product belongs to.
+    # collections: List of collections a product belongs to.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::Collection.connection_type!]
-    #it 'collections' do
-    #  query = <<-GRAPHQL
-    #    { product { collections(reverse:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['collections']).to eq product.collections
-    #end
+    describe 'collections' do
+      let!(:query) { '{ product { collections } }' }
+      let!(:result) { { data: { product: { collections: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql createdAt The date and time when the product was created.
+    # createdAt: The date and time when the product was created.
     # @return [Types::DateTime!]
-    #it 'created_at' do
-    #  query = <<-GRAPHQL
-    #    { product { createdAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['createdAt']).to eq product.created_at
-    #end
+    describe 'createdAt' do
+      let!(:query) { '{ product { createdAt } }' }
+      let!(:result) { { data: { product: { createdAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql description Stripped description of the product, single line with HTML tags removed.
+    # description: Stripped description of the product, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String!]
-    #it 'description' do
-    #  query = <<-GRAPHQL
-    #    { product { description(truncate_at:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['description']).to eq product.description
-    #end
+    describe 'description' do
+      let!(:query) { '{ product { description } }' }
+      let!(:result) { { data: { product: { description: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql descriptionHtml The description of the product, complete with HTML formatting.
+    # descriptionHtml: The description of the product, complete with HTML formatting.
     # @return [Types::HTML!]
-    #it 'description_html' do
-    #  query = <<-GRAPHQL
-    #    { product { descriptionHtml() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['descriptionHtml']).to eq product.description_html
-    #end
+    describe 'descriptionHtml' do
+      let!(:query) { '{ product { descriptionHtml } }' }
+      let!(:result) { { data: { product: { descriptionHtml: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql handle A human-friendly unique string for the Product automatically generated from its title. They are used by the Liquid templating language to refer to objects. 
+    # handle: A human-friendly unique string for the Product automatically generated from its title. They are used by the Liquid templating language to refer to objects. 
     # @return [Types::String!]
-    #it 'handle' do
-    #  query = <<-GRAPHQL
-    #    { product { handle() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['handle']).to eq product.handle
-    #end
+    describe 'handle' do
+      let!(:query) { '{ product { handle } }' }
+      let!(:result) { { data: { product: { handle: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { product { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['id']).to eq product.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ product { id } }' }
+      let!(:result) { { data: { product: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql images List of images associated with the product.
+    # images: List of images associated with the product.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ProductImageSortKeys] ('POSITION')
     # @param max_width [Types::Int]
@@ -91,139 +94,139 @@ describe 'Types' do
     # @param crop [Types::CropRegion]
     # @param scale [Types::Int] (1)
     # @return [Types::Image.connection_type!]
-    #it 'images' do
-    #  query = <<-GRAPHQL
-    #    { product { images(reverse:, sort_key:, max_width:, max_height:, crop:, scale:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['images']).to eq product.images
-    #end
+    describe 'images' do
+      let!(:query) { '{ product { images } }' }
+      let!(:result) { { data: { product: { images: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql onlineStoreUrl The online store URL for the product. A value of `null` indicates that the product is not published to the Online Store sales channel. 
+    # onlineStoreUrl: The online store URL for the product. A value of `null` indicates that the product is not published to the Online Store sales channel. 
     # @return [Types::URL]
-    #it 'online_store_url' do
-    #  query = <<-GRAPHQL
-    #    { product { onlineStoreUrl() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['onlineStoreUrl']).to eq product.online_store_url
-    #end
+    describe 'onlineStoreUrl' do
+      let!(:query) { '{ product { onlineStoreUrl } }' }
+      let!(:result) { { data: { product: { onlineStoreUrl: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql options List of custom product options (maximum of 3 per product).
+    # options: List of custom product options (maximum of 3 per product).
     # @param first [Types::Int]
     # @return [[Types::ProductOption!]!]
-    #it 'options' do
-    #  query = <<-GRAPHQL
-    #    { product { options(first:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['options']).to eq product.options
-    #end
+    describe 'options' do
+      let!(:query) { '{ product { options } }' }
+      let!(:result) { { data: { product: { options: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql priceRange The price range.
+    # priceRange: The price range.
     # @return [Types::ProductPriceRange!]
-    #it 'price_range' do
-    #  query = <<-GRAPHQL
-    #    { product { priceRange() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['priceRange']).to eq product.price_range
-    #end
+    describe 'priceRange' do
+      let!(:query) { '{ product { priceRange } }' }
+      let!(:result) { { data: { product: { priceRange: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql productType A categorization that a product can be tagged with, commonly used for filtering and searching.
+    # productType: A categorization that a product can be tagged with, commonly used for filtering and searching.
     # @return [Types::String!]
-    #it 'product_type' do
-    #  query = <<-GRAPHQL
-    #    { product { productType() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['productType']).to eq product.product_type
-    #end
+    describe 'productType' do
+      let!(:query) { '{ product { productType } }' }
+      let!(:result) { { data: { product: { productType: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql publishedAt The date and time when the product was published to the channel.
+    # publishedAt: The date and time when the product was published to the channel.
     # @return [Types::DateTime!]
-    #it 'published_at' do
-    #  query = <<-GRAPHQL
-    #    { product { publishedAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['publishedAt']).to eq product.published_at
-    #end
+    describe 'publishedAt' do
+      let!(:query) { '{ product { publishedAt } }' }
+      let!(:result) { { data: { product: { publishedAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql tags A categorization that a product can be tagged with, commonly used for filtering and searching. Each comma-separated tag has a character limit of 255. 
+    # tags: A categorization that a product can be tagged with, commonly used for filtering and searching. Each comma-separated tag has a character limit of 255. 
     # @return [[Types::String!]!]
-    #it 'tags' do
-    #  query = <<-GRAPHQL
-    #    { product { tags() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['tags']).to eq product.tags
-    #end
+    describe 'tags' do
+      let!(:query) { '{ product { tags } }' }
+      let!(:result) { { data: { product: { tags: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql title The product’s title.
+    # title: The product’s title.
     # @return [Types::String!]
-    #it 'title' do
-    #  query = <<-GRAPHQL
-    #    { product { title() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['title']).to eq product.title
-    #end
+    describe 'title' do
+      let!(:query) { '{ product { title } }' }
+      let!(:result) { { data: { product: { title: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql updatedAt The date and time when the product was last modified.
+    # updatedAt: The date and time when the product was last modified.
     # @return [Types::DateTime!]
-    #it 'updated_at' do
-    #  query = <<-GRAPHQL
-    #    { product { updatedAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['updatedAt']).to eq product.updated_at
-    #end
+    describe 'updatedAt' do
+      let!(:query) { '{ product { updatedAt } }' }
+      let!(:result) { { data: { product: { updatedAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql variantBySelectedOptions Find a product’s variant based on its selected options. This is useful for converting a user’s selection of product options into a single matching variant. If there is not a variant for the selected options, `null` will be returned. 
+    # variantBySelectedOptions: Find a product’s variant based on its selected options. This is useful for converting a user’s selection of product options into a single matching variant. If there is not a variant for the selected options, `null` will be returned. 
     # @param selected_options [[Inputs::SelectedOption!]!]
     # @return [Types::ProductVariant]
-    #it 'variant_by_selected_options' do
-    #  query = <<-GRAPHQL
-    #    { product { variantBySelectedOptions(selected_options:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['variantBySelectedOptions']).to eq product.variant_by_selected_options
-    #end
+    describe 'variantBySelectedOptions' do
+      let!(:query) { '{ product { variantBySelectedOptions } }' }
+      let!(:result) { { data: { product: { variantBySelectedOptions: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql variants List of the product’s variants.
+    # variants: List of the product’s variants.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ProductVariantSortKeys] ('POSITION')
     # @return [Types::ProductVariant.connection_type!]
-    #it 'variants' do
-    #  query = <<-GRAPHQL
-    #    { product { variants(reverse:, sort_key:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['variants']).to eq product.variants
-    #end
+    describe 'variants' do
+      let!(:query) { '{ product { variants } }' }
+      let!(:result) { { data: { product: { variants: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql vendor The product’s vendor name.
+    # vendor: The product’s vendor name.
     # @return [Types::String!]
-    #it 'vendor' do
-    #  query = <<-GRAPHQL
-    #    { product { vendor() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'product')
-    #  expect(result['vendor']).to eq product.vendor
-    #end
+    describe 'vendor' do
+      let!(:query) { '{ product { vendor } }' }
+      let!(:result) { { data: { product: { vendor: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

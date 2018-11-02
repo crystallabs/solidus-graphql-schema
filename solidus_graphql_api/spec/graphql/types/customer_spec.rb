@@ -1,155 +1,158 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Customer' do
-    #let!(:customer) {create(:customer)}
+module Spree::GraphQL
+  describe 'Types::Customer' do
+    #let!(:customer) { create(:customer) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql acceptsMarketing Indicates whether the customer has consented to be sent marketing material via email.
+    # acceptsMarketing: Indicates whether the customer has consented to be sent marketing material via email.
     # @return [Types::Boolean!]
-    #it 'accepts_marketing' do
-    #  query = <<-GRAPHQL
-    #    { customer { acceptsMarketing() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['acceptsMarketing']).to eq customer.accepts_marketing
-    #end
+    describe 'acceptsMarketing' do
+      let!(:query) { '{ customer { acceptsMarketing } }' }
+      let!(:result) { { data: { customer: { acceptsMarketing: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql addresses A list of addresses for the customer.
+    # addresses: A list of addresses for the customer.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::MailingAddress.connection_type!]
-    #it 'addresses' do
-    #  query = <<-GRAPHQL
-    #    { customer { addresses(reverse:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['addresses']).to eq customer.addresses
-    #end
+    describe 'addresses' do
+      let!(:query) { '{ customer { addresses } }' }
+      let!(:result) { { data: { customer: { addresses: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql createdAt The date and time when the customer was created.
+    # createdAt: The date and time when the customer was created.
     # @return [Types::DateTime!]
-    #it 'created_at' do
-    #  query = <<-GRAPHQL
-    #    { customer { createdAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['createdAt']).to eq customer.created_at
-    #end
+    describe 'createdAt' do
+      let!(:query) { '{ customer { createdAt } }' }
+      let!(:result) { { data: { customer: { createdAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql defaultAddress The customer’s default address.
+    # defaultAddress: The customer’s default address.
     # @return [Types::MailingAddress]
-    #it 'default_address' do
-    #  query = <<-GRAPHQL
-    #    { customer { defaultAddress() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['defaultAddress']).to eq customer.default_address
-    #end
+    describe 'defaultAddress' do
+      let!(:query) { '{ customer { defaultAddress } }' }
+      let!(:result) { { data: { customer: { defaultAddress: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql displayName The customer’s name, email or phone number.
+    # displayName: The customer’s name, email or phone number.
     # @return [Types::String!]
-    #it 'display_name' do
-    #  query = <<-GRAPHQL
-    #    { customer { displayName() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['displayName']).to eq customer.display_name
-    #end
+    describe 'displayName' do
+      let!(:query) { '{ customer { displayName } }' }
+      let!(:result) { { data: { customer: { displayName: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql email The customer’s email address.
+    # email: The customer’s email address.
     # @return [Types::String]
-    #it 'email' do
-    #  query = <<-GRAPHQL
-    #    { customer { email() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['email']).to eq customer.email
-    #end
+    describe 'email' do
+      let!(:query) { '{ customer { email } }' }
+      let!(:result) { { data: { customer: { email: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql firstName The customer’s first name.
+    # firstName: The customer’s first name.
     # @return [Types::String]
-    #it 'first_name' do
-    #  query = <<-GRAPHQL
-    #    { customer { firstName() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['firstName']).to eq customer.first_name
-    #end
+    describe 'firstName' do
+      let!(:query) { '{ customer { firstName } }' }
+      let!(:result) { { data: { customer: { firstName: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id A unique identifier for the customer.
+    # id: A unique identifier for the customer.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { customer { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['id']).to eq customer.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ customer { id } }' }
+      let!(:result) { { data: { customer: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql lastIncompleteCheckout The customer's most recently updated, incomplete checkout.
+    # lastIncompleteCheckout: The customer's most recently updated, incomplete checkout.
     # @return [Types::Checkout]
-    #it 'last_incomplete_checkout' do
-    #  query = <<-GRAPHQL
-    #    { customer { lastIncompleteCheckout() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['lastIncompleteCheckout']).to eq customer.last_incomplete_checkout
-    #end
+    describe 'lastIncompleteCheckout' do
+      let!(:query) { '{ customer { lastIncompleteCheckout } }' }
+      let!(:result) { { data: { customer: { lastIncompleteCheckout: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql lastName The customer’s last name.
+    # lastName: The customer’s last name.
     # @return [Types::String]
-    #it 'last_name' do
-    #  query = <<-GRAPHQL
-    #    { customer { lastName() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['lastName']).to eq customer.last_name
-    #end
+    describe 'lastName' do
+      let!(:query) { '{ customer { lastName } }' }
+      let!(:result) { { data: { customer: { lastName: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql orders The orders associated with the customer.
+    # orders: The orders associated with the customer.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::OrderSortKeys] ('ID')
     # @param query [Types::String]
     # @return [Types::Order.connection_type!]
-    #it 'orders' do
-    #  query = <<-GRAPHQL
-    #    { customer { orders(reverse:, sort_key:, query:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['orders']).to eq customer.orders
-    #end
+    describe 'orders' do
+      let!(:query) { '{ customer { orders } }' }
+      let!(:result) { { data: { customer: { orders: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql phone The customer’s phone number.
+    # phone: The customer’s phone number.
     # @return [Types::String]
-    #it 'phone' do
-    #  query = <<-GRAPHQL
-    #    { customer { phone() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['phone']).to eq customer.phone
-    #end
+    describe 'phone' do
+      let!(:query) { '{ customer { phone } }' }
+      let!(:result) { { data: { customer: { phone: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql updatedAt The date and time when the customer information was updated.
+    # updatedAt: The date and time when the customer information was updated.
     # @return [Types::DateTime!]
-    #it 'updated_at' do
-    #  query = <<-GRAPHQL
-    #    { customer { updatedAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'customer')
-    #  expect(result['updatedAt']).to eq customer.updated_at
-    #end
+    describe 'updatedAt' do
+      let!(:query) { '{ customer { updatedAt } }' }
+      let!(:result) { { data: { customer: { updatedAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

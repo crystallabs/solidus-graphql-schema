@@ -1,30 +1,33 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Attribute' do
-    #let!(:attribute) {create(:attribute)}
+module Spree::GraphQL
+  describe 'Types::Attribute' do
+    #let!(:attribute) { create(:attribute) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql key Key or name of the attribute.
+    # key: Key or name of the attribute.
     # @return [Types::String!]
-    #it 'key' do
-    #  query = <<-GRAPHQL
-    #    { attribute { key() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'attribute')
-    #  expect(result['key']).to eq attribute.key
-    #end
+    describe 'key' do
+      let!(:query) { '{ attribute { key } }' }
+      let!(:result) { { data: { attribute: { key: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql value Value of the attribute.
+    # value: Value of the attribute.
     # @return [Types::String]
-    #it 'value' do
-    #  query = <<-GRAPHQL
-    #    { attribute { value() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'attribute')
-    #  expect(result['value']).to eq attribute.value
-    #end
+    describe 'value' do
+      let!(:query) { '{ attribute { value } }' }
+      let!(:result) { { data: { attribute: { value: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

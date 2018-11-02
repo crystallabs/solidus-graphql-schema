@@ -1,296 +1,299 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'Checkout' do
-    #let!(:checkout) {create(:checkout)}
+module Spree::GraphQL
+  describe 'Types::Checkout' do
+    #let!(:checkout) { create(:checkout) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql appliedGiftCards
+    # appliedGiftCards
     # @return [[Types::AppliedGiftCard!]!]
-    #it 'applied_gift_cards' do
-    #  query = <<-GRAPHQL
-    #    { checkout { appliedGiftCards() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['appliedGiftCards']).to eq checkout.applied_gift_cards
-    #end
+    describe 'appliedGiftCards' do
+      let!(:query) { '{ checkout { appliedGiftCards } }' }
+      let!(:result) { { data: { checkout: { appliedGiftCards: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql availableShippingRates The available shipping rates for this Checkout. Should only be used when checkout `requiresShipping` is `true` and the shipping address is valid. 
+    # availableShippingRates: The available shipping rates for this Checkout. Should only be used when checkout `requiresShipping` is `true` and the shipping address is valid. 
     # @return [Types::AvailableShippingRates]
-    #it 'available_shipping_rates' do
-    #  query = <<-GRAPHQL
-    #    { checkout { availableShippingRates() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['availableShippingRates']).to eq checkout.available_shipping_rates
-    #end
+    describe 'availableShippingRates' do
+      let!(:query) { '{ checkout { availableShippingRates } }' }
+      let!(:result) { { data: { checkout: { availableShippingRates: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql completedAt The date and time when the checkout was completed.
+    # completedAt: The date and time when the checkout was completed.
     # @return [Types::DateTime]
-    #it 'completed_at' do
-    #  query = <<-GRAPHQL
-    #    { checkout { completedAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['completedAt']).to eq checkout.completed_at
-    #end
+    describe 'completedAt' do
+      let!(:query) { '{ checkout { completedAt } }' }
+      let!(:result) { { data: { checkout: { completedAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql createdAt The date and time when the checkout was created.
+    # createdAt: The date and time when the checkout was created.
     # @return [Types::DateTime!]
-    #it 'created_at' do
-    #  query = <<-GRAPHQL
-    #    { checkout { createdAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['createdAt']).to eq checkout.created_at
-    #end
+    describe 'createdAt' do
+      let!(:query) { '{ checkout { createdAt } }' }
+      let!(:result) { { data: { checkout: { createdAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql currencyCode The currency code for the Checkout.
+    # currencyCode: The currency code for the Checkout.
     # @return [Types::CurrencyCode!]
-    #it 'currency_code' do
-    #  query = <<-GRAPHQL
-    #    { checkout { currencyCode() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['currencyCode']).to eq checkout.currency_code
-    #end
+    describe 'currencyCode' do
+      let!(:query) { '{ checkout { currencyCode } }' }
+      let!(:result) { { data: { checkout: { currencyCode: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql customAttributes A list of extra information that is added to the checkout.
+    # customAttributes: A list of extra information that is added to the checkout.
     # @return [[Types::Attribute!]!]
-    #it 'custom_attributes' do
-    #  query = <<-GRAPHQL
-    #    { checkout { customAttributes() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['customAttributes']).to eq checkout.custom_attributes
-    #end
+    describe 'customAttributes' do
+      let!(:query) { '{ checkout { customAttributes } }' }
+      let!(:result) { { data: { checkout: { customAttributes: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql discountApplications Discounts that have been applied on the checkout.
+    # discountApplications: Discounts that have been applied on the checkout.
     # @param reverse [Types::Boolean] (false)
     # @return [Interfaces::DiscountApplication.connection_type!]
-    #it 'discount_applications' do
-    #  query = <<-GRAPHQL
-    #    { checkout { discountApplications(reverse:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['discountApplications']).to eq checkout.discount_applications
-    #end
+    describe 'discountApplications' do
+      let!(:query) { '{ checkout { discountApplications } }' }
+      let!(:result) { { data: { checkout: { discountApplications: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql email The email attached to this checkout.
+    # email: The email attached to this checkout.
     # @return [Types::String]
-    #it 'email' do
-    #  query = <<-GRAPHQL
-    #    { checkout { email() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['email']).to eq checkout.email
-    #end
+    describe 'email' do
+      let!(:query) { '{ checkout { email } }' }
+      let!(:result) { { data: { checkout: { email: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql id Globally unique identifier.
+    # id: Globally unique identifier.
     # @return [Types::ID!]
-    #it 'id' do
-    #  query = <<-GRAPHQL
-    #    { checkout { id() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['id']).to eq checkout.id
-    #end
+    describe 'id' do
+      let!(:query) { '{ checkout { id } }' }
+      let!(:result) { { data: { checkout: { id: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql lineItems A list of line item objects, each one containing information about an item in the checkout.
+    # lineItems: A list of line item objects, each one containing information about an item in the checkout.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::CheckoutLineItem.connection_type!]
-    #it 'line_items' do
-    #  query = <<-GRAPHQL
-    #    { checkout { lineItems(reverse:) }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['lineItems']).to eq checkout.line_items
-    #end
+    describe 'lineItems' do
+      let!(:query) { '{ checkout { lineItems } }' }
+      let!(:result) { { data: { checkout: { lineItems: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql note
+    # note
     # @return [Types::String]
-    #it 'note' do
-    #  query = <<-GRAPHQL
-    #    { checkout { note() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['note']).to eq checkout.note
-    #end
+    describe 'note' do
+      let!(:query) { '{ checkout { note } }' }
+      let!(:result) { { data: { checkout: { note: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql order The resulting order from a paid checkout.
+    # order: The resulting order from a paid checkout.
     # @return [Types::Order]
-    #it 'order' do
-    #  query = <<-GRAPHQL
-    #    { checkout { order() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['order']).to eq checkout.order
-    #end
+    describe 'order' do
+      let!(:query) { '{ checkout { order } }' }
+      let!(:result) { { data: { checkout: { order: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql orderStatusUrl The Order Status Page for this Checkout, null when checkout is not completed.
+    # orderStatusUrl: The Order Status Page for this Checkout, null when checkout is not completed.
     # @return [Types::URL]
-    #it 'order_status_url' do
-    #  query = <<-GRAPHQL
-    #    { checkout { orderStatusUrl() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['orderStatusUrl']).to eq checkout.order_status_url
-    #end
+    describe 'orderStatusUrl' do
+      let!(:query) { '{ checkout { orderStatusUrl } }' }
+      let!(:result) { { data: { checkout: { orderStatusUrl: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql paymentDue The amount left to be paid. This is equal to the cost of the line items, taxes and shipping minus discounts and gift cards.
+    # paymentDue: The amount left to be paid. This is equal to the cost of the line items, taxes and shipping minus discounts and gift cards.
     # @return [Types::Money!]
-    #it 'payment_due' do
-    #  query = <<-GRAPHQL
-    #    { checkout { paymentDue() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['paymentDue']).to eq checkout.payment_due
-    #end
+    describe 'paymentDue' do
+      let!(:query) { '{ checkout { paymentDue } }' }
+      let!(:result) { { data: { checkout: { paymentDue: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql ready Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is required until the value is true. 
+    # ready: Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is required until the value is true. 
     # @return [Types::Boolean!]
-    #it 'ready' do
-    #  query = <<-GRAPHQL
-    #    { checkout { ready() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['ready']).to eq checkout.ready
-    #end
+    describe 'ready' do
+      let!(:query) { '{ checkout { ready } }' }
+      let!(:result) { { data: { checkout: { ready: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql requiresShipping States whether or not the fulfillment requires shipping.
+    # requiresShipping: States whether or not the fulfillment requires shipping.
     # @return [Types::Boolean!]
-    #it 'requires_shipping' do
-    #  query = <<-GRAPHQL
-    #    { checkout { requiresShipping() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['requiresShipping']).to eq checkout.requires_shipping
-    #end
+    describe 'requiresShipping' do
+      let!(:query) { '{ checkout { requiresShipping } }' }
+      let!(:result) { { data: { checkout: { requiresShipping: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql shippingAddress The shipping address to where the line items will be shipped.
+    # shippingAddress: The shipping address to where the line items will be shipped.
     # @return [Types::MailingAddress]
-    #it 'shipping_address' do
-    #  query = <<-GRAPHQL
-    #    { checkout { shippingAddress() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['shippingAddress']).to eq checkout.shipping_address
-    #end
+    describe 'shippingAddress' do
+      let!(:query) { '{ checkout { shippingAddress } }' }
+      let!(:result) { { data: { checkout: { shippingAddress: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql shippingDiscountAllocations The discounts that have been allocated onto the shipping line by discount applications. 
+    # shippingDiscountAllocations: The discounts that have been allocated onto the shipping line by discount applications. 
     # @return [[Types::DiscountAllocation!]!]
-    #it 'shipping_discount_allocations' do
-    #  query = <<-GRAPHQL
-    #    { checkout { shippingDiscountAllocations() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['shippingDiscountAllocations']).to eq checkout.shipping_discount_allocations
-    #end
+    describe 'shippingDiscountAllocations' do
+      let!(:query) { '{ checkout { shippingDiscountAllocations } }' }
+      let!(:result) { { data: { checkout: { shippingDiscountAllocations: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql shippingLine Once a shipping rate is selected by the customer it is transitioned to a `shipping_line` object.
+    # shippingLine: Once a shipping rate is selected by the customer it is transitioned to a `shipping_line` object.
     # @return [Types::ShippingRate]
-    #it 'shipping_line' do
-    #  query = <<-GRAPHQL
-    #    { checkout { shippingLine() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['shippingLine']).to eq checkout.shipping_line
-    #end
+    describe 'shippingLine' do
+      let!(:query) { '{ checkout { shippingLine } }' }
+      let!(:result) { { data: { checkout: { shippingLine: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql subtotalPrice Price of the checkout before shipping and taxes.
+    # subtotalPrice: Price of the checkout before shipping and taxes.
     # @return [Types::Money!]
-    #it 'subtotal_price' do
-    #  query = <<-GRAPHQL
-    #    { checkout { subtotalPrice() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['subtotalPrice']).to eq checkout.subtotal_price
-    #end
+    describe 'subtotalPrice' do
+      let!(:query) { '{ checkout { subtotalPrice } }' }
+      let!(:result) { { data: { checkout: { subtotalPrice: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql taxExempt Specifies if the Checkout is tax exempt.
+    # taxExempt: Specifies if the Checkout is tax exempt.
     # @return [Types::Boolean!]
-    #it 'tax_exempt' do
-    #  query = <<-GRAPHQL
-    #    { checkout { taxExempt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['taxExempt']).to eq checkout.tax_exempt
-    #end
+    describe 'taxExempt' do
+      let!(:query) { '{ checkout { taxExempt } }' }
+      let!(:result) { { data: { checkout: { taxExempt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql taxesIncluded Specifies if taxes are included in the line item and shipping line prices.
+    # taxesIncluded: Specifies if taxes are included in the line item and shipping line prices.
     # @return [Types::Boolean!]
-    #it 'taxes_included' do
-    #  query = <<-GRAPHQL
-    #    { checkout { taxesIncluded() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['taxesIncluded']).to eq checkout.taxes_included
-    #end
+    describe 'taxesIncluded' do
+      let!(:query) { '{ checkout { taxesIncluded } }' }
+      let!(:result) { { data: { checkout: { taxesIncluded: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql totalPrice The sum of all the prices of all the items in the checkout, taxes and discounts included.
+    # totalPrice: The sum of all the prices of all the items in the checkout, taxes and discounts included.
     # @return [Types::Money!]
-    #it 'total_price' do
-    #  query = <<-GRAPHQL
-    #    { checkout { totalPrice() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['totalPrice']).to eq checkout.total_price
-    #end
+    describe 'totalPrice' do
+      let!(:query) { '{ checkout { totalPrice } }' }
+      let!(:result) { { data: { checkout: { totalPrice: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql totalTax The sum of all the taxes applied to the line items and shipping lines in the checkout.
+    # totalTax: The sum of all the taxes applied to the line items and shipping lines in the checkout.
     # @return [Types::Money!]
-    #it 'total_tax' do
-    #  query = <<-GRAPHQL
-    #    { checkout { totalTax() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['totalTax']).to eq checkout.total_tax
-    #end
+    describe 'totalTax' do
+      let!(:query) { '{ checkout { totalTax } }' }
+      let!(:result) { { data: { checkout: { totalTax: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql updatedAt The date and time when the checkout was last updated.
+    # updatedAt: The date and time when the checkout was last updated.
     # @return [Types::DateTime!]
-    #it 'updated_at' do
-    #  query = <<-GRAPHQL
-    #    { checkout { updatedAt() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['updatedAt']).to eq checkout.updated_at
-    #end
+    describe 'updatedAt' do
+      let!(:query) { '{ checkout { updatedAt } }' }
+      let!(:result) { { data: { checkout: { updatedAt: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql webUrl The url pointing to the checkout accessible from the web.
+    # webUrl: The url pointing to the checkout accessible from the web.
     # @return [Types::URL!]
-    #it 'web_url' do
-    #  query = <<-GRAPHQL
-    #    { checkout { webUrl() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'checkout')
-    #  expect(result['webUrl']).to eq checkout.web_url
-    #end
+    describe 'webUrl' do
+      let!(:query) { '{ checkout { webUrl } }' }
+      let!(:result) { { data: { checkout: { webUrl: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

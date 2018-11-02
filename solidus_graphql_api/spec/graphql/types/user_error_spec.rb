@@ -1,30 +1,33 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'UserError' do
-    #let!(:user_error) {create(:user_error)}
+module Spree::GraphQL
+  describe 'Types::UserError' do
+    #let!(:user_error) { create(:user_error) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql field Path to the input field which caused the error.
+    # field: Path to the input field which caused the error.
     # @return [[Types::String!]]
-    #it 'field' do
-    #  query = <<-GRAPHQL
-    #    { user_error { field() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'user_error')
-    #  expect(result['field']).to eq user_error.field
-    #end
+    describe 'field' do
+      let!(:query) { '{ user_error { field } }' }
+      let!(:result) { { data: { user_error: { field: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql message The error message.
+    # message: The error message.
     # @return [Types::String!]
-    #it 'message' do
-    #  query = <<-GRAPHQL
-    #    { user_error { message() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'user_error')
-    #  expect(result['message']).to eq user_error.message
-    #end
+    describe 'message' do
+      let!(:query) { '{ user_error { message } }' }
+      let!(:result) { { data: { user_error: { message: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

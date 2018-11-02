@@ -1,96 +1,99 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
-describe 'Types' do
-  describe 'CreditCard' do
-    #let!(:credit_card) {create(:credit_card)}
+module Spree::GraphQL
+  describe 'Types::CreditCard' do
+    #let!(:credit_card) { create(:credit_card) }
+    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
+    #let!(:variables) { }
 
-    # @graphql brand
+    # brand
     # @return [Types::String]
-    #it 'brand' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { brand() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['brand']).to eq credit_card.brand
-    #end
+    describe 'brand' do
+      let!(:query) { '{ credit_card { brand } }' }
+      let!(:result) { { data: { credit_card: { brand: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql expiryMonth
+    # expiryMonth
     # @return [Types::Int]
-    #it 'expiry_month' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { expiryMonth() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['expiryMonth']).to eq credit_card.expiry_month
-    #end
+    describe 'expiryMonth' do
+      let!(:query) { '{ credit_card { expiryMonth } }' }
+      let!(:result) { { data: { credit_card: { expiryMonth: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql expiryYear
+    # expiryYear
     # @return [Types::Int]
-    #it 'expiry_year' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { expiryYear() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['expiryYear']).to eq credit_card.expiry_year
-    #end
+    describe 'expiryYear' do
+      let!(:query) { '{ credit_card { expiryYear } }' }
+      let!(:result) { { data: { credit_card: { expiryYear: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql firstDigits
+    # firstDigits
     # @return [Types::String]
-    #it 'first_digits' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { firstDigits() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['firstDigits']).to eq credit_card.first_digits
-    #end
+    describe 'firstDigits' do
+      let!(:query) { '{ credit_card { firstDigits } }' }
+      let!(:result) { { data: { credit_card: { firstDigits: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql firstName
+    # firstName
     # @return [Types::String]
-    #it 'first_name' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { firstName() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['firstName']).to eq credit_card.first_name
-    #end
+    describe 'firstName' do
+      let!(:query) { '{ credit_card { firstName } }' }
+      let!(:result) { { data: { credit_card: { firstName: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql lastDigits
+    # lastDigits
     # @return [Types::String]
-    #it 'last_digits' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { lastDigits() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['lastDigits']).to eq credit_card.last_digits
-    #end
+    describe 'lastDigits' do
+      let!(:query) { '{ credit_card { lastDigits } }' }
+      let!(:result) { { data: { credit_card: { lastDigits: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql lastName
+    # lastName
     # @return [Types::String]
-    #it 'last_name' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { lastName() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['lastName']).to eq credit_card.last_name
-    #end
+    describe 'lastName' do
+      let!(:query) { '{ credit_card { lastName } }' }
+      let!(:result) { { data: { credit_card: { lastName: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
-    # @graphql maskedNumber Masked credit card number with only the last 4 digits displayed
+    # maskedNumber: Masked credit card number with only the last 4 digits displayed
     # @return [Types::String]
-    #it 'masked_number' do
-    #  query = <<-GRAPHQL
-    #    { credit_card { maskedNumber() }}
-    #  GRAPHQL
-    #  response = ::Spree::GraphQL::Schema::Schema.execute(query)
-    #  result = response.dig('data', 'credit_card')
-    #  expect(result['maskedNumber']).to eq credit_card.masked_number
-    #end
+    describe 'maskedNumber' do
+      let!(:query) { '{ credit_card { maskedNumber } }' }
+      let!(:result) { { data: { credit_card: { maskedNumber: '' }}} }
+      #it 'succeeds' do
+      #  execute
+      #  expect(response_hash).to eq(result_hash)
+      #end
+    end
 
   end
 end

@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 module Spree::GraphQL::Types::FulfillmentLineItem
-  # @graphql lineItem The associated order's line item.
+  # lineItem: The associated order's line item.
   # @return [Types::OrderLineItem!]
   def line_item()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # @graphql quantity The amount fulfilled in this fulfillment.
+  # quantity: The amount fulfilled in this fulfillment.
   # @return [Types::Int!]
   def quantity()
     raise ::Spree::GraphQL::NotImplementedError.new
