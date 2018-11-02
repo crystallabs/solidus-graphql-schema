@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Domain' do
-    #let!(:domain) { create(:domain) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:domain) { create(:domain) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # host: The host name of the domain (eg: `example.com`).
     # @return [Types::String!]

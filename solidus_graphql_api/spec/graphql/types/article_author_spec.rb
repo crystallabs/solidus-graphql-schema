@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::ArticleAuthor' do
-    #let!(:article_author) { create(:article_author) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:article_author) { create(:article_author) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # bio: The author's bio.
     # @return [Types::String]

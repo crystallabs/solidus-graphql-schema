@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Order' do
-    #let!(:order) { create(:order) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:order) { create(:order) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # currencyCode: The code of the currency used for the payment.
     # @return [Types::CurrencyCode!]

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::CreditCard' do
-    #let!(:credit_card) { create(:credit_card) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:credit_card) { create(:credit_card) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # brand
     # @return [Types::String]

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::QueryRoot' do
-    #let!(:query_root) { create(:query_root) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:query_root) { create(:query_root) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # articles: List of the shop's articles.
     # @param reverse [Types::Boolean] (false)

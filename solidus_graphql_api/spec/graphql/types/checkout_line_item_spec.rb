@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::CheckoutLineItem' do
-    #let!(:checkout_line_item) { create(:checkout_line_item) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:checkout_line_item) { create(:checkout_line_item) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # customAttributes: Extra information in the form of an array of Key-Value pairs about the line item.
     # @return [[Types::Attribute!]!]

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Comment' do
-    #let!(:comment) { create(:comment) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:comment) { create(:comment) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # author: The comment’s author.
     # @return [Types::CommentAuthor!]

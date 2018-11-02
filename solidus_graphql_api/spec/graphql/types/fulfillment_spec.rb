@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Fulfillment' do
-    #let!(:fulfillment) { create(:fulfillment) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:fulfillment) { create(:fulfillment) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # fulfillmentLineItems: List of the fulfillment's line items.
     # @param reverse [Types::Boolean] (false)

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::CustomerAccessToken' do
-    #let!(:customer_access_token) { create(:customer_access_token) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:customer_access_token) { create(:customer_access_token) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # accessToken: The customer’s access token.
     # @return [Types::String!]

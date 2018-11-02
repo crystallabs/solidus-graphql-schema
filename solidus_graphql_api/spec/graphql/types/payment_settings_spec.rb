@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::PaymentSettings' do
-    #let!(:payment_settings) { create(:payment_settings) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:payment_settings) { create(:payment_settings) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # acceptedCardBrands: List of the card brands which the shop accepts.
     # @return [[Types::CardBrand!]!]

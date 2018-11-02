@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::ProductOption' do
-    #let!(:product_option) { create(:product_option) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:product_option) { create(:product_option) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # id: Globally unique identifier.
     # @return [Types::ID!]

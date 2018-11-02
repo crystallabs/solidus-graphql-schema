@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::SelectedOption' do
-    #let!(:selected_option) { create(:selected_option) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:selected_option) { create(:selected_option) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # name: The product option’s name.
     # @return [Types::String!]

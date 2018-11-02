@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::MoneyV2' do
-    #let!(:money_v2) { create(:money_v2) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:money_v2) { create(:money_v2) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # amount: Decimal money amount.
     # @return [Types::Decimal!]

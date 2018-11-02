@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::OrderLineItem' do
-    #let!(:order_line_item) { create(:order_line_item) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:order_line_item) { create(:order_line_item) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # customAttributes: List of custom attributes associated to the line item.
     # @return [[Types::Attribute!]!]

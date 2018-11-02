@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Interfaces::DisplayableError' do
-    #let!(:displayable_error) { create(:displayable_error) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:displayable_error) { create(:displayable_error) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # field: Path to the input field which caused the error.
     # @return [[Types::String!]]

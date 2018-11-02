@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Collection' do
-    #let!(:collection) { create(:collection) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:collection) { create(:collection) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # description: Stripped description of the collection, single line with HTML tags removed.
     # @param truncate_at [Types::Int]

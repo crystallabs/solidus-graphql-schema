@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::ShopPolicy' do
-    #let!(:shop_policy) { create(:shop_policy) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:shop_policy) { create(:shop_policy) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # body: Policy text, maximum size of 64kb.
     # @return [Types::String!]

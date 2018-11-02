@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Mutation' do
-    #let!(:mutation) { create(:mutation) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:mutation) { create(:mutation) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # checkoutAttributesUpdateV2: Updates the attributes of a checkout.
     # @param checkout_id [Types::ID!]

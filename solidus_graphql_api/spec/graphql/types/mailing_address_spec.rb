@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::MailingAddress' do
-    #let!(:mailing_address) { create(:mailing_address) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:mailing_address) { create(:mailing_address) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # address1: The first line of the address. Typically the street address or PO Box number. 
     # @return [Types::String]

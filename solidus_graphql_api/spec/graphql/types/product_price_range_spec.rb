@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::ProductPriceRange' do
-    #let!(:product_price_range) { create(:product_price_range) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:product_price_range) { create(:product_price_range) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # maxVariantPrice: The highest variant's price.
     # @return [Types::MoneyV2!]

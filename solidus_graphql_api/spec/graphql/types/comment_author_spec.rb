@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::CommentAuthor' do
-    #let!(:comment_author) { create(:comment_author) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:comment_author) { create(:comment_author) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # email: The author's email.
     # @return [Types::String!]

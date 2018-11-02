@@ -823,9 +823,9 @@ newline('', oneline((helper['interfaces']||[]).map{|i| "\n  include ::Spree::Gra
 
 module Spree::GraphQL
   describe '#{($catalog[:names][type['name']]||'')}' do
-    #let!(:#{helper['class']}) { create(:#{v = (helper['class']||'').underscore; $catalog[:factories][v]||v}) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:#{helper['class']}) { create(:#{v = (helper['class']||'').underscore; $catalog[:factories][v]||v}) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 ",
 'spec/it' => %Q{
     # #{type['name']}#{( type['description'] ? ': '+ type['description'] : '').gsub /\s*\n+\s*/, ' '}#{(helper['method_args_description_spec']||'').size>0 ? "\n"+ helper['method_args_description_spec'].gsub(/^#/, '    #') : ''}

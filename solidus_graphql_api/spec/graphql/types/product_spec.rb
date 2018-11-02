@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Product' do
-    #let!(:product) { create(:product) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:product) { create(:product) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # availableForSale: Indicates if at least one product variant is available for sale.
     # @return [Types::Boolean!]

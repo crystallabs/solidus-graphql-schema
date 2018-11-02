@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::AppliedGiftCard' do
-    #let!(:applied_gift_card) { create(:applied_gift_card) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:applied_gift_card) { create(:applied_gift_card) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # amountUsed: The amount that was used taken from the Gift Card by applying it.
     # @return [Types::Money!]

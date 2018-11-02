@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Image' do
-    #let!(:image) { create(:image) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:image) { create(:image) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # altText: A word or phrase to share the nature or contents of an image.
     # @return [Types::String]

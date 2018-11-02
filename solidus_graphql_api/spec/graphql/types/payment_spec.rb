@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Payment' do
-    #let!(:payment) { create(:payment) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:payment) { create(:payment) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # amount: The amount of the payment.
     # @return [Types::Money!]

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Checkout' do
-    #let!(:checkout) { create(:checkout) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:checkout) { create(:checkout) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # appliedGiftCards
     # @return [[Types::AppliedGiftCard!]!]

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::FulfillmentTrackingInfo' do
-    #let!(:fulfillment_tracking_info) { create(:fulfillment_tracking_info) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:fulfillment_tracking_info) { create(:fulfillment_tracking_info) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # number: The tracking number of the fulfillment.
     # @return [Types::String]

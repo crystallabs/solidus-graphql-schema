@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Interfaces::Node' do
-    #let!(:node) { create(:node) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:node) { create(:node) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # id: Globally unique identifier.
     # @return [Types::ID!]

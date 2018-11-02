@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Attribute' do
-    #let!(:attribute) { create(:attribute) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:attribute) { create(:attribute) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # key: Key or name of the attribute.
     # @return [Types::String!]

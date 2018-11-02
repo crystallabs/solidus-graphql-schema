@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Blog' do
-    #let!(:blog) { create(:blog) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:blog) { create(:blog) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # articleByHandle: Find an article by its handle.
     # @param handle [Types::String!]

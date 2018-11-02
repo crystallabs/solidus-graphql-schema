@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::PageInfo' do
-    #let!(:page_info) { create(:page_info) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:page_info) { create(:page_info) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # hasNextPage: Indicates if there are more pages to fetch.
     # @return [Types::Boolean!]

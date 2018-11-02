@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::CustomerUserError' do
-    #let!(:customer_user_error) { create(:customer_user_error) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:customer_user_error) { create(:customer_user_error) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # code: Error code to uniquely identify the error.
     # @return [Types::CustomerErrorCode]

@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Interfaces::DiscountApplication' do
-    #let!(:discount_application) { create(:discount_application) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:discount_application) { create(:discount_application) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # allocationMethod: The method by which the discount's value is allocated to its entitled items.
     # @return [Types::DiscountApplicationAllocationMethod!]

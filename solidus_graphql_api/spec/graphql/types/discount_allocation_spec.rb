@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::DiscountAllocation' do
-    #let!(:discount_allocation) { create(:discount_allocation) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:discount_allocation) { create(:discount_allocation) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # allocatedAmount: Amount of discount allocated.
     # @return [Types::MoneyV2!]

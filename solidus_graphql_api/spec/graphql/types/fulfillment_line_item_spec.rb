@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::FulfillmentLineItem' do
-    #let!(:fulfillment_line_item) { create(:fulfillment_line_item) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:fulfillment_line_item) { create(:fulfillment_line_item) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # lineItem: The associated order's line item.
     # @return [Types::OrderLineItem!]

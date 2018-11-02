@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Shop' do
-    #let!(:shop) { create(:store) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:shop) { create(:store) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # collectionByHandle: Find a collection by its handle.
     # @param handle [Types::String!]

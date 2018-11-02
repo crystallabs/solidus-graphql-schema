@@ -3,9 +3,9 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::ShippingRate' do
-    #let!(:shipping_rate) { create(:shipping_rate) }
-    #let!(:ctx) { { current_store: ::Spree::Store.where(default: true).first } }
-    #let!(:variables) { }
+    let!(:shipping_rate) { create(:shipping_rate) }
+    let!(:ctx) { { current_store: current_store } }
+    let!(:variables) { }
 
     # handle: Human-readable unique identifier for this shipping rate.
     # @return [Types::String!]
