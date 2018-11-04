@@ -556,64 +556,6 @@ def parse_possible_types_for(type, helper)
   end
 end
 
-def type_of(type, helper, field, format)
-  new_name = helper[:new_name]
-
-  chain = []
-  if ft = field['type']
-    while ft
-      chain.unshift ft
-      ft = ft['ofType']
-    end
-  end
-  string = ''
-  is_connection = false
-  chain.each do |f2|
-    if f2['kind'] == 'NON_NULL' and !f2['name']; string.sub! /true$/, 'false'
-    elsif f2['kind'] == 'LIST' and !f2['name']; string = "[#{string}], null: true"
-    else
-      suffix= ''
-      ret_name= f2['name']
-      if ret_name.sub! /Connection$/, ''
-        suffix = '.connection_type'
-        is_connection = true
-      end
-      ret_name= $catalog[:type_names][ret_name]
-      unless ret_name
-        STDERR.puts "No name map for #{f2['name']}. Check that you are properly looking up entries in $catalog[:type_names] Hash; exiting."
-        exit 1
-      end
-
-      $catalog[:depends][new_name] ||= {}
-      $catalog[:depends][new_name][ret_name] = true
-      if (new_name != ret_name) && ($catalog[:depends][ret_name]) && ($catalog[:depends][ret_name][new_name])
-        $log.info "Class #{new_name} depends on #{ret_name} and vice-versa. Will handle accordingly."
-        preamble_text= "class Spree::GraphQL::Schema::#{ret_name} < Spree::GraphQL::Schema::#{$catalog[:base_type][ret_name]}; end"
-        $catalog[:schema_contents][new_name][PREAMBLE].unshift(preamble_text) unless $catalog[:schema_contents][new_name][PREAMBLE].include?(preamble_text)
-      end
-
-      unless ret_name=~ /^::/
-        ret_name= '::Spree::GraphQL::Schema::'+ ret_name
-      end
-
-      string = "#{ret_name+ suffix}, null: true"
-    end
-  end # chain.each do |f2|
-
-  # graphql-ruby has two specifics:
-  # 1) Types have null: true/false
-  # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
-  # So the following is needed to comply with that:
-  string.gsub! ', null: false]', ']'
-
-  case format
-  when :ruby
-    [ string, is_connection ]
-  else
-    raise Exception.new 'Unknown format '+ format
-  end
-end
-
 def shorten(s)
   s= s.dup
   s.gsub! '::Spree::GraphQL::Schema::', ''
@@ -728,6 +670,179 @@ def parse_enum_values_for(type, helper)
   $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend"
 end
 
+def type_of(type, helper, field, format, action = true)
+  new_name = helper[:new_name] || $catalog[:type_names][type['name']]
+  unless new_name
+    raise Exception.new "Unknown/unseen type #{type['name']}?"
+  end
+
+  ret_type= nil
+  chain = []
+  if ft = field['type']
+    while ft
+      chain.unshift ft
+      ft = ft['ofType']
+    end
+  end
+  string = ''
+  is_connection = false
+  chain.each do |f2|
+    if f2['kind'] == 'NON_NULL' and !f2['name']; string.sub! /true$/, 'false'
+    elsif f2['kind'] == 'LIST' and !f2['name']; string = "[#{string}], null: true"
+    else
+      suffix= ''
+      ret_name= f2['name']
+      if ret_name.sub! /Connection$/, ''
+        suffix = '.connection_type'
+        is_connection = true
+      end
+      ret_name= $catalog[:type_names][ret_name]
+      ret_type= f2['name']
+      unless ret_name
+        STDERR.puts "No name map for #{f2['name']}. Check that you are properly looking up entries in $catalog[:type_names] Hash; exiting."
+        exit 1
+      end
+
+      if action
+        $catalog[:depends][new_name] ||= {}
+        $catalog[:depends][new_name][ret_name] = true
+        if (new_name != ret_name) && ($catalog[:depends][ret_name]) && ($catalog[:depends][ret_name][new_name])
+          $log.info "Class #{new_name} depends on #{ret_name} and vice-versa. Will handle accordingly."
+          preamble_text= "class Spree::GraphQL::Schema::#{ret_name} < Spree::GraphQL::Schema::#{$catalog[:base_type][ret_name]}; end"
+          $catalog[:schema_contents][new_name][PREAMBLE].unshift(preamble_text) unless $catalog[:schema_contents][new_name][PREAMBLE].include?(preamble_text)
+        end
+      end
+
+      unless ret_name=~ /^::/
+        ret_name= '::Spree::GraphQL::Schema::'+ ret_name
+      end
+
+      string = "#{ret_name+ suffix}, null: true"
+    end
+  end # chain.each do |f2|
+
+  # graphql-ruby has two specifics:
+  # 1) Types have null: true/false
+  # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
+  # So the following is needed to comply with that:
+  string.gsub! ', null: false]', ']'
+
+  retval = case format
+    when :graphql_ruby
+      [ string, is_connection ]
+    when :graphql
+      [ shorten(string), is_connection ]
+    when :base_type
+      [ ret_type, shorten(string), is_connection ]
+    else
+      raise Exception.new 'Unknown format '+ format.to_s
+    end
+
+  retval
+end
+
+def args_to_method_args(type, field)
+  field['args'].map{|a|
+    base, short, _ = type_of(type, {}, a, :base_type, false)
+    "#{a['name']}: " + (case base
+    when 'Int', 'Float'
+      base
+    when 'Boolean'
+      a['defaultValue']
+    when 'String'
+      '""'
+    else
+      #case a['type']
+      #ret= "XX #{base} || #{a['type']}"
+      #ret
+      #tp= $schema_type_map[base]
+      #raise Exception.new 'lame' unless tp
+      #case tp['kind']
+      #when 'SCALAR', 'UNION'
+      #  #p "Done (SCALAR/UNION)"
+      #  %Q{"#{tp['name']}"}
+      #when 'ENUM'
+      #  #p "Done (ENUM)"
+      #  %Q{"#{tp['enumValues'].map{|v| v['name']}.join ' | '}"}
+      #when 'INTERFACE'
+      #  #p "Done (INTERFACE)"
+      #  {}
+      #when 'OBJECT'
+      #  '{' + args_to_method_args(tp, a) + '}'
+      #when 'INPUT_OBJECT'
+      #  '{' + args_to_method_args(tp, a) + '}'
+      #else
+      #  raise Exception.new "Unhandled: '#{tp['kind']}'"
+      #end
+      %Q{"#{short}"}
+    end)
+  }.join(', ') + ')'
+end
+
+$resolving= {}
+def resolve_type(field, type)
+  t= (String=== type) ? $schema_type_map[type] : type
+
+  name= field['name']
+  if field['args'] and field['args'].size> 0
+    name+= '(' + args_to_method_args(t, field) + ')'
+  end
+
+  #p "Resolving #{t['name']}, being resolved: #{$resolving[t['name']]}"
+
+  if $resolving[t['name']]
+    return { name => %Q{"#{t['name']}..."} }
+  end
+
+  $resolving[t['name']]= true
+  #puts t['name']
+
+  raise Exception.new "crap" unless t
+
+  retval= { name =>
+    case t['kind']
+    when 'SCALAR', 'UNION'
+      #p "Done (SCALAR/UNION)"
+      %Q{"#{t['name']}"}
+    when 'ENUM'
+      #p "Done (ENUM)"
+      %Q{"#{t['enumValues'].map{|v| v['name']}.join ' | '}"}
+    when 'INTERFACE'
+      #p "Done (INTERFACE)"
+      {}
+    when 'OBJECT'
+      #p "... going into object"
+      ret= {}
+      fields= t['fields']
+      fields.each do |f|
+        base, string, is_conn= type_of(t, {}, f, :base_type, false)
+        ret.merge! resolve_type(f, base)
+      end
+      ret
+    else
+      raise Exception.new "Unhandled kind #{t['kind']}"
+    end
+  }
+
+  $resolving.delete t['name']
+  retval
+end
+
+$level= 0
+def hash_to_graphql_query(hash)
+  string= ''
+  hash.each do |k,v|
+    case v
+    when String
+      string += "\n#{k}"
+    else
+      string += "\n#{k} {" + indent($level + 1, hash_to_graphql_query(v)) + "\n}"
+    end
+  end
+  $level = 0 if $level < 0
+  string
+end
+
 def parse_fields_for(type, helper)
   new_name = helper[:new_name]
 
@@ -735,7 +850,7 @@ def parse_fields_for(type, helper)
     type['fields'].each do |field|
       next if field['isDeprecated']
 
-      return_type, is_connection= type_of(type, helper, field, :ruby)
+      return_type, is_connection= type_of(type, helper, field, :graphql_ruby)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
@@ -747,7 +862,7 @@ def parse_fields_for(type, helper)
 
       args_with_desc= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}#{ a[2] ? ' ' + oneline(a[2]) : ''}"}.join("\n")
       args= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
-      args_with_desc_for_spec= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
+      args_for_spec= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
       #helper['class']= type['name'].underscore
 
       $catalog[:contents][new_name][FIELDS].push indent 1, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{args_with_desc.size>0 ? "\n" + args_with_desc : ''}
@@ -757,10 +872,21 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_with_desc).size>0 ? "\n" + args_with_desc : ''}
+      tname, short, _ = type_of(type, helper, field, :base_type, false)
+      fields_hash_string = indent 5, hash_to_graphql_query(resolve_type(field, tname))
+
+      query_type = type['name'] == $mutation ? 'mutation' : 'query'
+      $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_for_spec).size>0 ? "\n" + args_for_spec : ''}
 # @return [#{shorten return_type}]
 describe '#{field['name']}' do
-  let!(:query) { %q{query_body(type, helper)} }
+  let!(:query) {
+    %q{
+      #{query_type} {
+        #{type['name'].camelize(:lower)} {#{fields_hash_string}
+        }
+      }
+    }
+  }
   let!(:result) { result_body(type, helper) }
   #it 'succeeds' do
   #  execute
@@ -827,95 +953,6 @@ def parse_types_2(v)
 end
 
 
-#'spec/field_query' => "query #{type['name']} { #{helper['class']} { #{type['name']} } }",
-#def type2string(t)
-#  chain = []
-#  if ft = t['type']
-#    while ft
-#      chain.unshift ft
-#      ft = ft['ofType']
-#    end
-#  end
-#  string= ''
-#  basetype = ''
-#  chain.each do |t2|
-#    if t2['kind'] == 'NON_NULL' and !t2['name']; string.sub! /false$/, 'true'
-#    elsif t2['kind'] == 'LIST' and !t2['name']; string = "[#{string}], required: false"
-#    else
-#      arg_type= t2['name']
-#      basetype = arg_type
-#      suffix = ''
-#      #if arg_type.sub! /Connection$/, ''
-#      #  suffix = '.connection_type'
-#      #end
-#      #arg_type = $catalog[:type_names][arg_type]
-#      #unless arg_type=~ /^::/
-#      #  arg_type= '::Spree::GraphQL::Schema::'+ arg_type
-#      #end
-#      string = "#{arg_type + suffix}, required: false"
-#    end
-#  end
-#
-#  # graphql-ruby has two specifics:
-#  # 1) Types have null: true/false, while arguments have required: true/false
-#  # 2) Additionally, in lists of type, the 'null: false' is default and not allowed to be specified
-#  # So the following is needed to comply with that:
-#  string.gsub! ', required: true]', ']' # 'null: false]'
-#  string.gsub! ', required: false]', ']'
-#  [ string, basetype ]
-#end
-#
-#def type2graphql_fields(t)
-#  string, base = type2string t
-#  # String and base are return type
-#
-#  t2 = $schema_type_map[base]
-#  if !t2 or (t2['kind'] == 'SCALAR')
-#    return %Q{"#{shorten string}"}
-#  end
-#
-#  case t2['kind']
-#    when 'ENUM', 'UNION'
-#      '"' + ( t2['enumValues'] || t2['possibleTypes']).map{|e| e['isDeprecated'] ? nil : e['name'] }.compact.join(' | ') + '"'
-#		when 'INTERFACE'
-#			raise Exception.new 'Should not reach here iface'
-#		when 'INPUT_OBJECT'
-#			"{ " + type2graphql_fields(t2) + ' }'
-#    else
-#      "XXX #{base} #{t2['kind']}"
-#  end
-#end
-#
-#def fields(f, fld = 'args')
-#  return unless f
-#  args = f[fld]
-#  (args||[]).map {|a|
-#    name = a['name']
-#    expand = type2graphql_fields a
-#    %Q{#{name}: #{expand}}
-#  }
-#end
-#
-#def query_body(type, helper)
-#    %Q|
-#        #{helper['root_query']} {
-#          #{helper['class']} {
-#            #{type['name']}(#{ a = fields(type).map{|x| '              ' + x}.join(",\n"); a.size > 0 ? "\n" + a + "\n            " : a })
-#          }
-#        }
-#      | 
-#end
-#
-#def type2retval(type)
-#  string, base = type2string(type)
-#  t= $schema_type_map[base]
-#  if !t or t['kind'] != 'OBJECT'
-#    return %Q{"#{shorten string}"}
-#  end
-#
-#  'xxx'
-#end
-#
 #def result_body(type, helper)
 #  %Q|
 #        data: {
