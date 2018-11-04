@@ -191,6 +191,13 @@ def parse_directives(v)
   end
 end
 
+def check_skip(t)
+  # This method is only called for toplevel types. And in them, we are not
+  # interested in Connection/Edge types.
+  return true if (t['name']=~ /(?:Connection|Edge)$/) || (t['name']=~ /^__/) || ($catalog[:builtins][t['name']]) || t['isDeprecated']
+  false
+end
+
 # First pass of parsing types
 def parse_types_1(v)
   #if $catalog[:builtins].keys.size== 0
@@ -461,6 +468,19 @@ end"
   end
 end
 
+def make_helper_for(type)
+  new_name = $catalog[:type_names][type['name']]
+
+  helper= {
+    new_name: new_name,
+    interfaces: [],
+    possible_types: [],
+    root_query: ( type['name'] == $mutation ? 'mutation' : 'query'),
+  }
+
+  helper
+end
+
 def prepare_headers_for(type, helper)
   new_name= helper[:new_name]
   desc= type['description'] ? "%q{#{type['description']}}" : 'nil'
@@ -555,6 +575,63 @@ def parse_enum_values_for(type, helper)
   $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend"
 end
 
+def parse_fields_for(type, helper)
+  new_name = helper[:new_name]
+
+  if type['fields']
+    type['fields'].each do |field|
+      next if field['isDeprecated']
+
+      _, return_type, _, is_connection= type_of_field(field, type)
+      description= field['description'] ? "%q{#{field['description']}}" : 'nil'
+
+      $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
+  description }) + description
+
+      method_args= parse_args_for(type, helper, field, 'args', is_connection)
+      
+      $catalog[:schema_contents][new_name][FIELDS].push indent 1, 'end'
+
+      args_with_desc= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}#{ a[2] ? ' ' + oneline(a[2]) : ''}"}.join("\n")
+      args= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
+      args_for_spec= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
+      #helper['class']= type['name'].underscore
+
+      $catalog[:contents][new_name][FIELDS].push indent 1, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{args_with_desc.size>0 ? "\n" + args_with_desc : ''}
+# @return [#{shorten return_type}]
+def #{field['name'].underscore}#{args}
+  raise ::Spree::GraphQL::NotImplementedError.new
+end
+}
+
+      tname, short, _ = type_of_field(field)
+      fields_hash_string = indent 5, hash_to_graphql_query(type_to_fields(field, tname))
+
+      # TODO complete the print of input query and expected response
+
+      query_type = type['name'] == $mutation ? 'mutation' : 'query'
+      $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_for_spec).size>0 ? "\n" + args_for_spec : ''}
+# @return [#{shorten return_type}]
+describe '#{field['name']}' do
+  let!(:query) {
+    %q{
+      #{query_type} {
+        #{type['name'].camelize(:lower)} {#{fields_hash_string}
+        }
+      }
+    }
+  }
+  let!(:result) { result_body(type, helper) }
+  #it 'succeeds' do
+  #  execute
+  #  expect(response_hash).to eq(result_hash)
+  #end
+end
+}
+      end # type['fields'].each
+    end # endif type['fields']
+end
+
 def parse_args_for(type, helper, field, key, is_connection = false)
   new_name = helper[:new_name]
   method_args= []
@@ -641,6 +718,59 @@ def parse_args_for(type, helper, field, key, is_connection = false)
   method_args
 end
 
+
+################################################################################
+# Helper methods
+
+# type_of_field(field) - returns [base, string, short(string), is_connection]
+# type_to_fields(field, type) - expands type into nested hash of inputs - TODO: sort out input args, support input types, support connections
+# hash_to_graphql_query
+# shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
+# old_to_new_name - maps original GraphQL name to our class name
+# indent - indents by given level
+# oneline - converts whatever to oneliner
+
+
+def args_to_method_args(type, field)
+  field['args'].map{|a|
+    base, _, short, _ = type_of_field(a)
+    "#{a['name']}: " + (case base
+    when 'Int', 'Float'
+      base
+    when 'Boolean'
+      a['defaultValue']
+    when 'String'
+      '""'
+    else
+      #case a['type']
+      #ret= "XX #{base} || #{a['type']}"
+      #ret
+      #tp= $schema_type_map[base]
+      #raise Exception.new 'lame' unless tp
+      #case tp['kind']
+      #when 'SCALAR', 'UNION'
+      #  #p "Done (SCALAR/UNION)"
+      #  %Q{"#{tp['name']}"}
+      #when 'ENUM'
+      #  #p "Done (ENUM)"
+      #  %Q{"#{tp['enumValues'].map{|v| v['name']}.join ' | '}"}
+      #when 'INTERFACE'
+      #  #p "Done (INTERFACE)"
+      #  {}
+      #when 'OBJECT'
+      #  '{' + args_to_method_args(tp, a) + '}'
+      #when 'INPUT_OBJECT'
+      #  '{' + args_to_method_args(tp, a) + '}'
+      #else
+      #  raise Exception.new "Unhandled: '#{tp['kind']}'"
+      #end
+      %Q{"#{short}"}
+    end)
+  }.join(', ') + ')'
+end
+
+
+
 def type_of_field(field, type= nil)
   new_name = nil
   if type
@@ -701,45 +831,12 @@ def type_of_field(field, type= nil)
   # So the following is needed to comply with that:
   string.gsub! ', null: false]', ']'
 
+  # Return is:
+  # 1. Base GraphQL type (can be then looked up by that name in $schema_type_map) (e.g. Article)
+  # 2. String suitable for field definition in GraphQL-Ruby syntax (e.g. [Type], null: false)
+  # 3. String suitable for field definition in GraphQL (e.g. [Type!]!)
+  # 4. Boolean whether that field returns a connection
   [ ret_type, string, shorten(string), is_connection ]
-end
-
-def args_to_method_args(type, field)
-  field['args'].map{|a|
-    base, _, short, _ = type_of_field(a)
-    "#{a['name']}: " + (case base
-    when 'Int', 'Float'
-      base
-    when 'Boolean'
-      a['defaultValue']
-    when 'String'
-      '""'
-    else
-      #case a['type']
-      #ret= "XX #{base} || #{a['type']}"
-      #ret
-      #tp= $schema_type_map[base]
-      #raise Exception.new 'lame' unless tp
-      #case tp['kind']
-      #when 'SCALAR', 'UNION'
-      #  #p "Done (SCALAR/UNION)"
-      #  %Q{"#{tp['name']}"}
-      #when 'ENUM'
-      #  #p "Done (ENUM)"
-      #  %Q{"#{tp['enumValues'].map{|v| v['name']}.join ' | '}"}
-      #when 'INTERFACE'
-      #  #p "Done (INTERFACE)"
-      #  {}
-      #when 'OBJECT'
-      #  '{' + args_to_method_args(tp, a) + '}'
-      #when 'INPUT_OBJECT'
-      #  '{' + args_to_method_args(tp, a) + '}'
-      #else
-      #  raise Exception.new "Unhandled: '#{tp['kind']}'"
-      #end
-      %Q{"#{short}"}
-    end)
-  }.join(', ') + ')'
 end
 
 $resolving= {}
@@ -783,61 +880,6 @@ def type_to_fields(field, type)
 
   $resolving.delete t['name']
   retval
-end
-
-def parse_fields_for(type, helper)
-  new_name = helper[:new_name]
-
-  if type['fields']
-    type['fields'].each do |field|
-      next if field['isDeprecated']
-
-      _, return_type, _, is_connection= type_of_field(field, type)
-      description= field['description'] ? "%q{#{field['description']}}" : 'nil'
-
-      $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
-  description }) + description
-
-      method_args= parse_args_for(type, helper, field, 'args', is_connection)
-      
-      $catalog[:schema_contents][new_name][FIELDS].push indent 1, 'end'
-
-      args_with_desc= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}#{ a[2] ? ' ' + oneline(a[2]) : ''}"}.join("\n")
-      args= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
-      args_for_spec= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
-      #helper['class']= type['name'].underscore
-
-      $catalog[:contents][new_name][FIELDS].push indent 1, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{args_with_desc.size>0 ? "\n" + args_with_desc : ''}
-# @return [#{shorten return_type}]
-def #{field['name'].underscore}#{args}
-  raise ::Spree::GraphQL::NotImplementedError.new
-end
-}
-
-      tname, short, _ = type_of_field(field)
-      fields_hash_string = indent 5, hash_to_graphql_query(type_to_fields(field, tname))
-
-      query_type = type['name'] == $mutation ? 'mutation' : 'query'
-      $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_for_spec).size>0 ? "\n" + args_for_spec : ''}
-# @return [#{shorten return_type}]
-describe '#{field['name']}' do
-  let!(:query) {
-    %q{
-      #{query_type} {
-        #{type['name'].camelize(:lower)} {#{fields_hash_string}
-        }
-      }
-    }
-  }
-  let!(:result) { result_body(type, helper) }
-  #it 'succeeds' do
-  #  execute
-  #  expect(response_hash).to eq(result_hash)
-  #end
-end
-}
-      end # type['fields'].each
-    end # endif type['fields']
 end
 
 $level= 0
@@ -909,13 +951,6 @@ def indent(i = 0, string)
   new_lines.join "\n"
 end
 
-def check_skip(t)
-  # This method is only called for toplevel types. And in them, we are not
-  # interested in Connection/Edge types.
-  return true if (t['name']=~ /(?:Connection|Edge)$/) || (t['name']=~ /^__/) || ($catalog[:builtins][t['name']]) || t['isDeprecated']
-  false
-end
-
 def oneline(s)
   return '' unless s
   s.sub! /^\n+/, ''
@@ -923,19 +958,6 @@ def oneline(s)
   s.gsub! "\n", ' '
   s.sub! /\s+$/, ''
   s
-end
-
-def make_helper_for(type)
-  new_name = $catalog[:type_names][type['name']]
-
-  helper= {
-    new_name: new_name,
-    interfaces: [],
-    possible_types: [],
-    root_query: ( type['name'] == $mutation ? 'mutation' : 'query'),
-  }
-
-  helper
 end
 
 #def result_body(type, helper)
