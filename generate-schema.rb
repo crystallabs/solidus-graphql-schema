@@ -582,7 +582,7 @@ def parse_fields_for(type, helper)
     type['fields'].each do |field|
       next if field['isDeprecated']
 
-      _, return_type, _, is_connection= type_of_field(field, type)
+      base_type, return_type, _, is_connection= type_of_field(field, type)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
@@ -604,8 +604,7 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      tname, short, _ = type_of_field(field)
-      fields_hash_string = indent 5, hash_to_graphql_query(type_to_fields(field, tname))
+      fields_hash_string = indent 5, hash_to_graphql_query(field['name'] => type_to_hash(base_type))
 
       # TODO complete the print of input query and expected response
 
@@ -719,16 +718,9 @@ def parse_args_for(type, helper, field, key, is_connection = false)
 end
 
 
-################################################################################
-# Helper methods
 
-# type_of_field(field) - returns [base, string, short(string), is_connection]
-# type_to_fields(field, type) - expands type into nested hash of inputs - TODO: sort out input args, support input types, support connections
-# hash_to_graphql_query
-# shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
-# old_to_new_name - maps original GraphQL name to our class name
-# indent - indents by given level
-# oneline - converts whatever to oneliner
+################################################################################
+
 
 
 def args_to_method_args(type, field)
@@ -742,34 +734,23 @@ def args_to_method_args(type, field)
     when 'String'
       '""'
     else
-      #case a['type']
-      #ret= "XX #{base} || #{a['type']}"
-      #ret
-      #tp= $schema_type_map[base]
-      #raise Exception.new 'lame' unless tp
-      #case tp['kind']
-      #when 'SCALAR', 'UNION'
-      #  #p "Done (SCALAR/UNION)"
-      #  %Q{"#{tp['name']}"}
-      #when 'ENUM'
-      #  #p "Done (ENUM)"
-      #  %Q{"#{tp['enumValues'].map{|v| v['name']}.join ' | '}"}
-      #when 'INTERFACE'
-      #  #p "Done (INTERFACE)"
-      #  {}
-      #when 'OBJECT'
-      #  '{' + args_to_method_args(tp, a) + '}'
-      #when 'INPUT_OBJECT'
-      #  '{' + args_to_method_args(tp, a) + '}'
-      #else
-      #  raise Exception.new "Unhandled: '#{tp['kind']}'"
-      #end
       %Q{"#{short}"}
     end)
   }.join(', ') + ')'
 end
 
 
+
+################################################################################
+# Helper methods
+
+# type_of_field(field) - returns [base, string, short(string), is_connection]
+# type_to_hash(type) - expands type into nested hash of inputs - TODO: support input types, support connections
+# hash_to_graphql_query
+# shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
+# old_to_new_name - maps original GraphQL name to our class name
+# indent - indents by given level
+# oneline - converts whatever to oneliner
 
 def type_of_field(field, type= nil)
   new_name = nil
@@ -840,24 +821,19 @@ def type_of_field(field, type= nil)
 end
 
 $resolving= {}
-def type_to_fields(field, type)
+def type_to_hash(type)
   t= (String=== type) ? $schema_type_map[type] : type
-
-  name= field['name']
-  if field['args'] and field['args'].size> 0
-    name+= '(' + args_to_method_args(t, field) + ')'
-  end
 
   # Prevent loops
   if $resolving[t['name']]
-    return { name => %Q{"#{t['name']}..."} }
+    return %Q{"#{t['name']}..."}
   end
 
   $resolving[t['name']]= true
 
   raise Exception.new "crap" unless t
 
-  retval= { name =>
+  retval=
     case t['kind']
     when 'SCALAR'
       %Q{"#{t['name']}"}
@@ -870,13 +846,12 @@ def type_to_fields(field, type)
       fields= t['fields']
       fields.each do |f|
         base, _, _, _= type_of_field(f)
-        ret.merge! type_to_fields(f, base)
+        ret.merge!( f['name'] => type_to_hash(base) )
       end
       ret
     else
       raise Exception.new "Unhandled kind #{t['kind']}"
     end
-  }
 
   $resolving.delete t['name']
   retval
@@ -959,16 +934,6 @@ def oneline(s)
   s.sub! /\s+$/, ''
   s
 end
-
-#def result_body(type, helper)
-#  %Q|
-#        data: {
-#          #{helper['class']}: {
-#            #{type['name']}: #{type2retval type}
-#          }
-#        },
-#        #errors: {},|
-#end
 
 ####
 run
