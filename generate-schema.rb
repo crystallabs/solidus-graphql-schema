@@ -128,7 +128,7 @@ $catalog = {
 }
 
 # List types which aren't database models here!
-$catalog[:base_type]['Types::Domain'] = 'BaseObjectNoId'
+$catalog[:base_type]['Types::Domain'] = 'Types::BaseObjectNoId'
 
 
 # This is the entry point into the program. It invokes all necessary functions,
@@ -449,9 +449,9 @@ def prepare_headers_for(type, helper)
   if $catalog[:base_type][new_name]== 'Interfaces::BaseInterface'
 
     $catalog[:schema_contents][new_name][HEADER].push %Q{module Spree::GraphQL::Schema::#{new_name}
+  include ::Spree::GraphQL::Schema::#{$catalog[:base_type][new_name]}
   graphql_name '#{type['name']}'
-  description #{desc}
-  include ::Spree::GraphQL::Schema::#{$catalog[:base_type][new_name]}}
+  description #{desc}}
     $catalog[:schema_contents][new_name][INCLUDES].push indent 1, "include ::Spree::GraphQL::#{new_name}"
     $catalog[:schema_contents][new_name][DEF_METHODS].push indent 1, "definition_methods do\nend"
 
@@ -489,7 +489,7 @@ def parse_interfaces_for(type, helper)
       end
       $catalog[:schema_contents][new_name][INTERFACES].push indent 1, "implements ::Spree::GraphQL::Schema::#{$catalog[:type_names][i['name']]}"
 
-      $catalog[:contents][new_name][INTERFACES].push indent 1, "include ::Spree::GraphQL::#{new_name}"
+      #$catalog[:contents][new_name][INTERFACES].push indent 1, "include ::Spree::GraphQL::#{new_name}"
     end
   end
 end
@@ -513,7 +513,7 @@ def parse_possible_types_for(type, helper)
   end
 
   if types.size> 0
-    string= types.map{|t| "class Spree::GraphQL::Schema::#{t} < Spree::GraphQL::Schema::Types::#{$catalog[:base_type][t]}; end"}.join("\n")
+    string= types.map{|t| "class Spree::GraphQL::Schema::#{t} < Spree::GraphQL::Schema::#{$catalog[:base_type][t]}; end"}.join("\n")
     $catalog[:schema_contents][new_name][PREAMBLE].unshift string
 
     string= indent 1, "possible_types \\\n"+ types.map{|t| "  ::Spree::GraphQL::Schema::#{t}"}.join(",\n")
@@ -647,6 +647,8 @@ def parse_args_for(type, helper, field, key)
       # Derive short description of type (e.g. "[String!]!")
       method_args[-1].push shorten(string)
       method_args[-1].push arg['description']
+
+      arg_type= string
 
       # Determine if default value needs to be set
       unless string=~ /required: true/
@@ -844,7 +846,6 @@ end
 ',
 'schema/interfaces/base_interface' => 'module Spree::GraphQL::Schema::Interfaces::BaseInterface
   include ::GraphQL::Schema::Interface
-  include ::Spree::GraphQL::Interfaces::BaseInterface
 end
 ',
 'schema/types/base_union' => 'class Spree::GraphQL::Schema::Types::BaseUnion < GraphQL::Schema::Union
