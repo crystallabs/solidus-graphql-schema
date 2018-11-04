@@ -568,6 +568,22 @@ def shorten(s)
   s
 end
 
+def parse_enum_values_for(type, helper)
+  new_name = helper[:new_name]
+  # Parse enum values
+  if type['enumValues']
+    type['enumValues'].each do |v|
+      next if v['isDeprecated']
+      description= v['description'] ? "%q{#{v['description']}}" : 'nil'
+      $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{value '#{v['name']}', }) + description
+    end
+  end
+  
+  $catalog[:schema_contents][new_name][POSTAMBLE].push 'end'
+  $catalog[:contents][new_name][POSTAMBLE].push 'end'
+  $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend"
+end
+
 def parse_args_for(type, helper, field, key, is_connection = false)
   new_name = helper[:new_name]
   method_args= []
@@ -652,22 +668,6 @@ def parse_args_for(type, helper, field, key, is_connection = false)
     end
   end # if field['args']
   method_args
-end
-
-def parse_enum_values_for(type, helper)
-  new_name = helper[:new_name]
-  # Parse enum values
-  if type['enumValues']
-    type['enumValues'].each do |v|
-      next if v['isDeprecated']
-      description= v['description'] ? "%q{#{v['description']}}" : 'nil'
-      $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{value '#{v['name']}', }) + description
-    end
-  end
-  
-  $catalog[:schema_contents][new_name][POSTAMBLE].push 'end'
-  $catalog[:contents][new_name][POSTAMBLE].push 'end'
-  $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend"
 end
 
 def type_of(type, helper, field, format, action = true)
@@ -780,7 +780,7 @@ def args_to_method_args(type, field)
 end
 
 $resolving= {}
-def resolve_type(field, type)
+def type_to_fields(field, type)
   t= (String=== type) ? $schema_type_map[type] : type
 
   name= field['name']
@@ -788,35 +788,29 @@ def resolve_type(field, type)
     name+= '(' + args_to_method_args(t, field) + ')'
   end
 
-  #p "Resolving #{t['name']}, being resolved: #{$resolving[t['name']]}"
-
+  # Prevent loops
   if $resolving[t['name']]
     return { name => %Q{"#{t['name']}..."} }
   end
 
   $resolving[t['name']]= true
-  #puts t['name']
 
   raise Exception.new "crap" unless t
 
   retval= { name =>
     case t['kind']
-    when 'SCALAR', 'UNION'
-      #p "Done (SCALAR/UNION)"
+    when 'SCALAR'
       %Q{"#{t['name']}"}
+    when 'UNION'
+      %Q{#{t['possibleTypes'].map{|t| t['name']}.join ' | '}}
     when 'ENUM'
-      #p "Done (ENUM)"
       %Q{"#{t['enumValues'].map{|v| v['name']}.join ' | '}"}
-    when 'INTERFACE'
-      #p "Done (INTERFACE)"
-      {}
-    when 'OBJECT'
-      #p "... going into object"
+    when 'OBJECT', 'INTERFACE'
       ret= {}
       fields= t['fields']
       fields.each do |f|
         base, string, is_conn= type_of(t, {}, f, :base_type, false)
-        ret.merge! resolve_type(f, base)
+        ret.merge! type_to_fields(f, base)
       end
       ret
     else
@@ -826,21 +820,6 @@ def resolve_type(field, type)
 
   $resolving.delete t['name']
   retval
-end
-
-$level= 0
-def hash_to_graphql_query(hash)
-  string= ''
-  hash.each do |k,v|
-    case v
-    when String
-      string += "\n#{k}"
-    else
-      string += "\n#{k} {" + indent($level + 1, hash_to_graphql_query(v)) + "\n}"
-    end
-  end
-  $level = 0 if $level < 0
-  string
 end
 
 def parse_fields_for(type, helper)
@@ -873,7 +852,7 @@ end
 }
 
       tname, short, _ = type_of(type, helper, field, :base_type, false)
-      fields_hash_string = indent 5, hash_to_graphql_query(resolve_type(field, tname))
+      fields_hash_string = indent 5, hash_to_graphql_query(type_to_fields(field, tname))
 
       query_type = type['name'] == $mutation ? 'mutation' : 'query'
       $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_for_spec).size>0 ? "\n" + args_for_spec : ''}
@@ -950,6 +929,21 @@ def parse_types_2(v)
     parse_args_for(type, helper, nil, 'inputFields')
     parse_enum_values_for(type, helper)
   end
+end
+
+$level= 0
+def hash_to_graphql_query(hash)
+  string= ''
+  hash.each do |k,v|
+    case v
+    when String
+      string += "\n#{k}"
+    else
+      string += "\n#{k} {" + indent($level + 1, hash_to_graphql_query(v)) + "\n}"
+    end
+  end
+  $level = 0 if $level < 0
+  string
 end
 
 
