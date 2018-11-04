@@ -265,6 +265,60 @@ def parse_types_1(v)
   end
 end
 
+def parse_types_2(v)
+  $log.info "Found total %s types." % [v.size]
+
+  v.each do |type|
+    next if check_skip(type)
+
+    name= type['name']
+    new_name = $catalog[:type_names][name]
+    unless name and new_name
+      STDERR.puts "parse_types_2() did not find a mapping for #{name}; exiting."
+      exit 1
+    end
+
+    $catalog[:schema_contents][new_name]= []
+    $catalog[:schema_contents][new_name][PREAMBLE]||= []
+    $catalog[:schema_contents][new_name][HEADER]||= []
+    $catalog[:schema_contents][new_name][INTERFACES]||= []
+    $catalog[:schema_contents][new_name][POSSIBLE_TYPES]||= []
+    $catalog[:schema_contents][new_name][INCLUDES]||= []
+    $catalog[:schema_contents][new_name][DEF_METHODS]||= []
+    $catalog[:schema_contents][new_name][FIELDS]||= []
+    $catalog[:schema_contents][new_name][POSTAMBLE]||= []
+
+    $catalog[:contents][new_name]= []
+    $catalog[:contents][new_name][PREAMBLE]||= []
+    $catalog[:contents][new_name][HEADER]||= []
+    $catalog[:contents][new_name][INTERFACES]||= []
+    $catalog[:contents][new_name][POSSIBLE_TYPES]||= []
+    $catalog[:contents][new_name][INCLUDES]||= []
+    $catalog[:contents][new_name][DEF_METHODS]||= []
+    $catalog[:contents][new_name][FIELDS]||= []
+    $catalog[:contents][new_name][POSTAMBLE]||= []
+
+    $catalog[:spec_contents][new_name]= []
+    $catalog[:spec_contents][new_name][PREAMBLE]||= []
+    $catalog[:spec_contents][new_name][HEADER]||= []
+    $catalog[:spec_contents][new_name][INTERFACES]||= []
+    $catalog[:spec_contents][new_name][POSSIBLE_TYPES]||= []
+    $catalog[:spec_contents][new_name][INCLUDES]||= []
+    $catalog[:spec_contents][new_name][DEF_METHODS]||= []
+    $catalog[:spec_contents][new_name][FIELDS]||= []
+    $catalog[:spec_contents][new_name][POSTAMBLE]||= []
+
+    helper = make_helper_for type
+
+    prepare_headers_for type, helper
+    parse_interfaces_for type, helper
+    parse_possible_types_for type, helper
+    parse_fields_for type, helper
+    parse_enum_values_for(type, helper)
+    parse_args_for(type, helper, nil, 'inputFields')
+  end
+end
+
 def output_files
   name= 'Schema'
   $catalog[:schema_contents][name] = %Q{class Spree::GraphQL::Schema::Schema < GraphQL::Schema
@@ -407,77 +461,6 @@ end"
   end
 end
 
-def old_to_new_name(t)
-  name = t['name'].dup
-
-  # If name has already been figured out.
-  if $catalog[:type_names][name]
-    return $catalog[:type_names][name]
-  end
-
-  ret= ( if t['kind'] == 'INTERFACE'
-    name.sub! /Interface$/, ''
-    'Interfaces::'
-  elsif t['kind'] == 'INPUT_OBJECT' || t['name'] =~ /Input(?:V\d+)?$/
-    name.sub! /Input(V\d+)?$/, '\1'
-    'Inputs::'
-  elsif t['name'] =~ /Payload(?:V\d+)?$/
-    name.sub! /Payload(V\d+)?$/, '\1'
-    'Payloads::'
-  else
-    name.sub! /Connection$/, ''
-    'Types::'
-  end ) + name
-  if !ret
-    STDERR.puts "old_to_new_name() failed for #{t['name']}; exiting."
-    exit 1
-  end
-  ret
-end
-
-def indent(i = 0, string)
-  lines = string.lines
-  new_lines = []
-  lines.each do |l|
-    l.chomp!
-    if l=~ /^\s*$/
-      new_lines.push ''
-    else
-      new_lines.push ('  '*i)+ l
-    end
-  end
-  new_lines.join "\n"
-end
-
-def check_skip(t)
-  # This method is only called for toplevel types. And in them, we are not
-  # interested in Connection/Edge types.
-  return true if (t['name']=~ /(?:Connection|Edge)$/) || (t['name']=~ /^__/) || ($catalog[:builtins][t['name']]) || t['isDeprecated']
-  false
-end
-
-def oneline(s)
-  return '' unless s
-  s.sub! /^\n+/, ''
-  s.sub! /\n+$/, ''
-  s.gsub! "\n", ' '
-  s.sub! /\s+$/, ''
-  s
-end
-
-def make_helper_for(type)
-  new_name = $catalog[:type_names][type['name']]
-
-  helper= {
-    new_name: new_name,
-    interfaces: [],
-    possible_types: [],
-    root_query: ( type['name'] == $mutation ? 'mutation' : 'query'),
-  }
-
-  helper
-end
-
 def prepare_headers_for(type, helper)
   new_name= helper[:new_name]
   desc= type['description'] ? "%q{#{type['description']}}" : 'nil'
@@ -554,18 +537,6 @@ def parse_possible_types_for(type, helper)
     string= indent 1, "possible_types \\\n"+ types.map{|t| "  ::Spree::GraphQL::Schema::#{t}"}.join(",\n")
     $catalog[:schema_contents][new_name][POSSIBLE_TYPES].unshift string
   end
-end
-
-def shorten(s)
-  s= s.dup
-  s.gsub! '::Spree::GraphQL::Schema::', ''
-  s.gsub! '::GraphQL::', ''
-  s.gsub! /(?<!, null: true)\]/, '!]'
-  s.gsub! ', null: true', ''
-  s.gsub! ', null: false', '!'
-  s.gsub! ', required: false', ''
-  s.gsub! ', required: true', '!'
-  s
 end
 
 def parse_enum_values_for(type, helper)
@@ -670,10 +641,13 @@ def parse_args_for(type, helper, field, key, is_connection = false)
   method_args
 end
 
-def type_of(type, helper, field, format, action = true)
-  new_name = helper[:new_name] || $catalog[:type_names][type['name']]
-  unless new_name
-    raise Exception.new "Unknown/unseen type #{type['name']}?"
+def type_of_field(field, type= nil)
+  new_name = nil
+  if type
+    new_name = $catalog[:type_names][type['name']]
+    unless new_name
+      raise Exception.new "Unknown/unseen type #{type['name']}?"
+    end
   end
 
   ret_type= nil
@@ -703,7 +677,7 @@ def type_of(type, helper, field, format, action = true)
         exit 1
       end
 
-      if action
+      if type
         $catalog[:depends][new_name] ||= {}
         $catalog[:depends][new_name][ret_name] = true
         if (new_name != ret_name) && ($catalog[:depends][ret_name]) && ($catalog[:depends][ret_name][new_name])
@@ -727,23 +701,12 @@ def type_of(type, helper, field, format, action = true)
   # So the following is needed to comply with that:
   string.gsub! ', null: false]', ']'
 
-  retval = case format
-    when :graphql_ruby
-      [ string, is_connection ]
-    when :graphql
-      [ shorten(string), is_connection ]
-    when :base_type
-      [ ret_type, shorten(string), is_connection ]
-    else
-      raise Exception.new 'Unknown format '+ format.to_s
-    end
-
-  retval
+  [ ret_type, string, shorten(string), is_connection ]
 end
 
 def args_to_method_args(type, field)
   field['args'].map{|a|
-    base, short, _ = type_of(type, {}, a, :base_type, false)
+    base, _, short, _ = type_of_field(a)
     "#{a['name']}: " + (case base
     when 'Int', 'Float'
       base
@@ -809,7 +772,7 @@ def type_to_fields(field, type)
       ret= {}
       fields= t['fields']
       fields.each do |f|
-        base, string, is_conn= type_of(t, {}, f, :base_type, false)
+        base, _, _, _= type_of_field(f)
         ret.merge! type_to_fields(f, base)
       end
       ret
@@ -829,7 +792,7 @@ def parse_fields_for(type, helper)
     type['fields'].each do |field|
       next if field['isDeprecated']
 
-      return_type, is_connection= type_of(type, helper, field, :graphql_ruby)
+      _, return_type, _, is_connection= type_of_field(field, type)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
@@ -851,7 +814,7 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      tname, short, _ = type_of(type, helper, field, :base_type, false)
+      tname, short, _ = type_of_field(field)
       fields_hash_string = indent 5, hash_to_graphql_query(type_to_fields(field, tname))
 
       query_type = type['name'] == $mutation ? 'mutation' : 'query'
@@ -877,60 +840,6 @@ end
     end # endif type['fields']
 end
 
-def parse_types_2(v)
-  $log.info "Found total %s types." % [v.size]
-
-  v.each do |type|
-    next if check_skip(type)
-
-    name= type['name']
-    new_name = $catalog[:type_names][name]
-    unless name and new_name
-      STDERR.puts "parse_types_2() did not find a mapping for #{name}; exiting."
-      exit 1
-    end
-
-    $catalog[:schema_contents][new_name]= []
-    $catalog[:schema_contents][new_name][PREAMBLE]||= []
-    $catalog[:schema_contents][new_name][HEADER]||= []
-    $catalog[:schema_contents][new_name][INTERFACES]||= []
-    $catalog[:schema_contents][new_name][POSSIBLE_TYPES]||= []
-    $catalog[:schema_contents][new_name][INCLUDES]||= []
-    $catalog[:schema_contents][new_name][DEF_METHODS]||= []
-    $catalog[:schema_contents][new_name][FIELDS]||= []
-    $catalog[:schema_contents][new_name][POSTAMBLE]||= []
-
-    $catalog[:contents][new_name]= []
-    $catalog[:contents][new_name][PREAMBLE]||= []
-    $catalog[:contents][new_name][HEADER]||= []
-    $catalog[:contents][new_name][INTERFACES]||= []
-    $catalog[:contents][new_name][POSSIBLE_TYPES]||= []
-    $catalog[:contents][new_name][INCLUDES]||= []
-    $catalog[:contents][new_name][DEF_METHODS]||= []
-    $catalog[:contents][new_name][FIELDS]||= []
-    $catalog[:contents][new_name][POSTAMBLE]||= []
-
-    $catalog[:spec_contents][new_name]= []
-    $catalog[:spec_contents][new_name][PREAMBLE]||= []
-    $catalog[:spec_contents][new_name][HEADER]||= []
-    $catalog[:spec_contents][new_name][INTERFACES]||= []
-    $catalog[:spec_contents][new_name][POSSIBLE_TYPES]||= []
-    $catalog[:spec_contents][new_name][INCLUDES]||= []
-    $catalog[:spec_contents][new_name][DEF_METHODS]||= []
-    $catalog[:spec_contents][new_name][FIELDS]||= []
-    $catalog[:spec_contents][new_name][POSTAMBLE]||= []
-
-    helper = make_helper_for type
-
-    prepare_headers_for type, helper
-    parse_interfaces_for type, helper
-    parse_possible_types_for type, helper
-    parse_fields_for type, helper
-    parse_args_for(type, helper, nil, 'inputFields')
-    parse_enum_values_for(type, helper)
-  end
-end
-
 $level= 0
 def hash_to_graphql_query(hash)
   string= ''
@@ -946,6 +855,88 @@ def hash_to_graphql_query(hash)
   string
 end
 
+def shorten(s)
+  s= s.dup
+  s.gsub! '::Spree::GraphQL::Schema::', ''
+  s.gsub! '::GraphQL::', ''
+  s.gsub! /(?<!, null: true)\]/, '!]'
+  s.gsub! ', null: true', ''
+  s.gsub! ', null: false', '!'
+  s.gsub! ', required: false', ''
+  s.gsub! ', required: true', '!'
+  s
+end
+
+def old_to_new_name(t)
+  name = t['name'].dup
+
+  # If name has already been figured out.
+  if $catalog[:type_names][name]
+    return $catalog[:type_names][name]
+  end
+
+  ret= ( if t['kind'] == 'INTERFACE'
+    name.sub! /Interface$/, ''
+    'Interfaces::'
+  elsif t['kind'] == 'INPUT_OBJECT' || t['name'] =~ /Input(?:V\d+)?$/
+    name.sub! /Input(V\d+)?$/, '\1'
+    'Inputs::'
+  elsif t['name'] =~ /Payload(?:V\d+)?$/
+    name.sub! /Payload(V\d+)?$/, '\1'
+    'Payloads::'
+  else
+    name.sub! /Connection$/, ''
+    'Types::'
+  end ) + name
+  if !ret
+    STDERR.puts "old_to_new_name() failed for #{t['name']}; exiting."
+    exit 1
+  end
+  ret
+end
+
+def indent(i = 0, string)
+  lines = string.lines
+  new_lines = []
+  lines.each do |l|
+    l.chomp!
+    if l=~ /^\s*$/
+      new_lines.push ''
+    else
+      new_lines.push ('  '*i)+ l
+    end
+  end
+  new_lines.join "\n"
+end
+
+def check_skip(t)
+  # This method is only called for toplevel types. And in them, we are not
+  # interested in Connection/Edge types.
+  return true if (t['name']=~ /(?:Connection|Edge)$/) || (t['name']=~ /^__/) || ($catalog[:builtins][t['name']]) || t['isDeprecated']
+  false
+end
+
+def oneline(s)
+  return '' unless s
+  s.sub! /^\n+/, ''
+  s.sub! /\n+$/, ''
+  s.gsub! "\n", ' '
+  s.sub! /\s+$/, ''
+  s
+end
+
+def make_helper_for(type)
+  new_name = $catalog[:type_names][type['name']]
+
+  helper= {
+    new_name: new_name,
+    interfaces: [],
+    possible_types: [],
+    root_query: ( type['name'] == $mutation ? 'mutation' : 'query'),
+  }
+
+  helper
+end
 
 #def result_body(type, helper)
 #  %Q|
