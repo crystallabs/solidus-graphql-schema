@@ -604,7 +604,7 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      fields_hash_string = indent 5, hash_to_graphql_query(field['name'] => type_to_hash(base_type))
+      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => type_to_hash(base_type))
 
       # TODO complete the print of input query and expected response
 
@@ -723,20 +723,22 @@ end
 
 
 
-def args_to_method_args(type, field)
-  field['args'].map{|a|
-    base, _, short, _ = type_of_field(a)
-    "#{a['name']}: " + (case base
-    when 'Int', 'Float'
-      base
-    when 'Boolean'
-      a['defaultValue']
-    when 'String'
-      '""'
-    else
-      %Q{"#{short}"}
-    end)
-  }.join(', ') + ')'
+# TODO -> when implemented, in type_to_hash, convert keys to array and add this as 2nd el in array
+def field_args_to_hash(field)
+  #field['args'].map{|a|
+  #  base, _, short, _ = type_of_field(a)
+  #  "#{a['name']}: " + (case base
+  #  when 'Int', 'Float'
+  #    base
+  #  when 'Boolean'
+  #    a['defaultValue']
+  #  when 'String'
+  #    '""'
+  #  else
+  #    %Q{"#{short}"}
+  #  end)
+  #}.join(', ') + ')'
+  nil
 end
 
 
@@ -746,7 +748,8 @@ end
 
 # type_of_field(field) - returns [base, string, short(string), is_connection]
 # type_to_hash(type) - expands type into nested hash of inputs - TODO: support input types, support connections
-# hash_to_graphql_query
+# field_args_to_hash - expands field args into hash
+# hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
 # shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
 # old_to_new_name - maps original GraphQL name to our class name
 # indent - indents by given level
@@ -846,7 +849,7 @@ def type_to_hash(type)
       fields= t['fields']
       fields.each do |f|
         base, _, _, _= type_of_field(f)
-        ret.merge!( f['name'] => type_to_hash(base) )
+        ret.merge!( [f['name'], field_args_to_hash(f)] => type_to_hash(base) )
       end
       ret
     else
@@ -861,11 +864,17 @@ $level= 0
 def hash_to_graphql_query(hash)
   string= ''
   hash.each do |k,v|
+    k_string = if k[1]
+      "#{k[0]}(#{k[1]})"
+    else
+      k[0]
+    end
+
     case v
     when String
-      string += "\n#{k}"
+      string += "\n#{k_string}"
     else
-      string += "\n#{k} {" + indent($level + 1, hash_to_graphql_query(v)) + "\n}"
+      string += "\n#{k_string} {" + indent($level + 1, hash_to_graphql_query(v)) + "\n}"
     end
   end
   $level = 0 if $level < 0
