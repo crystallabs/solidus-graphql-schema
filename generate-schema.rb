@@ -366,7 +366,7 @@ end"
 # Use it only for convenience to easily spot additions
 # or removals in the list of files and to then update file
 # all.rb manually, taking the necessary order of includes
-# into account." +
+# into account.\n" +
     $catalog[:outputs].values.map{|f| %Q{require_relative "./#{f}"}}.join("\n") + "\n\n" +
     $catalog[:schema_outputs].values.map{|f| %Q{require_relative "./schema/#{f}"}}.join("\n") + "\n"
   }
@@ -461,6 +461,7 @@ def oneline(s)
   s.sub! /^\n+/, ''
   s.sub! /\n+$/, ''
   s.gsub! "\n", ' '
+  s.sub! /\s+$/, ''
   s
 end
 
@@ -479,7 +480,7 @@ end
 
 def prepare_headers_for(type, helper)
   new_name= helper[:new_name]
-  desc= type['description'] ? "%q|#{type['description']}|" : 'nil'
+  desc= type['description'] ? "%q{#{type['description']}}" : 'nil'
 
   if $catalog[:base_type][new_name]== 'Interfaces::BaseInterface'
 
@@ -566,6 +567,7 @@ def type_of(type, helper, field, format)
     end
   end
   string = ''
+  is_connection = false
   chain.each do |f2|
     if f2['kind'] == 'NON_NULL' and !f2['name']; string.sub! /true$/, 'false'
     elsif f2['kind'] == 'LIST' and !f2['name']; string = "[#{string}], null: true"
@@ -574,6 +576,7 @@ def type_of(type, helper, field, format)
       ret_name= f2['name']
       if ret_name.sub! /Connection$/, ''
         suffix = '.connection_type'
+        is_connection = true
       end
       ret_name= $catalog[:type_names][ret_name]
       unless ret_name
@@ -605,7 +608,7 @@ def type_of(type, helper, field, format)
 
   case format
   when :ruby
-    string
+    [ string, is_connection ]
   else
     raise Exception.new 'Unknown format '+ format
   end
@@ -623,7 +626,7 @@ def shorten(s)
   s
 end
 
-def parse_args_for(type, helper, field, key)
+def parse_args_for(type, helper, field, key, is_connection = false)
   new_name = helper[:new_name]
   method_args= []
 
@@ -639,7 +642,7 @@ def parse_args_for(type, helper, field, key)
   if args
     args.each do |arg|
       next if arg['isDeprecated']
-      if thing['name']=~ /Connection$/
+      if is_connection
         next if %w/first last before after pageInfo/.include? arg['name']
       end
 
@@ -651,8 +654,8 @@ def parse_args_for(type, helper, field, key)
         end
       end
       string= ''
-      arg_type = nil
-      default_value = nil
+      arg_type= nil
+      default_value_string= ''
       chain.each do |t2|
         if t2['kind'] == 'NON_NULL' and !t2['name']; string.sub! /false$/, 'true'
         elsif t2['kind'] == 'LIST' and !t2['name']; string = "[#{string}], required: false"
@@ -683,7 +686,6 @@ def parse_args_for(type, helper, field, key)
       method_args[-1].push arg['description']
 
       arg_type= string
-
       # Determine if default value needs to be set
       unless string=~ /required: true/
         default_value= 'nil'
@@ -695,19 +697,16 @@ def parse_args_for(type, helper, field, key)
           else
             %q{'}+ arg['defaultValue']+ %q{'}
           end)
-        default_value = val
+        default_value_string = " default_value: #{val},"
         method_args[-1].push val
       end
-      description= arg['description'] ? "%q|#{arg['description']}|" : 'nil'
-      if default_value != nil
-        default_value = " default_value: #{default_value},"
-      end
+      description= arg['description'] ? "%q{#{arg['description']}}" : 'nil'
 
       ind = 1
       if field
         ind = 2
       end
-      $catalog[:schema_contents][new_name][FIELDS].push indent ind, "argument :#{arg['name'].underscore}, #{arg_type},#{default_value} description: #{description}"
+      $catalog[:schema_contents][new_name][FIELDS].push indent(ind, "argument :#{arg['name'].underscore}, #{arg_type},#{default_value_string} description: ") + description
     end
   end # if field['args']
   method_args
@@ -719,8 +718,8 @@ def parse_enum_values_for(type, helper)
   if type['enumValues']
     type['enumValues'].each do |v|
       next if v['isDeprecated']
-      description= v['description'] ? "%q|#{v['description']}|" : 'nil'
-      $catalog[:schema_contents][new_name][FIELDS].push indent 1, %Q{value '#{v['name']}', #{description}}
+      description= v['description'] ? "%q{#{v['description']}}" : 'nil'
+      $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{value '#{v['name']}', }) + description
     end
   end
   
@@ -736,22 +735,22 @@ def parse_fields_for(type, helper)
     type['fields'].each do |field|
       next if field['isDeprecated']
 
-      return_type= type_of(type, helper, field, :ruby)
-      description= field['description'] ? "%q|#{field['description']}|" : 'nil'
+      return_type, is_connection= type_of(type, helper, field, :ruby)
+      description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
-      $catalog[:schema_contents][new_name][FIELDS].push indent 1, %Q{field :#{field['name'].underscore}, #{return_type} do
-  description #{description}}
+      $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
+  description }) + description
 
-      method_args= parse_args_for(type, helper, field, 'args')
+      method_args= parse_args_for(type, helper, field, 'args', is_connection)
       
       $catalog[:schema_contents][new_name][FIELDS].push indent 1, 'end'
 
-      args_with_desc= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''} #{oneline a[2]}"}.join("\n")
+      args_with_desc= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}#{ a[2] ? ' ' + oneline(a[2]) : ''}"}.join("\n")
       args= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
       args_with_desc_for_spec= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
       #helper['class']= type['name'].underscore
 
-      $catalog[:contents][new_name][FIELDS].push indent 1, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ' '}#{args_with_desc.size>0 ? "\n" + args_with_desc : ''}
+      $catalog[:contents][new_name][FIELDS].push indent 1, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{args_with_desc.size>0 ? "\n" + args_with_desc : ''}
 # @return [#{shorten return_type}]
 def #{field['name'].underscore}#{args}
   raise ::Spree::GraphQL::NotImplementedError.new
