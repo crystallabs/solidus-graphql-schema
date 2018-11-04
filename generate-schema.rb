@@ -266,76 +266,107 @@ def parse_types_1(v)
 end
 
 def output_files
-  # We know how query and mutation type are called, and can already generate schema.rb
   name= 'Schema'
-  $catalog[:schema_contents][name] = template('schema', { 'query' => $query, 'mutation' => $mutation})
+  $catalog[:schema_contents][name] = %Q{class Spree::GraphQL::Schema::Schema < GraphQL::Schema
+  query ::Spree::GraphQL::Schema::Types::#{$query}
+  mutation ::Spree::GraphQL::Schema::Types::#{$mutation}
+
+  def self.id_from_object(object, type_definition, query_context)
+    ::GraphQL::Schema::UniqueWithinType.encode(object.class.name, object.id)
+  end
+
+  def self.object_from_id(id, query_context)
+    class_name, item_id = ::GraphQL::Schema::UniqueWithinType.decode(id)
+    ::Object.const_get(class_name).find(item_id)
+  end
+end}
   $catalog[:schema_outputs][name] = 'schema'
 
   name= 'Types::BaseObject'
-  $catalog[:schema_contents][name]= template('schema/types/base_object')
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
+  global_id_field :id
+  include ::Spree::GraphQL::Types::BaseObject
+end"
   $catalog[:schema_outputs][name]= 'types/base_object'
   # User part:
-  $catalog[:contents][name]= template('types/base_object')
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseObject\nend"
   $catalog[:outputs][name]= 'types/base_object'
   #$catalog[:spec_outputs][name]= 'types/base_object'
 
   name= 'Types::BaseObjectNoId'
-  $catalog[:schema_contents][name]= template('schema/types/base_object_no_id')
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseObjectNoId < GraphQL::Schema::Object
+  include ::Spree::GraphQL::Types::BaseObject
+end"
   $catalog[:schema_outputs][name]= 'types/base_object_no_id'
   # (User part is the same as for BaseObject)
 
   name= 'Types::BaseEnum'
-  $catalog[:schema_contents][name]= template('schema/types/base_enum')
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseEnum < GraphQL::Schema::Enum
+  include ::Spree::GraphQL::Types::BaseEnum
+end"
   $catalog[:schema_outputs][name]= 'types/base_enum'
   # User part:
-  $catalog[:contents][name]= template('types/base_enum')
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseEnum\nend"
   $catalog[:outputs][name]= 'types/base_enum'
   #$catalog[:spec_outputs][name]= 'types/base_enum'
 
   name= 'Types::BaseScalar'
-  $catalog[:schema_contents][name]= template('schema/types/base_scalar')
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseScalar < GraphQL::Schema::Scalar
+  include ::Spree::GraphQL::Types::BaseScalar
+end"
   $catalog[:schema_outputs][name]= 'types/base_scalar'
   # User part:
-  $catalog[:contents][name]= template('types/base_scalar')
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseScalar\nend"
   $catalog[:outputs][name]= 'types/base_scalar'
   #$catalog[:spec_outputs][name]= 'types/base_scalar'
 
   name= 'Interfaces::BaseInterface'
-  $catalog[:schema_contents][name]= template('schema/interfaces/base_interface')
+  $catalog[:schema_contents][name]= "module Spree::GraphQL::Schema::Interfaces::BaseInterface
+  include ::GraphQL::Schema::Interface
+end"
   $catalog[:schema_outputs][name]= 'interfaces/base_interface'
   # User part:
-  $catalog[:contents][name]= template('interfaces/base_interface')
+  $catalog[:contents][name]= "module Spree::GraphQL::Interfaces::BaseInterface\nend"
   $catalog[:outputs][name]= 'interfaces/base_interface'
   #$catalog[:spec_outputs][name]= 'interfaces/base_interface'
 
   name= 'Types::BaseUnion'
-  $catalog[:schema_contents][name]= template('schema/types/base_union')
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseUnion < GraphQL::Schema::Union
+  include ::Spree::GraphQL::Types::BaseUnion
+end"
   $catalog[:schema_outputs][name]= 'types/base_union'
   # User part:
-  $catalog[:contents][name]= template('types/base_union')
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseUnion\nend"
   $catalog[:outputs][name]= 'types/base_union'
   #$catalog[:spec_outputs][name]= 'types/base_union'
 
   name= 'Inputs::BaseInput'
-  $catalog[:schema_contents][name]= template('schema/inputs/base_input')
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Inputs::BaseInput < GraphQL::Schema::InputObject\nend"
   $catalog[:schema_outputs][name]= 'inputs/base_input'
   # User part:
-  #$catalog[:contents][name]= template('inputs/base_input')
+  #$catalog[:contents][name]= "module Spree::GraphQL::Inputs::BaseInput\nend"
   #$catalog[:outputs][name]= 'inputs/base_input'
   #$catalog[:spec_outputs][name]= 'inputs/base_input'
 
   name= 'Payloads::BasePayload'
-  $catalog[:schema_contents][name]= template('schema/payloads/base_payload')
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Payloads::BasePayload < GraphQL::Schema::Object\nend"
   $catalog[:schema_outputs][name]= 'payloads/base_payload'
   # User part:
-  #$catalog[:contents][name]= template('payloads/base_payload')
+  #$catalog[:contents][name]= "module Spree::GraphQL::Payloads::BasePayload\nend"
   #$catalog[:outputs][name]= 'payloads/base_payload'
   #$catalog[:spec_outputs][name]= 'payloads/base_payload'
 
   # Output total file list of files that can be 'require'd (so, excluding specs):
   outfile = "#{$out_dir}/lib/solidus_graphql_api/graphql/file_list.rb"
   FileUtils.mkdir_p File.dirname outfile
-  File.open(outfile, 'w') { |f| f.write template('file_list.rb') +
+  File.open(outfile, 'w') { |f| f.write "# This file lists all the files that were auto-generated.
+# It cannot be used as-is because the order of includes
+# does not represent actual dependencies between files.
+#
+# Use it only for convenience to easily spot additions
+# or removals in the list of files and to then update file
+# all.rb manually, taking the necessary order of includes
+# into account." +
     $catalog[:outputs].values.map{|f| %Q{require_relative "./#{f}"}}.join("\n") + "\n\n" +
     $catalog[:schema_outputs].values.map{|f| %Q{require_relative "./schema/#{f}"}}.join("\n") + "\n"
   }
@@ -409,7 +440,11 @@ def indent(i = 0, string)
   new_lines = []
   lines.each do |l|
     l.chomp!
-    new_lines.push ('  '*i)+ l
+    if l=~ /^\s*$/
+      new_lines.push ''
+    else
+      new_lines.push ('  '*i)+ l
+    end
   end
   new_lines.join "\n"
 end
@@ -488,8 +523,7 @@ def parse_interfaces_for(type, helper)
         exit 1
       end
       $catalog[:schema_contents][new_name][INTERFACES].push indent 1, "implements ::Spree::GraphQL::Schema::#{$catalog[:type_names][i['name']]}"
-
-      #$catalog[:contents][new_name][INTERFACES].push indent 1, "include ::Spree::GraphQL::#{new_name}"
+      $catalog[:contents][new_name][INTERFACES].push indent 1, "include ::Spree::GraphQL::#{$catalog[:type_names][i['name']]}"
     end
   end
 end
@@ -703,7 +737,7 @@ def parse_fields_for(type, helper)
       next if field['isDeprecated']
 
       return_type= type_of(type, helper, field, :ruby)
-      description= field['description'] ? "%q|#{oneline field['description']}|" : 'nil'
+      description= field['description'] ? "%q|#{field['description']}|" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent 1, %Q{field :#{field['name'].underscore}, #{return_type} do
   description #{description}}
@@ -717,7 +751,7 @@ def parse_fields_for(type, helper)
       args_with_desc_for_spec= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}"}.join("\n")
       #helper['class']= type['name'].underscore
 
-      $catalog[:contents][new_name][FIELDS].push indent 2, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ' '}#{(args_with_desc).size>0 ? "\n" + args_with_desc : ''}
+      $catalog[:contents][new_name][FIELDS].push indent 1, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ' '}#{args_with_desc.size>0 ? "\n" + args_with_desc : ''}
 # @return [#{shorten return_type}]
 def #{field['name'].underscore}#{args}
   raise ::Spree::GraphQL::NotImplementedError.new
@@ -738,9 +772,6 @@ end
       end # type['fields'].each
     end # endif type['fields']
 end
-
-###########################################################################
-# Chaos below:
 
 def parse_types_2(v)
   $log.info "Found total %s types." % [v.size]
@@ -797,94 +828,7 @@ def parse_types_2(v)
 end
 
 
-# Beware here that all variable interpolations must pass. E.g., if you have
-# `type['name'].underscore` in any part of content, then either all calls to template()
-# must have `type['name']` non-nil, or you need to wrap it into (type['name']||'').underscore.
-def template(file, type = {}, helper = {})
-{
-'file_list.rb' => %q{# This file lists all the files that were auto-generated.
-# It cannot be used as-is because the order of includes
-# does not represent actual dependencies between files.
-#
-# Use it only for convenience to easily spot additions
-# or removals in the list of files and to then update file
-# all.rb manually, taking the necessary order of includes
-# into account.
-
-},
-# Schema parts:
-'schema' => "class Spree::GraphQL::Schema::Schema < GraphQL::Schema
-  query ::Spree::GraphQL::Schema::Types::#{type['query']}
-  mutation ::Spree::GraphQL::Schema::Types::#{type['mutation']}
-
-  def self.id_from_object(object, type_definition, query_context)
-    ::GraphQL::Schema::UniqueWithinType.encode(object.class.name, object.id)
-  end
-
-  def self.object_from_id(id, query_context)
-    class_name, item_id = ::GraphQL::Schema::UniqueWithinType.decode(id)
-    ::Object.const_get(class_name).find(item_id)
-  end
-end
-",
-'schema/types/base_object' => 'class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
-  global_id_field :id
-  include ::Spree::GraphQL::Types::BaseObject
-end
-',
-'schema/types/base_object_no_id' => 'class Spree::GraphQL::Schema::Types::BaseObjectNoId < GraphQL::Schema::Object
-  include ::Spree::GraphQL::Types::BaseObject
-end
-',
-'schema/types/base_enum' => 'class Spree::GraphQL::Schema::Types::BaseEnum < GraphQL::Schema::Enum
-  include ::Spree::GraphQL::Types::BaseEnum
-end
-',
-'schema/types/base_scalar' => 'class Spree::GraphQL::Schema::Types::BaseScalar < GraphQL::Schema::Scalar
-  include ::Spree::GraphQL::Types::BaseScalar
-end
-',
-'schema/interfaces/base_interface' => 'module Spree::GraphQL::Schema::Interfaces::BaseInterface
-  include ::GraphQL::Schema::Interface
-end
-',
-'schema/types/base_union' => 'class Spree::GraphQL::Schema::Types::BaseUnion < GraphQL::Schema::Union
-  include ::Spree::GraphQL::Types::BaseUnion
-end
-',
-'schema/inputs/base_input' => 'class Spree::GraphQL::Schema::Inputs::BaseInput < GraphQL::Schema::InputObject
-end
-',
-'schema/payloads/base_payload' => 'class Spree::GraphQL::Schema::Payloads::BasePayload < GraphQL::Schema::Object
-end
-',
-# User parts:
-'types/base_object' => 'module Spree::GraphQL::Types::BaseObject
-end
-',
-'types/base_enum' => 'module Spree::GraphQL::Types::BaseEnum
-end
-',
-'types/base_scalar' => 'module Spree::GraphQL::Types::BaseScalar
-end
-',
-'inputs/base_input' => 'module Spree::GraphQL::Inputs::BaseInput
-end
-',
-'payloads/base_payload' => 'module Spree::GraphQL::Payloads::BasePayload
-end
-',
-'interfaces/base_interface' => 'module Spree::GraphQL::Interfaces::BaseInterface
-end
-',
-'types/base_union' => 'module Spree::GraphQL::Types::BaseUnion
-end
-',
-# Test parts:
-'spec/field_query' => "query #{type['name']} { #{helper['class']} { #{type['name']} } }",
-}[file]
-end
-
+#'spec/field_query' => "query #{type['name']} { #{helper['class']} { #{type['name']} } }",
 #def type2string(t)
 #  chain = []
 #  if ft = t['type']
