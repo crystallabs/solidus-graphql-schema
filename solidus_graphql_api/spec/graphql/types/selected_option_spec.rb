@@ -10,24 +10,38 @@ module Spree::GraphQL
     # name: The product option’s name.
     # @return [Types::String!]
     describe 'name' do
-      let!(:query) { '{ selected_option { name } }' }
-      let!(:result) { { data: { selected_option: { name: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            selectedOption {
+              name
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # value: The product option’s value.
     # @return [Types::String!]
     describe 'value' do
-      let!(:query) { '{ selected_option { value } }' }
-      let!(:result) { { data: { selected_option: { value: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            selectedOption {
+              value
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

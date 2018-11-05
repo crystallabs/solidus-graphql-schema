@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::OrderLineItem
+
   # customAttributes: List of custom attributes associated to the line item.
   # @return [[Types::Attribute!]!]
   def custom_attributes()
@@ -29,5 +30,4 @@ module Spree::GraphQL::Types::OrderLineItem
   def variant()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

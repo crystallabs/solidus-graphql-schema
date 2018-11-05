@@ -10,5 +10,4 @@ class Spree::GraphQL::Schema::Schema < GraphQL::Schema
     class_name, item_id = ::GraphQL::Schema::UniqueWithinType.decode(id)
     ::Object.const_get(class_name).find(item_id)
   end
-
 end

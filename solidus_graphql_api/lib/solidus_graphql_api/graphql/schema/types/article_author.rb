@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::ArticleAuthor < Spree::GraphQL::Schema::Typ
   graphql_name 'ArticleAuthor'
   description nil
   include ::Spree::GraphQL::Types::ArticleAuthor
-
   field :bio, ::GraphQL::Types::String, null: true do
     description %q{The author's bio.}
   end

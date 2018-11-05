@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CustomerUpdate < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CustomerUpdate < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CustomerUpdatePayload'
   description nil
-
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do
     description %q{The updated customer object.}
   end

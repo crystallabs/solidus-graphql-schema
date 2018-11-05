@@ -10,47 +10,78 @@ module Spree::GraphQL
     # author: The comment’s author.
     # @return [Types::CommentAuthor!]
     describe 'author' do
-      let!(:query) { '{ comment { author } }' }
-      let!(:result) { { data: { comment: { author: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            comment {
+              author {
+                email
+                name
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # content: Stripped content of the comment, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String!]
     describe 'content' do
-      let!(:query) { '{ comment { content } }' }
-      let!(:result) { { data: { comment: { content: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            comment {
+              content(truncateAt: Int)
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # contentHtml: The content of the comment, complete with HTML formatting.
     # @return [Types::HTML!]
     describe 'contentHtml' do
-      let!(:query) { '{ comment { contentHtml } }' }
-      let!(:result) { { data: { comment: { contentHtml: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            comment {
+              contentHtml
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
-      let!(:query) { '{ comment { id } }' }
-      let!(:result) { { data: { comment: { id: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            comment {
+              id
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

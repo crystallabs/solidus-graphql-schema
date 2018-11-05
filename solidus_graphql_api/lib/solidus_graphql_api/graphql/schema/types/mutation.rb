@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::Mutation < Spree::GraphQL::Schema::Types::B
   graphql_name 'Mutation'
   description %q{The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start.}
   include ::Spree::GraphQL::Types::Mutation
-
   field :checkout_attributes_update_v2, ::Spree::GraphQL::Schema::Payloads::CheckoutAttributesUpdateV2, null: true do
     description %q{Updates the attributes of a checkout.}
     argument :checkout_id, ::GraphQL::Types::ID, required: true, description: %q{The ID of the checkout.}

@@ -4,7 +4,6 @@ class Spree::GraphQL::Schema::Types::SelectedOption < Spree::GraphQL::Schema::Ty
 Multiple options can exist. Options are represented as: option1, option2, option3, etc.
 }
   include ::Spree::GraphQL::Types::SelectedOption
-
   field :name, ::GraphQL::Types::String, null: false do
     description %q{The product option’s name.}
   end

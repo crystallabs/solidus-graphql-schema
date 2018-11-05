@@ -10,46 +10,74 @@ module Spree::GraphQL
     # amountUsed: The amount that was used taken from the Gift Card by applying it.
     # @return [Types::Money!]
     describe 'amountUsed' do
-      let!(:query) { '{ applied_gift_card { amountUsed } }' }
-      let!(:result) { { data: { applied_gift_card: { amountUsed: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            appliedGiftCard {
+              amountUsed
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # balance: The amount left on the Gift Card.
     # @return [Types::Money!]
     describe 'balance' do
-      let!(:query) { '{ applied_gift_card { balance } }' }
-      let!(:result) { { data: { applied_gift_card: { balance: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            appliedGiftCard {
+              balance
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
-      let!(:query) { '{ applied_gift_card { id } }' }
-      let!(:result) { { data: { applied_gift_card: { id: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            appliedGiftCard {
+              id
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # lastCharacters: The last characters of the Gift Card code
     # @return [Types::String!]
     describe 'lastCharacters' do
-      let!(:query) { '{ applied_gift_card { lastCharacters } }' }
-      let!(:result) { { data: { applied_gift_card: { lastCharacters: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            appliedGiftCard {
+              lastCharacters
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

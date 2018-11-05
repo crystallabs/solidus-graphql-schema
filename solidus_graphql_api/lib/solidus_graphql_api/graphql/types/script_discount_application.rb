@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::ScriptDiscountApplication
   include ::Spree::GraphQL::Interfaces::DiscountApplication
+
   # allocationMethod: The method by which the discount's value is allocated to its entitled items.
   # @return [Types::DiscountApplicationAllocationMethod!]
   def allocation_method()
@@ -30,5 +31,4 @@ module Spree::GraphQL::Types::ScriptDiscountApplication
   def value()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::AvailableShippingRates < Spree::GraphQL::Sc
   graphql_name 'AvailableShippingRates'
   description %q{A collection of available shipping rates for a checkout.}
   include ::Spree::GraphQL::Types::AvailableShippingRates
-
   field :ready, ::GraphQL::Types::Boolean, null: false do
     description %q{Whether or not the shipping rates are ready.
 The `shippingRates` field is `null` when this value is `false`.

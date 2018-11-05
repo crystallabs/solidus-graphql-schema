@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::BlogSortKeys < Spree::GraphQL::Schema::Type
   graphql_name 'BlogSortKeys'
   description %q{The set of valid sort keys for the blogs query.}
   include ::Spree::GraphQL::Types::BlogSortKeys
-
   value 'HANDLE', %q{Sort by the `handle` value.}
   value 'TITLE', %q{Sort by the `title` value.}
   value 'ID', %q{Sort by the `id` value.}

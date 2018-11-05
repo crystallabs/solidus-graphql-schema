@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::CreditCard
+
   # brand
   # @return [Types::String]
   def brand()
@@ -47,5 +48,4 @@ module Spree::GraphQL::Types::CreditCard
   def masked_number()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CustomerReset < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CustomerReset < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CustomerResetPayload'
   description nil
-
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do
     description %q{The customer object which was reset.}
   end

@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::CommentAuthor < Spree::GraphQL::Schema::Typ
   graphql_name 'CommentAuthor'
   description nil
   include ::Spree::GraphQL::Types::CommentAuthor
-
   field :email, ::GraphQL::Types::String, null: false do
     description %q{The author's email.}
   end

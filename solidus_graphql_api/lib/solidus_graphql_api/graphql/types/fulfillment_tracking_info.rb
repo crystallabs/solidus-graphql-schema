@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::FulfillmentTrackingInfo
+
   # number: The tracking number of the fulfillment.
   # @return [Types::String]
   def number()
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::FulfillmentTrackingInfo
   def url()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

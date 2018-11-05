@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::OrderLineItem < Spree::GraphQL::Schema::Typ
   graphql_name 'OrderLineItem'
   description %q{Represents a single line in an order. There is one line item for each distinct product variant.}
   include ::Spree::GraphQL::Types::OrderLineItem
-
   field :custom_attributes, [::Spree::GraphQL::Schema::Types::Attribute], null: false do
     description %q{List of custom attributes associated to the line item.}
   end

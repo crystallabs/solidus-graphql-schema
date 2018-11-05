@@ -3,7 +3,6 @@ class Spree::GraphQL::Schema::Types::Order < Spree::GraphQL::Schema::Types::Base
   description %q{An order is a customer’s completed request to purchase one or more products from a shop. An order is created when a customer completes the checkout process, during which time they provides an email address, billing address and payment information.}
   implements ::Spree::GraphQL::Schema::Interfaces::Node
   include ::Spree::GraphQL::Types::Order
-
   field :currency_code, ::Spree::GraphQL::Schema::Types::CurrencyCode, null: false do
     description %q{The code of the currency used for the payment.}
   end
@@ -13,8 +12,12 @@ class Spree::GraphQL::Schema::Types::Order < Spree::GraphQL::Schema::Types::Base
   field :customer_url, ::Spree::GraphQL::Schema::Types::URL, null: true do
     description %q{The unique URL that the customer can use to access the order.}
   end
-  field :discount_applications, ::Spree::GraphQL::Schema::Interfaces::DiscountApplication.connection_type, null: false do
+  field :discount_applications, ::Spree::GraphQL::Schema::Interfaces::DiscountApplication, null: false do
     description %q{Discounts that have been applied on the order.}
+    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
+    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
+    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
+    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
   end
   field :email, ::GraphQL::Types::String, null: true do
@@ -23,8 +26,12 @@ class Spree::GraphQL::Schema::Types::Order < Spree::GraphQL::Schema::Types::Base
   field :id, ::GraphQL::Types::ID, null: false do
     description %q{Globally unique identifier.}
   end
-  field :line_items, ::Spree::GraphQL::Schema::Types::OrderLineItem.connection_type, null: false do
+  field :line_items, ::Spree::GraphQL::Schema::Types::OrderLineItem, null: false do
     description %q{List of the order’s line items.}
+    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
+    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
+    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
+    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
   end
   field :name, ::GraphQL::Types::String, null: false do

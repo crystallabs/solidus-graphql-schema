@@ -10,13 +10,20 @@ module Spree::GraphQL
     # percentage: The percentage value of the object.
     # @return [Types::Float!]
     describe 'percentage' do
-      let!(:query) { '{ pricing_percentage_value { percentage } }' }
-      let!(:result) { { data: { pricing_percentage_value: { percentage: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            pricingPercentageValue {
+              percentage
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

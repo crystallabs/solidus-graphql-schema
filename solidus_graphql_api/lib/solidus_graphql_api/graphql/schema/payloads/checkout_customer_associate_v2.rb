@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CheckoutCustomerAssociateV2 < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CheckoutCustomerAssociateV2 < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CheckoutCustomerAssociateV2Payload'
   description nil
-
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: true do
     description %q{The updated checkout object.}
   end

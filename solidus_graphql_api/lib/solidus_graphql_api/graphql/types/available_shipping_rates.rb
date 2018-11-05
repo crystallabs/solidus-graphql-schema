@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::AvailableShippingRates
-  # ready: Whether or not the shipping rates are ready. The `shippingRates` field is `null` when this value is `false`. This field should be polled until its value becomes `true`. 
+
+  # ready: Whether or not the shipping rates are ready. The `shippingRates` field is `null` when this value is `false`. This field should be polled until its value becomes `true`.
   # @return [Types::Boolean!]
   def ready()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::AvailableShippingRates
   def shipping_rates()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

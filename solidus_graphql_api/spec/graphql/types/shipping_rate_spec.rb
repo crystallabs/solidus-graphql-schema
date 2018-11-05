@@ -10,35 +10,56 @@ module Spree::GraphQL
     # handle: Human-readable unique identifier for this shipping rate.
     # @return [Types::String!]
     describe 'handle' do
-      let!(:query) { '{ shipping_rate { handle } }' }
-      let!(:result) { { data: { shipping_rate: { handle: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            shippingRate {
+              handle
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # price: Price of this shipping rate.
     # @return [Types::Money!]
     describe 'price' do
-      let!(:query) { '{ shipping_rate { price } }' }
-      let!(:result) { { data: { shipping_rate: { price: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            shippingRate {
+              price
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # title: Title of this shipping rate.
     # @return [Types::String!]
     describe 'title' do
-      let!(:query) { '{ shipping_rate { title } }' }
-      let!(:result) { { data: { shipping_rate: { title: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            shippingRate {
+              title
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

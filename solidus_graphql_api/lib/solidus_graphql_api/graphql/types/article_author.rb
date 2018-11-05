@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::ArticleAuthor
+
   # bio: The author's bio.
   # @return [Types::String]
   def bio()
@@ -29,5 +30,4 @@ module Spree::GraphQL::Types::ArticleAuthor
   def name()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

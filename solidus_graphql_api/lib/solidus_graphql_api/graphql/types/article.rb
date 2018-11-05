@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Article
   include ::Spree::GraphQL::Interfaces::Node
+
   # authorV2: The article's author.
   # @return [Types::ArticleAuthor]
   def author_v2()
@@ -14,9 +15,13 @@ module Spree::GraphQL::Types::Article
   end
 
   # comments: List of comments posted on the article.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::Comment.connection_type!]
-  def comments(reverse:)
+  # @return [Types::Comment!]
+  def comments(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -46,7 +51,7 @@ module Spree::GraphQL::Types::Article
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # handle: A human-friendly unique string for the Article automatically generated from its title. 
+  # handle: A human-friendly unique string for the Article automatically generated from its title.
   # @return [Types::String!]
   def handle()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -91,5 +96,4 @@ module Spree::GraphQL::Types::Article
   def url()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

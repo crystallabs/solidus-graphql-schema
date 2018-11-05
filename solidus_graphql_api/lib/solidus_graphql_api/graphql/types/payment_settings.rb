@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::PaymentSettings
+
   # acceptedCardBrands: List of the card brands which the shop accepts.
   # @return [[Types::CardBrand!]!]
   def accepted_card_brands()
@@ -35,5 +36,4 @@ module Spree::GraphQL::Types::PaymentSettings
   def supported_digital_wallets()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

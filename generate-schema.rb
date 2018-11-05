@@ -604,7 +604,11 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], hash_to_method_args(field_args_to_hash(field))] => type_to_hash(base_type))
+      content= type_to_hash(base_type)
+      if is_connection
+        content = wrap_to_connection content
+      end
+      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => content)
 
       # TODO complete the print of input query and expected response
 
@@ -743,9 +747,17 @@ def hash_to_method_args(hash)
 
     value= case v
     when Hash
-      '{' + hash_to_method_args(v) + '}'
+      pre= '{'
+      post= '}'
+      if args= hash_to_method_args(v)
+        if args.lines.size> 1
+          pre= "{\n"
+          args= indent 1, args
+          post= "\n}"
+        end
+      end
+      pre + args + post
     else
-      puts v
       v
     end
     ret.push "#{k_string}: #{value}"
@@ -753,7 +765,7 @@ def hash_to_method_args(hash)
   if ret.size <2
     ret.join(", ")
   else
-    "\n" + indent(1, ret.join(",\n"))
+    ret.join(",\n")
   end
 end
 
@@ -762,7 +774,10 @@ def field_args_to_hash(field)
 
   if field['args']
     field['args'].each {|a|
-      base, _, short, conn = type_of_field(a)
+      base, _, short, is_connection = type_of_field(a)
+      if is_connection
+        raise Exception.new "Didn't expect connection here"
+      end
       name= a['name']
       value=
         if base== 'Int' or base== 'Float'
@@ -778,7 +793,10 @@ def field_args_to_hash(field)
         else
           # What remains? OBJs and INPUT OBJs?
           #raise Exception.new "Not seen: #{base} (#{p a})"
-          bt, _ = type_of_field(a)
+          bt, _, _, is_connection = type_of_field(a)
+          if is_connection
+            raise Exception.new "Didn't expect connection here"
+          end
           type_to_hash($schema_type_map[bt])
         end
       ret[name]= value
@@ -900,8 +918,12 @@ def type_to_hash(type)
       ret= {}
       fields= t['fields'] || t['inputFields']
       fields.each do |f|
-        base, _, _, _= type_of_field(f)
-        ret.merge!( [f['name'], field_args_to_hash(f)] => type_to_hash(base) )
+        base, _, _, is_connection= type_of_field(f)
+        content= type_to_hash(base)
+        if is_connection
+          content = wrap_to_connection content
+        end
+        ret.merge!( [f['name'], field_args_to_hash(f)] => content )
       end
       ret
     else
@@ -921,7 +943,16 @@ def hash_to_graphql_query(hash)
   string= ''
   hash.each do |k,v|
     k_string = if k[1]
-      "#{k[0]}(#{hash_to_method_args k[1]})"
+      pre= '('
+      post= ')'
+      if args = hash_to_method_args(k[1])
+        if args.lines.size > 1
+          pre = "(\n"
+          args= indent 1, args
+          post= "\n)"
+        end
+      end
+      "#{k[0]}#{pre}#{args}#{post}"
     else
       k[0]
     end
@@ -930,7 +961,14 @@ def hash_to_graphql_query(hash)
     when String
       string += "\n#{k_string}"
     else
-      string += "\n#{k_string} {" + indent($level + 1, hash_to_graphql_query(v)) + "\n}"
+      pre= ' {'
+      post= "\n}"
+      if args= hash_to_graphql_query(v)
+        #if args.lines.size > 1
+        #  pre+= "\n"
+        #end
+      end
+      string += "\n#{k_string}#{pre}" + indent($level + 1, args) + post
     end
   end
   $level = 0 if $level < 0
@@ -998,6 +1036,10 @@ def oneline(s)
   s.gsub! "\n", ' '
   s.sub! /\s+$/, ''
   s
+end
+
+def wrap_to_connection(content)
+  { [:edges] => { [:node] => content}, [:pageInfo] => { [:hasNextPage] => '', [:hasPreviousPage] => ''}}
 end
 
 ####

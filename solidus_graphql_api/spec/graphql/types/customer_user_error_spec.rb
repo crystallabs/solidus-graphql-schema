@@ -10,35 +10,56 @@ module Spree::GraphQL
     # code: Error code to uniquely identify the error.
     # @return [Types::CustomerErrorCode]
     describe 'code' do
-      let!(:query) { '{ customer_user_error { code } }' }
-      let!(:result) { { data: { customer_user_error: { code: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            customerUserError {
+              code
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # field: Path to the input field which caused the error.
     # @return [[Types::String!]]
     describe 'field' do
-      let!(:query) { '{ customer_user_error { field } }' }
-      let!(:result) { { data: { customer_user_error: { field: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            customerUserError {
+              field
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # message: The error message.
     # @return [Types::String!]
     describe 'message' do
-      let!(:query) { '{ customer_user_error { message } }' }
-      let!(:result) { { data: { customer_user_error: { message: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            customerUserError {
+              message
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

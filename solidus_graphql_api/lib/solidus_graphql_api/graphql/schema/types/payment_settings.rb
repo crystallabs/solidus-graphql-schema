@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::PaymentSettings < Spree::GraphQL::Schema::T
   graphql_name 'PaymentSettings'
   description %q{Settings related to payments.}
   include ::Spree::GraphQL::Types::PaymentSettings
-
   field :accepted_card_brands, [::Spree::GraphQL::Schema::Types::CardBrand], null: false do
     description %q{List of the card brands which the shop accepts.}
   end

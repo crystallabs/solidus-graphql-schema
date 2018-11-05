@@ -10,24 +10,38 @@ module Spree::GraphQL
     # accessToken: The customer’s access token.
     # @return [Types::String!]
     describe 'accessToken' do
-      let!(:query) { '{ customer_access_token { accessToken } }' }
-      let!(:result) { { data: { customer_access_token: { accessToken: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            customerAccessToken {
+              accessToken
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # expiresAt: The date and time when the customer access token expires.
     # @return [Types::DateTime!]
     describe 'expiresAt' do
-      let!(:query) { '{ customer_access_token { expiresAt } }' }
-      let!(:result) { { data: { customer_access_token: { expiresAt: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            customerAccessToken {
+              expiresAt
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

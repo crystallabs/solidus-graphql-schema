@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Mutation
+
   # checkoutAttributesUpdateV2: Updates the attributes of a checkout.
   # @param checkout_id [Types::ID!] The ID of the checkout.
   # @param input [Inputs::CheckoutAttributesUpdateV2!] The checkout attributes to update.
@@ -32,7 +33,7 @@ module Spree::GraphQL::Types::Mutation
   end
 
   # checkoutCreate: Creates a new checkout.
-  # @param input [Inputs::CheckoutCreate!] 
+  # @param input [Inputs::CheckoutCreate!]
   # @return [Payloads::CheckoutCreate]
   def checkout_create(input:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -132,8 +133,8 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # customerAccessTokenCreate: Creates a customer access token. The customer access token is required to modify the customer object in any way. 
-  # @param input [Inputs::CustomerAccessTokenCreate!] 
+  # customerAccessTokenCreate: Creates a customer access token. The customer access token is required to modify the customer object in any way.
+  # @param input [Inputs::CustomerAccessTokenCreate!]
   # @return [Payloads::CustomerAccessTokenCreate]
   def customer_access_token_create(input:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -146,7 +147,7 @@ module Spree::GraphQL::Types::Mutation
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # customerAccessTokenRenew: Renews a customer access token. Access token renewal must happen *before* a token expires. If a token has already expired, a new one should be created instead via `customerAccessTokenCreate`. 
+  # customerAccessTokenRenew: Renews a customer access token. Access token renewal must happen *before* a token expires. If a token has already expired, a new one should be created instead via `customerAccessTokenCreate`.
   # @param customer_access_token [Types::String!] The access token used to identify the customer.
   # @return [Payloads::CustomerAccessTokenRenew]
   def customer_access_token_renew(customer_access_token:)
@@ -155,7 +156,7 @@ module Spree::GraphQL::Types::Mutation
 
   # customerActivate: Activates a customer.
   # @param id [Types::ID!] Specifies the customer to activate.
-  # @param input [Inputs::CustomerActivate!] 
+  # @param input [Inputs::CustomerActivate!]
   # @return [Payloads::CustomerActivate]
   def customer_activate(id:, input:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -187,7 +188,7 @@ module Spree::GraphQL::Types::Mutation
   end
 
   # customerCreate: Creates a new customer.
-  # @param input [Inputs::CustomerCreate!] 
+  # @param input [Inputs::CustomerCreate!]
   # @return [Payloads::CustomerCreate]
   def customer_create(input:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -210,7 +211,7 @@ module Spree::GraphQL::Types::Mutation
 
   # customerReset: Resets a customer’s password with a token received from `CustomerRecover`.
   # @param id [Types::ID!] Specifies the customer to reset.
-  # @param input [Inputs::CustomerReset!] 
+  # @param input [Inputs::CustomerReset!]
   # @return [Payloads::CustomerReset]
   def customer_reset(id:, input:)
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -231,5 +232,4 @@ module Spree::GraphQL::Types::Mutation
   def customer_update(customer_access_token:, customer:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

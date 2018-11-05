@@ -10,13 +10,20 @@ module Spree::GraphQL
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
-      let!(:query) { '{ node { id } }' }
-      let!(:result) { { data: { node: { id: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            node {
+              id
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

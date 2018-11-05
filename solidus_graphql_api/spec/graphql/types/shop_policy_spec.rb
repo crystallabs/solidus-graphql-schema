@@ -10,46 +10,74 @@ module Spree::GraphQL
     # body: Policy text, maximum size of 64kb.
     # @return [Types::String!]
     describe 'body' do
-      let!(:query) { '{ shop_policy { body } }' }
-      let!(:result) { { data: { shop_policy: { body: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            shopPolicy {
+              body
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
-      let!(:query) { '{ shop_policy { id } }' }
-      let!(:result) { { data: { shop_policy: { id: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            shopPolicy {
+              id
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # title: Policy’s title.
     # @return [Types::String!]
     describe 'title' do
-      let!(:query) { '{ shop_policy { title } }' }
-      let!(:result) { { data: { shop_policy: { title: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            shopPolicy {
+              title
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # url: Public URL to the policy.
     # @return [Types::URL!]
     describe 'url' do
-      let!(:query) { '{ shop_policy { url } }' }
-      let!(:result) { { data: { shop_policy: { url: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            shopPolicy {
+              url
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

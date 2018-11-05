@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::SelectedOption
+
   # name: The product option’s name.
   # @return [Types::String!]
   def name()
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::SelectedOption
   def value()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

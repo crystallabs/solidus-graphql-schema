@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::ProductOption
   include ::Spree::GraphQL::Interfaces::Node
+
   # id: Globally unique identifier.
   # @return [Types::ID!]
   def id()
@@ -18,5 +19,4 @@ module Spree::GraphQL::Types::ProductOption
   def values()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

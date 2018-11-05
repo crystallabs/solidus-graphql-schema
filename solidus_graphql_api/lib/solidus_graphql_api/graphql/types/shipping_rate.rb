@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::ShippingRate
+
   # handle: Human-readable unique identifier for this shipping rate.
   # @return [Types::String!]
   def handle()
@@ -17,5 +18,4 @@ module Spree::GraphQL::Types::ShippingRate
   def title()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

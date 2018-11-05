@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CustomerCreate < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CustomerCreate < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CustomerCreatePayload'
   description nil
-
   field :customer, ::Spree::GraphQL::Schema::Types::Customer, null: true do
     description %q{The created customer object.}
   end

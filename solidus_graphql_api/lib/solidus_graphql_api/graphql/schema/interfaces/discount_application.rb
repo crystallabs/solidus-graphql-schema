@@ -1,14 +1,12 @@
 module Spree::GraphQL::Schema::Interfaces::DiscountApplication
-  include ::Spree::GraphQL::Schema::Types::BaseInterface
+  include ::Spree::GraphQL::Schema::Interfaces::BaseInterface
   graphql_name 'DiscountApplication'
   description %q{Discount applications capture the intentions of a discount source at
 the time of application.
 }
   include ::Spree::GraphQL::Interfaces::DiscountApplication
-
   definition_methods do
   end
-
   field :allocation_method, ::Spree::GraphQL::Schema::Types::DiscountApplicationAllocationMethod, null: false do
     description %q{The method by which the discount's value is allocated to its entitled items.}
   end

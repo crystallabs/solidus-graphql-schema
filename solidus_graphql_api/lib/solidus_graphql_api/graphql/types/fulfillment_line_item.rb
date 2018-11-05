@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::FulfillmentLineItem
+
   # lineItem: The associated order's line item.
   # @return [Types::OrderLineItem!]
   def line_item()
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::FulfillmentLineItem
   def quantity()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

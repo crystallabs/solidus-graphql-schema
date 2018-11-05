@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Shop
+
   # collectionByHandle: Find a collection by its handle.
   # @param handle [Types::String!] The handle of the collection.
   # @return [Types::Collection]
@@ -8,11 +9,15 @@ module Spree::GraphQL::Types::Shop
   end
 
   # collections: List of the shop’s collections.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::CollectionSortKeys] ('ID') Sort the underlying list by the given key.
   # @param query [Types::String] Supported filter parameters:  - `title`  - `collection_type`  - `updated_at` See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
-  # @return [Types::Collection.connection_type!]
-  def collections(reverse:, sort_key:, query:)
+  # @return [Types::Collection!]
+  def collections(first:, after:, last:, before:, reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -60,17 +65,22 @@ module Spree::GraphQL::Types::Shop
   end
 
   # productTypes: List of the shop’s product types.
-  # @return [Types::String.connection_type!]
-  def product_types()
+  # @param first [Types::Int!] Returns up to the first `n` elements from the list.
+  # @return [Types::String!]
+  def product_types(first:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # products: List of the shop’s products.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::ProductSortKeys] ('ID') Sort the underlying list by the given key.
   # @param query [Types::String] Supported filter parameters:  - `title`  - `product_type`  - `vendor`  - `created_at`  - `updated_at`  - `variants.price`  - `tag` See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
-  # @return [Types::Product.connection_type!]
-  def products(reverse:, sort_key:, query:)
+  # @return [Types::Product!]
+  def products(first:, after:, last:, before:, reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -91,5 +101,4 @@ module Spree::GraphQL::Types::Shop
   def terms_of_service()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -10,68 +10,110 @@ module Spree::GraphQL
     # allocationMethod: The method by which the discount's value is allocated to its entitled items.
     # @return [Types::DiscountApplicationAllocationMethod!]
     describe 'allocationMethod' do
-      let!(:query) { '{ discount_code_application { allocationMethod } }' }
-      let!(:result) { { data: { discount_code_application: { allocationMethod: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountCodeApplication {
+              allocationMethod
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # applicable: Specifies whether the discount code was applied successfully.
     # @return [Types::Boolean!]
     describe 'applicable' do
-      let!(:query) { '{ discount_code_application { applicable } }' }
-      let!(:result) { { data: { discount_code_application: { applicable: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountCodeApplication {
+              applicable
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # code: The string identifying the discount code that was used at the time of application.
     # @return [Types::String!]
     describe 'code' do
-      let!(:query) { '{ discount_code_application { code } }' }
-      let!(:result) { { data: { discount_code_application: { code: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountCodeApplication {
+              code
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # targetSelection: Which lines of targetType that the discount is allocated over.
     # @return [Types::DiscountApplicationTargetSelection!]
     describe 'targetSelection' do
-      let!(:query) { '{ discount_code_application { targetSelection } }' }
-      let!(:result) { { data: { discount_code_application: { targetSelection: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountCodeApplication {
+              targetSelection
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # targetType: The type of line that the discount is applicable towards.
     # @return [Types::DiscountApplicationTargetType!]
     describe 'targetType' do
-      let!(:query) { '{ discount_code_application { targetType } }' }
-      let!(:result) { { data: { discount_code_application: { targetType: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountCodeApplication {
+              targetType
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # value: The value of the discount application.
     # @return [Types::PricingValue!]
     describe 'value' do
-      let!(:query) { '{ discount_code_application { value } }' }
-      let!(:result) { { data: { discount_code_application: { value: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountCodeApplication {
+              value
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

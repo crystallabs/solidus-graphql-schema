@@ -10,24 +10,38 @@ module Spree::GraphQL
     # number: The tracking number of the fulfillment.
     # @return [Types::String]
     describe 'number' do
-      let!(:query) { '{ fulfillment_tracking_info { number } }' }
-      let!(:result) { { data: { fulfillment_tracking_info: { number: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            fulfillmentTrackingInfo {
+              number
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # url: The URL to track the fulfillment.
     # @return [Types::URL]
     describe 'url' do
-      let!(:query) { '{ fulfillment_tracking_info { url } }' }
-      let!(:result) { { data: { fulfillment_tracking_info: { url: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            fulfillmentTrackingInfo {
+              url
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

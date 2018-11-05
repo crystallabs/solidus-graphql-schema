@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::ShopPolicy
   include ::Spree::GraphQL::Interfaces::Node
+
   # body: Policy text, maximum size of 64kb.
   # @return [Types::String!]
   def body()
@@ -24,5 +25,4 @@ module Spree::GraphQL::Types::ShopPolicy
   def url()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

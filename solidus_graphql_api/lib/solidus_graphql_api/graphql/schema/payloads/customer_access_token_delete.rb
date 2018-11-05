@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CustomerAccessTokenDelete < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CustomerAccessTokenDelete < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CustomerAccessTokenDeletePayload'
   description nil
-
   field :deleted_access_token, ::GraphQL::Types::String, null: true do
     description %q{The destroyed access token.}
   end

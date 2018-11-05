@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::ProductCollectionSortKeys < Spree::GraphQL:
   graphql_name 'ProductCollectionSortKeys'
   description %q{The set of valid sort keys for the products query.}
   include ::Spree::GraphQL::Types::ProductCollectionSortKeys
-
   value 'TITLE', %q{Sort by the `title` value.}
   value 'PRICE', %q{Sort by the `price` value.}
   value 'BEST_SELLING', %q{Sort by the `best-selling` value.}

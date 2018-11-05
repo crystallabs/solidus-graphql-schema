@@ -7,205 +7,334 @@ module Spree::GraphQL
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
 
-    # address1: The first line of the address. Typically the street address or PO Box number. 
+    # address1: The first line of the address. Typically the street address or PO Box number.
     # @return [Types::String]
     describe 'address1' do
-      let!(:query) { '{ mailing_address { address1 } }' }
-      let!(:result) { { data: { mailing_address: { address1: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              address1
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # address2: The second line of the address. Typically the number of the apartment, suite, or unit. 
+    # address2: The second line of the address. Typically the number of the apartment, suite, or unit.
     # @return [Types::String]
     describe 'address2' do
-      let!(:query) { '{ mailing_address { address2 } }' }
-      let!(:result) { { data: { mailing_address: { address2: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              address2
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # city: The name of the city, district, village, or town. 
+    # city: The name of the city, district, village, or town.
     # @return [Types::String]
     describe 'city' do
-      let!(:query) { '{ mailing_address { city } }' }
-      let!(:result) { { data: { mailing_address: { city: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              city
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # company: The name of the customer's company or organization. 
+    # company: The name of the customer's company or organization.
     # @return [Types::String]
     describe 'company' do
-      let!(:query) { '{ mailing_address { company } }' }
-      let!(:result) { { data: { mailing_address: { company: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              company
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # country: The name of the country. 
+    # country: The name of the country.
     # @return [Types::String]
     describe 'country' do
-      let!(:query) { '{ mailing_address { country } }' }
-      let!(:result) { { data: { mailing_address: { country: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              country
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # countryCodeV2: The two-letter code for the country of the address. For example, US. 
+    # countryCodeV2: The two-letter code for the country of the address. For example, US.
     # @return [Types::CountryCode]
     describe 'countryCodeV2' do
-      let!(:query) { '{ mailing_address { countryCodeV2 } }' }
-      let!(:result) { { data: { mailing_address: { countryCodeV2: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              countryCodeV2
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # firstName: The first name of the customer.
     # @return [Types::String]
     describe 'firstName' do
-      let!(:query) { '{ mailing_address { firstName } }' }
-      let!(:result) { { data: { mailing_address: { firstName: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              firstName
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # formatted: A formatted version of the address, customized by the provided arguments.
     # @param with_name [Types::Boolean] (false)
     # @param with_company [Types::Boolean] (true)
     # @return [[Types::String!]!]
     describe 'formatted' do
-      let!(:query) { '{ mailing_address { formatted } }' }
-      let!(:result) { { data: { mailing_address: { formatted: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              formatted(
+                withName: false,
+                withCompany: true
+              )
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # formattedArea: A comma-separated list of the values for city, province, and country.
     # @return [Types::String]
     describe 'formattedArea' do
-      let!(:query) { '{ mailing_address { formattedArea } }' }
-      let!(:result) { { data: { mailing_address: { formattedArea: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              formattedArea
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
-      let!(:query) { '{ mailing_address { id } }' }
-      let!(:result) { { data: { mailing_address: { id: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              id
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # lastName: The last name of the customer.
     # @return [Types::String]
     describe 'lastName' do
-      let!(:query) { '{ mailing_address { lastName } }' }
-      let!(:result) { { data: { mailing_address: { lastName: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              lastName
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # latitude: The latitude coordinate of the customer address.
     # @return [Types::Float]
     describe 'latitude' do
-      let!(:query) { '{ mailing_address { latitude } }' }
-      let!(:result) { { data: { mailing_address: { latitude: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              latitude
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # longitude: The longitude coordinate of the customer address.
     # @return [Types::Float]
     describe 'longitude' do
-      let!(:query) { '{ mailing_address { longitude } }' }
-      let!(:result) { { data: { mailing_address: { longitude: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              longitude
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # name: The full name of the customer, based on firstName and lastName. 
+    # name: The full name of the customer, based on firstName and lastName.
     # @return [Types::String]
     describe 'name' do
-      let!(:query) { '{ mailing_address { name } }' }
-      let!(:result) { { data: { mailing_address: { name: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              name
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # phone: A unique phone number for the customer. Formatted using E.164 standard. For example, _+16135551111_. 
+    # phone: A unique phone number for the customer. Formatted using E.164 standard. For example, _+16135551111_.
     # @return [Types::String]
     describe 'phone' do
-      let!(:query) { '{ mailing_address { phone } }' }
-      let!(:result) { { data: { mailing_address: { phone: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              phone
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # province: The region of the address, such as the province, state, or district.
     # @return [Types::String]
     describe 'province' do
-      let!(:query) { '{ mailing_address { province } }' }
-      let!(:result) { { data: { mailing_address: { province: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              province
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # provinceCode: The two-letter code for the region. For example, ON. 
+    # provinceCode: The two-letter code for the region. For example, ON.
     # @return [Types::String]
     describe 'provinceCode' do
-      let!(:query) { '{ mailing_address { provinceCode } }' }
-      let!(:result) { { data: { mailing_address: { provinceCode: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              provinceCode
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # zip: The zip or postal code of the address.
     # @return [Types::String]
     describe 'zip' do
-      let!(:query) { '{ mailing_address { zip } }' }
-      let!(:result) { { data: { mailing_address: { zip: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            mailingAddress {
+              zip
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

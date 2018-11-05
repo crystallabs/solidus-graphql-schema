@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::PageInfo
+
   # hasNextPage: Indicates if there are more pages to fetch.
   # @return [Types::Boolean!]
   def has_next_page()
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::PageInfo
   def has_previous_page()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

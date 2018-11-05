@@ -5,7 +5,6 @@ was created by a Solidus Script.
 }
   implements ::Spree::GraphQL::Schema::Interfaces::DiscountApplication
   include ::Spree::GraphQL::Types::ScriptDiscountApplication
-
   field :allocation_method, ::Spree::GraphQL::Schema::Types::DiscountApplicationAllocationMethod, null: false do
     description %q{The method by which the discount's value is allocated to its entitled items.}
   end

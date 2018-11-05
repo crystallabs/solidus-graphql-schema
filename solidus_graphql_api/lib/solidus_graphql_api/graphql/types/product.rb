@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Product
   include ::Spree::GraphQL::Interfaces::Node
+
   # availableForSale: Indicates if at least one product variant is available for sale.
   # @return [Types::Boolean!]
   def available_for_sale()
@@ -8,9 +9,13 @@ module Spree::GraphQL::Types::Product
   end
 
   # collections: List of collections a product belongs to.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::Collection.connection_type!]
-  def collections(reverse:)
+  # @return [Types::Collection!]
+  def collections(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -33,7 +38,7 @@ module Spree::GraphQL::Types::Product
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # handle: A human-friendly unique string for the Product automatically generated from its title. They are used by the Liquid templating language to refer to objects. 
+  # handle: A human-friendly unique string for the Product automatically generated from its title. They are used by the Liquid templating language to refer to objects.
   # @return [Types::String!]
   def handle()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -46,18 +51,22 @@ module Spree::GraphQL::Types::Product
   end
 
   # images: List of images associated with the product.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::ProductImageSortKeys] ('POSITION') Sort the underlying list by the given key.
   # @param max_width [Types::Int] Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.
   # @param max_height [Types::Int] Image height in pixels between 1 and 2048. This argument is deprecated: Use `maxHeight` on `Image.transformedSrc` instead.
   # @param crop [Types::CropRegion] Crops the image according to the specified region. This argument is deprecated: Use `crop` on `Image.transformedSrc` instead.
   # @param scale [Types::Int] (1) Image size multiplier for high-resolution retina displays. Must be between 1 and 3. This argument is deprecated: Use `scale` on `Image.transformedSrc` instead.
-  # @return [Types::Image.connection_type!]
-  def images(reverse:, sort_key:, max_width:, max_height:, crop:, scale:)
+  # @return [Types::Image!]
+  def images(first:, after:, last:, before:, reverse:, sort_key:, max_width:, max_height:, crop:, scale:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # onlineStoreUrl: The online store URL for the product. A value of `null` indicates that the product is not published to the Online Store sales channel. 
+  # onlineStoreUrl: The online store URL for the product. A value of `null` indicates that the product is not published to the Online Store sales channel.
   # @return [Types::URL]
   def online_store_url()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -88,7 +97,7 @@ module Spree::GraphQL::Types::Product
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # tags: A categorization that a product can be tagged with, commonly used for filtering and searching. Each comma-separated tag has a character limit of 255. 
+  # tags: A categorization that a product can be tagged with, commonly used for filtering and searching. Each comma-separated tag has a character limit of 255.
   # @return [[Types::String!]!]
   def tags()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -106,18 +115,22 @@ module Spree::GraphQL::Types::Product
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # variantBySelectedOptions: Find a product’s variant based on its selected options. This is useful for converting a user’s selection of product options into a single matching variant. If there is not a variant for the selected options, `null` will be returned. 
-  # @param selected_options [[Inputs::SelectedOption!]!] 
+  # variantBySelectedOptions: Find a product’s variant based on its selected options. This is useful for converting a user’s selection of product options into a single matching variant. If there is not a variant for the selected options, `null` will be returned.
+  # @param selected_options [[Inputs::SelectedOption!]!]
   # @return [Types::ProductVariant]
   def variant_by_selected_options(selected_options:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
   # variants: List of the product’s variants.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::ProductVariantSortKeys] ('POSITION') Sort the underlying list by the given key.
-  # @return [Types::ProductVariant.connection_type!]
-  def variants(reverse:, sort_key:)
+  # @return [Types::ProductVariant!]
+  def variants(first:, after:, last:, before:, reverse:, sort_key:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -126,5 +139,4 @@ module Spree::GraphQL::Types::Product
   def vendor()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CheckoutCompleteWithCreditCard < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CheckoutCompleteWithCreditCard < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CheckoutCompleteWithCreditCardPayload'
   description nil
-
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: false do
     description %q{The checkout on which the payment was applied.}
   end

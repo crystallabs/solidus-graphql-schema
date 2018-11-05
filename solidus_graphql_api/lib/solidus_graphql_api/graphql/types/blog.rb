@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Blog
   include ::Spree::GraphQL::Interfaces::Node
+
   # articleByHandle: Find an article by its handle.
   # @param handle [Types::String!] The handle of the article.
   # @return [Types::Article]
@@ -9,9 +10,13 @@ module Spree::GraphQL::Types::Blog
   end
 
   # articles: List of the blog's articles.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::Article.connection_type!]
-  def articles(reverse:)
+  # @return [Types::Article!]
+  def articles(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -21,7 +26,7 @@ module Spree::GraphQL::Types::Blog
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # handle: A human-friendly unique string for the Blog automatically generated from its title. 
+  # handle: A human-friendly unique string for the Blog automatically generated from its title.
   # @return [Types::String!]
   def handle()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -44,5 +49,4 @@ module Spree::GraphQL::Types::Blog
   def url()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

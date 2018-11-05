@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::CustomerAccessToken
+
   # accessToken: The customer’s access token.
   # @return [Types::String!]
   def access_token()
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::CustomerAccessToken
   def expires_at()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

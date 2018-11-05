@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Transaction
+
   # amount: The amount of money that the transaction was for.
   # @return [Types::Money!]
   def amount()
@@ -23,5 +24,4 @@ module Spree::GraphQL::Types::Transaction
   def test()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -7,27 +7,45 @@ module Spree::GraphQL
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
 
-    # ready: Whether or not the shipping rates are ready. The `shippingRates` field is `null` when this value is `false`. This field should be polled until its value becomes `true`. 
+    # ready: Whether or not the shipping rates are ready. The `shippingRates` field is `null` when this value is `false`. This field should be polled until its value becomes `true`.
     # @return [Types::Boolean!]
     describe 'ready' do
-      let!(:query) { '{ available_shipping_rates { ready } }' }
-      let!(:result) { { data: { available_shipping_rates: { ready: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            availableShippingRates {
+              ready
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # shippingRates: The fetched shipping rates. `null` until the `ready` field is `true`.
     # @return [[Types::ShippingRate!]]
     describe 'shippingRates' do
-      let!(:query) { '{ available_shipping_rates { shippingRates } }' }
-      let!(:result) { { data: { available_shipping_rates: { shippingRates: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            availableShippingRates {
+              shippingRates {
+                handle
+                price
+                title
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

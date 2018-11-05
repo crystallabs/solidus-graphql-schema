@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::QueryRoot
+
   # articles: List of the shop's articles.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::ArticleSortKeys] ('ID') Sort the underlying list by the given key.
@@ -51,5 +52,4 @@ module Spree::GraphQL::Types::QueryRoot
   def shop()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

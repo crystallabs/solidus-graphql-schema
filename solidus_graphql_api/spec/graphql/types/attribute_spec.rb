@@ -10,24 +10,38 @@ module Spree::GraphQL
     # key: Key or name of the attribute.
     # @return [Types::String!]
     describe 'key' do
-      let!(:query) { '{ attribute { key } }' }
-      let!(:result) { { data: { attribute: { key: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            attribute {
+              key
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # value: Value of the attribute.
     # @return [Types::String]
     describe 'value' do
-      let!(:query) { '{ attribute { value } }' }
-      let!(:result) { { data: { attribute: { value: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            attribute {
+              value
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

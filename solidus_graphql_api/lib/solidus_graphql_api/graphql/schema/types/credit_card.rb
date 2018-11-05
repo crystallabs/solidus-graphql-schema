@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::CreditCard < Spree::GraphQL::Schema::Types:
   graphql_name 'CreditCard'
   description %q{Credit card information used for a payment.}
   include ::Spree::GraphQL::Types::CreditCard
-
   field :brand, ::GraphQL::Types::String, null: true do
     description nil
   end

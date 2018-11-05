@@ -10,68 +10,110 @@ module Spree::GraphQL
     # acceptedCardBrands: List of the card brands which the shop accepts.
     # @return [[Types::CardBrand!]!]
     describe 'acceptedCardBrands' do
-      let!(:query) { '{ payment_settings { acceptedCardBrands } }' }
-      let!(:result) { { data: { payment_settings: { acceptedCardBrands: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            paymentSettings {
+              acceptedCardBrands
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # cardVaultUrl: The url pointing to the endpoint to vault credit cards.
     # @return [Types::URL!]
     describe 'cardVaultUrl' do
-      let!(:query) { '{ payment_settings { cardVaultUrl } }' }
-      let!(:result) { { data: { payment_settings: { cardVaultUrl: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            paymentSettings {
+              cardVaultUrl
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # countryCode: The country where the shop is located.
     # @return [Types::CountryCode!]
     describe 'countryCode' do
-      let!(:query) { '{ payment_settings { countryCode } }' }
-      let!(:result) { { data: { payment_settings: { countryCode: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            paymentSettings {
+              countryCode
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # currencyCode: The three-letter code for the currency that the shop accepts.
     # @return [Types::CurrencyCode!]
     describe 'currencyCode' do
-      let!(:query) { '{ payment_settings { currencyCode } }' }
-      let!(:result) { { data: { payment_settings: { currencyCode: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            paymentSettings {
+              currencyCode
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # solidusPaymentsAccountId: The shop’s Solidus Payments account id.
     # @return [Types::String]
     describe 'solidusPaymentsAccountId' do
-      let!(:query) { '{ payment_settings { solidusPaymentsAccountId } }' }
-      let!(:result) { { data: { payment_settings: { solidusPaymentsAccountId: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            paymentSettings {
+              solidusPaymentsAccountId
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # supportedDigitalWallets: List of the digital wallets which the shop supports.
     # @return [[Types::DigitalWallet!]!]
     describe 'supportedDigitalWallets' do
-      let!(:query) { '{ payment_settings { supportedDigitalWallets } }' }
-      let!(:result) { { data: { payment_settings: { supportedDigitalWallets: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            paymentSettings {
+              supportedDigitalWallets
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

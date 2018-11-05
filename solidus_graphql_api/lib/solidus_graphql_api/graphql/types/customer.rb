@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Customer
+
   # acceptsMarketing: Indicates whether the customer has consented to be sent marketing material via email.
   # @return [Types::Boolean!]
   def accepts_marketing()
@@ -7,9 +8,13 @@ module Spree::GraphQL::Types::Customer
   end
 
   # addresses: A list of addresses for the customer.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::MailingAddress.connection_type!]
-  def addresses(reverse:)
+  # @return [Types::MailingAddress!]
+  def addresses(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -62,11 +67,15 @@ module Spree::GraphQL::Types::Customer
   end
 
   # orders: The orders associated with the customer.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::OrderSortKeys] ('ID') Sort the underlying list by the given key.
   # @param query [Types::String] Supported filter parameters:  - `processed_at` See the detailed [search syntax](https://help.solidus.io/api/getting-started/search-syntax).
-  # @return [Types::Order.connection_type!]
-  def orders(reverse:, sort_key:, query:)
+  # @return [Types::Order!]
+  def orders(first:, after:, last:, before:, reverse:, sort_key:, query:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -81,5 +90,4 @@ module Spree::GraphQL::Types::Customer
   def updated_at()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

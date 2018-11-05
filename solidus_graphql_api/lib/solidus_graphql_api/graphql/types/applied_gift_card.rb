@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::AppliedGiftCard
   include ::Spree::GraphQL::Interfaces::Node
+
   # amountUsed: The amount that was used taken from the Gift Card by applying it.
   # @return [Types::Money!]
   def amount_used()
@@ -24,5 +25,4 @@ module Spree::GraphQL::Types::AppliedGiftCard
   def last_characters()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::Transaction < Spree::GraphQL::Schema::Types
   graphql_name 'Transaction'
   description %q{An object representing exchange of money for a product or service.}
   include ::Spree::GraphQL::Types::Transaction
-
   field :amount, ::Spree::GraphQL::Schema::Types::Money, null: false do
     description %q{The amount of money that the transaction was for.}
   end

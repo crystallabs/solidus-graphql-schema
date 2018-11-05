@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CheckoutEmailUpdate < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CheckoutEmailUpdate < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CheckoutEmailUpdatePayload'
   description nil
-
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: false do
     description %q{The checkout object with the updated email.}
   end

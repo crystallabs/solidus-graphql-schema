@@ -10,57 +10,92 @@ module Spree::GraphQL
     # bio: The author's bio.
     # @return [Types::String]
     describe 'bio' do
-      let!(:query) { '{ article_author { bio } }' }
-      let!(:result) { { data: { article_author: { bio: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            articleAuthor {
+              bio
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # email: The author’s email.
     # @return [Types::String!]
     describe 'email' do
-      let!(:query) { '{ article_author { email } }' }
-      let!(:result) { { data: { article_author: { email: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            articleAuthor {
+              email
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # firstName: The author's first name.
     # @return [Types::String!]
     describe 'firstName' do
-      let!(:query) { '{ article_author { firstName } }' }
-      let!(:result) { { data: { article_author: { firstName: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            articleAuthor {
+              firstName
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # lastName: The author's last name.
     # @return [Types::String!]
     describe 'lastName' do
-      let!(:query) { '{ article_author { lastName } }' }
-      let!(:result) { { data: { article_author: { lastName: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            articleAuthor {
+              lastName
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # name: The author's full name.
     # @return [Types::String!]
     describe 'name' do
-      let!(:query) { '{ article_author { name } }' }
-      let!(:result) { { data: { article_author: { name: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            articleAuthor {
+              name
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

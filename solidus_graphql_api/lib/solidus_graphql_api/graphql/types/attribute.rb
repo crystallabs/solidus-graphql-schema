@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Attribute
+
   # key: Key or name of the attribute.
   # @return [Types::String!]
   def key()
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::Attribute
   def value()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

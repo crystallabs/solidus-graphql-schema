@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::CheckoutLineItem
   include ::Spree::GraphQL::Interfaces::Node
+
   # customAttributes: Extra information in the form of an array of Key-Value pairs about the line item.
   # @return [[Types::Attribute!]!]
   def custom_attributes()
@@ -36,5 +37,4 @@ module Spree::GraphQL::Types::CheckoutLineItem
   def variant()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

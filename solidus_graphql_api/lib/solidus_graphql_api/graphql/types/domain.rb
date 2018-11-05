@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Domain
+
   # host: The host name of the domain (eg: `example.com`).
   # @return [Types::String!]
   def host()
@@ -17,5 +18,4 @@ module Spree::GraphQL::Types::Domain
   def url()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -3,7 +3,6 @@ class Spree::GraphQL::Schema::Types::Comment < Spree::GraphQL::Schema::Types::Ba
   description nil
   implements ::Spree::GraphQL::Schema::Interfaces::Node
   include ::Spree::GraphQL::Types::Comment
-
   field :author, ::Spree::GraphQL::Schema::Types::CommentAuthor, null: false do
     description %q{The comment’s author.}
   end

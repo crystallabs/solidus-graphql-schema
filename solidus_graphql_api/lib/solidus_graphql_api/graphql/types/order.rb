@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Order
   include ::Spree::GraphQL::Interfaces::Node
+
   # currencyCode: The code of the currency used for the payment.
   # @return [Types::CurrencyCode!]
   def currency_code()
@@ -20,9 +21,13 @@ module Spree::GraphQL::Types::Order
   end
 
   # discountApplications: Discounts that have been applied on the order.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Interfaces::DiscountApplication.connection_type!]
-  def discount_applications(reverse:)
+  # @return [Interfaces::DiscountApplication!]
+  def discount_applications(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -39,13 +44,17 @@ module Spree::GraphQL::Types::Order
   end
 
   # lineItems: List of the order’s line items.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::OrderLineItem.connection_type!]
-  def line_items(reverse:)
+  # @return [Types::OrderLineItem!]
+  def line_items(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # name: Unique identifier for the order that appears on the order. For example, _#1000_ or _Store1001. 
+  # name: Unique identifier for the order that appears on the order. For example, _#1000_ or _Store1001.
   # @return [Types::String!]
   def name()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -63,7 +72,7 @@ module Spree::GraphQL::Types::Order
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # processedAt: The date and time when the order was imported. This value can be set to dates in the past when importing from other systems. If no value is provided, it will be auto-generated based on current date and time. 
+  # processedAt: The date and time when the order was imported. This value can be set to dates in the past when importing from other systems. If no value is provided, it will be auto-generated based on current date and time.
   # @return [Types::DateTime!]
   def processed_at()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -75,7 +84,7 @@ module Spree::GraphQL::Types::Order
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # shippingDiscountAllocations: The discounts that have been allocated onto the shipping line by discount applications. 
+  # shippingDiscountAllocations: The discounts that have been allocated onto the shipping line by discount applications.
   # @return [[Types::DiscountAllocation!]!]
   def shipping_discount_allocations()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -123,5 +132,4 @@ module Spree::GraphQL::Types::Order
   def total_tax()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

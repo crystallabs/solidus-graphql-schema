@@ -2,12 +2,15 @@ class Spree::GraphQL::Schema::Types::Customer < Spree::GraphQL::Schema::Types::B
   graphql_name 'Customer'
   description %q{A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout.}
   include ::Spree::GraphQL::Types::Customer
-
   field :accepts_marketing, ::GraphQL::Types::Boolean, null: false do
     description %q{Indicates whether the customer has consented to be sent marketing material via email.}
   end
-  field :addresses, ::Spree::GraphQL::Schema::Types::MailingAddress.connection_type, null: false do
+  field :addresses, ::Spree::GraphQL::Schema::Types::MailingAddress, null: false do
     description %q{A list of addresses for the customer.}
+    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
+    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
+    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
+    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
   end
   field :created_at, ::Spree::GraphQL::Schema::Types::DateTime, null: false do
@@ -34,8 +37,12 @@ class Spree::GraphQL::Schema::Types::Customer < Spree::GraphQL::Schema::Types::B
   field :last_name, ::GraphQL::Types::String, null: true do
     description %q{The customer’s last name.}
   end
-  field :orders, ::Spree::GraphQL::Schema::Types::Order.connection_type, null: false do
+  field :orders, ::Spree::GraphQL::Schema::Types::Order, null: false do
     description %q{The orders associated with the customer.}
+    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
+    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
+    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
+    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
     argument :sort_key, ::Spree::GraphQL::Schema::Types::OrderSortKeys, required: false, default_value: 'ID', description: %q{Sort the underlying list by the given key.}
     argument :query, ::GraphQL::Types::String, required: false, description: %q{Supported filter parameters:

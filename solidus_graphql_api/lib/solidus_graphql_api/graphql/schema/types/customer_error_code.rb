@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::CustomerErrorCode < Spree::GraphQL::Schema:
   graphql_name 'CustomerErrorCode'
   description %q{Possible error codes that could be returned by a customer mutation.}
   include ::Spree::GraphQL::Types::CustomerErrorCode
-
   value 'BLANK', %q{Input value is blank.}
   value 'INVALID', %q{Input value is invalid.}
   value 'TAKEN', %q{Input value is already taken.}

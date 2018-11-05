@@ -3,7 +3,6 @@ class Spree::GraphQL::Schema::Types::DiscountAllocation < Spree::GraphQL::Schema
   description %q{An amount discounting the line that has been allocated by a discount.
 }
   include ::Spree::GraphQL::Types::DiscountAllocation
-
   field :allocated_amount, ::Spree::GraphQL::Schema::Types::MoneyV2, null: false do
     description %q{Amount of discount allocated.}
   end

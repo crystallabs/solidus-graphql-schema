@@ -10,24 +10,38 @@ module Spree::GraphQL
     # field: Path to the input field which caused the error.
     # @return [[Types::String!]]
     describe 'field' do
-      let!(:query) { '{ user_error { field } }' }
-      let!(:result) { { data: { user_error: { field: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            userError {
+              field
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # message: The error message.
     # @return [Types::String!]
     describe 'message' do
-      let!(:query) { '{ user_error { message } }' }
-      let!(:result) { { data: { user_error: { message: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            userError {
+              message
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

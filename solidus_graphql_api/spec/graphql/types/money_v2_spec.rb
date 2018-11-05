@@ -10,24 +10,38 @@ module Spree::GraphQL
     # amount: Decimal money amount.
     # @return [Types::Decimal!]
     describe 'amount' do
-      let!(:query) { '{ money_v2 { amount } }' }
-      let!(:result) { { data: { money_v2: { amount: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            moneyV2 {
+              amount
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # currencyCode: Currency of the money.
     # @return [Types::CurrencyCode!]
     describe 'currencyCode' do
-      let!(:query) { '{ money_v2 { currencyCode } }' }
-      let!(:result) { { data: { money_v2: { currencyCode: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            moneyV2 {
+              currencyCode
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

@@ -4,7 +4,6 @@ class Spree::GraphQL::Schema::Types::ManualDiscountApplication < Spree::GraphQL:
 }
   implements ::Spree::GraphQL::Schema::Interfaces::DiscountApplication
   include ::Spree::GraphQL::Types::ManualDiscountApplication
-
   field :allocation_method, ::Spree::GraphQL::Schema::Types::DiscountApplicationAllocationMethod, null: false do
     description %q{The method by which the discount's value is allocated to its entitled items.}
   end

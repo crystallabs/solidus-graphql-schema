@@ -1,7 +1,6 @@
-class Spree::GraphQL::Schema::Payloads::CheckoutLineItemsRemove < Spree::GraphQL::Schema::Types::BaseObject
+class Spree::GraphQL::Schema::Payloads::CheckoutLineItemsRemove < Spree::GraphQL::Schema::Payloads::BasePayload
   graphql_name 'CheckoutLineItemsRemovePayload'
   description nil
-
   field :checkout, ::Spree::GraphQL::Schema::Types::Checkout, null: true do
     description nil
   end

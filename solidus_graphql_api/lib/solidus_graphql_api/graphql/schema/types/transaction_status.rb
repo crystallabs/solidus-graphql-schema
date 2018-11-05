@@ -2,7 +2,6 @@ class Spree::GraphQL::Schema::Types::TransactionStatus < Spree::GraphQL::Schema:
   graphql_name 'TransactionStatus'
   description nil
   include ::Spree::GraphQL::Types::TransactionStatus
-
   value 'PENDING', nil
   value 'SUCCESS', nil
   value 'FAILURE', nil

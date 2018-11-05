@@ -2,13 +2,16 @@ class Spree::GraphQL::Schema::Types::Shop < Spree::GraphQL::Schema::Types::BaseO
   graphql_name 'Shop'
   description %q{Shop represents a collection of the general settings and information about the shop.}
   include ::Spree::GraphQL::Types::Shop
-
   field :collection_by_handle, ::Spree::GraphQL::Schema::Types::Collection, null: true do
     description %q{Find a collection by its handle.}
     argument :handle, ::GraphQL::Types::String, required: true, description: %q{The handle of the collection.}
   end
-  field :collections, ::Spree::GraphQL::Schema::Types::Collection.connection_type, null: false do
+  field :collections, ::Spree::GraphQL::Schema::Types::Collection, null: false do
     description %q{List of the shop’s collections.}
+    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
+    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
+    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
+    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
     argument :sort_key, ::Spree::GraphQL::Schema::Types::CollectionSortKeys, required: false, default_value: 'ID', description: %q{Sort the underlying list by the given key.}
     argument :query, ::GraphQL::Types::String, required: false, description: %q{Supported filter parameters:
@@ -41,11 +44,16 @@ See the detailed [search syntax](https://help.solidus.io/api/getting-started/sea
     description %q{Find a product by its handle.}
     argument :handle, ::GraphQL::Types::String, required: true, description: %q{The handle of the product.}
   end
-  field :product_types, ::GraphQL::Types::String.connection_type, null: false do
+  field :product_types, ::GraphQL::Types::String, null: false do
     description %q{List of the shop’s product types.}
+    argument :first, ::GraphQL::Types::Int, required: true, description: %q{Returns up to the first `n` elements from the list.}
   end
-  field :products, ::Spree::GraphQL::Schema::Types::Product.connection_type, null: false do
+  field :products, ::Spree::GraphQL::Schema::Types::Product, null: false do
     description %q{List of the shop’s products.}
+    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
+    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
+    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
+    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
     argument :sort_key, ::Spree::GraphQL::Schema::Types::ProductSortKeys, required: false, default_value: 'ID', description: %q{Sort the underlying list by the given key.}
     argument :query, ::GraphQL::Types::String, required: false, description: %q{Supported filter parameters:

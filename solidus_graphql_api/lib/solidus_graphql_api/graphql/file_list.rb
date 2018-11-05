@@ -6,7 +6,6 @@
 # or removals in the list of files and to then update file
 # all.rb manually, taking the necessary order of includes
 # into account.
-
 require_relative "./types/query_root"
 require_relative "./interfaces/node"
 require_relative "./types/customer"
@@ -86,9 +85,8 @@ require_relative "./types/script_discount_application"
 require_relative "./types/base_object"
 require_relative "./types/base_enum"
 require_relative "./types/base_scalar"
-require_relative "./types/base_interface"
+require_relative "./interfaces/base_interface"
 require_relative "./types/base_union"
-require_relative "./types/base_input"
 
 require_relative "./schema/types/query_root"
 require_relative "./schema/interfaces/node"
@@ -224,6 +222,7 @@ require_relative "./schema/types/base_object"
 require_relative "./schema/types/base_object_no_id"
 require_relative "./schema/types/base_enum"
 require_relative "./schema/types/base_scalar"
-require_relative "./schema/types/base_interface"
+require_relative "./schema/interfaces/base_interface"
 require_relative "./schema/types/base_union"
-require_relative "./schema/types/base_input"
+require_relative "./schema/inputs/base_input"
+require_relative "./schema/payloads/base_payload"

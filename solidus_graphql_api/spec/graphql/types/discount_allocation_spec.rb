@@ -10,24 +10,46 @@ module Spree::GraphQL
     # allocatedAmount: Amount of discount allocated.
     # @return [Types::MoneyV2!]
     describe 'allocatedAmount' do
-      let!(:query) { '{ discount_allocation { allocatedAmount } }' }
-      let!(:result) { { data: { discount_allocation: { allocatedAmount: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountAllocation {
+              allocatedAmount {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # discountApplication: The discount this allocated amount originated from.
     # @return [Interfaces::DiscountApplication!]
     describe 'discountApplication' do
-      let!(:query) { '{ discount_allocation { discountApplication } }' }
-      let!(:result) { { data: { discount_allocation: { discountApplication: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            discountAllocation {
+              discountApplication {
+                allocationMethod
+                targetSelection
+                targetType
+                value
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end

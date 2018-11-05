@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::Checkout
   include ::Spree::GraphQL::Interfaces::Node
+
   # appliedGiftCards
   # @return [[Types::AppliedGiftCard!]!]
   def applied_gift_cards()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # availableShippingRates: The available shipping rates for this Checkout. Should only be used when checkout `requiresShipping` is `true` and the shipping address is valid. 
+  # availableShippingRates: The available shipping rates for this Checkout. Should only be used when checkout `requiresShipping` is `true` and the shipping address is valid.
   # @return [Types::AvailableShippingRates]
   def available_shipping_rates()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -38,9 +39,13 @@ module Spree::GraphQL::Types::Checkout
   end
 
   # discountApplications: Discounts that have been applied on the checkout.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Interfaces::DiscountApplication.connection_type!]
-  def discount_applications(reverse:)
+  # @return [Interfaces::DiscountApplication!]
+  def discount_applications(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -57,9 +62,13 @@ module Spree::GraphQL::Types::Checkout
   end
 
   # lineItems: A list of line item objects, each one containing information about an item in the checkout.
+  # @param first [Types::Int] Returns up to the first `n` elements from the list.
+  # @param after [Types::String] Returns the elements that come after the specified cursor.
+  # @param last [Types::Int] Returns up to the last `n` elements from the list.
+  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::CheckoutLineItem.connection_type!]
-  def line_items(reverse:)
+  # @return [Types::CheckoutLineItem!]
+  def line_items(first:, after:, last:, before:, reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -87,7 +96,7 @@ module Spree::GraphQL::Types::Checkout
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # ready: Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is required until the value is true. 
+  # ready: Whether or not the Checkout is ready and can be completed. Checkouts may have asynchronous operations that can take time to finish. If you want to complete a checkout or ensure all the fields are populated and up to date, polling is required until the value is true.
   # @return [Types::Boolean!]
   def ready()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -105,7 +114,7 @@ module Spree::GraphQL::Types::Checkout
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # shippingDiscountAllocations: The discounts that have been allocated onto the shipping line by discount applications. 
+  # shippingDiscountAllocations: The discounts that have been allocated onto the shipping line by discount applications.
   # @return [[Types::DiscountAllocation!]!]
   def shipping_discount_allocations()
     raise ::Spree::GraphQL::NotImplementedError.new
@@ -158,5 +167,4 @@ module Spree::GraphQL::Types::Checkout
   def web_url()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Spree::GraphQL::Types::MoneyV2
+
   # amount: Decimal money amount.
   # @return [Types::Decimal!]
   def amount()
@@ -11,5 +12,4 @@ module Spree::GraphQL::Types::MoneyV2
   def currency_code()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
 end

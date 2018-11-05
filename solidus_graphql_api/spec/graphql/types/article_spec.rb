@@ -10,105 +10,330 @@ module Spree::GraphQL
     # authorV2: The article's author.
     # @return [Types::ArticleAuthor]
     describe 'authorV2' do
-      let!(:query) { '{ article { authorV2 } }' }
-      let!(:result) { { data: { article: { authorV2: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              authorV2 {
+                bio
+                email
+                firstName
+                lastName
+                name
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # blog: The blog that the article belongs to.
     # @return [Types::Blog!]
     describe 'blog' do
-      let!(:query) { '{ article { blog } }' }
-      let!(:result) { { data: { article: { blog: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              blog {
+                articleByHandle(handle: "") {
+                  author {
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
+                  }
+                  authorV2 {
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
+                  }
+                  blog
+                  comments(
+                    first: Int,
+                    after: "",
+                    last: Int,
+                    before: "",
+                    reverse: false
+                  ) {
+                    author {
+                      email
+                      name
+                    }
+                    content(truncateAt: Int)
+                    contentHtml
+                    id
+                  }
+                  content(truncateAt: Int)
+                  contentHtml
+                  excerpt(truncateAt: Int)
+                  excerptHtml
+                  handle
+                  id
+                  image(
+                    maxWidth: Int,
+                    maxHeight: Int,
+                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                    scale: Int
+                  ) {
+                    altText
+                    id
+                    originalSrc
+                    src
+                    transformedSrc(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int,
+                      preferredContentType: "PNG | JPG | WEBP"
+                    )
+                  }
+                  publishedAt
+                  tags
+                  title
+                  url
+                }
+                articles(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  author {
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
+                  }
+                  authorV2 {
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
+                  }
+                  blog
+                  comments(
+                    first: Int,
+                    after: "",
+                    last: Int,
+                    before: "",
+                    reverse: false
+                  ) {
+                    author {
+                      email
+                      name
+                    }
+                    content(truncateAt: Int)
+                    contentHtml
+                    id
+                  }
+                  content(truncateAt: Int)
+                  contentHtml
+                  excerpt(truncateAt: Int)
+                  excerptHtml
+                  handle
+                  id
+                  image(
+                    maxWidth: Int,
+                    maxHeight: Int,
+                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                    scale: Int
+                  ) {
+                    altText
+                    id
+                    originalSrc
+                    src
+                    transformedSrc(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int,
+                      preferredContentType: "PNG | JPG | WEBP"
+                    )
+                  }
+                  publishedAt
+                  tags
+                  title
+                  url
+                }
+                authors {
+                  bio
+                  email
+                  firstName
+                  lastName
+                  name
+                }
+                handle
+                id
+                title
+                url
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # comments: List of comments posted on the article.
+    # @param first [Types::Int]
+    # @param after [Types::String]
+    # @param last [Types::Int]
+    # @param before [Types::String]
     # @param reverse [Types::Boolean] (false)
-    # @return [Types::Comment.connection_type!]
+    # @return [Types::Comment!]
     describe 'comments' do
-      let!(:query) { '{ article { comments } }' }
-      let!(:result) { { data: { article: { comments: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              comments(
+                first: Int,
+                after: "",
+                last: Int,
+                before: "",
+                reverse: false
+              ) {
+                author {
+                  email
+                  name
+                }
+                content(truncateAt: Int)
+                contentHtml
+                id
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # content: Stripped content of the article, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String!]
     describe 'content' do
-      let!(:query) { '{ article { content } }' }
-      let!(:result) { { data: { article: { content: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              content(truncateAt: Int)
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # contentHtml: The content of the article, complete with HTML formatting.
     # @return [Types::HTML!]
     describe 'contentHtml' do
-      let!(:query) { '{ article { contentHtml } }' }
-      let!(:result) { { data: { article: { contentHtml: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              contentHtml
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # excerpt: Stripped excerpt of the article, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String]
     describe 'excerpt' do
-      let!(:query) { '{ article { excerpt } }' }
-      let!(:result) { { data: { article: { excerpt: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              excerpt(truncateAt: Int)
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # excerptHtml: The excerpt of the article, complete with HTML formatting.
     # @return [Types::HTML]
     describe 'excerptHtml' do
-      let!(:query) { '{ article { excerptHtml } }' }
-      let!(:result) { { data: { article: { excerptHtml: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              excerptHtml
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
-    # handle: A human-friendly unique string for the Article automatically generated from its title. 
+    # handle: A human-friendly unique string for the Article automatically generated from its title.
     # @return [Types::String!]
     describe 'handle' do
-      let!(:query) { '{ article { handle } }' }
-      let!(:result) { { data: { article: { handle: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              handle
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
-      let!(:query) { '{ article { id } }' }
-      let!(:result) { { data: { article: { id: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              id
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # image: The image associated with the article.
     # @param max_width [Types::Int]
     # @param max_height [Types::Int]
@@ -116,57 +341,109 @@ module Spree::GraphQL
     # @param scale [Types::Int] (1)
     # @return [Types::Image]
     describe 'image' do
-      let!(:query) { '{ article { image } }' }
-      let!(:result) { { data: { article: { image: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              image(
+                maxWidth: Int,
+                maxHeight: Int,
+                crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                scale: Int
+              ) {
+                altText
+                id
+                originalSrc
+                src
+                transformedSrc(
+                  maxWidth: Int,
+                  maxHeight: Int,
+                  crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                  scale: Int,
+                  preferredContentType: "PNG | JPG | WEBP"
+                )
+              }
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # publishedAt: The date and time when the article was published.
     # @return [Types::DateTime!]
     describe 'publishedAt' do
-      let!(:query) { '{ article { publishedAt } }' }
-      let!(:result) { { data: { article: { publishedAt: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              publishedAt
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # tags: A categorization that a article can be tagged with.
     # @return [[Types::String!]!]
     describe 'tags' do
-      let!(:query) { '{ article { tags } }' }
-      let!(:result) { { data: { article: { tags: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              tags
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # title: The article’s name.
     # @return [Types::String!]
     describe 'title' do
-      let!(:query) { '{ article { title } }' }
-      let!(:result) { { data: { article: { title: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              title
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
     # url: The url pointing to the article accessible from the web.
     # @return [Types::URL!]
     describe 'url' do
-      let!(:query) { '{ article { url } }' }
-      let!(:result) { { data: { article: { url: '' }}} }
+      let!(:query) {
+        %q{
+          query {
+            article {
+              url
+            }
+          }
+        }
+      }
+      let!(:result) { result_body(type, helper) }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
-
   end
 end
