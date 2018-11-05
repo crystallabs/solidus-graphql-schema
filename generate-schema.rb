@@ -604,7 +604,7 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      content= type_to_hash(base_type, return_type, short, is_connection, is_array)
+      content= type_to_hash(base_type)
       if is_connection and is_array
         raise Exception.new "Didn't expect it"
       end
@@ -798,7 +798,7 @@ def field_args_to_hash(field)
           if is_connection
             raise Exception.new "Didn't expect connection here"
           end
-          type_to_hash($schema_type_map[bt], return_type, short, is_connection, is_array)
+          type_to_hash($schema_type_map[bt])
         end
       ret[name]= value
     }
@@ -893,7 +893,7 @@ def type_of_field(field, type= nil)
 end
 
 $resolving= {}
-def type_to_hash(type, ruby_string = nil, short_string = nil, is_connection = false, is_array = false)
+def type_to_hash(type)
   t= (String=== type) ? $schema_type_map[type] : type
 
   # Prevent loops
@@ -914,7 +914,7 @@ def type_to_hash(type, ruby_string = nil, short_string = nil, is_connection = fa
   retval=
     case t['kind']
     when 'SCALAR'
-      is_array ? %Q{["#{t['name']}"]} : %Q{"#{t['name']}"}
+      %Q{"#{t['name']}"}
     when 'UNION'
       %Q{#{t['possibleTypes'].map{|t| t['name']}.join ' | '}}
     when 'ENUM'
