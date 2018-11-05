@@ -582,7 +582,7 @@ def parse_fields_for(type, helper)
     type['fields'].each do |field|
       next if field['isDeprecated']
 
-      base_type, return_type, _, is_connection= type_of_field(field, type)
+      base_type, return_type, _, is_connection, is_array= type_of_field(field, type)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
@@ -605,8 +605,13 @@ end
 }
 
       content= type_to_hash(base_type)
+      if is_connection and is_array
+        raise Exception.new "Didn't expect it"
+      end
       if is_connection
         content = wrap_to_connection content
+      #elsif is_array
+      #  content = [content]
       end
       fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => content)
 
@@ -726,10 +731,6 @@ end
 ################################################################################
 
 def hash_to_method_args(hash)
-  return nil unless hash
-  if String=== hash
-    return hash
-  end
   unless Hash=== hash
     raise Exception.new "Not expected type #{hash.class}--#{hash}"
   end
@@ -938,10 +939,6 @@ end
 
 $level= 0
 def hash_to_graphql_query(hash)
-  if String=== hash
-    return hash
-  end
-
   string= ''
   hash.each do |k,v|
     k_string = if k[1]
