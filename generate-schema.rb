@@ -9,6 +9,7 @@ require 'json'
 require 'logger'
 require 'fileutils'
 require 'active_support/core_ext/string/inflections'
+require 'awesome_print'
 
 # Positions for text insertion. Empty values/places are squashed.
 PREAMBLE = 5
@@ -604,16 +605,16 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      content= type_to_hash(base_type)
+      query_content= type_to_hash(base_type)
       if is_connection and is_array
         raise Exception.new "Didn't expect it"
       end
       if is_connection
-        content = wrap_to_connection content
+        query_content = wrap_to_connection query_content
       #elsif is_array
-      #  content = [content]
+      #  query_content = [query_content]
       end
-      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => content)
+      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => query_content)
 
       # TODO complete the print of input query and expected response
 
@@ -725,10 +726,6 @@ def parse_args_for(type, helper, field, key, is_connection = false)
   end # if field['args']
   method_args
 end
-
-
-
-################################################################################
 
 def hash_to_method_args(hash)
   unless Hash=== hash
