@@ -736,6 +736,14 @@ def hash_to_method_args(hash)
   end
   ret= []
   hash.each{ |k,v|
+    is_array= false
+    if Array=== v
+      v0= v[0]
+      is_array= v[1]
+    else
+      v0= v
+    end
+
     unless k.is_a? Array
       k_string = k
     else
@@ -746,11 +754,11 @@ def hash_to_method_args(hash)
       end
     end
 
-    value= case v
+    value= case v0
     when Hash
       pre= '{'
       post= '}'
-      if args= hash_to_method_args(v)
+      if args= hash_to_method_args(v0)
         if args.lines.size> 1
           pre= "{\n"
           args= indent 1, args
@@ -759,9 +767,10 @@ def hash_to_method_args(hash)
       end
       pre + args + post
     else
-      v
+      v0
     end
-    ret.push "#{k_string}: #{value}"
+    value_string = is_array ? "[\n"+ indent(1, value) +"\n]" : value
+    ret.push "#{k_string}: #{value_string}"
   }
   if ret.size <2
     ret.join(", ")
@@ -800,14 +809,12 @@ def field_args_to_hash(field)
           end
           type_to_hash($schema_type_map[bt])
         end
-      ret[name]= value
+      ret[name]= [value, (is_array ? true : false)]
     }
   end
 
   ret.size> 0 ? ret : nil #.map{|k,v| "#{k}: #{v}"}.join(', ') : nil
 end
-
-
 
 ################################################################################
 # Helper methods
