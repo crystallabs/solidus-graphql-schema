@@ -10,7 +10,7 @@ require 'logger'
 require 'fileutils'
 require 'active_support/core_ext/string/inflections'
 
-# Positions for text insertion. Empty values/places are squshed.
+# Positions for text insertion. Empty values/places are squashed.
 PREAMBLE = 5
 HEADER = 10
 INTERFACES = 12
@@ -582,7 +582,7 @@ def parse_fields_for(type, helper)
     type['fields'].each do |field|
       next if field['isDeprecated']
 
-      base_type, return_type, _, is_connection, is_array= type_of_field(field, type)
+      base_type, return_type, short, is_connection, is_array= type_of_field(field, type)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
@@ -604,7 +604,7 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      content= type_to_hash(base_type)
+      content= type_to_hash(base_type, return_type, short, is_connection, is_array)
       if is_connection and is_array
         raise Exception.new "Didn't expect it"
       end
@@ -775,7 +775,7 @@ def field_args_to_hash(field)
 
   if field['args']
     field['args'].each {|a|
-      base, _, short, is_connection, is_array = type_of_field(a)
+      base, return_type, short, is_connection, is_array = type_of_field(a)
       if is_connection
         raise Exception.new "Didn't expect connection here"
       end
@@ -798,7 +798,7 @@ def field_args_to_hash(field)
           if is_connection
             raise Exception.new "Didn't expect connection here"
           end
-          type_to_hash($schema_type_map[bt])
+          type_to_hash($schema_type_map[bt], return_type, short, is_connection, is_array)
         end
       ret[name]= value
     }
@@ -813,7 +813,7 @@ end
 # Helper methods
 
 # type_of_field(field) - returns [base, string, short(string), is_connection]
-# type_to_hash(type) - expands type into nested hash of inputs - TODO: support input types, support connections
+# type_to_hash(type) - expands type into nested hash of inputs
 # hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
 # field_args_to_hash - expands field args into hash
 # hash_to_method_args - hash returned from above to string
@@ -893,7 +893,7 @@ def type_of_field(field, type= nil)
 end
 
 $resolving= {}
-def type_to_hash(type)
+def type_to_hash(type, ruby_string = nil, short_string = nil, is_connection = false, is_array = false)
   t= (String=== type) ? $schema_type_map[type] : type
 
   # Prevent loops
@@ -903,7 +903,9 @@ def type_to_hash(type)
 
   $resolving[t['name']]= true
 
-  raise Exception.new "crap" unless t
+  short_string ||= t['name']
+
+  raise Exception.new "Not expected" unless t
 
   if t['fields'] and t['inputFields']
     raise Exception.new "Didn't expect that type #{t['name']} will have both fields and inputFields"
@@ -912,7 +914,7 @@ def type_to_hash(type)
   retval=
     case t['kind']
     when 'SCALAR'
-      %Q{"#{t['name']}"}
+      is_array ? %Q{["#{t['name']}"]} : %Q{"#{t['name']}"}
     when 'UNION'
       %Q{#{t['possibleTypes'].map{|t| t['name']}.join ' | '}}
     when 'ENUM'
