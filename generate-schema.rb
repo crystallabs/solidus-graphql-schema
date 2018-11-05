@@ -774,7 +774,7 @@ def field_args_to_hash(field)
 
   if field['args']
     field['args'].each {|a|
-      base, _, short, is_connection = type_of_field(a)
+      base, _, short, is_connection, is_array = type_of_field(a)
       if is_connection
         raise Exception.new "Didn't expect connection here"
       end
@@ -793,7 +793,7 @@ def field_args_to_hash(field)
         else
           # What remains? OBJs and INPUT OBJs?
           #raise Exception.new "Not seen: #{base} (#{p a})"
-          bt, _, _, is_connection = type_of_field(a)
+          bt, _, _, is_connection, is_array = type_of_field(a)
           if is_connection
             raise Exception.new "Didn't expect connection here"
           end
@@ -840,9 +840,10 @@ def type_of_field(field, type= nil)
   end
   string = ''
   is_connection = false
+  is_array = false
   chain.each do |f2|
     if f2['kind'] == 'NON_NULL' and !f2['name']; string.sub! /true$/, 'false'
-    elsif f2['kind'] == 'LIST' and !f2['name']; string = "[#{string}], null: true"
+    elsif f2['kind'] == 'LIST' and !f2['name']; is_array= true; string = "[#{string}], null: true"
     else
       suffix= ''
       ret_name= f2['name']
@@ -886,7 +887,8 @@ def type_of_field(field, type= nil)
   # 2. String suitable for field definition in GraphQL-Ruby syntax (e.g. [Type], null: false)
   # 3. String suitable for field definition in GraphQL (e.g. [Type!]!)
   # 4. Boolean whether that field returns a connection
-  [ ret_type, string, shorten(string), is_connection ]
+  # 5. Boolean whether the field is an array
+  [ ret_type, string, shorten(string), is_connection, is_array ]
 end
 
 $resolving= {}
