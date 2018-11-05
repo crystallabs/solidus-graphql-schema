@@ -604,7 +604,7 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], args_hash_to_method_args(field_args_to_hash(field))] => type_to_hash(base_type))
+      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], hash_to_method_args(field_args_to_hash(field))] => type_to_hash(base_type))
 
       # TODO complete the print of input query and expected response
 
@@ -721,22 +721,41 @@ end
 
 ################################################################################
 
-def args_hash_to_method_args(hash)
+def hash_to_method_args(hash)
   return nil unless hash
-  return hash unless Hash=== hash
+  if String=== hash
+    return hash
+  end
+  unless Hash=== hash
+    raise Exception.new "Not expected type #{hash.class}--#{hash}"
+  end
   ret= []
   hash.each{ |k,v|
-    value = case v
-    when Hash
-      '{' + args_hash_to_method_args(v) + '}'
+    unless k.is_a? Array
+      k_string = k
     else
+      k_string = if k[1]
+        "#{k[0]}(#{hash_to_method_args k[1]})"
+      else
+        k[0]
+      end
+    end
+
+    value= case v
+    when Hash
+      '{' + hash_to_method_args(v) + '}'
+    else
+      puts v
       v
     end
-    ret.push "#{k}: #{value}"
+    ret.push "#{k_string}: #{value}"
   }
-  ret.join(', ')
+  if ret.size <2
+    ret.join(", ")
+  else
+    "\n" + indent(1, ret.join(",\n"))
+  end
 end
-
 
 def field_args_to_hash(field)
   ret= {}
@@ -778,7 +797,7 @@ end
 # type_to_hash(type) - expands type into nested hash of inputs - TODO: support input types, support connections
 # hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
 # field_args_to_hash - expands field args into hash
-# args_hash_to_method_args - hash returned from above to string
+# hash_to_method_args - hash returned from above to string
 # shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
 # old_to_new_name - maps original GraphQL name to our class name
 # indent - indents by given level
@@ -902,7 +921,7 @@ def hash_to_graphql_query(hash)
   string= ''
   hash.each do |k,v|
     k_string = if k[1]
-      "#{k[0]}(#{args_hash_to_method_args k[1]})"
+      "#{k[0]}(#{hash_to_method_args k[1]})"
     else
       k[0]
     end
