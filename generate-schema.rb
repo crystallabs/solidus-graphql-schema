@@ -604,7 +604,7 @@ def #{field['name'].underscore}#{args}
 end
 }
 
-      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => type_to_hash(base_type))
+      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], args_hash_to_method_args(field_args_to_hash(field))] => type_to_hash(base_type))
 
       # TODO complete the print of input query and expected response
 
@@ -721,24 +721,52 @@ end
 
 ################################################################################
 
+def args_hash_to_method_args(hash)
+  return nil unless hash
+  return hash unless Hash=== hash
+  ret= []
+  hash.each{ |k,v|
+    value = case v
+    when Hash
+      '{' + args_hash_to_method_args(v) + '}'
+    else
+      v
+    end
+    ret.push "#{k}: #{value}"
+  }
+  ret.join(', ')
+end
 
 
-# TODO -> when implemented, in type_to_hash, convert keys to array and add this as 2nd el in array
 def field_args_to_hash(field)
-  #field['args'].map{|a|
-  #  base, _, short, _ = type_of_field(a)
-  #  "#{a['name']}: " + (case base
-  #  when 'Int', 'Float'
-  #    base
-  #  when 'Boolean'
-  #    a['defaultValue']
-  #  when 'String'
-  #    '""'
-  #  else
-  #    %Q{"#{short}"}
-  #  end)
-  #}.join(', ') + ')'
-  nil
+  ret= {}
+
+  if field['args']
+    field['args'].each {|a|
+      base, _, short, conn = type_of_field(a)
+      name= a['name']
+      value=
+        if base== 'Int' or base== 'Float'
+          base
+        elsif base== 'Boolean'
+          a['defaultValue']
+        elsif base== 'String' or a['kind']== 'SCALAR'
+          '""'
+        elsif a['kind']== 'ENUM'
+          a['enumValues'].map{|v| v['name']}.join(' | ')
+        elsif a['kind']== 'UNION'
+          a['possibleTypes'].map{|v| v['name']}.join(' | ')
+        else
+          # What remains? OBJs and INPUT OBJs?
+          #raise Exception.new "Not seen: #{base} (#{p a})"
+          bt, _ = type_of_field(a)
+          type_to_hash($schema_type_map[bt])
+        end
+      ret[name]= value
+    }
+  end
+
+  ret.size> 0 ? ret : nil #.map{|k,v| "#{k}: #{v}"}.join(', ') : nil
 end
 
 
@@ -748,8 +776,9 @@ end
 
 # type_of_field(field) - returns [base, string, short(string), is_connection]
 # type_to_hash(type) - expands type into nested hash of inputs - TODO: support input types, support connections
-# field_args_to_hash - expands field args into hash
 # hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
+# field_args_to_hash - expands field args into hash
+# args_hash_to_method_args - hash returned from above to string
 # shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
 # old_to_new_name - maps original GraphQL name to our class name
 # indent - indents by given level
@@ -836,6 +865,10 @@ def type_to_hash(type)
 
   raise Exception.new "crap" unless t
 
+  if t['fields'] and t['inputFields']
+    raise Exception.new "Didn't expect that type #{t['name']} will have both fields and inputFields"
+  end
+
   retval=
     case t['kind']
     when 'SCALAR'
@@ -844,9 +877,9 @@ def type_to_hash(type)
       %Q{#{t['possibleTypes'].map{|t| t['name']}.join ' | '}}
     when 'ENUM'
       %Q{"#{t['enumValues'].map{|v| v['name']}.join ' | '}"}
-    when 'OBJECT', 'INTERFACE'
+    when 'OBJECT', 'INPUT_OBJECT', 'INTERFACE'
       ret= {}
-      fields= t['fields']
+      fields= t['fields'] || t['inputFields']
       fields.each do |f|
         base, _, _, _= type_of_field(f)
         ret.merge!( [f['name'], field_args_to_hash(f)] => type_to_hash(base) )
@@ -862,10 +895,14 @@ end
 
 $level= 0
 def hash_to_graphql_query(hash)
+  if String=== hash
+    return hash
+  end
+
   string= ''
   hash.each do |k,v|
     k_string = if k[1]
-      "#{k[0]}(#{k[1]})"
+      "#{k[0]}(#{args_hash_to_method_args k[1]})"
     else
       k[0]
     end
