@@ -178,7 +178,7 @@ module Spree::GraphQL
           data: {
             queryRoot: {
               blogByHandle: {
-                articleByHandle: [
+                articleByHandle: [{
                   author: {
                     # ...
                   },
@@ -186,24 +186,24 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [
+                  comments: [{
                     # ...
-                  ],
+                  }],
                   content: ['String'],
                   contentHtml: 'HTML',
                   excerpt: ['String'],
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [
+                  image: [{
                     # ...
-                  ],
+                  }],
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                ],
-                articles: [
+                }],
+                articles: [{
                   author: {
                     # ...
                   },
@@ -211,23 +211,23 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [
+                  comments: [{
                     # ...
-                  ],
+                  }],
                   content: ['String'],
                   contentHtml: 'HTML',
                   excerpt: ['String'],
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [
+                  image: [{
                     # ...
-                  ],
+                  }],
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                ],
+                }],
                 authors: {
                   bio: 'String',
                   email: 'String',
@@ -456,14 +456,14 @@ module Spree::GraphQL
             queryRoot: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   address1: 'String',
@@ -504,14 +504,14 @@ module Spree::GraphQL
                     # ...
                   },
                   customer: 'Customer...',
-                  discountApplications: [
+                  discountApplications: [{
                     # ...
-                  ],
+                  }],
                   email: 'String',
                   id: 'ID',
-                  lineItems: [
+                  lineItems: [{
                     # ...
-                  ],
+                  }],
                   note: 'String',
                   order: {
                     # ...
@@ -538,14 +538,14 @@ module Spree::GraphQL
                   webUrl: 'URL',
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -848,45 +848,45 @@ module Spree::GraphQL
           data: {
             queryRoot: {
               shop: {
-                articles: [
+                articles: [{
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                ],
-                blogs: [
+                }],
+                blogs: [{
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                ],
+                }],
                 cardVaultUrl: 'URL',
-                collectionByHandle: [
+                collectionByHandle: [{
                   description: ['String'],
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [
+                  image: [{
                     # ...
-                  ],
-                  products: [
+                  }],
+                  products: [{
                     # ...
-                  ],
+                  }],
                   title: 'String',
                   updatedAt: 'DateTime',
-                ],
-                collections: [
+                }],
+                collections: [{
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                ],
+                }],
                 currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 description: 'String',
                 moneyFormat: 'String',
@@ -910,23 +910,23 @@ module Spree::GraphQL
                   title: 'String',
                   url: 'URL',
                 },
-                productByHandle: [
+                productByHandle: [{
                   availableForSale: 'Boolean',
-                  collections: [
+                  collections: [{
                     # ...
-                  ],
+                  }],
                   createdAt: 'DateTime',
                   description: ['String'],
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [
+                  images: [{
                     # ...
-                  ],
+                  }],
                   onlineStoreUrl: 'URL',
-                  options: [
+                  options: [{
                     # ...
-                  ],
+                  }],
                   priceRange: {
                     # ...
                   },
@@ -935,30 +935,30 @@ module Spree::GraphQL
                   tags: 'String',
                   title: 'String',
                   updatedAt: 'DateTime',
-                  variantBySelectedOptions: [
+                  variantBySelectedOptions: [{
                     # ...
-                  ],
-                  variants: [
+                  }],
+                  variants: [{
                     # ...
-                  ],
+                  }],
                   vendor: 'String',
-                ],
-                productTypes: [
+                }],
+                productTypes: [{
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                ],
-                products: [
+                }],
+                products: [{
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                ],
+                }],
                 refundPolicy: {
                   body: 'String',
                   id: 'ID',

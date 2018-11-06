@@ -548,9 +548,9 @@ module Spree::GraphQL
                 },
                 customer: {
                   acceptsMarketing: 'Boolean',
-                  addresses: [
+                  addresses: [{
                     # ...
-                  ],
+                  }],
                   createdAt: 'DateTime',
                   defaultAddress: {
                     # ...
@@ -561,21 +561,21 @@ module Spree::GraphQL
                   id: 'ID',
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
-                  orders: [
+                  orders: [{
                     # ...
-                  ],
+                  }],
                   phone: 'String',
                   updatedAt: 'DateTime',
                 },
-                discountApplications: [
+                discountApplications: [{
                   allocationMethod: 'ACROSS | EACH | ONE',
                   targetSelection: 'ALL | ENTITLED | EXPLICIT',
                   targetType: 'LINE_ITEM | SHIPPING_LINE',
                   value: PricingPercentageValue | MoneyV2,
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   customAttributes: {
                     # ...
                   },
@@ -588,20 +588,20 @@ module Spree::GraphQL
                   variant: {
                     # ...
                   },
-                ],
+                }],
                 note: 'String',
                 order: {
                   currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                   customerLocale: 'String',
                   customerUrl: 'URL',
-                  discountApplications: [
+                  discountApplications: [{
                     # ...
-                  ],
+                  }],
                   email: 'String',
                   id: 'ID',
-                  lineItems: [
+                  lineItems: [{
                     # ...
-                  ],
+                  }],
                   name: 'String',
                   orderNumber: 'Int',
                   phone: 'String',
@@ -614,9 +614,9 @@ module Spree::GraphQL
                   },
                   statusUrl: 'URL',
                   subtotalPrice: 'Money',
-                  successfulFulfillments: [
+                  successfulFulfillments: [{
                     # ...
-                  ],
+                  }],
                   totalPrice: 'Money',
                   totalRefunded: 'Money',
                   totalShippingPrice: 'Money',
@@ -836,15 +836,15 @@ module Spree::GraphQL
                 currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customerLocale: 'String',
                 customerUrl: 'URL',
-                discountApplications: [
+                discountApplications: [{
                   allocationMethod: 'ACROSS | EACH | ONE',
                   targetSelection: 'ALL | ENTITLED | EXPLICIT',
                   targetType: 'LINE_ITEM | SHIPPING_LINE',
                   value: PricingPercentageValue | MoneyV2,
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   customAttributes: {
                     # ...
                   },
@@ -856,7 +856,7 @@ module Spree::GraphQL
                   variant: {
                     # ...
                   },
-                ],
+                }],
                 name: 'String',
                 orderNumber: 'Int',
                 phone: 'String',
@@ -892,15 +892,15 @@ module Spree::GraphQL
                 },
                 statusUrl: 'URL',
                 subtotalPrice: 'Money',
-                successfulFulfillments: [
-                  fulfillmentLineItems: [
+                successfulFulfillments: [{
+                  fulfillmentLineItems: [{
                     # ...
-                  ],
+                  }],
                   trackingCompany: 'String',
-                  trackingInfo: [
+                  trackingInfo: [{
                     # ...
-                  ],
-                ],
+                  }],
+                }],
                 totalPrice: 'Money',
                 totalRefunded: 'Money',
                 totalShippingPrice: 'Money',

@@ -124,27 +124,27 @@ module Spree::GraphQL
                   title: 'String',
                   url: 'URL',
                 },
-                comments: [
+                comments: [{
                   author: {
                     # ...
                   },
                   content: ['String'],
                   contentHtml: 'HTML',
                   id: 'ID',
-                ],
+                }],
                 content: ['String'],
                 contentHtml: 'HTML',
                 excerpt: ['String'],
                 excerptHtml: 'HTML',
                 handle: 'String',
                 id: 'ID',
-                image: [
+                image: [{
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
                   transformedSrc: ['URL'],
-                ],
+                }],
                 publishedAt: 'DateTime',
                 tags: 'String',
                 title: 'String',
@@ -288,27 +288,27 @@ module Spree::GraphQL
                   title: 'String',
                   url: 'URL',
                 },
-                comments: [
+                comments: [{
                   author: {
                     # ...
                   },
                   content: ['String'],
                   contentHtml: 'HTML',
                   id: 'ID',
-                ],
+                }],
                 content: ['String'],
                 contentHtml: 'HTML',
                 excerpt: ['String'],
                 excerptHtml: 'HTML',
                 handle: 'String',
                 id: 'ID',
-                image: [
+                image: [{
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
                   transformedSrc: ['URL'],
-                ],
+                }],
                 publishedAt: 'DateTime',
                 tags: 'String',
                 title: 'String',

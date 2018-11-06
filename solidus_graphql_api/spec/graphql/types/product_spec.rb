@@ -161,14 +161,14 @@ module Spree::GraphQL
                 descriptionHtml: 'HTML',
                 handle: 'String',
                 id: 'ID',
-                image: [
+                image: [{
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
                   transformedSrc: ['URL'],
-                ],
-                products: [
+                }],
+                products: [{
                   availableForSale: 'Boolean',
                   collections: ['Collection...'],
                   createdAt: 'DateTime',
@@ -176,13 +176,13 @@ module Spree::GraphQL
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [
+                  images: [{
                     # ...
-                  ],
+                  }],
                   onlineStoreUrl: 'URL',
-                  options: [
+                  options: [{
                     # ...
-                  ],
+                  }],
                   priceRange: {
                     # ...
                   },
@@ -191,14 +191,14 @@ module Spree::GraphQL
                   tags: 'String',
                   title: 'String',
                   updatedAt: 'DateTime',
-                  variantBySelectedOptions: [
+                  variantBySelectedOptions: [{
                     # ...
-                  ],
-                  variants: [
+                  }],
+                  variants: [{
                     # ...
-                  ],
+                  }],
                   vendor: 'String',
-                ],
+                }],
                 title: 'String',
                 updatedAt: 'DateTime',
               },
@@ -793,31 +793,31 @@ module Spree::GraphQL
                 availableForSale: 'Boolean',
                 compareAtPrice: 'Money',
                 id: 'ID',
-                image: [
+                image: [{
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
                   transformedSrc: ['URL'],
-                ],
+                }],
                 price: 'Money',
                 product: {
                   availableForSale: 'Boolean',
-                  collections: [
+                  collections: [{
                     # ...
-                  ],
+                  }],
                   createdAt: 'DateTime',
                   description: ['String'],
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [
+                  images: [{
                     # ...
-                  ],
+                  }],
                   onlineStoreUrl: 'URL',
-                  options: [
+                  options: [{
                     # ...
-                  ],
+                  }],
                   priceRange: {
                     # ...
                   },
@@ -976,31 +976,31 @@ module Spree::GraphQL
                 availableForSale: 'Boolean',
                 compareAtPrice: 'Money',
                 id: 'ID',
-                image: [
+                image: [{
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
                   transformedSrc: ['URL'],
-                ],
+                }],
                 price: 'Money',
                 product: {
                   availableForSale: 'Boolean',
-                  collections: [
+                  collections: [{
                     # ...
-                  ],
+                  }],
                   createdAt: 'DateTime',
                   description: ['String'],
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [
+                  images: [{
                     # ...
-                  ],
+                  }],
                   onlineStoreUrl: 'URL',
-                  options: [
+                  options: [{
                     # ...
-                  ],
+                  }],
                   priceRange: {
                     # ...
                   },

@@ -154,7 +154,7 @@ module Spree::GraphQL
           data: {
             article: {
               blog: {
-                articleByHandle: [
+                articleByHandle: [{
                   author: {
                     # ...
                   },
@@ -162,24 +162,24 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [
+                  comments: [{
                     # ...
-                  ],
+                  }],
                   content: ['String'],
                   contentHtml: 'HTML',
                   excerpt: ['String'],
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [
+                  image: [{
                     # ...
-                  ],
+                  }],
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                ],
-                articles: [
+                }],
+                articles: [{
                   author: {
                     # ...
                   },
@@ -187,23 +187,23 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [
+                  comments: [{
                     # ...
-                  ],
+                  }],
                   content: ['String'],
                   contentHtml: 'HTML',
                   excerpt: ['String'],
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [
+                  image: [{
                     # ...
-                  ],
+                  }],
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                ],
+                }],
                 authors: {
                   bio: 'String',
                   email: 'String',

@@ -283,9 +283,9 @@ module Spree::GraphQL
                   availableForSale: 'Boolean',
                   compareAtPrice: 'Money',
                   id: 'ID',
-                  image: [
+                  image: [{
                     # ...
-                  ],
+                  }],
                   price: 'Money',
                   product: {
                     # ...
@@ -635,17 +635,17 @@ module Spree::GraphQL
           data: {
             order: {
               successfulFulfillments: {
-                fulfillmentLineItems: [
+                fulfillmentLineItems: [{
                   lineItem: {
                     # ...
                   },
                   quantity: 'Int',
-                ],
+                }],
                 trackingCompany: 'String',
-                trackingInfo: [
+                trackingInfo: [{
                   number: 'String',
                   url: 'URL',
-                ],
+                }],
               },
             }
           },

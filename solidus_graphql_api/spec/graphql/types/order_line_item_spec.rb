@@ -260,31 +260,31 @@ module Spree::GraphQL
                 availableForSale: 'Boolean',
                 compareAtPrice: 'Money',
                 id: 'ID',
-                image: [
+                image: [{
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
                   transformedSrc: ['URL'],
-                ],
+                }],
                 price: 'Money',
                 product: {
                   availableForSale: 'Boolean',
-                  collections: [
+                  collections: [{
                     # ...
-                  ],
+                  }],
                   createdAt: 'DateTime',
                   description: ['String'],
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [
+                  images: [{
                     # ...
-                  ],
+                  }],
                   onlineStoreUrl: 'URL',
-                  options: [
+                  options: [{
                     # ...
-                  ],
+                  }],
                   priceRange: {
                     # ...
                   },

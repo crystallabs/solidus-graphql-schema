@@ -115,14 +115,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -260,14 +260,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -449,14 +449,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -660,14 +660,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -860,14 +860,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -1051,14 +1051,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -1086,9 +1086,9 @@ module Spree::GraphQL
               },
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   # ...
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
@@ -1101,9 +1101,9 @@ module Spree::GraphQL
                   # ...
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   # ...
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -1219,14 +1219,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -1368,14 +1368,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -1513,14 +1513,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -1662,14 +1662,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -1811,14 +1811,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -1962,14 +1962,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -2120,14 +2120,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -2271,14 +2271,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -2430,14 +2430,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -2590,14 +2590,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -2739,14 +2739,14 @@ module Spree::GraphQL
                 customer: {
                   # ...
                 },
-                discountApplications: [
+                discountApplications: [{
                   # ...
-                ],
+                }],
                 email: 'String',
                 id: 'ID',
-                lineItems: [
+                lineItems: [{
                   # ...
-                ],
+                }],
                 note: 'String',
                 order: {
                   # ...
@@ -2997,9 +2997,9 @@ module Spree::GraphQL
             customerActivate: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   # ...
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
@@ -3012,9 +3012,9 @@ module Spree::GraphQL
                   # ...
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   # ...
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -3343,9 +3343,9 @@ module Spree::GraphQL
             customerCreate: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   # ...
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
@@ -3358,9 +3358,9 @@ module Spree::GraphQL
                   # ...
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   # ...
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -3447,9 +3447,9 @@ module Spree::GraphQL
             customerDefaultAddressUpdate: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   # ...
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
@@ -3462,9 +3462,9 @@ module Spree::GraphQL
                   # ...
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   # ...
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -3588,9 +3588,9 @@ module Spree::GraphQL
             customerReset: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   # ...
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
@@ -3603,9 +3603,9 @@ module Spree::GraphQL
                   # ...
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   # ...
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -3695,9 +3695,9 @@ module Spree::GraphQL
             customerResetByUrl: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   # ...
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
@@ -3710,9 +3710,9 @@ module Spree::GraphQL
                   # ...
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   # ...
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -3814,9 +3814,9 @@ module Spree::GraphQL
             customerUpdate: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [
+                addresses: [{
                   # ...
-                ],
+                }],
                 createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
@@ -3829,9 +3829,9 @@ module Spree::GraphQL
                   # ...
                 },
                 lastName: 'String',
-                orders: [
+                orders: [{
                   # ...
-                ],
+                }],
                 phone: 'String',
                 updatedAt: 'DateTime',
               },

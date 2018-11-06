@@ -1057,7 +1057,13 @@ def hash_to_string(h)
         '[' + v[0] + '],'
       else
         val= if $level2 < $max_level then hash_to_string(v[0]) else %q{# ...} end
-        "[\n" + indent(1, val) + "\n],"
+        pre= "[\n"
+        post= "\n],"
+        if Hash=== v[0]
+          pre= "[{\n"
+          post= "\n}],"
+        end
+        pre + indent(1, val) + post
       end  + "\n"
     else
       raise Exception.new "Shouldn't happen"
