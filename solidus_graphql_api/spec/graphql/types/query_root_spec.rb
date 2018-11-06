@@ -178,7 +178,7 @@ module Spree::GraphQL
           data: {
             queryRoot: {
               blogByHandle: {
-                articleByHandle: [{
+                articleByHandle: {
                   author: {
                     # ...
                   },
@@ -186,24 +186,24 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [{
+                  comments: {
                     # ...
-                  }],
-                  content: ['String'],
+                  },
+                  content: 'String',
                   contentHtml: 'HTML',
-                  excerpt: ['String'],
+                  excerpt: 'String',
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
+                  },
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                }],
-                articles: [{
+                },
+                articles: {
                   author: {
                     # ...
                   },
@@ -211,23 +211,23 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [{
+                  comments: {
                     # ...
-                  }],
-                  content: ['String'],
+                  },
+                  content: 'String',
                   contentHtml: 'HTML',
-                  excerpt: ['String'],
+                  excerpt: 'String',
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
+                  },
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                }],
+                },
                 authors: {
                   bio: 'String',
                   email: 'String',
@@ -456,14 +456,14 @@ module Spree::GraphQL
             queryRoot: {
               customer: {
                 acceptsMarketing: 'Boolean',
-                addresses: [{
+                addresses: {
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                }],
+                },
                 createdAt: 'DateTime',
                 defaultAddress: {
                   address1: 'String',
@@ -474,7 +474,7 @@ module Spree::GraphQL
                   countryCode: 'String',
                   countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
                   firstName: 'String',
-                  formatted: ['String'],
+                  formatted: 'String',
                   formattedArea: 'String',
                   id: 'ID',
                   lastName: 'String',
@@ -504,14 +504,14 @@ module Spree::GraphQL
                     # ...
                   },
                   customer: 'Customer...',
-                  discountApplications: [{
+                  discountApplications: {
                     # ...
-                  }],
+                  },
                   email: 'String',
                   id: 'ID',
-                  lineItems: [{
+                  lineItems: {
                     # ...
-                  }],
+                  },
                   note: 'String',
                   order: {
                     # ...
@@ -538,14 +538,14 @@ module Spree::GraphQL
                   webUrl: 'URL',
                 },
                 lastName: 'String',
-                orders: [{
+                orders: {
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                }],
+                },
                 phone: 'String',
                 updatedAt: 'DateTime',
               },
@@ -601,11 +601,7 @@ module Spree::GraphQL
         %q{
           query {
             queryRoot {
-              nodes(
-                ids: [
-                  "ID"
-                ]
-              ) {
+              nodes(ids: "ID") {
                 id
               }
             }
@@ -779,12 +775,10 @@ module Spree::GraphQL
                   title
                   updatedAt
                   variantBySelectedOptions(
-                    selectedOptions: [
-                      {
-                        name: "String",
-                        value: "String"
-                      }
-                    ]
+                    selectedOptions: {
+                      name: "String",
+                      value: "String"
+                    }
                   ) {
                     # ...
                   }
@@ -848,45 +842,45 @@ module Spree::GraphQL
           data: {
             queryRoot: {
               shop: {
-                articles: [{
+                articles: {
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                }],
-                blogs: [{
+                },
+                blogs: {
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                }],
+                },
                 cardVaultUrl: 'URL',
-                collectionByHandle: [{
-                  description: ['String'],
+                collectionByHandle: {
+                  description: 'String',
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
-                  products: [{
+                  },
+                  products: {
                     # ...
-                  }],
+                  },
                   title: 'String',
                   updatedAt: 'DateTime',
-                }],
-                collections: [{
+                },
+                collections: {
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                }],
+                },
                 currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 description: 'String',
                 moneyFormat: 'String',
@@ -910,23 +904,23 @@ module Spree::GraphQL
                   title: 'String',
                   url: 'URL',
                 },
-                productByHandle: [{
+                productByHandle: {
                   availableForSale: 'Boolean',
-                  collections: [{
+                  collections: {
                     # ...
-                  }],
+                  },
                   createdAt: 'DateTime',
-                  description: ['String'],
+                  description: 'String',
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [{
+                  images: {
                     # ...
-                  }],
+                  },
                   onlineStoreUrl: 'URL',
-                  options: [{
+                  options: {
                     # ...
-                  }],
+                  },
                   priceRange: {
                     # ...
                   },
@@ -935,30 +929,30 @@ module Spree::GraphQL
                   tags: 'String',
                   title: 'String',
                   updatedAt: 'DateTime',
-                  variantBySelectedOptions: [{
+                  variantBySelectedOptions: {
                     # ...
-                  }],
-                  variants: [{
+                  },
+                  variants: {
                     # ...
-                  }],
+                  },
                   vendor: 'String',
-                }],
-                productTypes: [{
+                },
+                productTypes: {
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                }],
-                products: [{
+                },
+                products: {
                   edges: {
                     # ...
                   },
                   pageInfo: {
                     # ...
                   },
-                }],
+                },
                 refundPolicy: {
                   body: 'String',
                   id: 'ID',

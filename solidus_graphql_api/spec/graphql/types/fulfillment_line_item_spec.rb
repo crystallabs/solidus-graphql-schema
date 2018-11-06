@@ -83,9 +83,9 @@ module Spree::GraphQL
                   availableForSale: 'Boolean',
                   compareAtPrice: 'Money',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
+                  },
                   price: 'Money',
                   product: {
                     # ...

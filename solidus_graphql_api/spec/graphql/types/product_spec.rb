@@ -124,12 +124,10 @@ module Spree::GraphQL
                   title
                   updatedAt
                   variantBySelectedOptions(
-                    selectedOptions: [
-                      {
-                        name: "String",
-                        value: "String"
-                      }
-                    ]
+                    selectedOptions: {
+                      name: "String",
+                      value: "String"
+                    }
                   ) {
                     # ...
                   }
@@ -157,32 +155,32 @@ module Spree::GraphQL
           data: {
             product: {
               collections: {
-                description: ['String'],
+                description: 'String',
                 descriptionHtml: 'HTML',
                 handle: 'String',
                 id: 'ID',
-                image: [{
+                image: {
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
-                  transformedSrc: ['URL'],
-                }],
-                products: [{
+                  transformedSrc: 'URL',
+                },
+                products: {
                   availableForSale: 'Boolean',
-                  collections: ['Collection...'],
+                  collections: 'Collection...',
                   createdAt: 'DateTime',
-                  description: ['String'],
+                  description: 'String',
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [{
+                  images: {
                     # ...
-                  }],
+                  },
                   onlineStoreUrl: 'URL',
-                  options: [{
+                  options: {
                     # ...
-                  }],
+                  },
                   priceRange: {
                     # ...
                   },
@@ -191,14 +189,14 @@ module Spree::GraphQL
                   tags: 'String',
                   title: 'String',
                   updatedAt: 'DateTime',
-                  variantBySelectedOptions: [{
+                  variantBySelectedOptions: {
                     # ...
-                  }],
-                  variants: [{
+                  },
+                  variants: {
                     # ...
-                  }],
+                  },
                   vendor: 'String',
-                }],
+                },
                 title: 'String',
                 updatedAt: 'DateTime',
               },
@@ -408,7 +406,7 @@ module Spree::GraphQL
                 id: 'ID',
                 originalSrc: 'URL',
                 src: 'URL',
-                transformedSrc: ['URL'],
+                transformedSrc: 'URL',
               },
             }
           },
@@ -681,12 +679,10 @@ module Spree::GraphQL
           query {
             product {
               variantBySelectedOptions(
-                selectedOptions: [
-                  {
-                    name: "String",
-                    value: "String"
-                  }
-                ]
+                selectedOptions: {
+                  name: "String",
+                  value: "String"
+                }
               ) {
                 available
                 availableForSale
@@ -754,12 +750,10 @@ module Spree::GraphQL
                   title
                   updatedAt
                   variantBySelectedOptions(
-                    selectedOptions: [
-                      {
-                        name: "String",
-                        value: "String"
-                      }
-                    ]
+                    selectedOptions: {
+                      name: "String",
+                      value: "String"
+                    }
                   )
                   variants(
                     first: Int,
@@ -793,31 +787,31 @@ module Spree::GraphQL
                 availableForSale: 'Boolean',
                 compareAtPrice: 'Money',
                 id: 'ID',
-                image: [{
+                image: {
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
-                  transformedSrc: ['URL'],
-                }],
+                  transformedSrc: 'URL',
+                },
                 price: 'Money',
                 product: {
                   availableForSale: 'Boolean',
-                  collections: [{
+                  collections: {
                     # ...
-                  }],
+                  },
                   createdAt: 'DateTime',
-                  description: ['String'],
+                  description: 'String',
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [{
+                  images: {
                     # ...
-                  }],
+                  },
                   onlineStoreUrl: 'URL',
-                  options: [{
+                  options: {
                     # ...
-                  }],
+                  },
                   priceRange: {
                     # ...
                   },
@@ -826,8 +820,8 @@ module Spree::GraphQL
                   tags: 'String',
                   title: 'String',
                   updatedAt: 'DateTime',
-                  variantBySelectedOptions: ['ProductVariant...'],
-                  variants: ['ProductVariant...'],
+                  variantBySelectedOptions: 'ProductVariant...',
+                  variants: 'ProductVariant...',
                   vendor: 'String',
                 },
                 selectedOptions: {
@@ -937,12 +931,10 @@ module Spree::GraphQL
                   title
                   updatedAt
                   variantBySelectedOptions(
-                    selectedOptions: [
-                      {
-                        name: "String",
-                        value: "String"
-                      }
-                    ]
+                    selectedOptions: {
+                      name: "String",
+                      value: "String"
+                    }
                   )
                   variants(
                     first: Int,
@@ -976,31 +968,31 @@ module Spree::GraphQL
                 availableForSale: 'Boolean',
                 compareAtPrice: 'Money',
                 id: 'ID',
-                image: [{
+                image: {
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
-                  transformedSrc: ['URL'],
-                }],
+                  transformedSrc: 'URL',
+                },
                 price: 'Money',
                 product: {
                   availableForSale: 'Boolean',
-                  collections: [{
+                  collections: {
                     # ...
-                  }],
+                  },
                   createdAt: 'DateTime',
-                  description: ['String'],
+                  description: 'String',
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [{
+                  images: {
                     # ...
-                  }],
+                  },
                   onlineStoreUrl: 'URL',
-                  options: [{
+                  options: {
                     # ...
-                  }],
+                  },
                   priceRange: {
                     # ...
                   },
@@ -1009,8 +1001,8 @@ module Spree::GraphQL
                   tags: 'String',
                   title: 'String',
                   updatedAt: 'DateTime',
-                  variantBySelectedOptions: ['ProductVariant...'],
-                  variants: ['ProductVariant...'],
+                  variantBySelectedOptions: 'ProductVariant...',
+                  variants: 'ProductVariant...',
                   vendor: 'String',
                 },
                 selectedOptions: {

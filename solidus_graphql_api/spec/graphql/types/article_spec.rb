@@ -154,7 +154,7 @@ module Spree::GraphQL
           data: {
             article: {
               blog: {
-                articleByHandle: [{
+                articleByHandle: {
                   author: {
                     # ...
                   },
@@ -162,24 +162,24 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [{
+                  comments: {
                     # ...
-                  }],
-                  content: ['String'],
+                  },
+                  content: 'String',
                   contentHtml: 'HTML',
-                  excerpt: ['String'],
+                  excerpt: 'String',
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
+                  },
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                }],
-                articles: [{
+                },
+                articles: {
                   author: {
                     # ...
                   },
@@ -187,23 +187,23 @@ module Spree::GraphQL
                     # ...
                   },
                   blog: 'Blog...',
-                  comments: [{
+                  comments: {
                     # ...
-                  }],
-                  content: ['String'],
+                  },
+                  content: 'String',
                   contentHtml: 'HTML',
-                  excerpt: ['String'],
+                  excerpt: 'String',
                   excerptHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
+                  },
                   publishedAt: 'DateTime',
                   tags: 'String',
                   title: 'String',
                   url: 'URL',
-                }],
+                },
                 authors: {
                   bio: 'String',
                   email: 'String',
@@ -267,7 +267,7 @@ module Spree::GraphQL
                   email: 'String',
                   name: 'String',
                 },
-                content: ['String'],
+                content: 'String',
                 contentHtml: 'HTML',
                 id: 'ID',
               },
@@ -494,7 +494,7 @@ module Spree::GraphQL
                 id: 'ID',
                 originalSrc: 'URL',
                 src: 'URL',
-                transformedSrc: ['URL'],
+                transformedSrc: 'URL',
               },
             }
           },

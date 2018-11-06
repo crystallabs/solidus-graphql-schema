@@ -133,7 +133,7 @@ module Spree::GraphQL
                 id: 'ID',
                 originalSrc: 'URL',
                 src: 'URL',
-                transformedSrc: ['URL'],
+                transformedSrc: 'URL',
               },
             }
           },
@@ -262,12 +262,10 @@ module Spree::GraphQL
                 title
                 updatedAt
                 variantBySelectedOptions(
-                  selectedOptions: [
-                    {
-                      name: "String",
-                      value: "String"
-                    }
-                  ]
+                  selectedOptions: {
+                    name: "String",
+                    value: "String"
+                  }
                 ) {
                   available
                   availableForSale
@@ -333,36 +331,36 @@ module Spree::GraphQL
             productVariant: {
               product: {
                 availableForSale: 'Boolean',
-                collections: [{
-                  description: ['String'],
+                collections: {
+                  description: 'String',
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
-                  products: ['Product...'],
+                  },
+                  products: 'Product...',
                   title: 'String',
                   updatedAt: 'DateTime',
-                }],
+                },
                 createdAt: 'DateTime',
-                description: ['String'],
+                description: 'String',
                 descriptionHtml: 'HTML',
                 handle: 'String',
                 id: 'ID',
-                images: [{
+                images: {
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
-                  transformedSrc: ['URL'],
-                }],
+                  transformedSrc: 'URL',
+                },
                 onlineStoreUrl: 'URL',
-                options: [{
+                options: {
                   id: 'ID',
                   name: 'String',
                   values: 'String',
-                }],
+                },
                 priceRange: {
                   maxVariantPrice: {
                     # ...
@@ -376,14 +374,14 @@ module Spree::GraphQL
                 tags: 'String',
                 title: 'String',
                 updatedAt: 'DateTime',
-                variantBySelectedOptions: [{
+                variantBySelectedOptions: {
                   available: 'Boolean',
                   availableForSale: 'Boolean',
                   compareAtPrice: 'Money',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
+                  },
                   price: 'Money',
                   product: 'Product...',
                   selectedOptions: {
@@ -393,15 +391,15 @@ module Spree::GraphQL
                   title: 'String',
                   weight: 'Float',
                   weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
-                }],
-                variants: [{
+                },
+                variants: {
                   available: 'Boolean',
                   availableForSale: 'Boolean',
                   compareAtPrice: 'Money',
                   id: 'ID',
-                  image: [{
+                  image: {
                     # ...
-                  }],
+                  },
                   price: 'Money',
                   product: 'Product...',
                   selectedOptions: {
@@ -411,7 +409,7 @@ module Spree::GraphQL
                   title: 'String',
                   weight: 'Float',
                   weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
-                }],
+                },
                 vendor: 'String',
               },
             }

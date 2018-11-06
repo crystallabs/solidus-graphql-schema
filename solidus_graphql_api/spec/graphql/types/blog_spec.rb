@@ -114,8 +114,8 @@ module Spree::GraphQL
                   name: 'String',
                 },
                 blog: {
-                  articleByHandle: ['Article...'],
-                  articles: ['Article...'],
+                  articleByHandle: 'Article...',
+                  articles: 'Article...',
                   authors: {
                     # ...
                   },
@@ -124,27 +124,27 @@ module Spree::GraphQL
                   title: 'String',
                   url: 'URL',
                 },
-                comments: [{
+                comments: {
                   author: {
                     # ...
                   },
-                  content: ['String'],
+                  content: 'String',
                   contentHtml: 'HTML',
                   id: 'ID',
-                }],
-                content: ['String'],
+                },
+                content: 'String',
                 contentHtml: 'HTML',
-                excerpt: ['String'],
+                excerpt: 'String',
                 excerptHtml: 'HTML',
                 handle: 'String',
                 id: 'ID',
-                image: [{
+                image: {
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
-                  transformedSrc: ['URL'],
-                }],
+                  transformedSrc: 'URL',
+                },
                 publishedAt: 'DateTime',
                 tags: 'String',
                 title: 'String',
@@ -278,8 +278,8 @@ module Spree::GraphQL
                   name: 'String',
                 },
                 blog: {
-                  articleByHandle: ['Article...'],
-                  articles: ['Article...'],
+                  articleByHandle: 'Article...',
+                  articles: 'Article...',
                   authors: {
                     # ...
                   },
@@ -288,27 +288,27 @@ module Spree::GraphQL
                   title: 'String',
                   url: 'URL',
                 },
-                comments: [{
+                comments: {
                   author: {
                     # ...
                   },
-                  content: ['String'],
+                  content: 'String',
                   contentHtml: 'HTML',
                   id: 'ID',
-                }],
-                content: ['String'],
+                },
+                content: 'String',
                 contentHtml: 'HTML',
-                excerpt: ['String'],
+                excerpt: 'String',
                 excerptHtml: 'HTML',
                 handle: 'String',
                 id: 'ID',
-                image: [{
+                image: {
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
-                  transformedSrc: ['URL'],
-                }],
+                  transformedSrc: 'URL',
+                },
                 publishedAt: 'DateTime',
                 tags: 'String',
                 title: 'String',

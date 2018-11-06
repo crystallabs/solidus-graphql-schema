@@ -221,12 +221,10 @@ module Spree::GraphQL
                   title
                   updatedAt
                   variantBySelectedOptions(
-                    selectedOptions: [
-                      {
-                        name: "String",
-                        value: "String"
-                      }
-                    ]
+                    selectedOptions: {
+                      name: "String",
+                      value: "String"
+                    }
                   )
                   variants(
                     first: Int,
@@ -260,31 +258,31 @@ module Spree::GraphQL
                 availableForSale: 'Boolean',
                 compareAtPrice: 'Money',
                 id: 'ID',
-                image: [{
+                image: {
                   altText: 'String',
                   id: 'ID',
                   originalSrc: 'URL',
                   src: 'URL',
-                  transformedSrc: ['URL'],
-                }],
+                  transformedSrc: 'URL',
+                },
                 price: 'Money',
                 product: {
                   availableForSale: 'Boolean',
-                  collections: [{
+                  collections: {
                     # ...
-                  }],
+                  },
                   createdAt: 'DateTime',
-                  description: ['String'],
+                  description: 'String',
                   descriptionHtml: 'HTML',
                   handle: 'String',
                   id: 'ID',
-                  images: [{
+                  images: {
                     # ...
-                  }],
+                  },
                   onlineStoreUrl: 'URL',
-                  options: [{
+                  options: {
                     # ...
-                  }],
+                  },
                   priceRange: {
                     # ...
                   },
@@ -293,8 +291,8 @@ module Spree::GraphQL
                   tags: 'String',
                   title: 'String',
                   updatedAt: 'DateTime',
-                  variantBySelectedOptions: ['ProductVariant...'],
-                  variants: ['ProductVariant...'],
+                  variantBySelectedOptions: 'ProductVariant...',
+                  variants: 'ProductVariant...',
                   vendor: 'String',
                 },
                 selectedOptions: {
