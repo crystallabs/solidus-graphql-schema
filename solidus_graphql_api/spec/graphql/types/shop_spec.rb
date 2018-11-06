@@ -78,7 +78,7 @@ module Spree::GraphQL
                         # ...
                       }
                       onlineStoreUrl
-                      options(first: Int) {
+                      options(first: ["Int"]) {
                         # ...
                       }
                       priceRange {
@@ -598,7 +598,7 @@ module Spree::GraphQL
                   }
                 }
                 onlineStoreUrl
-                options(first: Int) {
+                options(first: ["Int"]) {
                   id
                   name
                   values
@@ -937,7 +937,7 @@ module Spree::GraphQL
                       }
                     }
                     onlineStoreUrl
-                    options(first: Int) {
+                    options(first: ["Int"]) {
                       id
                       name
                       values

@@ -253,7 +253,7 @@ module Spree::GraphQL
                     }
                   }
                   onlineStoreUrl
-                  options(first: Int) {
+                  options(first: ["Int"]) {
                     id
                     name
                     values

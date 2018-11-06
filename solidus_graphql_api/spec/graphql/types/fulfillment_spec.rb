@@ -124,7 +124,7 @@ module Spree::GraphQL
         %q{
           query {
             fulfillment {
-              trackingInfo(first: Int) {
+              trackingInfo(first: ["Int"]) {
                 number
                 url
               }

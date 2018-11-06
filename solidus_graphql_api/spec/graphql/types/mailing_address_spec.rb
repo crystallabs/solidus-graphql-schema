@@ -213,8 +213,8 @@ module Spree::GraphQL
           query {
             mailingAddress {
               formatted(
-                withName: false,
-                withCompany: true
+                withName: ["false"],
+                withCompany: ["true"]
               )
             }
           }
