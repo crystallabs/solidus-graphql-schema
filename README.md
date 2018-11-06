@@ -17,9 +17,11 @@ In solidus_graphql_api, the GraphQL files live in the directory `lib/solidus_gra
 
 The file `lib/solidus_graphql_api/graphql/all.rb` lists all those files and `require`s them in the correct order.
 
+Additionally, at the top level there is also directory `spec/` with all the tests.
+
 ### The Schema
 
-Files in the subdirectory `schema/` are intended to be maintained by the generator script and contain no user implementation code. They are rewritten on every invocation of the generator.
+Files in the subdirectory `schema/` are intended to be maintained by the generator script from this repository and contain no user implementation code. They are rewritten on every invocation of the generator.
 
 In GraphQL, almost everything is a Type. This is excellent for the simplification of all the tooling and logic needed around it, but is not very elegant when hundreds of files live all in the same directory, especially when whole groups of Types are used in different contexts and are not directly related to each other.
 
@@ -42,7 +44,7 @@ Every Solidus schema file expects its corresponding implementation file placed i
 
 For example, GraphQL type `Schema::Types::Shop` expects to find its implementation methods in the module `Types::Shop` and automatically includes that module in its class.
 
-When the schema generator is run, it also generates the stub implementation files if they don't yet exist. These files are generated with ready-made templates for all defined GraphQL fields, including mentioning their description, arguments, and expected return value in the comments above the method definitions.
+When the schema generator is run, it also generates the stub implementation files if they don't yet exist. These files are generated with ready-made templates for all defined GraphQL fields, including mentioning their description, arguments, and expected return value in the comments above method definitions.
 
 All auto-generated method stubs contain one default line of code which raises error `::Spree::GraphQL::NotImplementedError`.
 
@@ -53,7 +55,7 @@ To implement a particular GraphQL field, one can use all approaches mentioned in
 
 ### The Tests
 
-By default, every Solidus implementation file has a corresponding test file placed in the same directory structure, but under the directory `./spec/`.
+By default, every Solidus implementation file has a corresponding test file placed in the same directory structure, but under the directory `spec/`.
 
 For example, GraphQL type `Types::Shop` which is implemented in the file `lib/solidus_graphql_api/graphql/types/shop.rb` would have its test file in `spec/graphql/types/shop.rb`.
 
@@ -77,7 +79,7 @@ To generate GraphQL schema files or to update them from upstream, you would use 
 1. Check for any differences with `git diff`/`git status`
 1. If new files were created, remember to add them to solidus_graphql_api's file `solidus_graphql_api/lib/solidus_graphql_api/graphql/all.rb`
 
-Please note that the generator will output all generated files to subdirectory `./solidus_graphql_api/`, using the same directory structure as used by solidus_graphql_api.
+Please note that the generator will output all generated files to subdirectory `solidus_graphql_api/`, using the same directory structure as used by solidus_graphql_api.
 
 You can compare your existing solidus_graphql_api files with the generated contents in generally one of two ways:
 
@@ -110,18 +112,11 @@ Currently, the smaller points of difference between GraphQL API schemas are:
 1. Solidus uses newer versions of `graphql-ruby` which may include more verbose field and argument descriptions, and more data in the `pageInfo` type.
 1. GraphQL field `Shop.productTypes` in upstream API only supports argument `first`, while in Solidus it is a regular Connection with four default arguments (`first`, `last`, `before`, `after`).
 
-Possibly more significant differences:
-
-1. GraphQL types `Order`, `Checkout`, and `DiscountAllocation` in Solidus do not include the fields related to type `DiscountApplication`. This will be fixed.
-1. In Solidus, all Connection types can return nil whereas in upstream they are explicitly not nil. The nil comes from default graphql-ruby behavior, and this may be kept as it is, unless more detailed reasons for making it not nil come to attention.
-
 ## TODO
 
+1. Check whether implementation methods for connection types need to explicitly allow arguments `first`, `last`, `before`, and `after`, or this is automatically handled by `graphql-ruby`.
 1. Some types contain lists of accepted values, such as `Schema::Types::CountryCode`. These types and names are currently converted from original schema into Solidus schema as fixed strings. Instead, they should be populated dynamically from Solidus' own country list.
 1. The generator script currently simply discards all deprecated parts of schema and they are not created in Solidus. If/when supporting deprecated elements becomes important, the generator will have to be modified to not skip deprecated elements, but to output them while honoring their `isDeprecated` status.
-1. Determine why `Order`, `Checkout`, and `DiscountAllocation` do not include the field related to discount applications, and consequently the `DiscountApplication` interface.
 1. See whether it is possible to make `Shop.productTypes` connection only support argument `first` (like in the upstream API) rather than all four arguments (`first`, `last`, `before`, `after`)
-1. Object IDs need to be turned into globally unique IDs, as mentioned in https://github.com/boomerdigital/solidus_graphql_api/issues/18
 1. Authentication in solidus_graphql_api should be sorted out as mentioned in https://github.com/boomerdigital/solidus_graphql_api/issues/14
-1. When the schema stabilizes over time and when there will be much more individual field/method additions than whole file replacements, the current method of generating whole files won't suffice. This will be solved by additionally also generating "snippets" for individual fields which the user can then simply copy into existing files.
 1. Some GraphQL types are not marked as deprecated, but they are effectively unused because only deprecated fields used them. Currently, these cases are not detected and these types are output to disk along with all other types. This might want to be detected and those types omitted from output.

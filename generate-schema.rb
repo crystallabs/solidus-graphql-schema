@@ -127,7 +127,10 @@ $catalog = {
 
   base_type: {},
 
+  # Total fields
   total: 0,
+  # List of Type => Field(args) for textual reference
+  field_list: {},
 }
 
 # List types which aren't database models here!
@@ -421,7 +424,7 @@ end"
   #$catalog[:spec_outputs][name]= 'payloads/base_payload'
 
   # Output total file list of files that can be 'require'd (so, excluding specs):
-  outfile = "#{$out_dir}/lib/solidus_graphql_api/graphql/file_list.rb"
+  outfile = "./file_list.rb"
   FileUtils.mkdir_p File.dirname outfile
   File.open(outfile, 'w') { |f| f.write "# This file lists all the files that were auto-generated.
 # It cannot be used as-is because the order of includes
@@ -433,6 +436,13 @@ end"
 # into account.\n" +
     $catalog[:outputs].values.map{|f| %Q{require_relative "./#{f}"}}.join("\n") + "\n\n" +
     $catalog[:schema_outputs].values.map{|f| %Q{require_relative "./schema/#{f}"}}.join("\n") + "\n"
+  }
+
+  # Output list of all GraphQL fields.
+  outfile = "./field_list.rb"
+  FileUtils.mkdir_p File.dirname outfile
+  File.open(outfile, 'w') { |f| f.write \
+    $catalog[:field_list].map{|k,v| "1. [ ] #{k}#{v}" }.join("\n")
   }
 
   # Output schema parts:
@@ -605,6 +615,7 @@ def #{field['name'].underscore}#{args}
 end
 }
       $catalog[:total]+= 1
+      $catalog[:field_list]["#{type['name']}.#{field['name']}"]= if l= field_input_args_to_args_hash(field) then '(' + l.keys.join(', ') + ')' end
 
       type_hash= type_to_hash(base_type)
       if field[:is_connection] and field[:is_array]
