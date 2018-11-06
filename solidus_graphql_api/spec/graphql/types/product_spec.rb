@@ -417,11 +417,11 @@ module Spree::GraphQL
         {
           data: {
             product: {
-              options: {
+              options: [{
                 id: 'ID',
                 name: 'String',
                 values: 'String',
-              },
+              }],
             }
           },
           #errors: {},
@@ -551,7 +551,7 @@ module Spree::GraphQL
         {
           data: {
             product: {
-              tags: 'String',
+              tags: ['String'],
             }
           },
           #errors: {},

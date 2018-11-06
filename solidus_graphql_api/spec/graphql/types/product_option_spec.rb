@@ -79,7 +79,7 @@ module Spree::GraphQL
         {
           data: {
             productOption: {
-              values: 'String',
+              values: ['String'],
             }
           },
           #errors: {},

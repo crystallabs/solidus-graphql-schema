@@ -55,11 +55,11 @@ module Spree::GraphQL
         {
           data: {
             availableShippingRates: {
-              shippingRates: {
+              shippingRates: [{
                 handle: 'String',
                 price: 'Money',
                 title: 'String',
-              },
+              }],
             }
           },
           #errors: {},

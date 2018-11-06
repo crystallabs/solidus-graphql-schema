@@ -51,7 +51,7 @@ module Spree::GraphQL
         {
           data: {
             checkoutUserError: {
-              field: 'String',
+              field: ['String'],
             }
           },
           #errors: {},

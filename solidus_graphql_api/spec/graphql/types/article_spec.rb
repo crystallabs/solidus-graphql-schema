@@ -625,7 +625,7 @@ module Spree::GraphQL
         {
           data: {
             article: {
-              tags: 'String',
+              tags: ['String'],
             }
           },
           #errors: {},

@@ -1283,9 +1283,9 @@ module Spree::GraphQL
         {
           data: {
             queryRoot: {
-              nodes: {
+              nodes: [{
                 id: 'ID',
-              },
+              }],
             }
           },
           #errors: {},

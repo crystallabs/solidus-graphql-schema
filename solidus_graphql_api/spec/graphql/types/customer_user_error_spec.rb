@@ -51,7 +51,7 @@ module Spree::GraphQL
         {
           data: {
             customerUserError: {
-              field: 'String',
+              field: ['String'],
             }
           },
           #errors: {},

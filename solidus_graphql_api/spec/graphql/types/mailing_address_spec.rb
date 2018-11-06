@@ -224,7 +224,7 @@ module Spree::GraphQL
         {
           data: {
             mailingAddress: {
-              formatted: 'String',
+              formatted: ['String'],
             }
           },
           #errors: {},

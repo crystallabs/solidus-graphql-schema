@@ -23,7 +23,7 @@ module Spree::GraphQL
         {
           data: {
             displayableError: {
-              field: 'String',
+              field: ['String'],
             }
           },
           #errors: {},

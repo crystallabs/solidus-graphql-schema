@@ -23,7 +23,7 @@ module Spree::GraphQL
         {
           data: {
             paymentSettings: {
-              acceptedCardBrands: 'VISA | MASTERCARD | DISCOVER | AMERICAN_EXPRESS | DINERS_CLUB | JCB',
+              acceptedCardBrands: ['VISA | MASTERCARD | DISCOVER | AMERICAN_EXPRESS | DINERS_CLUB | JCB'],
             }
           },
           #errors: {},
@@ -163,7 +163,7 @@ module Spree::GraphQL
         {
           data: {
             paymentSettings: {
-              supportedDigitalWallets: 'APPLE_PAY | ANDROID_PAY | GOOGLE_PAY | SOLIDUS_PAY',
+              supportedDigitalWallets: ['APPLE_PAY | ANDROID_PAY | GOOGLE_PAY | SOLIDUS_PAY'],
             }
           },
           #errors: {},

@@ -403,13 +403,13 @@ module Spree::GraphQL
         {
           data: {
             blog: {
-              authors: {
+              authors: [{
                 bio: 'String',
                 email: 'String',
                 firstName: 'String',
                 lastName: 'String',
                 name: 'String',
-              },
+              }],
             }
           },
           #errors: {},

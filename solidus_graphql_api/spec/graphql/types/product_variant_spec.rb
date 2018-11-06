@@ -514,10 +514,10 @@ module Spree::GraphQL
         {
           data: {
             productVariant: {
-              selectedOptions: {
+              selectedOptions: [{
                 name: 'String',
                 value: 'String',
-              },
+              }],
             }
           },
           #errors: {},

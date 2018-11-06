@@ -26,10 +26,10 @@ module Spree::GraphQL
         {
           data: {
             orderLineItem: {
-              customAttributes: {
+              customAttributes: [{
                 key: 'String',
                 value: 'String',
-              },
+              }],
             }
           },
           #errors: {},
@@ -68,7 +68,7 @@ module Spree::GraphQL
         {
           data: {
             orderLineItem: {
-              discountAllocations: {
+              discountAllocations: [{
                 allocatedAmount: {
                   amount: 'Decimal',
                   currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
@@ -79,7 +79,7 @@ module Spree::GraphQL
                   targetType: 'LINE_ITEM | SHIPPING_LINE',
                   value: PricingPercentageValue | MoneyV2,
                 },
-              },
+              }],
             }
           },
           #errors: {},

@@ -136,10 +136,10 @@ module Spree::GraphQL
         {
           data: {
             fulfillment: {
-              trackingInfo: {
+              trackingInfo: [{
                 number: 'String',
                 url: 'URL',
-              },
+              }],
             }
           },
           #errors: {},
