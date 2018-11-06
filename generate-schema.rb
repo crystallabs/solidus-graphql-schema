@@ -172,7 +172,6 @@ def run
 
   #pp $catalog
   puts "Done. Methods: #{$catalog[:total]}."
-  puts $fc
 
   exit 0
 end
@@ -578,17 +577,13 @@ def parse_enum_values_for(type, helper)
   $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend"
 end
 
-$fc= 0
 def parse_fields_for(type, helper)
   new_name = helper[:new_name]
-  #puts "PARSING TYPE #{new_name}"
 
   if type['fields']
     type['fields'].each do |field|
       next if field['isDeprecated']
-      $fc+= 1
-      #puts "PARSING #{type['name']} -> #{field['name']}"
-      base_type, return_type, short, is_array= type_of_field(field, type, true)
+      base_type, return_type, short= type_of_field(field, type, true)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
@@ -826,7 +821,7 @@ def field_args_to_hash(field)
 
   if field['args']
     field['args'].each {|a|
-      base, return_type, short, is_array = type_of_field(a)
+      base, return_type, short= type_of_field(a)
       name= a['name']
       value=
         if base== 'Int' or base== 'Float'
@@ -842,7 +837,7 @@ def field_args_to_hash(field)
         else
           # What remains? OBJs and INPUT OBJs?
           #raise Exception.new "Not seen: #{base} (#{p a})"
-          bt, _, _, is_array = type_of_field(a)
+          bt, _= type_of_field(a)
           type_to_hash($schema_type_map[bt])
         end
       ret[name]= value
@@ -854,16 +849,10 @@ end
 
 def type_of_field(field, type= nil, action= false)
   new_name = nil
-  trace=false
   if type
     new_name = $catalog[:type_names][type['name']]
     unless new_name
       raise Exception.new "Unknown/unseen type #{type['name']}?"
-    end
-    if type['name']=='Customer' and field['name']=='addresses'
-      puts 'IN TYPE_OF CUST->ADDRESSES'
-      puts field['type'].inspect
-      trace=true
     end
   end
 
@@ -875,14 +864,10 @@ def type_of_field(field, type= nil, action= false)
       ft = ft['ofType']
     end
   end
-  if trace
-    puts chain.inspect
-  end
   string = ''
-  is_array = false
   chain.each do |f2|
     if f2['kind'] == 'NON_NULL' and !f2['name']; string.sub! /true$/, 'false'
-    elsif f2['kind'] == 'LIST' and !f2['name']; is_array= true; field[:is_array]= true; string = "[#{string}], null: true"
+    elsif f2['kind'] == 'LIST' and !f2['name']; field[:is_array]= true; string = "[#{string}], null: true"
     else
       suffix= ''
       ret_name= f2['name']
@@ -925,9 +910,8 @@ def type_of_field(field, type= nil, action= false)
   # 1. Base GraphQL type (can be then looked up by that name in $schema_type_map) (e.g. Article)
   # 2. String suitable for field definition in GraphQL-Ruby syntax (e.g. [Type], null: false)
   # 3. String suitable for field definition in GraphQL (e.g. [Type!]!)
-  # 4. Boolean whether that field returns a connection
-  # 5. Boolean whether the field is an array
-  [ ret_type, string, shorten(string), is_array ]
+  # And whether field is connection and array is saved to field[:is_connection]/field[:is_array]
+  [ ret_type, string, shorten(string) ]
 end
 
 $resolving= {}
