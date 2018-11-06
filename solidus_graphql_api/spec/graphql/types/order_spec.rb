@@ -463,8 +463,8 @@ module Spree::GraphQL
                 countryCodeV2
                 firstName
                 formatted(
-                  withName: ["false"],
-                  withCompany: ["true"]
+                  withName: false,
+                  withCompany: true
                 )
                 formattedArea
                 id
@@ -631,7 +631,7 @@ module Spree::GraphQL
         %q{
           query {
             order {
-              successfulFulfillments(first: ["Int"]) {
+              successfulFulfillments(first: Int) {
                 fulfillmentLineItems(
                   first: Int,
                   after: "",
@@ -653,7 +653,7 @@ module Spree::GraphQL
                   }
                 }
                 trackingCompany
-                trackingInfo(first: ["Int"]) {
+                trackingInfo(first: Int) {
                   number
                   url
                 }

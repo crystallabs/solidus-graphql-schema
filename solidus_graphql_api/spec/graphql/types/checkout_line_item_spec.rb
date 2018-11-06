@@ -253,7 +253,7 @@ module Spree::GraphQL
                     }
                   }
                   onlineStoreUrl
-                  options(first: ["Int"]) {
+                  options(first: Int) {
                     id
                     name
                     values
@@ -274,10 +274,10 @@ module Spree::GraphQL
                   title
                   updatedAt
                   variantBySelectedOptions(
-                    selectedOptions: {
+                    selectedOptions: [{
                       name: "String",
                       value: "String"
-                    }
+                    }]
                   )
                   variants(
                     first: Int,

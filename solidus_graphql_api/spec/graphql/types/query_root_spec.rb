@@ -624,8 +624,8 @@ module Spree::GraphQL
                       countryCodeV2
                       firstName
                       formatted(
-                        withName: ["false"],
-                        withCompany: ["true"]
+                        withName: false,
+                        withCompany: true
                       )
                       formattedArea
                       id
@@ -655,8 +655,8 @@ module Spree::GraphQL
                   countryCodeV2
                   firstName
                   formatted(
-                    withName: ["false"],
-                    withCompany: ["true"]
+                    withName: false,
+                    withCompany: true
                   )
                   formattedArea
                   id
@@ -781,8 +781,8 @@ module Spree::GraphQL
                       countryCodeV2
                       firstName
                       formatted(
-                        withName: ["false"],
-                        withCompany: ["true"]
+                        withName: false,
+                        withCompany: true
                       )
                       formattedArea
                       id
@@ -805,7 +805,7 @@ module Spree::GraphQL
                     }
                     statusUrl
                     subtotalPrice
-                    successfulFulfillments(first: ["Int"]) {
+                    successfulFulfillments(first: Int) {
                       fulfillmentLineItems(
                         first: Int,
                         after: "",
@@ -816,7 +816,7 @@ module Spree::GraphQL
                         # ...
                       }
                       trackingCompany
-                      trackingInfo(first: ["Int"]) {
+                      trackingInfo(first: Int) {
                         # ...
                       }
                     }
@@ -839,8 +839,8 @@ module Spree::GraphQL
                     countryCodeV2
                     firstName
                     formatted(
-                      withName: ["false"],
-                      withCompany: ["true"]
+                      withName: false,
+                      withCompany: true
                     )
                     formattedArea
                     id
@@ -925,7 +925,7 @@ module Spree::GraphQL
                       }
                       statusUrl
                       subtotalPrice
-                      successfulFulfillments(first: ["Int"]) {
+                      successfulFulfillments(first: Int) {
                         # ...
                       }
                       totalPrice
@@ -1272,7 +1272,7 @@ module Spree::GraphQL
         %q{
           query {
             queryRoot {
-              nodes(ids: ["\"ID\""]) {
+              nodes(ids: ["ID"]) {
                 id
               }
             }
@@ -1553,7 +1553,7 @@ module Spree::GraphQL
                     }
                   }
                   onlineStoreUrl
-                  options(first: ["Int"]) {
+                  options(first: Int) {
                     id
                     name
                     values
@@ -1574,10 +1574,10 @@ module Spree::GraphQL
                   title
                   updatedAt
                   variantBySelectedOptions(
-                    selectedOptions: {
+                    selectedOptions: [{
                       name: "String",
                       value: "String"
-                    }
+                    }]
                   ) {
                     available
                     availableForSale
@@ -1682,7 +1682,7 @@ module Spree::GraphQL
                         # ...
                       }
                       onlineStoreUrl
-                      options(first: ["Int"]) {
+                      options(first: Int) {
                         # ...
                       }
                       priceRange {
@@ -1694,10 +1694,10 @@ module Spree::GraphQL
                       title
                       updatedAt
                       variantBySelectedOptions(
-                        selectedOptions: {
+                        selectedOptions: [{
                           name: "String",
                           value: "String"
-                        }
+                        }]
                       ) {
                         # ...
                       }

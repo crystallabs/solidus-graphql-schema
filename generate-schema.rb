@@ -606,21 +606,24 @@ end
 }
       $catalog[:total]+= 1
 
-      # TODO THIS IS THE PLACE WHERE IS_ARRAY IS KNOWN
       type_hash= type_to_hash(base_type)
       if field[:is_connection] and field[:is_array]
         raise Exception.new "Didn't expect it"
       end
+
+      # PLACE 1
       if field[:is_connection]
         type_hash = wrap_to_connection type_hash
       end
-      query_string= nil
+      if field[:is_array]
+        type_hash=[type_hash]
+      end
 
+      query_string= nil
       query_type = type['name'] == $mutation ? 'mutation' : 'query'
 
-
       if type['name']== $mutation
-        query_string= indent 4, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => type_hash)
+        query_string= indent 4, hash_to_graphql_query([ field['name'], field_input_args_to_args_hash(field)] => type_hash)
         main_query_part=
 %Q{      #{type['name'].camelize(:lower)} {#{query_string}
       }}
@@ -628,7 +631,7 @@ end
         main_result_part= %Q{#{result_hash}}
 
       else
-        query_string= indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => type_hash)
+        query_string= indent 5, hash_to_graphql_query([ field['name'], field_input_args_to_args_hash(field)] => type_hash)
         main_query_part=
 %Q{      #{query_type} {
         #{type['name'].camelize(:lower)} {#{query_string}
@@ -760,42 +763,34 @@ end
 # type_of_field(field) - returns [base, string, short(string)]
 # type_to_hash(type) - expands type into nested hash of inputs
 # hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
-# field_args_to_hash - expands field args into hash
-# hash_to_method_args - hash returned from above to string
+# field_input_args_to_args_hash - expands field args into hash
+# args_hash_to_args_string - hash returned from above to string
 # shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
 # old_to_new_name - maps original GraphQL name to our class name
 # indent - indents by given level
 # oneline - converts whatever to oneliner
 
-def hash_to_method_args(hash)
+def args_hash_to_args_string(hash)
   unless Hash=== hash
     raise Exception.new "Not expected type #{hash.class}--#{hash}"
   end
   ret= []
   hash.each{ |k,v|
-    is_array= false
-    v0 = if Array=== v
-      #is_array= v[1]
-      v[0]
-    else
-      v
-    end
-
-    unless k.is_a? Array
-      k_string = k
-    else
+    if k.is_a? Array 
       k_string = if k[1]
-        "#{k[0]}(#{hash_to_method_args k[1]})"
+        "#{k[0]}(#{args_hash_to_args_string k[1]})"
       else
         k[0]
       end
+    else
+      k_string = k
     end
 
-    value= case v0
+    value= case v
     when Hash
       pre= '{'
       post= '}'
-      if args= hash_to_method_args(v0)
+      if args= args_hash_to_args_string(v)
         if args.lines.size> 1
           pre= "{\n"
           args= indent 1, args
@@ -803,10 +798,31 @@ def hash_to_method_args(hash)
         end
       end
       pre + args + post
+    when Array
+      '[' +
+        case v[0]
+        # TODO This code is copy from above case
+        when Hash
+          pre= '{'
+          post= '}'
+          if args= args_hash_to_args_string(v[0])
+            if args.lines.size> 1
+              pre= "{\n"
+              args= indent 1, args
+              post= "\n}"
+            end
+          end
+          pre + args + post
+        when String
+          v[0]
+        else
+          raise Exception.new 'Should not reach here'
+        end +
+      ']'
     else
-      v0
+      v
     end
-    value_string = is_array ? "[\n"+ indent(1, value) +"\n]" : value
+    value_string = value
     ret.push "#{k_string}: #{value_string}"
   }
   if ret.size <2
@@ -816,7 +832,7 @@ def hash_to_method_args(hash)
   end
 end
 
-def field_args_to_hash(field)
+def field_input_args_to_args_hash(field)
   ret= {}
 
   if field['args']
@@ -840,7 +856,7 @@ def field_args_to_hash(field)
           bt, _= type_of_field(a)
           type_to_hash($schema_type_map[bt])
         end
-      ret[name]= value
+      ret[name]= a[:is_array] ? [value] : value
     }
   end
 
@@ -947,10 +963,15 @@ def type_to_hash(type)
       fields.each do |f|
         base, _ = type_of_field(f)
         content= type_to_hash(base)
+
+        # PLACE 2
         if f[:is_connection]
           content = wrap_to_connection content
         end
-        ret.merge!( [f['name'], field_args_to_hash(f)] => content )
+        if f[:is_array]
+        end
+
+        ret.merge!( [f['name'], field_input_args_to_args_hash(f)] => content )
       end
       ret
     else
@@ -965,11 +986,18 @@ $level1= 0
 def hash_to_graphql_query(hash)
   string= ''
   $level1+= 1
+
+  # Arrays are implicitly used in GraphQL queries so we behave as if they
+  # are not there in input data.
+  if Array=== hash
+    hash= hash[0]
+  end
+
   hash.each do |k,v|
     k_string = if k[1]
       pre= '('
       post= ')'
-      if args = hash_to_method_args(k[1])
+      if args = args_hash_to_args_string(k[1])
         if args.lines.size > 1
           pre = "(\n"
           args= indent 1, args
@@ -979,6 +1007,10 @@ def hash_to_graphql_query(hash)
       "#{k[0]}#{pre}#{args}#{post}"
     else
       k[0]
+    end
+
+    if Array=== v
+      v= v[0]
     end
 
     case v
@@ -1004,7 +1036,6 @@ def type_hash_to_result(hash)
   hash.inject({}) { |h, (k, v)|
     is_array= false
     k_name = if Array=== k
-      #is_array= k[1]
       k[0]
     else
       k
@@ -1016,11 +1047,28 @@ def type_hash_to_result(hash)
         v
       when Hash
         type_hash_to_result(v)
+      when Array
+        if v.size != 1
+          raise Exception.new 'Expected array size == 1!'
+        end
+        [
+          case v[0]
+          when String
+            v[0]
+          when Array
+            raise Exception.new 'Should not encounter array within array'
+          when Hash
+            type_hash_to_result(v[0])
+          else
+            raise Exception.new 'Should not encounter any other type'
+          end
+        ]
       else
-        raise Exception.new "Unhandled type: #{v.class}"
+        raise Exception.new "Unhandled type: #{v.class} found on #{k}"
     end
 
-    h[k_name] = is_array ? [ v_val ] : v_val
+    #h[k_name] = is_array ? [ v_val ] : v_val
+    h[k_name] = v_val
     h
   }
 end
