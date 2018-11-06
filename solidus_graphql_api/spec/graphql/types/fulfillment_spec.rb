@@ -55,7 +55,7 @@ module Spree::GraphQL
             fulfillment: {
               fulfillmentLineItems: {
                 edges: {
-                  node: {
+                  node: [{
                     lineItem: {
                       customAttributes: {
                         # ...
@@ -70,7 +70,7 @@ module Spree::GraphQL
                       },
                     },
                     quantity: 'Int',
-                  },
+                  }],
                 },
                 pageInfo: {
                   hasNextPage: true,

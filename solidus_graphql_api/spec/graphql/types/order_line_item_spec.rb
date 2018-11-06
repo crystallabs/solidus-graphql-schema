@@ -303,9 +303,9 @@ module Spree::GraphQL
                   availableForSale: 'Boolean',
                   collections: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -319,9 +319,9 @@ module Spree::GraphQL
                   id: 'ID',
                   images: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -352,7 +352,7 @@ module Spree::GraphQL
                   variantBySelectedOptions: 'ProductVariant...',
                   variants: {
                     edges: {
-                      node: 'ProductVariant...',
+                      node: ['ProductVariant...'],
                     },
                     pageInfo: {
                       hasNextPage: true,

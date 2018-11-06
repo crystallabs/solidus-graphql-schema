@@ -91,7 +91,7 @@ module Spree::GraphQL
             customer: {
               addresses: {
                 edges: {
-                  node: {
+                  node: [{
                     address1: 'String',
                     address2: 'String',
                     city: 'String',
@@ -111,7 +111,7 @@ module Spree::GraphQL
                     province: 'String',
                     provinceCode: 'String',
                     zip: 'String',
-                  },
+                  }],
                 },
                 pageInfo: {
                   hasNextPage: true,
@@ -687,9 +687,9 @@ module Spree::GraphQL
                   acceptsMarketing: 'Boolean',
                   addresses: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -726,9 +726,9 @@ module Spree::GraphQL
                   lastName: 'String',
                   orders: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -740,12 +740,12 @@ module Spree::GraphQL
                 },
                 discountApplications: {
                   edges: {
-                    node: {
+                    node: [{
                       allocationMethod: 'ACROSS | EACH | ONE',
                       targetSelection: 'ALL | ENTITLED | EXPLICIT',
                       targetType: 'LINE_ITEM | SHIPPING_LINE',
                       value: PricingPercentageValue | MoneyV2,
-                    },
+                    }],
                   },
                   pageInfo: {
                     hasNextPage: true,
@@ -756,7 +756,7 @@ module Spree::GraphQL
                 id: 'ID',
                 lineItems: {
                   edges: {
-                    node: {
+                    node: [{
                       customAttributes: {
                         # ...
                       },
@@ -769,7 +769,7 @@ module Spree::GraphQL
                       variant: {
                         # ...
                       },
-                    },
+                    }],
                   },
                   pageInfo: {
                     hasNextPage: true,
@@ -783,9 +783,9 @@ module Spree::GraphQL
                   customerUrl: 'URL',
                   discountApplications: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -796,9 +796,9 @@ module Spree::GraphQL
                   id: 'ID',
                   lineItems: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -1081,7 +1081,7 @@ module Spree::GraphQL
             customer: {
               orders: {
                 edges: {
-                  node: {
+                  node: [{
                     currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                     customerLocale: 'String',
                     customerUrl: 'URL',
@@ -1151,7 +1151,7 @@ module Spree::GraphQL
                     totalRefunded: 'Money',
                     totalShippingPrice: 'Money',
                     totalTax: 'Money',
-                  },
+                  }],
                 },
                 pageInfo: {
                   hasNextPage: true,

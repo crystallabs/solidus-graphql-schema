@@ -453,9 +453,9 @@ module Spree::GraphQL
                   acceptsMarketing: 'Boolean',
                   addresses: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -492,9 +492,9 @@ module Spree::GraphQL
                   lastName: 'String',
                   orders: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -506,12 +506,12 @@ module Spree::GraphQL
                 },
                 discountApplications: {
                   edges: {
-                    node: {
+                    node: [{
                       allocationMethod: 'ACROSS | EACH | ONE',
                       targetSelection: 'ALL | ENTITLED | EXPLICIT',
                       targetType: 'LINE_ITEM | SHIPPING_LINE',
                       value: PricingPercentageValue | MoneyV2,
-                    },
+                    }],
                   },
                   pageInfo: {
                     hasNextPage: true,
@@ -522,7 +522,7 @@ module Spree::GraphQL
                 id: 'ID',
                 lineItems: {
                   edges: {
-                    node: {
+                    node: [{
                       customAttributes: {
                         # ...
                       },
@@ -535,7 +535,7 @@ module Spree::GraphQL
                       variant: {
                         # ...
                       },
-                    },
+                    }],
                   },
                   pageInfo: {
                     hasNextPage: true,
@@ -549,9 +549,9 @@ module Spree::GraphQL
                   customerUrl: 'URL',
                   discountApplications: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -562,9 +562,9 @@ module Spree::GraphQL
                   id: 'ID',
                   lineItems: {
                     edges: {
-                      node: {
+                      node: [{
                         # ...
-                      },
+                      }],
                     },
                     pageInfo: {
                       hasNextPage: true,

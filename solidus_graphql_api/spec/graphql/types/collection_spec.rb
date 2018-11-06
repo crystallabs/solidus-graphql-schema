@@ -313,7 +313,7 @@ module Spree::GraphQL
             collection: {
               products: {
                 edges: {
-                  node: {
+                  node: [{
                     availableForSale: 'Boolean',
                     collections: {
                       edges: {
@@ -382,7 +382,7 @@ module Spree::GraphQL
                       },
                     },
                     vendor: 'String',
-                  },
+                  }],
                 },
                 pageInfo: {
                   hasNextPage: true,

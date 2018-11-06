@@ -137,7 +137,7 @@ module Spree::GraphQL
                   articleByHandle: 'Article...',
                   articles: {
                     edges: {
-                      node: 'Article...',
+                      node: ['Article...'],
                     },
                     pageInfo: {
                       hasNextPage: true,
@@ -158,14 +158,14 @@ module Spree::GraphQL
                 },
                 comments: {
                   edges: {
-                    node: {
+                    node: [{
                       author: {
                         # ...
                       },
                       content: 'String',
                       contentHtml: 'HTML',
                       id: 'ID',
-                    },
+                    }],
                   },
                   pageInfo: {
                     hasNextPage: true,
@@ -310,7 +310,7 @@ module Spree::GraphQL
             blog: {
               articles: {
                 edges: {
-                  node: {
+                  node: [{
                     author: {
                       bio: 'String',
                       email: 'String',
@@ -363,7 +363,7 @@ module Spree::GraphQL
                     tags: 'String',
                     title: 'String',
                     url: 'URL',
-                  },
+                  }],
                 },
                 pageInfo: {
                   hasNextPage: true,

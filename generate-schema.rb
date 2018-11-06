@@ -1041,6 +1041,13 @@ def type_hash_to_result(hash)
       k
     end
 
+    if k_name == :edges
+      unless Hash=== v and v.keys== [[:node]]
+        raise Exception.new "Value of edges must be hash with one key -- node! Instead it is #{v.keys}"
+      end
+      v[[:node]]= [v[[:node]]]
+    end
+
     v_val=
     case v
       when String, TrueClass, FalseClass
