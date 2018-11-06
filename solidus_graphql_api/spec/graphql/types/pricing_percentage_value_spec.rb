@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          pricingPercentageValue: {
-            percentage: "Float",
+        {
+          data: {
+            pricingPercentageValue: {
+              percentage: 'Float',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

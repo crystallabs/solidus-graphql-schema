@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          manualDiscountApplication: {
-            allocationMethod: "ACROSS | EACH | ONE",
+        {
+          data: {
+            manualDiscountApplication: {
+              allocationMethod: 'ACROSS | EACH | ONE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          manualDiscountApplication: {
-            description: "String",
+        {
+          data: {
+            manualDiscountApplication: {
+              description: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          manualDiscountApplication: {
-            targetSelection: "ALL | ENTITLED | EXPLICIT",
+        {
+          data: {
+            manualDiscountApplication: {
+              targetSelection: 'ALL | ENTITLED | EXPLICIT',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          manualDiscountApplication: {
-            targetType: "LINE_ITEM | SHIPPING_LINE",
+        {
+          data: {
+            manualDiscountApplication: {
+              targetType: 'LINE_ITEM | SHIPPING_LINE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -124,12 +132,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          manualDiscountApplication: {
-            title: "String",
+        {
+          data: {
+            manualDiscountApplication: {
+              title: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -150,12 +160,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          manualDiscountApplication: {
-            value: PricingPercentageValue | MoneyV2,
+        {
+          data: {
+            manualDiscountApplication: {
+              value: PricingPercentageValue | MoneyV2,
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

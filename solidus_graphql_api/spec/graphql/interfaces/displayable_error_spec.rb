@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          displayableError: {
-            field: "String",
+        {
+          data: {
+            displayableError: {
+              field: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          displayableError: {
-            message: "String",
+        {
+          data: {
+            displayableError: {
+              message: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

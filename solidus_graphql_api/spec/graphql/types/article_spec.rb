@@ -26,18 +26,20 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            authorV2: {
-              bio: "String",
-              email: "String",
-              firstName: "String",
-              lastName: "String",
-              name: "String",
-            },
+        {
+          data: {
+            article: {
+              authorV2: {
+                bio: 'String',
+                email: 'String',
+                firstName: 'String',
+                lastName: 'String',
+                name: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -148,74 +150,76 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            blog: {
-              articleByHandle: [
-                author: {
-                  # ...
-                },
-                authorV2: {
-                  # ...
-                },
-                blog: "Blog...",
-                comments: [
-                  # ...
+        {
+          data: {
+            article: {
+              blog: {
+                articleByHandle: [
+                  author: {
+                    # ...
+                  },
+                  authorV2: {
+                    # ...
+                  },
+                  blog: 'Blog...',
+                  comments: [
+                    # ...
+                  ],
+                  content: ['String'],
+                  contentHtml: 'HTML',
+                  excerpt: ['String'],
+                  excerptHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  url: 'URL',
                 ],
-                content: ["String"],
-                contentHtml: "HTML",
-                excerpt: ["String"],
-                excerptHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                image: [
-                  # ...
+                articles: [
+                  author: {
+                    # ...
+                  },
+                  authorV2: {
+                    # ...
+                  },
+                  blog: 'Blog...',
+                  comments: [
+                    # ...
+                  ],
+                  content: ['String'],
+                  contentHtml: 'HTML',
+                  excerpt: ['String'],
+                  excerptHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  url: 'URL',
                 ],
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                url: "URL",
-              ],
-              articles: [
-                author: {
-                  # ...
+                authors: {
+                  bio: 'String',
+                  email: 'String',
+                  firstName: 'String',
+                  lastName: 'String',
+                  name: 'String',
                 },
-                authorV2: {
-                  # ...
-                },
-                blog: "Blog...",
-                comments: [
-                  # ...
-                ],
-                content: ["String"],
-                contentHtml: "HTML",
-                excerpt: ["String"],
-                excerptHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                image: [
-                  # ...
-                ],
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                url: "URL",
-              ],
-              authors: {
-                bio: "String",
-                email: "String",
-                firstName: "String",
-                lastName: "String",
-                name: "String",
+                handle: 'String',
+                id: 'ID',
+                title: 'String',
+                url: 'URL',
               },
-              handle: "String",
-              id: "ID",
-              title: "String",
-              url: "URL",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -255,20 +259,22 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            comments: {
-              author: {
-                email: "String",
-                name: "String",
+        {
+          data: {
+            article: {
+              comments: {
+                author: {
+                  email: 'String',
+                  name: 'String',
+                },
+                content: ['String'],
+                contentHtml: 'HTML',
+                id: 'ID',
               },
-              content: ["String"],
-              contentHtml: "HTML",
-              id: "ID",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -290,12 +296,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            content: "String",
+        {
+          data: {
+            article: {
+              content: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -316,12 +324,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            contentHtml: "HTML",
+        {
+          data: {
+            article: {
+              contentHtml: 'HTML',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -343,12 +353,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            excerpt: "String",
+        {
+          data: {
+            article: {
+              excerpt: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -369,12 +381,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            excerptHtml: "HTML",
+        {
+          data: {
+            article: {
+              excerptHtml: 'HTML',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -395,12 +409,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            handle: "String",
+        {
+          data: {
+            article: {
+              handle: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -421,12 +437,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            id: "ID",
+        {
+          data: {
+            article: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -468,18 +486,20 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            image: {
-              altText: "String",
-              id: "ID",
-              originalSrc: "URL",
-              src: "URL",
-              transformedSrc: ["URL"],
-            },
+        {
+          data: {
+            article: {
+              image: {
+                altText: 'String',
+                id: 'ID',
+                originalSrc: 'URL',
+                src: 'URL',
+                transformedSrc: ['URL'],
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -500,12 +520,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            publishedAt: "DateTime",
+        {
+          data: {
+            article: {
+              publishedAt: 'DateTime',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -526,12 +548,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            tags: "String",
+        {
+          data: {
+            article: {
+              tags: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -552,12 +576,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            title: "String",
+        {
+          data: {
+            article: {
+              title: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -578,12 +604,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          article: {
-            url: "URL",
+        {
+          data: {
+            article: {
+              url: 'URL',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

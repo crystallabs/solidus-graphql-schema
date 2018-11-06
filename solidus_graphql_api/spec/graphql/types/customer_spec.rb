@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            acceptsMarketing: "Boolean",
+        {
+          data: {
+            customer: {
+              acceptsMarketing: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -80,32 +82,34 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            addresses: {
-              address1: "String",
-              address2: "String",
-              city: "String",
-              company: "String",
-              country: "String",
-              countryCode: "String",
-              countryCodeV2: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
-              firstName: "String",
-              formatted: ["String"],
-              formattedArea: "String",
-              id: "ID",
-              lastName: "String",
-              latitude: "Float",
-              longitude: "Float",
-              name: "String",
-              phone: "String",
-              province: "String",
-              provinceCode: "String",
-              zip: "String",
-            },
+        {
+          data: {
+            customer: {
+              addresses: {
+                address1: 'String',
+                address2: 'String',
+                city: 'String',
+                company: 'String',
+                country: 'String',
+                countryCode: 'String',
+                countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                firstName: 'String',
+                formatted: ['String'],
+                formattedArea: 'String',
+                id: 'ID',
+                lastName: 'String',
+                latitude: 'Float',
+                longitude: 'Float',
+                name: 'String',
+                phone: 'String',
+                province: 'String',
+                provinceCode: 'String',
+                zip: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -126,12 +130,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            createdAt: "DateTime",
+        {
+          data: {
+            customer: {
+              createdAt: 'DateTime',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -175,32 +181,34 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            defaultAddress: {
-              address1: "String",
-              address2: "String",
-              city: "String",
-              company: "String",
-              country: "String",
-              countryCode: "String",
-              countryCodeV2: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
-              firstName: "String",
-              formatted: ["String"],
-              formattedArea: "String",
-              id: "ID",
-              lastName: "String",
-              latitude: "Float",
-              longitude: "Float",
-              name: "String",
-              phone: "String",
-              province: "String",
-              provinceCode: "String",
-              zip: "String",
-            },
+        {
+          data: {
+            customer: {
+              defaultAddress: {
+                address1: 'String',
+                address2: 'String',
+                city: 'String',
+                company: 'String',
+                country: 'String',
+                countryCode: 'String',
+                countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                firstName: 'String',
+                formatted: ['String'],
+                formattedArea: 'String',
+                id: 'ID',
+                lastName: 'String',
+                latitude: 'Float',
+                longitude: 'Float',
+                name: 'String',
+                phone: 'String',
+                province: 'String',
+                provinceCode: 'String',
+                zip: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -221,12 +229,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            displayName: "String",
+        {
+          data: {
+            customer: {
+              displayName: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -247,12 +257,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            email: "String",
+        {
+          data: {
+            customer: {
+              email: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -273,12 +285,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            firstName: "String",
+        {
+          data: {
+            customer: {
+              firstName: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -299,12 +313,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            id: "ID",
+        {
+          data: {
+            customer: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -507,153 +523,155 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            lastIncompleteCheckout: {
-              appliedGiftCards: {
-                amountUsed: "Money",
-                balance: "Money",
-                id: "ID",
-                lastCharacters: "String",
-              },
-              availableShippingRates: {
-                ready: "Boolean",
-                shippingRates: {
-                  # ...
+        {
+          data: {
+            customer: {
+              lastIncompleteCheckout: {
+                appliedGiftCards: {
+                  amountUsed: 'Money',
+                  balance: 'Money',
+                  id: 'ID',
+                  lastCharacters: 'String',
                 },
-              },
-              completedAt: "DateTime",
-              createdAt: "DateTime",
-              currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
-              customAttributes: {
-                key: "String",
-                value: "String",
-              },
-              customer: {
-                acceptsMarketing: "Boolean",
-                addresses: [
-                  # ...
-                ],
-                createdAt: "DateTime",
-                defaultAddress: {
-                  # ...
+                availableShippingRates: {
+                  ready: 'Boolean',
+                  shippingRates: {
+                    # ...
+                  },
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
-                lastIncompleteCheckout: "Checkout...",
-                lastName: "String",
-                orders: [
-                  # ...
-                ],
-                phone: "String",
-                updatedAt: "DateTime",
-              },
-              discountApplications: [
-                allocationMethod: "ACROSS | EACH | ONE",
-                targetSelection: "ALL | ENTITLED | EXPLICIT",
-                targetType: "LINE_ITEM | SHIPPING_LINE",
-                value: PricingPercentageValue | MoneyV2,
-              ],
-              email: "String",
-              id: "ID",
-              lineItems: [
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
-                  # ...
+                  key: 'String',
+                  value: 'String',
                 },
-                discountAllocations: {
-                  # ...
+                customer: {
+                  acceptsMarketing: 'Boolean',
+                  addresses: [
+                    # ...
+                  ],
+                  createdAt: 'DateTime',
+                  defaultAddress: {
+                    # ...
+                  },
+                  displayName: 'String',
+                  email: 'String',
+                  firstName: 'String',
+                  id: 'ID',
+                  lastIncompleteCheckout: 'Checkout...',
+                  lastName: 'String',
+                  orders: [
+                    # ...
+                  ],
+                  phone: 'String',
+                  updatedAt: 'DateTime',
                 },
-                id: "ID",
-                quantity: "Int",
-                title: "String",
-                variant: {
-                  # ...
-                },
-              ],
-              note: "String",
-              order: {
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
-                customerLocale: "String",
-                customerUrl: "URL",
                 discountApplications: [
-                  # ...
+                  allocationMethod: 'ACROSS | EACH | ONE',
+                  targetSelection: 'ALL | ENTITLED | EXPLICIT',
+                  targetType: 'LINE_ITEM | SHIPPING_LINE',
+                  value: PricingPercentageValue | MoneyV2,
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
-                  # ...
+                  customAttributes: {
+                    # ...
+                  },
+                  discountAllocations: {
+                    # ...
+                  },
+                  id: 'ID',
+                  quantity: 'Int',
+                  title: 'String',
+                  variant: {
+                    # ...
+                  },
                 ],
-                name: "String",
-                orderNumber: "Int",
-                phone: "String",
-                processedAt: "DateTime",
+                note: 'String',
+                order: {
+                  currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                  customerLocale: 'String',
+                  customerUrl: 'URL',
+                  discountApplications: [
+                    # ...
+                  ],
+                  email: 'String',
+                  id: 'ID',
+                  lineItems: [
+                    # ...
+                  ],
+                  name: 'String',
+                  orderNumber: 'Int',
+                  phone: 'String',
+                  processedAt: 'DateTime',
+                  shippingAddress: {
+                    # ...
+                  },
+                  shippingDiscountAllocations: {
+                    # ...
+                  },
+                  statusUrl: 'URL',
+                  subtotalPrice: 'Money',
+                  successfulFulfillments: [
+                    # ...
+                  ],
+                  totalPrice: 'Money',
+                  totalRefunded: 'Money',
+                  totalShippingPrice: 'Money',
+                  totalTax: 'Money',
+                },
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
-                  # ...
+                  address1: 'String',
+                  address2: 'String',
+                  city: 'String',
+                  company: 'String',
+                  country: 'String',
+                  countryCode: 'String',
+                  countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                  firstName: 'String',
+                  formatted: ['String'],
+                  formattedArea: 'String',
+                  id: 'ID',
+                  lastName: 'String',
+                  latitude: 'Float',
+                  longitude: 'Float',
+                  name: 'String',
+                  phone: 'String',
+                  province: 'String',
+                  provinceCode: 'String',
+                  zip: 'String',
                 },
                 shippingDiscountAllocations: {
-                  # ...
+                  allocatedAmount: {
+                    # ...
+                  },
+                  discountApplication: {
+                    # ...
+                  },
                 },
-                statusUrl: "URL",
-                subtotalPrice: "Money",
-                successfulFulfillments: [
-                  # ...
-                ],
-                totalPrice: "Money",
-                totalRefunded: "Money",
-                totalShippingPrice: "Money",
-                totalTax: "Money",
-              },
-              orderStatusUrl: "URL",
-              paymentDue: "Money",
-              ready: "Boolean",
-              requiresShipping: "Boolean",
-              shippingAddress: {
-                address1: "String",
-                address2: "String",
-                city: "String",
-                company: "String",
-                country: "String",
-                countryCode: "String",
-                countryCodeV2: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
-                firstName: "String",
-                formatted: ["String"],
-                formattedArea: "String",
-                id: "ID",
-                lastName: "String",
-                latitude: "Float",
-                longitude: "Float",
-                name: "String",
-                phone: "String",
-                province: "String",
-                provinceCode: "String",
-                zip: "String",
-              },
-              shippingDiscountAllocations: {
-                allocatedAmount: {
-                  # ...
+                shippingLine: {
+                  handle: 'String',
+                  price: 'Money',
+                  title: 'String',
                 },
-                discountApplication: {
-                  # ...
-                },
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
-              shippingLine: {
-                handle: "String",
-                price: "Money",
-                title: "String",
-              },
-              subtotalPrice: "Money",
-              taxExempt: "Boolean",
-              taxesIncluded: "Boolean",
-              totalPrice: "Money",
-              totalTax: "Money",
-              updatedAt: "DateTime",
-              webUrl: "URL",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -674,12 +692,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            lastName: "String",
+        {
+          data: {
+            customer: {
+              lastName: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -809,85 +829,87 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            orders: {
-              currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
-              customerLocale: "String",
-              customerUrl: "URL",
-              discountApplications: [
-                allocationMethod: "ACROSS | EACH | ONE",
-                targetSelection: "ALL | ENTITLED | EXPLICIT",
-                targetType: "LINE_ITEM | SHIPPING_LINE",
-                value: PricingPercentageValue | MoneyV2,
-              ],
-              email: "String",
-              id: "ID",
-              lineItems: [
-                customAttributes: {
-                  # ...
-                },
-                discountAllocations: {
-                  # ...
-                },
-                quantity: "Int",
-                title: "String",
-                variant: {
-                  # ...
-                },
-              ],
-              name: "String",
-              orderNumber: "Int",
-              phone: "String",
-              processedAt: "DateTime",
-              shippingAddress: {
-                address1: "String",
-                address2: "String",
-                city: "String",
-                company: "String",
-                country: "String",
-                countryCode: "String",
-                countryCodeV2: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
-                firstName: "String",
-                formatted: ["String"],
-                formattedArea: "String",
-                id: "ID",
-                lastName: "String",
-                latitude: "Float",
-                longitude: "Float",
-                name: "String",
-                phone: "String",
-                province: "String",
-                provinceCode: "String",
-                zip: "String",
-              },
-              shippingDiscountAllocations: {
-                allocatedAmount: {
-                  # ...
-                },
-                discountApplication: {
-                  # ...
-                },
-              },
-              statusUrl: "URL",
-              subtotalPrice: "Money",
-              successfulFulfillments: [
-                fulfillmentLineItems: [
-                  # ...
+        {
+          data: {
+            customer: {
+              orders: {
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                customerLocale: 'String',
+                customerUrl: 'URL',
+                discountApplications: [
+                  allocationMethod: 'ACROSS | EACH | ONE',
+                  targetSelection: 'ALL | ENTITLED | EXPLICIT',
+                  targetType: 'LINE_ITEM | SHIPPING_LINE',
+                  value: PricingPercentageValue | MoneyV2,
                 ],
-                trackingCompany: "String",
-                trackingInfo: [
-                  # ...
+                email: 'String',
+                id: 'ID',
+                lineItems: [
+                  customAttributes: {
+                    # ...
+                  },
+                  discountAllocations: {
+                    # ...
+                  },
+                  quantity: 'Int',
+                  title: 'String',
+                  variant: {
+                    # ...
+                  },
                 ],
-              ],
-              totalPrice: "Money",
-              totalRefunded: "Money",
-              totalShippingPrice: "Money",
-              totalTax: "Money",
-            },
+                name: 'String',
+                orderNumber: 'Int',
+                phone: 'String',
+                processedAt: 'DateTime',
+                shippingAddress: {
+                  address1: 'String',
+                  address2: 'String',
+                  city: 'String',
+                  company: 'String',
+                  country: 'String',
+                  countryCode: 'String',
+                  countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                  firstName: 'String',
+                  formatted: ['String'],
+                  formattedArea: 'String',
+                  id: 'ID',
+                  lastName: 'String',
+                  latitude: 'Float',
+                  longitude: 'Float',
+                  name: 'String',
+                  phone: 'String',
+                  province: 'String',
+                  provinceCode: 'String',
+                  zip: 'String',
+                },
+                shippingDiscountAllocations: {
+                  allocatedAmount: {
+                    # ...
+                  },
+                  discountApplication: {
+                    # ...
+                  },
+                },
+                statusUrl: 'URL',
+                subtotalPrice: 'Money',
+                successfulFulfillments: [
+                  fulfillmentLineItems: [
+                    # ...
+                  ],
+                  trackingCompany: 'String',
+                  trackingInfo: [
+                    # ...
+                  ],
+                ],
+                totalPrice: 'Money',
+                totalRefunded: 'Money',
+                totalShippingPrice: 'Money',
+                totalTax: 'Money',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -908,12 +930,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            phone: "String",
+        {
+          data: {
+            customer: {
+              phone: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -934,12 +958,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customer: {
-            updatedAt: "DateTime",
+        {
+          data: {
+            customer: {
+              updatedAt: 'DateTime',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

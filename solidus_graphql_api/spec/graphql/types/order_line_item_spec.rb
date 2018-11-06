@@ -23,15 +23,17 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          orderLineItem: {
-            customAttributes: {
-              key: "String",
-              value: "String",
-            },
+        {
+          data: {
+            orderLineItem: {
+              customAttributes: {
+                key: 'String',
+                value: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -63,23 +65,25 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          orderLineItem: {
-            discountAllocations: {
-              allocatedAmount: {
-                amount: "Decimal",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+        {
+          data: {
+            orderLineItem: {
+              discountAllocations: {
+                allocatedAmount: {
+                  amount: 'Decimal',
+                  currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                },
+                discountApplication: {
+                  allocationMethod: 'ACROSS | EACH | ONE',
+                  targetSelection: 'ALL | ENTITLED | EXPLICIT',
+                  targetType: 'LINE_ITEM | SHIPPING_LINE',
+                  value: PricingPercentageValue | MoneyV2,
+                },
               },
-              discountApplication: {
-                allocationMethod: "ACROSS | EACH | ONE",
-                targetSelection: "ALL | ENTITLED | EXPLICIT",
-                targetType: "LINE_ITEM | SHIPPING_LINE",
-                value: PricingPercentageValue | MoneyV2,
-              },
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -100,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          orderLineItem: {
-            quantity: "Int",
+        {
+          data: {
+            orderLineItem: {
+              quantity: 'Int',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -126,12 +132,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          orderLineItem: {
-            title: "String",
+        {
+          data: {
+            orderLineItem: {
+              title: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -244,62 +252,64 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          orderLineItem: {
-            variant: {
-              available: "Boolean",
-              availableForSale: "Boolean",
-              compareAtPrice: "Money",
-              id: "ID",
-              image: [
-                altText: "String",
-                id: "ID",
-                originalSrc: "URL",
-                src: "URL",
-                transformedSrc: ["URL"],
-              ],
-              price: "Money",
-              product: {
-                availableForSale: "Boolean",
-                collections: [
-                  # ...
+        {
+          data: {
+            orderLineItem: {
+              variant: {
+                available: 'Boolean',
+                availableForSale: 'Boolean',
+                compareAtPrice: 'Money',
+                id: 'ID',
+                image: [
+                  altText: 'String',
+                  id: 'ID',
+                  originalSrc: 'URL',
+                  src: 'URL',
+                  transformedSrc: ['URL'],
                 ],
-                createdAt: "DateTime",
-                description: ["String"],
-                descriptionHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                images: [
-                  # ...
-                ],
-                onlineStoreUrl: "URL",
-                options: [
-                  # ...
-                ],
-                priceRange: {
-                  # ...
+                price: 'Money',
+                product: {
+                  availableForSale: 'Boolean',
+                  collections: [
+                    # ...
+                  ],
+                  createdAt: 'DateTime',
+                  description: ['String'],
+                  descriptionHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  images: [
+                    # ...
+                  ],
+                  onlineStoreUrl: 'URL',
+                  options: [
+                    # ...
+                  ],
+                  priceRange: {
+                    # ...
+                  },
+                  productType: 'String',
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  updatedAt: 'DateTime',
+                  variantBySelectedOptions: ['ProductVariant...'],
+                  variants: ['ProductVariant...'],
+                  vendor: 'String',
                 },
-                productType: "String",
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                updatedAt: "DateTime",
-                variantBySelectedOptions: ["ProductVariant..."],
-                variants: ["ProductVariant..."],
-                vendor: "String",
+                selectedOptions: {
+                  name: 'String',
+                  value: 'String',
+                },
+                sku: 'String',
+                title: 'String',
+                weight: 'Float',
+                weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
               },
-              selectedOptions: {
-                name: "String",
-                value: "String",
-              },
-              sku: "String",
-              title: "String",
-              weight: "Float",
-              weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

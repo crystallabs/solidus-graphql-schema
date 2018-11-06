@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          availableShippingRates: {
-            ready: "Boolean",
+        {
+          data: {
+            availableShippingRates: {
+              ready: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -50,16 +52,18 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          availableShippingRates: {
-            shippingRates: {
-              handle: "String",
-              price: "Money",
-              title: "String",
-            },
+        {
+          data: {
+            availableShippingRates: {
+              shippingRates: {
+                handle: 'String',
+                price: 'Money',
+                title: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

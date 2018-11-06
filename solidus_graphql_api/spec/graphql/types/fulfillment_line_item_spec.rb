@@ -60,47 +60,49 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          fulfillmentLineItem: {
-            lineItem: {
-              customAttributes: {
-                key: "String",
-                value: "String",
+        {
+          data: {
+            fulfillmentLineItem: {
+              lineItem: {
+                customAttributes: {
+                  key: 'String',
+                  value: 'String',
+                },
+                discountAllocations: {
+                  allocatedAmount: {
+                    # ...
+                  },
+                  discountApplication: {
+                    # ...
+                  },
+                },
+                quantity: 'Int',
+                title: 'String',
+                variant: {
+                  available: 'Boolean',
+                  availableForSale: 'Boolean',
+                  compareAtPrice: 'Money',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  price: 'Money',
+                  product: {
+                    # ...
+                  },
+                  selectedOptions: {
+                    # ...
+                  },
+                  sku: 'String',
+                  title: 'String',
+                  weight: 'Float',
+                  weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+                },
               },
-              discountAllocations: {
-                allocatedAmount: {
-                  # ...
-                },
-                discountApplication: {
-                  # ...
-                },
-              },
-              quantity: "Int",
-              title: "String",
-              variant: {
-                available: "Boolean",
-                availableForSale: "Boolean",
-                compareAtPrice: "Money",
-                id: "ID",
-                image: [
-                  # ...
-                ],
-                price: "Money",
-                product: {
-                  # ...
-                },
-                selectedOptions: {
-                  # ...
-                },
-                sku: "String",
-                title: "String",
-                weight: "Float",
-                weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
-              },
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -121,12 +123,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          fulfillmentLineItem: {
-            quantity: "Int",
+        {
+          data: {
+            fulfillmentLineItem: {
+              quantity: 'Int',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

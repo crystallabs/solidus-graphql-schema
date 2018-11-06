@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          articleAuthor: {
-            bio: "String",
+        {
+          data: {
+            articleAuthor: {
+              bio: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          articleAuthor: {
-            email: "String",
+        {
+          data: {
+            articleAuthor: {
+              email: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          articleAuthor: {
-            firstName: "String",
+        {
+          data: {
+            articleAuthor: {
+              firstName: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          articleAuthor: {
-            lastName: "String",
+        {
+          data: {
+            articleAuthor: {
+              lastName: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -124,12 +132,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          articleAuthor: {
-            name: "String",
+        {
+          data: {
+            articleAuthor: {
+              name: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

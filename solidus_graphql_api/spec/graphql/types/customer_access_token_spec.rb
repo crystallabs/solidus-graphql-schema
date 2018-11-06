@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customerAccessToken: {
-            accessToken: "String",
+        {
+          data: {
+            customerAccessToken: {
+              accessToken: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          customerAccessToken: {
-            expiresAt: "DateTime",
+        {
+          data: {
+            customerAccessToken: {
+              expiresAt: 'DateTime',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

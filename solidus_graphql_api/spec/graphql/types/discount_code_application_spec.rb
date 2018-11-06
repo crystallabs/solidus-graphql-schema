@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountCodeApplication: {
-            allocationMethod: "ACROSS | EACH | ONE",
+        {
+          data: {
+            discountCodeApplication: {
+              allocationMethod: 'ACROSS | EACH | ONE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountCodeApplication: {
-            applicable: "Boolean",
+        {
+          data: {
+            discountCodeApplication: {
+              applicable: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountCodeApplication: {
-            code: "String",
+        {
+          data: {
+            discountCodeApplication: {
+              code: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountCodeApplication: {
-            targetSelection: "ALL | ENTITLED | EXPLICIT",
+        {
+          data: {
+            discountCodeApplication: {
+              targetSelection: 'ALL | ENTITLED | EXPLICIT',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -124,12 +132,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountCodeApplication: {
-            targetType: "LINE_ITEM | SHIPPING_LINE",
+        {
+          data: {
+            discountCodeApplication: {
+              targetType: 'LINE_ITEM | SHIPPING_LINE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -150,12 +160,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountCodeApplication: {
-            value: PricingPercentageValue | MoneyV2,
+        {
+          data: {
+            discountCodeApplication: {
+              value: PricingPercentageValue | MoneyV2,
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

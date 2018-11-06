@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            brand: "String",
+        {
+          data: {
+            creditCard: {
+              brand: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            expiryMonth: "Int",
+        {
+          data: {
+            creditCard: {
+              expiryMonth: 'Int',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            expiryYear: "Int",
+        {
+          data: {
+            creditCard: {
+              expiryYear: 'Int',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            firstDigits: "String",
+        {
+          data: {
+            creditCard: {
+              firstDigits: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -124,12 +132,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            firstName: "String",
+        {
+          data: {
+            creditCard: {
+              firstName: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -150,12 +160,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            lastDigits: "String",
+        {
+          data: {
+            creditCard: {
+              lastDigits: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -176,12 +188,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            lastName: "String",
+        {
+          data: {
+            creditCard: {
+              lastName: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -202,12 +216,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          creditCard: {
-            maskedNumber: "String",
+        {
+          data: {
+            creditCard: {
+              maskedNumber: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

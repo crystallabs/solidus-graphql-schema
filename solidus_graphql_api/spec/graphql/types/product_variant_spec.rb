@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            availableForSale: "Boolean",
+        {
+          data: {
+            productVariant: {
+              availableForSale: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            compareAtPrice: "Money",
+        {
+          data: {
+            productVariant: {
+              compareAtPrice: 'Money',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            id: "ID",
+        {
+          data: {
+            productVariant: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -119,18 +125,20 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            image: {
-              altText: "String",
-              id: "ID",
-              originalSrc: "URL",
-              src: "URL",
-              transformedSrc: ["URL"],
-            },
+        {
+          data: {
+            productVariant: {
+              image: {
+                altText: 'String',
+                id: 'ID',
+                originalSrc: 'URL',
+                src: 'URL',
+                transformedSrc: ['URL'],
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -151,12 +159,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            price: "Money",
+        {
+          data: {
+            productVariant: {
+              price: 'Money',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -318,94 +328,96 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            product: {
-              availableForSale: "Boolean",
-              collections: [
-                description: ["String"],
-                descriptionHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                image: [
-                  # ...
+        {
+          data: {
+            productVariant: {
+              product: {
+                availableForSale: 'Boolean',
+                collections: [
+                  description: ['String'],
+                  descriptionHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  products: ['Product...'],
+                  title: 'String',
+                  updatedAt: 'DateTime',
                 ],
-                products: ["Product..."],
-                title: "String",
-                updatedAt: "DateTime",
-              ],
-              createdAt: "DateTime",
-              description: ["String"],
-              descriptionHtml: "HTML",
-              handle: "String",
-              id: "ID",
-              images: [
-                altText: "String",
-                id: "ID",
-                originalSrc: "URL",
-                src: "URL",
-                transformedSrc: ["URL"],
-              ],
-              onlineStoreUrl: "URL",
-              options: [
-                id: "ID",
-                name: "String",
-                values: "String",
-              ],
-              priceRange: {
-                maxVariantPrice: {
-                  # ...
+                createdAt: 'DateTime',
+                description: ['String'],
+                descriptionHtml: 'HTML',
+                handle: 'String',
+                id: 'ID',
+                images: [
+                  altText: 'String',
+                  id: 'ID',
+                  originalSrc: 'URL',
+                  src: 'URL',
+                  transformedSrc: ['URL'],
+                ],
+                onlineStoreUrl: 'URL',
+                options: [
+                  id: 'ID',
+                  name: 'String',
+                  values: 'String',
+                ],
+                priceRange: {
+                  maxVariantPrice: {
+                    # ...
+                  },
+                  minVariantPrice: {
+                    # ...
+                  },
                 },
-                minVariantPrice: {
-                  # ...
-                },
+                productType: 'String',
+                publishedAt: 'DateTime',
+                tags: 'String',
+                title: 'String',
+                updatedAt: 'DateTime',
+                variantBySelectedOptions: [
+                  available: 'Boolean',
+                  availableForSale: 'Boolean',
+                  compareAtPrice: 'Money',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  price: 'Money',
+                  product: 'Product...',
+                  selectedOptions: {
+                    # ...
+                  },
+                  sku: 'String',
+                  title: 'String',
+                  weight: 'Float',
+                  weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+                ],
+                variants: [
+                  available: 'Boolean',
+                  availableForSale: 'Boolean',
+                  compareAtPrice: 'Money',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  price: 'Money',
+                  product: 'Product...',
+                  selectedOptions: {
+                    # ...
+                  },
+                  sku: 'String',
+                  title: 'String',
+                  weight: 'Float',
+                  weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+                ],
+                vendor: 'String',
               },
-              productType: "String",
-              publishedAt: "DateTime",
-              tags: "String",
-              title: "String",
-              updatedAt: "DateTime",
-              variantBySelectedOptions: [
-                available: "Boolean",
-                availableForSale: "Boolean",
-                compareAtPrice: "Money",
-                id: "ID",
-                image: [
-                  # ...
-                ],
-                price: "Money",
-                product: "Product...",
-                selectedOptions: {
-                  # ...
-                },
-                sku: "String",
-                title: "String",
-                weight: "Float",
-                weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
-              ],
-              variants: [
-                available: "Boolean",
-                availableForSale: "Boolean",
-                compareAtPrice: "Money",
-                id: "ID",
-                image: [
-                  # ...
-                ],
-                price: "Money",
-                product: "Product...",
-                selectedOptions: {
-                  # ...
-                },
-                sku: "String",
-                title: "String",
-                weight: "Float",
-                weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
-              ],
-              vendor: "String",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -429,15 +441,17 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            selectedOptions: {
-              name: "String",
-              value: "String",
-            },
+        {
+          data: {
+            productVariant: {
+              selectedOptions: {
+                name: 'String',
+                value: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -458,12 +472,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            sku: "String",
+        {
+          data: {
+            productVariant: {
+              sku: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -484,12 +500,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            title: "String",
+        {
+          data: {
+            productVariant: {
+              title: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -510,12 +528,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            weight: "Float",
+        {
+          data: {
+            productVariant: {
+              weight: 'Float',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -536,12 +556,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          productVariant: {
-            weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
+        {
+          data: {
+            productVariant: {
+              weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

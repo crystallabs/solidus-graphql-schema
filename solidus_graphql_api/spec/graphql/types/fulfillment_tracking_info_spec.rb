@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          fulfillmentTrackingInfo: {
-            number: "String",
+        {
+          data: {
+            fulfillmentTrackingInfo: {
+              number: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          fulfillmentTrackingInfo: {
-            url: "URL",
+        {
+          data: {
+            fulfillmentTrackingInfo: {
+              url: 'URL',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

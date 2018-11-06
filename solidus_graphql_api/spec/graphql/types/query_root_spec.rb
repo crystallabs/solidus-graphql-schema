@@ -32,8 +32,12 @@ module Spree::GraphQL
                   }
                 }
                 pageInfo {
-                  hasNextPage
-                  hasPreviousPage
+                  hasNextPage {
+                    # ...
+                  }
+                  hasPreviousPage {
+                    # ...
+                  }
                 }
               }
             }
@@ -41,22 +45,24 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          queryRoot: {
-            articles: {
-              edges: {
-                node: {
-                  # ...
+        {
+          data: {
+            queryRoot: {
+              articles: {
+                edges: {
+                  node: {
+                    # ...
+                  },
+                },
+                pageInfo: {
+                  hasNextPage: true,
+                  hasPreviousPage: false,
                 },
               },
-              pageInfo: {
-                hasNextPage: ,
-                hasPreviousPage: ,
-              },
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -168,74 +174,76 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          queryRoot: {
-            blogByHandle: {
-              articleByHandle: [
-                author: {
-                  # ...
-                },
-                authorV2: {
-                  # ...
-                },
-                blog: "Blog...",
-                comments: [
-                  # ...
+        {
+          data: {
+            queryRoot: {
+              blogByHandle: {
+                articleByHandle: [
+                  author: {
+                    # ...
+                  },
+                  authorV2: {
+                    # ...
+                  },
+                  blog: 'Blog...',
+                  comments: [
+                    # ...
+                  ],
+                  content: ['String'],
+                  contentHtml: 'HTML',
+                  excerpt: ['String'],
+                  excerptHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  url: 'URL',
                 ],
-                content: ["String"],
-                contentHtml: "HTML",
-                excerpt: ["String"],
-                excerptHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                image: [
-                  # ...
+                articles: [
+                  author: {
+                    # ...
+                  },
+                  authorV2: {
+                    # ...
+                  },
+                  blog: 'Blog...',
+                  comments: [
+                    # ...
+                  ],
+                  content: ['String'],
+                  contentHtml: 'HTML',
+                  excerpt: ['String'],
+                  excerptHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  url: 'URL',
                 ],
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                url: "URL",
-              ],
-              articles: [
-                author: {
-                  # ...
+                authors: {
+                  bio: 'String',
+                  email: 'String',
+                  firstName: 'String',
+                  lastName: 'String',
+                  name: 'String',
                 },
-                authorV2: {
-                  # ...
-                },
-                blog: "Blog...",
-                comments: [
-                  # ...
-                ],
-                content: ["String"],
-                contentHtml: "HTML",
-                excerpt: ["String"],
-                excerptHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                image: [
-                  # ...
-                ],
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                url: "URL",
-              ],
-              authors: {
-                bio: "String",
-                email: "String",
-                firstName: "String",
-                lastName: "String",
-                name: "String",
+                handle: 'String',
+                id: 'ID',
+                title: 'String',
+                url: 'URL',
               },
-              handle: "String",
-              id: "ID",
-              title: "String",
-              url: "URL",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -268,8 +276,12 @@ module Spree::GraphQL
                   }
                 }
                 pageInfo {
-                  hasNextPage
-                  hasPreviousPage
+                  hasNextPage {
+                    # ...
+                  }
+                  hasPreviousPage {
+                    # ...
+                  }
                 }
               }
             }
@@ -277,22 +289,24 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          queryRoot: {
-            blogs: {
-              edges: {
-                node: {
-                  # ...
+        {
+          data: {
+            queryRoot: {
+              blogs: {
+                edges: {
+                  node: {
+                    # ...
+                  },
+                },
+                pageInfo: {
+                  hasNextPage: true,
+                  hasPreviousPage: false,
                 },
               },
-              pageInfo: {
-                hasNextPage: ,
-                hasPreviousPage: ,
-              },
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -437,106 +451,108 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          queryRoot: {
-            customer: {
-              acceptsMarketing: "Boolean",
-              addresses: [
-                edges: {
-                  # ...
-                },
-                pageInfo: {
-                  # ...
-                },
-              ],
-              createdAt: "DateTime",
-              defaultAddress: {
-                address1: "String",
-                address2: "String",
-                city: "String",
-                company: "String",
-                country: "String",
-                countryCode: "String",
-                countryCodeV2: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
-                firstName: "String",
-                formatted: ["String"],
-                formattedArea: "String",
-                id: "ID",
-                lastName: "String",
-                latitude: "Float",
-                longitude: "Float",
-                name: "String",
-                phone: "String",
-                province: "String",
-                provinceCode: "String",
-                zip: "String",
-              },
-              displayName: "String",
-              email: "String",
-              firstName: "String",
-              id: "ID",
-              lastIncompleteCheckout: {
-                appliedGiftCards: {
-                  # ...
-                },
-                availableShippingRates: {
-                  # ...
-                },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
-                customAttributes: {
-                  # ...
-                },
-                customer: "Customer...",
-                discountApplications: [
-                  # ...
+        {
+          data: {
+            queryRoot: {
+              customer: {
+                acceptsMarketing: 'Boolean',
+                addresses: [
+                  edges: {
+                    # ...
+                  },
+                  pageInfo: {
+                    # ...
+                  },
                 ],
-                email: "String",
-                id: "ID",
-                lineItems: [
-                  # ...
+                createdAt: 'DateTime',
+                defaultAddress: {
+                  address1: 'String',
+                  address2: 'String',
+                  city: 'String',
+                  company: 'String',
+                  country: 'String',
+                  countryCode: 'String',
+                  countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                  firstName: 'String',
+                  formatted: ['String'],
+                  formattedArea: 'String',
+                  id: 'ID',
+                  lastName: 'String',
+                  latitude: 'Float',
+                  longitude: 'Float',
+                  name: 'String',
+                  phone: 'String',
+                  province: 'String',
+                  provinceCode: 'String',
+                  zip: 'String',
+                },
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
+                lastIncompleteCheckout: {
+                  appliedGiftCards: {
+                    # ...
+                  },
+                  availableShippingRates: {
+                    # ...
+                  },
+                  completedAt: 'DateTime',
+                  createdAt: 'DateTime',
+                  currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                  customAttributes: {
+                    # ...
+                  },
+                  customer: 'Customer...',
+                  discountApplications: [
+                    # ...
+                  ],
+                  email: 'String',
+                  id: 'ID',
+                  lineItems: [
+                    # ...
+                  ],
+                  note: 'String',
+                  order: {
+                    # ...
+                  },
+                  orderStatusUrl: 'URL',
+                  paymentDue: 'Money',
+                  ready: 'Boolean',
+                  requiresShipping: 'Boolean',
+                  shippingAddress: {
+                    # ...
+                  },
+                  shippingDiscountAllocations: {
+                    # ...
+                  },
+                  shippingLine: {
+                    # ...
+                  },
+                  subtotalPrice: 'Money',
+                  taxExempt: 'Boolean',
+                  taxesIncluded: 'Boolean',
+                  totalPrice: 'Money',
+                  totalTax: 'Money',
+                  updatedAt: 'DateTime',
+                  webUrl: 'URL',
+                },
+                lastName: 'String',
+                orders: [
+                  edges: {
+                    # ...
+                  },
+                  pageInfo: {
+                    # ...
+                  },
                 ],
-                note: "String",
-                order: {
-                  # ...
-                },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
-                shippingAddress: {
-                  # ...
-                },
-                shippingDiscountAllocations: {
-                  # ...
-                },
-                shippingLine: {
-                  # ...
-                },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
-              lastName: "String",
-              orders: [
-                edges: {
-                  # ...
-                },
-                pageInfo: {
-                  # ...
-                },
-              ],
-              phone: "String",
-              updatedAt: "DateTime",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -560,14 +576,16 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          queryRoot: {
-            node: {
-              id: "ID",
-            },
+        {
+          data: {
+            queryRoot: {
+              node: {
+                id: 'ID',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -595,14 +613,16 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          queryRoot: {
-            nodes: {
-              id: "ID",
-            },
+        {
+          data: {
+            queryRoot: {
+              nodes: {
+                id: 'ID',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -824,138 +844,140 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          queryRoot: {
-            shop: {
-              articles: [
-                edges: {
-                  # ...
+        {
+          data: {
+            queryRoot: {
+              shop: {
+                articles: [
+                  edges: {
+                    # ...
+                  },
+                  pageInfo: {
+                    # ...
+                  },
+                ],
+                blogs: [
+                  edges: {
+                    # ...
+                  },
+                  pageInfo: {
+                    # ...
+                  },
+                ],
+                cardVaultUrl: 'URL',
+                collectionByHandle: [
+                  description: ['String'],
+                  descriptionHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  image: [
+                    # ...
+                  ],
+                  products: [
+                    # ...
+                  ],
+                  title: 'String',
+                  updatedAt: 'DateTime',
+                ],
+                collections: [
+                  edges: {
+                    # ...
+                  },
+                  pageInfo: {
+                    # ...
+                  },
+                ],
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                description: 'String',
+                moneyFormat: 'String',
+                name: 'String',
+                paymentSettings: {
+                  acceptedCardBrands: 'VISA | MASTERCARD | DISCOVER | AMERICAN_EXPRESS | DINERS_CLUB | JCB',
+                  cardVaultUrl: 'URL',
+                  countryCode: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                  currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                  solidusPaymentsAccountId: 'String',
+                  supportedDigitalWallets: 'APPLE_PAY | ANDROID_PAY | GOOGLE_PAY | SOLIDUS_PAY',
                 },
-                pageInfo: {
-                  # ...
+                primaryDomain: {
+                  host: 'String',
+                  sslEnabled: 'Boolean',
+                  url: 'URL',
                 },
-              ],
-              blogs: [
-                edges: {
-                  # ...
+                privacyPolicy: {
+                  body: 'String',
+                  id: 'ID',
+                  title: 'String',
+                  url: 'URL',
                 },
-                pageInfo: {
-                  # ...
-                },
-              ],
-              cardVaultUrl: "URL",
-              collectionByHandle: [
-                description: ["String"],
-                descriptionHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                image: [
-                  # ...
+                productByHandle: [
+                  availableForSale: 'Boolean',
+                  collections: [
+                    # ...
+                  ],
+                  createdAt: 'DateTime',
+                  description: ['String'],
+                  descriptionHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  images: [
+                    # ...
+                  ],
+                  onlineStoreUrl: 'URL',
+                  options: [
+                    # ...
+                  ],
+                  priceRange: {
+                    # ...
+                  },
+                  productType: 'String',
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  updatedAt: 'DateTime',
+                  variantBySelectedOptions: [
+                    # ...
+                  ],
+                  variants: [
+                    # ...
+                  ],
+                  vendor: 'String',
+                ],
+                productTypes: [
+                  edges: {
+                    # ...
+                  },
+                  pageInfo: {
+                    # ...
+                  },
                 ],
                 products: [
-                  # ...
+                  edges: {
+                    # ...
+                  },
+                  pageInfo: {
+                    # ...
+                  },
                 ],
-                title: "String",
-                updatedAt: "DateTime",
-              ],
-              collections: [
-                edges: {
-                  # ...
+                refundPolicy: {
+                  body: 'String',
+                  id: 'ID',
+                  title: 'String',
+                  url: 'URL',
                 },
-                pageInfo: {
-                  # ...
+                shipsToCountries: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                solidusPaymentsAccountId: 'String',
+                termsOfService: {
+                  body: 'String',
+                  id: 'ID',
+                  title: 'String',
+                  url: 'URL',
                 },
-              ],
-              currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
-              description: "String",
-              moneyFormat: "String",
-              name: "String",
-              paymentSettings: {
-                acceptedCardBrands: "VISA | MASTERCARD | DISCOVER | AMERICAN_EXPRESS | DINERS_CLUB | JCB",
-                cardVaultUrl: "URL",
-                countryCode: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
-                solidusPaymentsAccountId: "String",
-                supportedDigitalWallets: "APPLE_PAY | ANDROID_PAY | GOOGLE_PAY | SOLIDUS_PAY",
               },
-              primaryDomain: {
-                host: "String",
-                sslEnabled: "Boolean",
-                url: "URL",
-              },
-              privacyPolicy: {
-                body: "String",
-                id: "ID",
-                title: "String",
-                url: "URL",
-              },
-              productByHandle: [
-                availableForSale: "Boolean",
-                collections: [
-                  # ...
-                ],
-                createdAt: "DateTime",
-                description: ["String"],
-                descriptionHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                images: [
-                  # ...
-                ],
-                onlineStoreUrl: "URL",
-                options: [
-                  # ...
-                ],
-                priceRange: {
-                  # ...
-                },
-                productType: "String",
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                updatedAt: "DateTime",
-                variantBySelectedOptions: [
-                  # ...
-                ],
-                variants: [
-                  # ...
-                ],
-                vendor: "String",
-              ],
-              productTypes: [
-                edges: {
-                  # ...
-                },
-                pageInfo: {
-                  # ...
-                },
-              ],
-              products: [
-                edges: {
-                  # ...
-                },
-                pageInfo: {
-                  # ...
-                },
-              ],
-              refundPolicy: {
-                body: "String",
-                id: "ID",
-                title: "String",
-                url: "URL",
-              },
-              shipsToCountries: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
-              solidusPaymentsAccountId: "String",
-              termsOfService: {
-                body: "String",
-                id: "ID",
-                title: "String",
-                url: "URL",
-              },
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

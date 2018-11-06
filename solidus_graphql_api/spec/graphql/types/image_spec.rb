@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          image: {
-            altText: "String",
+        {
+          data: {
+            image: {
+              altText: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          image: {
-            id: "ID",
+        {
+          data: {
+            image: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          image: {
-            originalSrc: "URL",
+        {
+          data: {
+            image: {
+              originalSrc: 'URL',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -109,12 +115,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          image: {
-            transformedSrc: "URL",
+        {
+          data: {
+            image: {
+              transformedSrc: 'URL',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

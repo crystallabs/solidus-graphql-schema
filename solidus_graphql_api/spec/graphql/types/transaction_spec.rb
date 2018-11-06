@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          transaction: {
-            amount: "Money",
+        {
+          data: {
+            transaction: {
+              amount: 'Money',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          transaction: {
-            kind: "SALE | CAPTURE | AUTHORIZATION | EMV_AUTHORIZATION | CHANGE",
+        {
+          data: {
+            transaction: {
+              kind: 'SALE | CAPTURE | AUTHORIZATION | EMV_AUTHORIZATION | CHANGE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          transaction: {
-            status: "PENDING | SUCCESS | FAILURE | ERROR",
+        {
+          data: {
+            transaction: {
+              status: 'PENDING | SUCCESS | FAILURE | ERROR',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          transaction: {
-            test: "Boolean",
+        {
+          data: {
+            transaction: {
+              test: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

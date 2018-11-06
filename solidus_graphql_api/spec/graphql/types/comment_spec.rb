@@ -23,15 +23,17 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          comment: {
-            author: {
-              email: "String",
-              name: "String",
-            },
+        {
+          data: {
+            comment: {
+              author: {
+                email: 'String',
+                name: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -53,12 +55,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          comment: {
-            content: "String",
+        {
+          data: {
+            comment: {
+              content: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -79,12 +83,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          comment: {
-            contentHtml: "HTML",
+        {
+          data: {
+            comment: {
+              contentHtml: 'HTML',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -105,12 +111,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          comment: {
-            id: "ID",
+        {
+          data: {
+            comment: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountApplication: {
-            allocationMethod: "ACROSS | EACH | ONE",
+        {
+          data: {
+            discountApplication: {
+              allocationMethod: 'ACROSS | EACH | ONE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountApplication: {
-            targetSelection: "ALL | ENTITLED | EXPLICIT",
+        {
+          data: {
+            discountApplication: {
+              targetSelection: 'ALL | ENTITLED | EXPLICIT',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountApplication: {
-            targetType: "LINE_ITEM | SHIPPING_LINE",
+        {
+          data: {
+            discountApplication: {
+              targetType: 'LINE_ITEM | SHIPPING_LINE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          discountApplication: {
-            value: PricingPercentageValue | MoneyV2,
+        {
+          data: {
+            discountApplication: {
+              value: PricingPercentageValue | MoneyV2,
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

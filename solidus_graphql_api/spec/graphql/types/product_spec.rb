@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            availableForSale: "Boolean",
+        {
+          data: {
+            product: {
+              availableForSale: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -151,57 +153,59 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            collections: {
-              description: ["String"],
-              descriptionHtml: "HTML",
-              handle: "String",
-              id: "ID",
-              image: [
-                altText: "String",
-                id: "ID",
-                originalSrc: "URL",
-                src: "URL",
-                transformedSrc: ["URL"],
-              ],
-              products: [
-                availableForSale: "Boolean",
-                collections: ["Collection..."],
-                createdAt: "DateTime",
-                description: ["String"],
-                descriptionHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                images: [
-                  # ...
+        {
+          data: {
+            product: {
+              collections: {
+                description: ['String'],
+                descriptionHtml: 'HTML',
+                handle: 'String',
+                id: 'ID',
+                image: [
+                  altText: 'String',
+                  id: 'ID',
+                  originalSrc: 'URL',
+                  src: 'URL',
+                  transformedSrc: ['URL'],
                 ],
-                onlineStoreUrl: "URL",
-                options: [
-                  # ...
+                products: [
+                  availableForSale: 'Boolean',
+                  collections: ['Collection...'],
+                  createdAt: 'DateTime',
+                  description: ['String'],
+                  descriptionHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  images: [
+                    # ...
+                  ],
+                  onlineStoreUrl: 'URL',
+                  options: [
+                    # ...
+                  ],
+                  priceRange: {
+                    # ...
+                  },
+                  productType: 'String',
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  updatedAt: 'DateTime',
+                  variantBySelectedOptions: [
+                    # ...
+                  ],
+                  variants: [
+                    # ...
+                  ],
+                  vendor: 'String',
                 ],
-                priceRange: {
-                  # ...
-                },
-                productType: "String",
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                updatedAt: "DateTime",
-                variantBySelectedOptions: [
-                  # ...
-                ],
-                variants: [
-                  # ...
-                ],
-                vendor: "String",
-              ],
-              title: "String",
-              updatedAt: "DateTime",
-            },
+                title: 'String',
+                updatedAt: 'DateTime',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -222,12 +226,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            createdAt: "DateTime",
+        {
+          data: {
+            product: {
+              createdAt: 'DateTime',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -249,12 +255,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            description: "String",
+        {
+          data: {
+            product: {
+              description: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -275,12 +283,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            descriptionHtml: "HTML",
+        {
+          data: {
+            product: {
+              descriptionHtml: 'HTML',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -301,12 +311,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            handle: "String",
+        {
+          data: {
+            product: {
+              handle: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -327,12 +339,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            id: "ID",
+        {
+          data: {
+            product: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -386,18 +400,20 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            images: {
-              altText: "String",
-              id: "ID",
-              originalSrc: "URL",
-              src: "URL",
-              transformedSrc: ["URL"],
-            },
+        {
+          data: {
+            product: {
+              images: {
+                altText: 'String',
+                id: 'ID',
+                originalSrc: 'URL',
+                src: 'URL',
+                transformedSrc: ['URL'],
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -418,12 +434,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            onlineStoreUrl: "URL",
+        {
+          data: {
+            product: {
+              onlineStoreUrl: 'URL',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -449,16 +467,18 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            options: {
-              id: "ID",
-              name: "String",
-              values: "String",
-            },
+        {
+          data: {
+            product: {
+              options: {
+                id: 'ID',
+                name: 'String',
+                values: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -488,21 +508,23 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            priceRange: {
-              maxVariantPrice: {
-                amount: "Decimal",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+        {
+          data: {
+            product: {
+              priceRange: {
+                maxVariantPrice: {
+                  amount: 'Decimal',
+                  currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                },
+                minVariantPrice: {
+                  amount: 'Decimal',
+                  currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                },
               },
-              minVariantPrice: {
-                amount: "Decimal",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
-              },
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -523,12 +545,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            productType: "String",
+        {
+          data: {
+            product: {
+              productType: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -549,12 +573,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            publishedAt: "DateTime",
+        {
+          data: {
+            product: {
+              publishedAt: 'DateTime',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -575,12 +601,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            tags: "String",
+        {
+          data: {
+            product: {
+              tags: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -601,12 +629,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            title: "String",
+        {
+          data: {
+            product: {
+              title: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -627,12 +657,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            updatedAt: "DateTime",
+        {
+          data: {
+            product: {
+              updatedAt: 'DateTime',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -753,62 +785,64 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            variantBySelectedOptions: {
-              available: "Boolean",
-              availableForSale: "Boolean",
-              compareAtPrice: "Money",
-              id: "ID",
-              image: [
-                altText: "String",
-                id: "ID",
-                originalSrc: "URL",
-                src: "URL",
-                transformedSrc: ["URL"],
-              ],
-              price: "Money",
-              product: {
-                availableForSale: "Boolean",
-                collections: [
-                  # ...
+        {
+          data: {
+            product: {
+              variantBySelectedOptions: {
+                available: 'Boolean',
+                availableForSale: 'Boolean',
+                compareAtPrice: 'Money',
+                id: 'ID',
+                image: [
+                  altText: 'String',
+                  id: 'ID',
+                  originalSrc: 'URL',
+                  src: 'URL',
+                  transformedSrc: ['URL'],
                 ],
-                createdAt: "DateTime",
-                description: ["String"],
-                descriptionHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                images: [
-                  # ...
-                ],
-                onlineStoreUrl: "URL",
-                options: [
-                  # ...
-                ],
-                priceRange: {
-                  # ...
+                price: 'Money',
+                product: {
+                  availableForSale: 'Boolean',
+                  collections: [
+                    # ...
+                  ],
+                  createdAt: 'DateTime',
+                  description: ['String'],
+                  descriptionHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  images: [
+                    # ...
+                  ],
+                  onlineStoreUrl: 'URL',
+                  options: [
+                    # ...
+                  ],
+                  priceRange: {
+                    # ...
+                  },
+                  productType: 'String',
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  updatedAt: 'DateTime',
+                  variantBySelectedOptions: ['ProductVariant...'],
+                  variants: ['ProductVariant...'],
+                  vendor: 'String',
                 },
-                productType: "String",
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                updatedAt: "DateTime",
-                variantBySelectedOptions: ["ProductVariant..."],
-                variants: ["ProductVariant..."],
-                vendor: "String",
+                selectedOptions: {
+                  name: 'String',
+                  value: 'String',
+                },
+                sku: 'String',
+                title: 'String',
+                weight: 'Float',
+                weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
               },
-              selectedOptions: {
-                name: "String",
-                value: "String",
-              },
-              sku: "String",
-              title: "String",
-              weight: "Float",
-              weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -934,62 +968,64 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            variants: {
-              available: "Boolean",
-              availableForSale: "Boolean",
-              compareAtPrice: "Money",
-              id: "ID",
-              image: [
-                altText: "String",
-                id: "ID",
-                originalSrc: "URL",
-                src: "URL",
-                transformedSrc: ["URL"],
-              ],
-              price: "Money",
-              product: {
-                availableForSale: "Boolean",
-                collections: [
-                  # ...
+        {
+          data: {
+            product: {
+              variants: {
+                available: 'Boolean',
+                availableForSale: 'Boolean',
+                compareAtPrice: 'Money',
+                id: 'ID',
+                image: [
+                  altText: 'String',
+                  id: 'ID',
+                  originalSrc: 'URL',
+                  src: 'URL',
+                  transformedSrc: ['URL'],
                 ],
-                createdAt: "DateTime",
-                description: ["String"],
-                descriptionHtml: "HTML",
-                handle: "String",
-                id: "ID",
-                images: [
-                  # ...
-                ],
-                onlineStoreUrl: "URL",
-                options: [
-                  # ...
-                ],
-                priceRange: {
-                  # ...
+                price: 'Money',
+                product: {
+                  availableForSale: 'Boolean',
+                  collections: [
+                    # ...
+                  ],
+                  createdAt: 'DateTime',
+                  description: ['String'],
+                  descriptionHtml: 'HTML',
+                  handle: 'String',
+                  id: 'ID',
+                  images: [
+                    # ...
+                  ],
+                  onlineStoreUrl: 'URL',
+                  options: [
+                    # ...
+                  ],
+                  priceRange: {
+                    # ...
+                  },
+                  productType: 'String',
+                  publishedAt: 'DateTime',
+                  tags: 'String',
+                  title: 'String',
+                  updatedAt: 'DateTime',
+                  variantBySelectedOptions: ['ProductVariant...'],
+                  variants: ['ProductVariant...'],
+                  vendor: 'String',
                 },
-                productType: "String",
-                publishedAt: "DateTime",
-                tags: "String",
-                title: "String",
-                updatedAt: "DateTime",
-                variantBySelectedOptions: ["ProductVariant..."],
-                variants: ["ProductVariant..."],
-                vendor: "String",
+                selectedOptions: {
+                  name: 'String',
+                  value: 'String',
+                },
+                sku: 'String',
+                title: 'String',
+                weight: 'Float',
+                weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
               },
-              selectedOptions: {
-                name: "String",
-                value: "String",
-              },
-              sku: "String",
-              title: "String",
-              weight: "Float",
-              weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1010,12 +1046,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          product: {
-            vendor: "String",
+        {
+          data: {
+            product: {
+              vendor: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

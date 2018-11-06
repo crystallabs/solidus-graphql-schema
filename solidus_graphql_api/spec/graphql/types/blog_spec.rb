@@ -95,63 +95,65 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          blog: {
-            articleByHandle: {
-              author: {
-                bio: "String",
-                email: "String",
-                firstName: "String",
-                lastName: "String",
-                name: "String",
-              },
-              authorV2: {
-                bio: "String",
-                email: "String",
-                firstName: "String",
-                lastName: "String",
-                name: "String",
-              },
-              blog: {
-                articleByHandle: ["Article..."],
-                articles: ["Article..."],
-                authors: {
-                  # ...
-                },
-                handle: "String",
-                id: "ID",
-                title: "String",
-                url: "URL",
-              },
-              comments: [
+        {
+          data: {
+            blog: {
+              articleByHandle: {
                 author: {
-                  # ...
+                  bio: 'String',
+                  email: 'String',
+                  firstName: 'String',
+                  lastName: 'String',
+                  name: 'String',
                 },
-                content: ["String"],
-                contentHtml: "HTML",
-                id: "ID",
-              ],
-              content: ["String"],
-              contentHtml: "HTML",
-              excerpt: ["String"],
-              excerptHtml: "HTML",
-              handle: "String",
-              id: "ID",
-              image: [
-                altText: "String",
-                id: "ID",
-                originalSrc: "URL",
-                src: "URL",
-                transformedSrc: ["URL"],
-              ],
-              publishedAt: "DateTime",
-              tags: "String",
-              title: "String",
-              url: "URL",
-            },
+                authorV2: {
+                  bio: 'String',
+                  email: 'String',
+                  firstName: 'String',
+                  lastName: 'String',
+                  name: 'String',
+                },
+                blog: {
+                  articleByHandle: ['Article...'],
+                  articles: ['Article...'],
+                  authors: {
+                    # ...
+                  },
+                  handle: 'String',
+                  id: 'ID',
+                  title: 'String',
+                  url: 'URL',
+                },
+                comments: [
+                  author: {
+                    # ...
+                  },
+                  content: ['String'],
+                  contentHtml: 'HTML',
+                  id: 'ID',
+                ],
+                content: ['String'],
+                contentHtml: 'HTML',
+                excerpt: ['String'],
+                excerptHtml: 'HTML',
+                handle: 'String',
+                id: 'ID',
+                image: [
+                  altText: 'String',
+                  id: 'ID',
+                  originalSrc: 'URL',
+                  src: 'URL',
+                  transformedSrc: ['URL'],
+                ],
+                publishedAt: 'DateTime',
+                tags: 'String',
+                title: 'String',
+                url: 'URL',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -257,63 +259,65 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          blog: {
-            articles: {
-              author: {
-                bio: "String",
-                email: "String",
-                firstName: "String",
-                lastName: "String",
-                name: "String",
-              },
-              authorV2: {
-                bio: "String",
-                email: "String",
-                firstName: "String",
-                lastName: "String",
-                name: "String",
-              },
-              blog: {
-                articleByHandle: ["Article..."],
-                articles: ["Article..."],
-                authors: {
-                  # ...
-                },
-                handle: "String",
-                id: "ID",
-                title: "String",
-                url: "URL",
-              },
-              comments: [
+        {
+          data: {
+            blog: {
+              articles: {
                 author: {
-                  # ...
+                  bio: 'String',
+                  email: 'String',
+                  firstName: 'String',
+                  lastName: 'String',
+                  name: 'String',
                 },
-                content: ["String"],
-                contentHtml: "HTML",
-                id: "ID",
-              ],
-              content: ["String"],
-              contentHtml: "HTML",
-              excerpt: ["String"],
-              excerptHtml: "HTML",
-              handle: "String",
-              id: "ID",
-              image: [
-                altText: "String",
-                id: "ID",
-                originalSrc: "URL",
-                src: "URL",
-                transformedSrc: ["URL"],
-              ],
-              publishedAt: "DateTime",
-              tags: "String",
-              title: "String",
-              url: "URL",
-            },
+                authorV2: {
+                  bio: 'String',
+                  email: 'String',
+                  firstName: 'String',
+                  lastName: 'String',
+                  name: 'String',
+                },
+                blog: {
+                  articleByHandle: ['Article...'],
+                  articles: ['Article...'],
+                  authors: {
+                    # ...
+                  },
+                  handle: 'String',
+                  id: 'ID',
+                  title: 'String',
+                  url: 'URL',
+                },
+                comments: [
+                  author: {
+                    # ...
+                  },
+                  content: ['String'],
+                  contentHtml: 'HTML',
+                  id: 'ID',
+                ],
+                content: ['String'],
+                contentHtml: 'HTML',
+                excerpt: ['String'],
+                excerptHtml: 'HTML',
+                handle: 'String',
+                id: 'ID',
+                image: [
+                  altText: 'String',
+                  id: 'ID',
+                  originalSrc: 'URL',
+                  src: 'URL',
+                  transformedSrc: ['URL'],
+                ],
+                publishedAt: 'DateTime',
+                tags: 'String',
+                title: 'String',
+                url: 'URL',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -340,18 +344,20 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          blog: {
-            authors: {
-              bio: "String",
-              email: "String",
-              firstName: "String",
-              lastName: "String",
-              name: "String",
-            },
+        {
+          data: {
+            blog: {
+              authors: {
+                bio: 'String',
+                email: 'String',
+                firstName: 'String',
+                lastName: 'String',
+                name: 'String',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -372,12 +378,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          blog: {
-            handle: "String",
+        {
+          data: {
+            blog: {
+              handle: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -398,12 +406,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          blog: {
-            id: "ID",
+        {
+          data: {
+            blog: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -424,12 +434,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          blog: {
-            title: "String",
+        {
+          data: {
+            blog: {
+              title: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -450,12 +462,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          blog: {
-            url: "URL",
+        {
+          data: {
+            blog: {
+              url: 'URL',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

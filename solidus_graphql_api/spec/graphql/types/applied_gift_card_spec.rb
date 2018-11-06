@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          appliedGiftCard: {
-            amountUsed: "Money",
+        {
+          data: {
+            appliedGiftCard: {
+              amountUsed: 'Money',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          appliedGiftCard: {
-            balance: "Money",
+        {
+          data: {
+            appliedGiftCard: {
+              balance: 'Money',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          appliedGiftCard: {
-            id: "ID",
+        {
+          data: {
+            appliedGiftCard: {
+              id: 'ID',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          appliedGiftCard: {
-            lastCharacters: "String",
+        {
+          data: {
+            appliedGiftCard: {
+              lastCharacters: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

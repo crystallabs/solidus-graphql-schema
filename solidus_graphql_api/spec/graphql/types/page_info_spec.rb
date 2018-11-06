@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          pageInfo: {
-            hasNextPage: "Boolean",
+        {
+          data: {
+            pageInfo: {
+              hasNextPage: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          pageInfo: {
-            hasPreviousPage: "Boolean",
+        {
+          data: {
+            pageInfo: {
+              hasPreviousPage: 'Boolean',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

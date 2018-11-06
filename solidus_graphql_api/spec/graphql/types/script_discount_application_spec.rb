@@ -20,12 +20,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          scriptDiscountApplication: {
-            allocationMethod: "ACROSS | EACH | ONE",
+        {
+          data: {
+            scriptDiscountApplication: {
+              allocationMethod: 'ACROSS | EACH | ONE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -46,12 +48,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          scriptDiscountApplication: {
-            description: "String",
+        {
+          data: {
+            scriptDiscountApplication: {
+              description: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -72,12 +76,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          scriptDiscountApplication: {
-            targetSelection: "ALL | ENTITLED | EXPLICIT",
+        {
+          data: {
+            scriptDiscountApplication: {
+              targetSelection: 'ALL | ENTITLED | EXPLICIT',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -98,12 +104,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          scriptDiscountApplication: {
-            targetType: "LINE_ITEM | SHIPPING_LINE",
+        {
+          data: {
+            scriptDiscountApplication: {
+              targetType: 'LINE_ITEM | SHIPPING_LINE',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -124,12 +132,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          scriptDiscountApplication: {
-            value: PricingPercentageValue | MoneyV2,
+        {
+          data: {
+            scriptDiscountApplication: {
+              value: PricingPercentageValue | MoneyV2,
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

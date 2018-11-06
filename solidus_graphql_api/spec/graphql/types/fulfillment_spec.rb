@@ -46,27 +46,29 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          fulfillment: {
-            fulfillmentLineItems: {
-              lineItem: {
-                customAttributes: {
-                  # ...
+        {
+          data: {
+            fulfillment: {
+              fulfillmentLineItems: {
+                lineItem: {
+                  customAttributes: {
+                    # ...
+                  },
+                  discountAllocations: {
+                    # ...
+                  },
+                  quantity: 'Int',
+                  title: 'String',
+                  variant: {
+                    # ...
+                  },
                 },
-                discountAllocations: {
-                  # ...
-                },
-                quantity: "Int",
-                title: "String",
-                variant: {
-                  # ...
-                },
+                quantity: 'Int',
               },
-              quantity: "Int",
-            },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -87,12 +89,14 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          fulfillment: {
-            trackingCompany: "String",
+        {
+          data: {
+            fulfillment: {
+              trackingCompany: 'String',
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -117,15 +121,17 @@ module Spree::GraphQL
         }
       }
       let!(:result) {
-        data: {
-          fulfillment: {
-            trackingInfo: {
-              number: "String",
-              url: "URL",
-            },
+        {
+          data: {
+            fulfillment: {
+              trackingInfo: {
+                number: 'String',
+                url: 'URL',
+              },
+            }
           },
-        },
-        #errors: {},
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute

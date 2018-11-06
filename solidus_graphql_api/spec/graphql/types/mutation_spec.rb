@@ -3,7 +3,7 @@ require 'spec_helper'
 
 module Spree::GraphQL
   describe 'Types::Mutation' do
-    let!(:mutation) { create(:mutation) }
+    #let!(:mutation) { create(:mutation) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
 
@@ -14,90 +14,91 @@ module Spree::GraphQL
     describe 'checkoutAttributesUpdateV2' do
       let!(:query) {
         %q{
-
-              checkoutAttributesUpdateV2(
-                checkoutId: "ID",
-                input: {
-                  note: "String",
-                  customAttributes: {
-                    key: "String",
-                    value: "String"
-                  },
-                  allowPartialAddresses: "Boolean"
-                }
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
-                }
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            checkoutAttributesUpdateV2(
+              checkoutId: "ID",
+              input: {
+                note: "String",
+                customAttributes: {
+                  key: "String",
+                  value: "String"
+                },
+                allowPartialAddresses: "Boolean"
               }
-
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
+                }
+                availableShippingRates {
+                  # ...
+                }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutAttributesUpdateV2: {
+        {
+          data: {
+            checkoutAttributesUpdateV2: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -105,9 +106,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -117,19 +118,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -139,21 +140,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -167,80 +169,81 @@ module Spree::GraphQL
     describe 'checkoutCompleteFree' do
       let!(:query) {
         %q{
-
-              checkoutCompleteFree(checkoutId: "ID") {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutCompleteFree(checkoutId: "ID") {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutCompleteFree: {
+        {
+          data: {
+            checkoutCompleteFree: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -248,9 +251,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -260,19 +263,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -282,21 +285,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -311,123 +315,124 @@ module Spree::GraphQL
     describe 'checkoutCompleteWithCreditCardV2' do
       let!(:query) {
         %q{
-
-              checkoutCompleteWithCreditCardV2(
-                checkoutId: "ID",
-                payment: {
-                  paymentAmount: {
-                    amount: "Decimal",
-                    currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW"
-                  },
-                  idempotencyKey: "String",
-                  billingAddress: {
-                    address1: "String",
-                    address2: "String",
-                    city: "String",
-                    company: "String",
-                    country: "String",
-                    firstName: "String",
-                    lastName: "String",
-                    phone: "String",
-                    province: "String",
-                    zip: "String"
-                  },
-                  vaultId: "String",
-                  test: "Boolean"
+          mutation {
+            checkoutCompleteWithCreditCardV2(
+              checkoutId: "ID",
+              payment: {
+                paymentAmount: {
+                  amount: "Decimal",
+                  currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW"
+                },
+                idempotencyKey: "String",
+                billingAddress: {
+                  address1: "String",
+                  address2: "String",
+                  city: "String",
+                  company: "String",
+                  country: "String",
+                  firstName: "String",
+                  lastName: "String",
+                  phone: "String",
+                  province: "String",
+                  zip: "String"
+                },
+                vaultId: "String",
+                test: "Boolean"
+              }
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-              ) {
+                availableShippingRates {
+                  # ...
+                }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
+              }
+              payment {
+                amount
+                billingAddress {
+                  # ...
+                }
                 checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+                  # ...
                 }
-                payment {
-                  amount
-                  billingAddress {
-                    # ...
-                  }
-                  checkout {
-                    # ...
-                  }
-                  creditCard {
-                    # ...
-                  }
-                  errorMessage
-                  id
-                  idempotencyKey
-                  ready
-                  test
-                  transaction {
-                    # ...
-                  }
+                creditCard {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                errorMessage
+                id
+                idempotencyKey
+                ready
+                test
+                transaction {
+                  # ...
                 }
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutCompleteWithCreditCardV2: {
+        {
+          data: {
+            checkoutCompleteWithCreditCardV2: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -435,9 +440,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -447,19 +452,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -469,16 +474,16 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               payment: {
-                amount: "Money",
+                amount: 'Money',
                 billingAddress: {
                   # ...
                 },
@@ -488,22 +493,23 @@ module Spree::GraphQL
                 creditCard: {
                   # ...
                 },
-                errorMessage: "String",
-                id: "ID",
-                idempotencyKey: "String",
-                ready: "Boolean",
-                test: "Boolean",
+                errorMessage: 'String',
+                id: 'ID',
+                idempotencyKey: 'String',
+                ready: 'Boolean',
+                test: 'Boolean',
                 transaction: {
                   # ...
                 },
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -518,125 +524,126 @@ module Spree::GraphQL
     describe 'checkoutCompleteWithTokenizedPaymentV2' do
       let!(:query) {
         %q{
-
-              checkoutCompleteWithTokenizedPaymentV2(
-                checkoutId: "ID",
-                payment: {
-                  paymentAmount: {
-                    amount: "Decimal",
-                    currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW"
-                  },
-                  idempotencyKey: "String",
-                  billingAddress: {
-                    address1: "String",
-                    address2: "String",
-                    city: "String",
-                    company: "String",
-                    country: "String",
-                    firstName: "String",
-                    lastName: "String",
-                    phone: "String",
-                    province: "String",
-                    zip: "String"
-                  },
-                  type: "String",
-                  paymentData: "String",
-                  test: "Boolean",
-                  identifier: "String"
+          mutation {
+            checkoutCompleteWithTokenizedPaymentV2(
+              checkoutId: "ID",
+              payment: {
+                paymentAmount: {
+                  amount: "Decimal",
+                  currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW"
+                },
+                idempotencyKey: "String",
+                billingAddress: {
+                  address1: "String",
+                  address2: "String",
+                  city: "String",
+                  company: "String",
+                  country: "String",
+                  firstName: "String",
+                  lastName: "String",
+                  phone: "String",
+                  province: "String",
+                  zip: "String"
+                },
+                type: "String",
+                paymentData: "String",
+                test: "Boolean",
+                identifier: "String"
+              }
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-              ) {
+                availableShippingRates {
+                  # ...
+                }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
+              }
+              payment {
+                amount
+                billingAddress {
+                  # ...
+                }
                 checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+                  # ...
                 }
-                payment {
-                  amount
-                  billingAddress {
-                    # ...
-                  }
-                  checkout {
-                    # ...
-                  }
-                  creditCard {
-                    # ...
-                  }
-                  errorMessage
-                  id
-                  idempotencyKey
-                  ready
-                  test
-                  transaction {
-                    # ...
-                  }
+                creditCard {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                errorMessage
+                id
+                idempotencyKey
+                ready
+                test
+                transaction {
+                  # ...
                 }
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutCompleteWithTokenizedPaymentV2: {
+        {
+          data: {
+            checkoutCompleteWithTokenizedPaymentV2: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -644,9 +651,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -656,19 +663,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -678,16 +685,16 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               payment: {
-                amount: "Money",
+                amount: 'Money',
                 billingAddress: {
                   # ...
                 },
@@ -697,22 +704,23 @@ module Spree::GraphQL
                 creditCard: {
                   # ...
                 },
-                errorMessage: "String",
-                id: "ID",
-                idempotencyKey: "String",
-                ready: "Boolean",
-                test: "Boolean",
+                errorMessage: 'String',
+                id: 'ID',
+                idempotencyKey: 'String',
+                ready: 'Boolean',
+                test: 'Boolean',
                 transaction: {
                   # ...
                 },
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -726,115 +734,116 @@ module Spree::GraphQL
     describe 'checkoutCreate' do
       let!(:query) {
         %q{
-
-              checkoutCreate(
-                input: {
-                  email: "String",
-                  lineItems: {
-                    customAttributes: {
-                      key: "String",
-                      value: "String"
-                    },
-                    quantity: "Int",
-                    variantId: "ID"
-                  },
-                  shippingAddress: {
-                    address1: "String",
-                    address2: "String",
-                    city: "String",
-                    company: "String",
-                    country: "String",
-                    firstName: "String",
-                    lastName: "String",
-                    phone: "String",
-                    province: "String",
-                    zip: "String"
-                  },
-                  note: "String",
+          mutation {
+            checkoutCreate(
+              input: {
+                email: "String",
+                lineItems: {
                   customAttributes: {
                     key: "String",
                     value: "String"
                   },
-                  allowPartialAddresses: "Boolean"
-                }
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
-                }
-                checkoutUserErrors {
-                  code
-                  field
-                  message
-                }
-                userErrors {
-                  field
-                  message
-                }
+                  quantity: "Int",
+                  variantId: "ID"
+                },
+                shippingAddress: {
+                  address1: "String",
+                  address2: "String",
+                  city: "String",
+                  company: "String",
+                  country: "String",
+                  firstName: "String",
+                  lastName: "String",
+                  phone: "String",
+                  province: "String",
+                  zip: "String"
+                },
+                note: "String",
+                customAttributes: {
+                  key: "String",
+                  value: "String"
+                },
+                allowPartialAddresses: "Boolean"
               }
-
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
+                }
+                availableShippingRates {
+                  # ...
+                }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
+              }
+              checkoutUserErrors {
+                code
+                field
+                message
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutCreate: {
+        {
+          data: {
+            checkoutCreate: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -842,9 +851,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -854,19 +863,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -876,26 +885,27 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               checkoutUserErrors: {
-                code: "BLANK | INVALID | TOO_LONG | PRESENT | LESS_THAN | ALREADY_COMPLETED | LOCKED | NOT_SUPPORTED | INVALID_FOR_COUNTRY_AND_PROVINCE | INVALID_STATE_IN_COUNTRY | INVALID_PROVINCE_IN_COUNTRY | INVALID_REGION_IN_COUNTRY | SHIPPING_RATE_EXPIRED | GIFT_CARD_UNUSABLE | CART_DOES_NOT_MEET_DISCOUNT_REQUIREMENTS_NOTICE | DISCOUNT_EXPIRED | DISCOUNT_DISABLED | DISCOUNT_LIMIT_REACHED | DISCOUNT_NOT_FOUND | CUSTOMER_ALREADY_USED_ONCE_PER_CUSTOMER_DISCOUNT_NOTICE | EMPTY | NOT_ENOUGH_IN_STOCK",
-                field: "String",
-                message: "String",
+                code: 'BLANK | INVALID | TOO_LONG | PRESENT | LESS_THAN | ALREADY_COMPLETED | LOCKED | NOT_SUPPORTED | INVALID_FOR_COUNTRY_AND_PROVINCE | INVALID_STATE_IN_COUNTRY | INVALID_PROVINCE_IN_COUNTRY | INVALID_REGION_IN_COUNTRY | SHIPPING_RATE_EXPIRED | GIFT_CARD_UNUSABLE | CART_DOES_NOT_MEET_DISCOUNT_REQUIREMENTS_NOTICE | DISCOUNT_EXPIRED | DISCOUNT_DISABLED | DISCOUNT_LIMIT_REACHED | DISCOUNT_NOT_FOUND | CUSTOMER_ALREADY_USED_ONCE_PER_CUSTOMER_DISCOUNT_NOTICE | EMPTY | NOT_ENOUGH_IN_STOCK',
+                field: 'String',
+                message: 'String',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -910,120 +920,121 @@ module Spree::GraphQL
     describe 'checkoutCustomerAssociateV2' do
       let!(:query) {
         %q{
-
-              checkoutCustomerAssociateV2(
-                checkoutId: "ID",
-                customerAccessToken: ""
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutCustomerAssociateV2(
+              checkoutId: "ID",
+              customerAccessToken: ""
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
+                }
+                availableShippingRates {
+                  # ...
+                }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
                 }
                 customer {
-                  acceptsMarketing
-                  addresses(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  createdAt
-                  defaultAddress {
-                    # ...
-                  }
-                  displayName
-                  email
-                  firstName
-                  id
-                  lastIncompleteCheckout {
-                    # ...
-                  }
-                  lastName
-                  orders(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
-                    query: ""
-                  ) {
-                    # ...
-                  }
-                  phone
-                  updatedAt
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
                 }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              customer {
+                acceptsMarketing
+                addresses(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                createdAt
+                defaultAddress {
+                  # ...
+                }
+                displayName
+                email
+                firstName
+                id
+                lastIncompleteCheckout {
+                  # ...
+                }
+                lastName
+                orders(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false,
+                  sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
+                  query: ""
+                ) {
+                  # ...
+                }
+                phone
+                updatedAt
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutCustomerAssociateV2: {
+        {
+          data: {
+            checkoutCustomerAssociateV2: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -1031,9 +1042,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -1043,19 +1054,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -1065,44 +1076,45 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               customer: {
-                acceptsMarketing: "Boolean",
+                acceptsMarketing: 'Boolean',
                 addresses: [
                   # ...
                 ],
-                createdAt: "DateTime",
+                createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
                 lastIncompleteCheckout: {
                   # ...
                 },
-                lastName: "String",
+                lastName: 'String',
                 orders: [
                   # ...
                 ],
-                phone: "String",
-                updatedAt: "DateTime",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1116,80 +1128,81 @@ module Spree::GraphQL
     describe 'checkoutCustomerDisassociate' do
       let!(:query) {
         %q{
-
-              checkoutCustomerDisassociate(checkoutId: "ID") {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutCustomerDisassociate(checkoutId: "ID") {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutCustomerDisassociate: {
+        {
+          data: {
+            checkoutCustomerDisassociate: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -1197,9 +1210,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -1209,19 +1222,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -1231,21 +1244,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1260,83 +1274,84 @@ module Spree::GraphQL
     describe 'checkoutDiscountCodeApply' do
       let!(:query) {
         %q{
-
-              checkoutDiscountCodeApply(
-                discountCode: "",
-                checkoutId: "ID"
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutDiscountCodeApply(
+              discountCode: "",
+              checkoutId: "ID"
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutDiscountCodeApply: {
+        {
+          data: {
+            checkoutDiscountCodeApply: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -1344,9 +1359,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -1356,19 +1371,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -1378,21 +1393,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1406,80 +1422,81 @@ module Spree::GraphQL
     describe 'checkoutDiscountCodeRemove' do
       let!(:query) {
         %q{
-
-              checkoutDiscountCodeRemove(checkoutId: "ID") {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutDiscountCodeRemove(checkoutId: "ID") {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutDiscountCodeRemove: {
+        {
+          data: {
+            checkoutDiscountCodeRemove: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -1487,9 +1504,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -1499,19 +1516,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -1521,21 +1538,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1550,83 +1568,84 @@ module Spree::GraphQL
     describe 'checkoutEmailUpdate' do
       let!(:query) {
         %q{
-
-              checkoutEmailUpdate(
-                checkoutId: "ID",
-                email: ""
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutEmailUpdate(
+              checkoutId: "ID",
+              email: ""
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutEmailUpdate: {
+        {
+          data: {
+            checkoutEmailUpdate: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -1634,9 +1653,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -1646,19 +1665,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -1668,21 +1687,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1697,83 +1717,84 @@ module Spree::GraphQL
     describe 'checkoutGiftCardRemove' do
       let!(:query) {
         %q{
-
-              checkoutGiftCardRemove(
-                appliedGiftCardId: "ID",
-                checkoutId: "ID"
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutGiftCardRemove(
+              appliedGiftCardId: "ID",
+              checkoutId: "ID"
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutGiftCardRemove: {
+        {
+          data: {
+            checkoutGiftCardRemove: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -1781,9 +1802,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -1793,19 +1814,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -1815,21 +1836,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1844,85 +1866,86 @@ module Spree::GraphQL
     describe 'checkoutGiftCardsAppend' do
       let!(:query) {
         %q{
-
-              checkoutGiftCardsAppend(
-                giftCardCodes: [
-                  ""
-                ],
-                checkoutId: "ID"
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutGiftCardsAppend(
+              giftCardCodes: [
+                ""
+              ],
+              checkoutId: "ID"
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutGiftCardsAppend: {
+        {
+          data: {
+            checkoutGiftCardsAppend: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -1930,9 +1953,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -1942,19 +1965,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -1964,21 +1987,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -1993,92 +2017,93 @@ module Spree::GraphQL
     describe 'checkoutLineItemsAdd' do
       let!(:query) {
         %q{
-
-              checkoutLineItemsAdd(
-                lineItems: [
-                  {
-                    customAttributes: {
-                      key: "String",
-                      value: "String"
-                    },
-                    quantity: "Int",
-                    variantId: "ID"
-                  }
-                ],
-                checkoutId: "ID"
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutLineItemsAdd(
+              lineItems: [
+                {
+                  customAttributes: {
+                    key: "String",
+                    value: "String"
+                  },
+                  quantity: "Int",
+                  variantId: "ID"
                 }
-                userErrors {
-                  field
-                  message
+              ],
+              checkoutId: "ID"
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
+                availableShippingRates {
+                  # ...
+                }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutLineItemsAdd: {
+        {
+          data: {
+            checkoutLineItemsAdd: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -2086,9 +2111,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -2098,19 +2123,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -2120,21 +2145,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2149,85 +2175,86 @@ module Spree::GraphQL
     describe 'checkoutLineItemsRemove' do
       let!(:query) {
         %q{
-
-              checkoutLineItemsRemove(
-                checkoutId: "ID",
-                lineItemIds: [
-                  "ID"
-                ]
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutLineItemsRemove(
+              checkoutId: "ID",
+              lineItemIds: [
+                "ID"
+              ]
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutLineItemsRemove: {
+        {
+          data: {
+            checkoutLineItemsRemove: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -2235,9 +2262,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -2247,19 +2274,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -2269,21 +2296,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2298,93 +2326,94 @@ module Spree::GraphQL
     describe 'checkoutLineItemsUpdate' do
       let!(:query) {
         %q{
-
-              checkoutLineItemsUpdate(
-                checkoutId: "ID",
-                lineItems: [
-                  {
-                    id: "ID",
-                    variantId: "ID",
-                    quantity: "Int",
-                    customAttributes: {
-                      key: "String",
-                      value: "String"
-                    }
+          mutation {
+            checkoutLineItemsUpdate(
+              checkoutId: "ID",
+              lineItems: [
+                {
+                  id: "ID",
+                  variantId: "ID",
+                  quantity: "Int",
+                  customAttributes: {
+                    key: "String",
+                    value: "String"
                   }
-                ]
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
                 }
-                userErrors {
-                  field
-                  message
+              ]
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
+                availableShippingRates {
+                  # ...
+                }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutLineItemsUpdate: {
+        {
+          data: {
+            checkoutLineItemsUpdate: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -2392,9 +2421,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -2404,19 +2433,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -2426,21 +2455,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2455,94 +2485,95 @@ module Spree::GraphQL
     describe 'checkoutShippingAddressUpdate' do
       let!(:query) {
         %q{
-
-              checkoutShippingAddressUpdate(
-                shippingAddress: {
-                  address1: "String",
-                  address2: "String",
-                  city: "String",
-                  company: "String",
-                  country: "String",
-                  firstName: "String",
-                  lastName: "String",
-                  phone: "String",
-                  province: "String",
-                  zip: "String"
-                },
-                checkoutId: "ID"
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutShippingAddressUpdate(
+              shippingAddress: {
+                address1: "String",
+                address2: "String",
+                city: "String",
+                company: "String",
+                country: "String",
+                firstName: "String",
+                lastName: "String",
+                phone: "String",
+                province: "String",
+                zip: "String"
+              },
+              checkoutId: "ID"
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutShippingAddressUpdate: {
+        {
+          data: {
+            checkoutShippingAddressUpdate: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -2550,9 +2581,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -2562,19 +2593,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -2584,21 +2615,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2613,83 +2645,84 @@ module Spree::GraphQL
     describe 'checkoutShippingLineUpdate' do
       let!(:query) {
         %q{
-
-              checkoutShippingLineUpdate(
-                checkoutId: "ID",
-                shippingRateHandle: ""
-              ) {
-                checkout {
-                  appliedGiftCards {
-                    # ...
-                  }
-                  availableShippingRates {
-                    # ...
-                  }
-                  completedAt
-                  createdAt
-                  currencyCode
-                  customAttributes {
-                    # ...
-                  }
-                  customer {
-                    # ...
-                  }
-                  discountApplications(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  email
-                  id
-                  lineItems(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  note
-                  order {
-                    # ...
-                  }
-                  orderStatusUrl
-                  paymentDue
-                  ready
-                  requiresShipping
-                  shippingAddress {
-                    # ...
-                  }
-                  shippingDiscountAllocations {
-                    # ...
-                  }
-                  shippingLine {
-                    # ...
-                  }
-                  subtotalPrice
-                  taxExempt
-                  taxesIncluded
-                  totalPrice
-                  totalTax
-                  updatedAt
-                  webUrl
+          mutation {
+            checkoutShippingLineUpdate(
+              checkoutId: "ID",
+              shippingRateHandle: ""
+            ) {
+              checkout {
+                appliedGiftCards {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                availableShippingRates {
+                  # ...
                 }
+                completedAt
+                createdAt
+                currencyCode
+                customAttributes {
+                  # ...
+                }
+                customer {
+                  # ...
+                }
+                discountApplications(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                email
+                id
+                lineItems(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                note
+                order {
+                  # ...
+                }
+                orderStatusUrl
+                paymentDue
+                ready
+                requiresShipping
+                shippingAddress {
+                  # ...
+                }
+                shippingDiscountAllocations {
+                  # ...
+                }
+                shippingLine {
+                  # ...
+                }
+                subtotalPrice
+                taxExempt
+                taxesIncluded
+                totalPrice
+                totalTax
+                updatedAt
+                webUrl
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  checkoutShippingLineUpdate: {
+        {
+          data: {
+            checkoutShippingLineUpdate: {
               checkout: {
                 appliedGiftCards: {
                   # ...
@@ -2697,9 +2730,9 @@ module Spree::GraphQL
                 availableShippingRates: {
                   # ...
                 },
-                completedAt: "DateTime",
-                createdAt: "DateTime",
-                currencyCode: "USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW",
+                completedAt: 'DateTime',
+                createdAt: 'DateTime',
+                currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                 customAttributes: {
                   # ...
                 },
@@ -2709,19 +2742,19 @@ module Spree::GraphQL
                 discountApplications: [
                   # ...
                 ],
-                email: "String",
-                id: "ID",
+                email: 'String',
+                id: 'ID',
                 lineItems: [
                   # ...
                 ],
-                note: "String",
+                note: 'String',
                 order: {
                   # ...
                 },
-                orderStatusUrl: "URL",
-                paymentDue: "Money",
-                ready: "Boolean",
-                requiresShipping: "Boolean",
+                orderStatusUrl: 'URL',
+                paymentDue: 'Money',
+                ready: 'Boolean',
+                requiresShipping: 'Boolean',
                 shippingAddress: {
                   # ...
                 },
@@ -2731,21 +2764,22 @@ module Spree::GraphQL
                 shippingLine: {
                   # ...
                 },
-                subtotalPrice: "Money",
-                taxExempt: "Boolean",
-                taxesIncluded: "Boolean",
-                totalPrice: "Money",
-                totalTax: "Money",
-                updatedAt: "DateTime",
-                webUrl: "URL",
+                subtotalPrice: 'Money',
+                taxExempt: 'Boolean',
+                taxesIncluded: 'Boolean',
+                totalPrice: 'Money',
+                totalTax: 'Money',
+                updatedAt: 'DateTime',
+                webUrl: 'URL',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2759,49 +2793,51 @@ module Spree::GraphQL
     describe 'customerAccessTokenCreate' do
       let!(:query) {
         %q{
-
-              customerAccessTokenCreate(
-                input: {
-                  email: "String",
-                  password: "String"
-                }
-              ) {
-                customerAccessToken {
-                  accessToken
-                  expiresAt
-                }
-                customerUserErrors {
-                  code
-                  field
-                  message
-                }
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerAccessTokenCreate(
+              input: {
+                email: "String",
+                password: "String"
               }
-
+            ) {
+              customerAccessToken {
+                accessToken
+                expiresAt
+              }
+              customerUserErrors {
+                code
+                field
+                message
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerAccessTokenCreate: {
+        {
+          data: {
+            customerAccessTokenCreate: {
               customerAccessToken: {
-                accessToken: "String",
-                expiresAt: "DateTime",
+                accessToken: 'String',
+                expiresAt: 'DateTime',
               },
               customerUserErrors: {
-                code: "BLANK | INVALID | TAKEN | TOO_LONG | TOO_SHORT | UNIDENTIFIED_CUSTOMER | CUSTOMER_DISABLED | PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE | CONTAINS_HTML_TAGS | CONTAINS_URL",
-                field: "String",
-                message: "String",
+                code: 'BLANK | INVALID | TAKEN | TOO_LONG | TOO_SHORT | UNIDENTIFIED_CUSTOMER | CUSTOMER_DISABLED | PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE | CONTAINS_HTML_TAGS | CONTAINS_URL',
+                field: 'String',
+                message: 'String',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2815,30 +2851,32 @@ module Spree::GraphQL
     describe 'customerAccessTokenDelete' do
       let!(:query) {
         %q{
-
-              customerAccessTokenDelete(customerAccessToken: "") {
-                deletedAccessToken
-                deletedCustomerAccessTokenId
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerAccessTokenDelete(customerAccessToken: "") {
+              deletedAccessToken
+              deletedCustomerAccessTokenId
+              userErrors {
+                field
+                message
               }
-
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerAccessTokenDelete: {
-              deletedAccessToken: "String",
-              deletedCustomerAccessTokenId: "String",
+        {
+          data: {
+            customerAccessTokenDelete: {
+              deletedAccessToken: 'String',
+              deletedCustomerAccessTokenId: 'String',
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2852,34 +2890,36 @@ module Spree::GraphQL
     describe 'customerAccessTokenRenew' do
       let!(:query) {
         %q{
-
-              customerAccessTokenRenew(customerAccessToken: "") {
-                customerAccessToken {
-                  accessToken
-                  expiresAt
-                }
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerAccessTokenRenew(customerAccessToken: "") {
+              customerAccessToken {
+                accessToken
+                expiresAt
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerAccessTokenRenew: {
+        {
+          data: {
+            customerAccessTokenRenew: {
               customerAccessToken: {
-                accessToken: "String",
-                expiresAt: "DateTime",
+                accessToken: 'String',
+                expiresAt: 'DateTime',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -2894,100 +2934,102 @@ module Spree::GraphQL
     describe 'customerActivate' do
       let!(:query) {
         %q{
-
-              customerActivate(
-                id: "ID",
-                input: {
-                  activationToken: "String",
-                  password: "String"
-                }
-              ) {
-                customer {
-                  acceptsMarketing
-                  addresses(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  createdAt
-                  defaultAddress {
-                    # ...
-                  }
-                  displayName
-                  email
-                  firstName
-                  id
-                  lastIncompleteCheckout {
-                    # ...
-                  }
-                  lastName
-                  orders(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
-                    query: ""
-                  ) {
-                    # ...
-                  }
-                  phone
-                  updatedAt
-                }
-                customerAccessToken {
-                  accessToken
-                  expiresAt
-                }
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerActivate(
+              id: "ID",
+              input: {
+                activationToken: "String",
+                password: "String"
               }
-
+            ) {
+              customer {
+                acceptsMarketing
+                addresses(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                createdAt
+                defaultAddress {
+                  # ...
+                }
+                displayName
+                email
+                firstName
+                id
+                lastIncompleteCheckout {
+                  # ...
+                }
+                lastName
+                orders(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false,
+                  sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
+                  query: ""
+                ) {
+                  # ...
+                }
+                phone
+                updatedAt
+              }
+              customerAccessToken {
+                accessToken
+                expiresAt
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerActivate: {
+        {
+          data: {
+            customerActivate: {
               customer: {
-                acceptsMarketing: "Boolean",
+                acceptsMarketing: 'Boolean',
                 addresses: [
                   # ...
                 ],
-                createdAt: "DateTime",
+                createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
                 lastIncompleteCheckout: {
                   # ...
                 },
-                lastName: "String",
+                lastName: 'String',
                 orders: [
                   # ...
                 ],
-                phone: "String",
-                updatedAt: "DateTime",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
               customerAccessToken: {
-                accessToken: "String",
-                expiresAt: "DateTime",
+                accessToken: 'String',
+                expiresAt: 'DateTime',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3002,85 +3044,87 @@ module Spree::GraphQL
     describe 'customerAddressCreate' do
       let!(:query) {
         %q{
-
-              customerAddressCreate(
-                customerAccessToken: "",
-                address: {
-                  address1: "String",
-                  address2: "String",
-                  city: "String",
-                  company: "String",
-                  country: "String",
-                  firstName: "String",
-                  lastName: "String",
-                  phone: "String",
-                  province: "String",
-                  zip: "String"
-                }
-              ) {
-                customerAddress {
-                  address1
-                  address2
-                  city
-                  company
-                  country
-                  countryCode
-                  countryCodeV2
-                  firstName
-                  formatted(
-                    withName: false,
-                    withCompany: true
-                  )
-                  formattedArea
-                  id
-                  lastName
-                  latitude
-                  longitude
-                  name
-                  phone
-                  province
-                  provinceCode
-                  zip
-                }
-                userErrors {
-                  field
-                  message
-                }
-              }
-
-        }
-      }
-      let!(:result) {
-        data: {
-                  customerAddressCreate: {
-              customerAddress: {
+          mutation {
+            customerAddressCreate(
+              customerAccessToken: "",
+              address: {
                 address1: "String",
                 address2: "String",
                 city: "String",
                 company: "String",
                 country: "String",
-                countryCode: "String",
-                countryCodeV2: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
                 firstName: "String",
-                formatted: ["String"],
-                formattedArea: "String",
-                id: "ID",
                 lastName: "String",
-                latitude: "Float",
-                longitude: "Float",
-                name: "String",
                 phone: "String",
                 province: "String",
-                provinceCode: "String",
-                zip: "String",
+                zip: "String"
+              }
+            ) {
+              customerAddress {
+                address1
+                address2
+                city
+                company
+                country
+                countryCode
+                countryCodeV2
+                firstName
+                formatted(
+                  withName: false,
+                  withCompany: true
+                )
+                formattedArea
+                id
+                lastName
+                latitude
+                longitude
+                name
+                phone
+                province
+                provinceCode
+                zip
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        }
+      }
+      let!(:result) {
+        {
+          data: {
+            customerAddressCreate: {
+              customerAddress: {
+                address1: 'String',
+                address2: 'String',
+                city: 'String',
+                company: 'String',
+                country: 'String',
+                countryCode: 'String',
+                countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                firstName: 'String',
+                formatted: ['String'],
+                formattedArea: 'String',
+                id: 'ID',
+                lastName: 'String',
+                latitude: 'Float',
+                longitude: 'Float',
+                name: 'String',
+                phone: 'String',
+                province: 'String',
+                provinceCode: 'String',
+                zip: 'String',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3095,31 +3139,33 @@ module Spree::GraphQL
     describe 'customerAddressDelete' do
       let!(:query) {
         %q{
-
-              customerAddressDelete(
-                id: "ID",
-                customerAccessToken: ""
-              ) {
-                deletedCustomerAddressId
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerAddressDelete(
+              id: "ID",
+              customerAccessToken: ""
+            ) {
+              deletedCustomerAddressId
+              userErrors {
+                field
+                message
               }
-
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerAddressDelete: {
-              deletedCustomerAddressId: "String",
+        {
+          data: {
+            customerAddressDelete: {
+              deletedCustomerAddressId: 'String',
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3135,86 +3181,88 @@ module Spree::GraphQL
     describe 'customerAddressUpdate' do
       let!(:query) {
         %q{
-
-              customerAddressUpdate(
-                customerAccessToken: "",
-                id: "ID",
-                address: {
-                  address1: "String",
-                  address2: "String",
-                  city: "String",
-                  company: "String",
-                  country: "String",
-                  firstName: "String",
-                  lastName: "String",
-                  phone: "String",
-                  province: "String",
-                  zip: "String"
-                }
-              ) {
-                customerAddress {
-                  address1
-                  address2
-                  city
-                  company
-                  country
-                  countryCode
-                  countryCodeV2
-                  firstName
-                  formatted(
-                    withName: false,
-                    withCompany: true
-                  )
-                  formattedArea
-                  id
-                  lastName
-                  latitude
-                  longitude
-                  name
-                  phone
-                  province
-                  provinceCode
-                  zip
-                }
-                userErrors {
-                  field
-                  message
-                }
-              }
-
-        }
-      }
-      let!(:result) {
-        data: {
-                  customerAddressUpdate: {
-              customerAddress: {
+          mutation {
+            customerAddressUpdate(
+              customerAccessToken: "",
+              id: "ID",
+              address: {
                 address1: "String",
                 address2: "String",
                 city: "String",
                 company: "String",
                 country: "String",
-                countryCode: "String",
-                countryCodeV2: "AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW",
                 firstName: "String",
-                formatted: ["String"],
-                formattedArea: "String",
-                id: "ID",
                 lastName: "String",
-                latitude: "Float",
-                longitude: "Float",
-                name: "String",
                 phone: "String",
                 province: "String",
-                provinceCode: "String",
-                zip: "String",
+                zip: "String"
+              }
+            ) {
+              customerAddress {
+                address1
+                address2
+                city
+                company
+                country
+                countryCode
+                countryCodeV2
+                firstName
+                formatted(
+                  withName: false,
+                  withCompany: true
+                )
+                formattedArea
+                id
+                lastName
+                latitude
+                longitude
+                name
+                phone
+                province
+                provinceCode
+                zip
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        }
+      }
+      let!(:result) {
+        {
+          data: {
+            customerAddressUpdate: {
+              customerAddress: {
+                address1: 'String',
+                address2: 'String',
+                city: 'String',
+                company: 'String',
+                country: 'String',
+                countryCode: 'String',
+                countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                firstName: 'String',
+                formatted: ['String'],
+                formattedArea: 'String',
+                id: 'ID',
+                lastName: 'String',
+                latitude: 'Float',
+                longitude: 'Float',
+                name: 'String',
+                phone: 'String',
+                province: 'String',
+                provinceCode: 'String',
+                zip: 'String',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3228,105 +3276,107 @@ module Spree::GraphQL
     describe 'customerCreate' do
       let!(:query) {
         %q{
-
-              customerCreate(
-                input: {
-                  firstName: "String",
-                  lastName: "String",
-                  email: "String",
-                  phone: "String",
-                  password: "String",
-                  acceptsMarketing: "Boolean"
-                }
-              ) {
-                customer {
-                  acceptsMarketing
-                  addresses(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  createdAt
-                  defaultAddress {
-                    # ...
-                  }
-                  displayName
-                  email
-                  firstName
-                  id
-                  lastIncompleteCheckout {
-                    # ...
-                  }
-                  lastName
-                  orders(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
-                    query: ""
-                  ) {
-                    # ...
-                  }
-                  phone
-                  updatedAt
-                }
-                customerUserErrors {
-                  code
-                  field
-                  message
-                }
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerCreate(
+              input: {
+                firstName: "String",
+                lastName: "String",
+                email: "String",
+                phone: "String",
+                password: "String",
+                acceptsMarketing: "Boolean"
               }
-
+            ) {
+              customer {
+                acceptsMarketing
+                addresses(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                createdAt
+                defaultAddress {
+                  # ...
+                }
+                displayName
+                email
+                firstName
+                id
+                lastIncompleteCheckout {
+                  # ...
+                }
+                lastName
+                orders(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false,
+                  sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
+                  query: ""
+                ) {
+                  # ...
+                }
+                phone
+                updatedAt
+              }
+              customerUserErrors {
+                code
+                field
+                message
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerCreate: {
+        {
+          data: {
+            customerCreate: {
               customer: {
-                acceptsMarketing: "Boolean",
+                acceptsMarketing: 'Boolean',
                 addresses: [
                   # ...
                 ],
-                createdAt: "DateTime",
+                createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
                 lastIncompleteCheckout: {
                   # ...
                 },
-                lastName: "String",
+                lastName: 'String',
                 orders: [
                   # ...
                 ],
-                phone: "String",
-                updatedAt: "DateTime",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
               customerUserErrors: {
-                code: "BLANK | INVALID | TAKEN | TOO_LONG | TOO_SHORT | UNIDENTIFIED_CUSTOMER | CUSTOMER_DISABLED | PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE | CONTAINS_HTML_TAGS | CONTAINS_URL",
-                field: "String",
-                message: "String",
+                code: 'BLANK | INVALID | TAKEN | TOO_LONG | TOO_SHORT | UNIDENTIFIED_CUSTOMER | CUSTOMER_DISABLED | PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE | CONTAINS_HTML_TAGS | CONTAINS_URL',
+                field: 'String',
+                message: 'String',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3341,89 +3391,91 @@ module Spree::GraphQL
     describe 'customerDefaultAddressUpdate' do
       let!(:query) {
         %q{
-
-              customerDefaultAddressUpdate(
-                customerAccessToken: "",
-                addressId: "ID"
-              ) {
-                customer {
-                  acceptsMarketing
-                  addresses(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  createdAt
-                  defaultAddress {
-                    # ...
-                  }
-                  displayName
-                  email
-                  firstName
-                  id
-                  lastIncompleteCheckout {
-                    # ...
-                  }
-                  lastName
-                  orders(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
-                    query: ""
-                  ) {
-                    # ...
-                  }
-                  phone
-                  updatedAt
+          mutation {
+            customerDefaultAddressUpdate(
+              customerAccessToken: "",
+              addressId: "ID"
+            ) {
+              customer {
+                acceptsMarketing
+                addresses(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                createdAt
+                defaultAddress {
+                  # ...
                 }
+                displayName
+                email
+                firstName
+                id
+                lastIncompleteCheckout {
+                  # ...
+                }
+                lastName
+                orders(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false,
+                  sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
+                  query: ""
+                ) {
+                  # ...
+                }
+                phone
+                updatedAt
               }
-
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerDefaultAddressUpdate: {
+        {
+          data: {
+            customerDefaultAddressUpdate: {
               customer: {
-                acceptsMarketing: "Boolean",
+                acceptsMarketing: 'Boolean',
                 addresses: [
                   # ...
                 ],
-                createdAt: "DateTime",
+                createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
                 lastIncompleteCheckout: {
                   # ...
                 },
-                lastName: "String",
+                lastName: 'String',
                 orders: [
                   # ...
                 ],
-                phone: "String",
-                updatedAt: "DateTime",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3437,26 +3489,28 @@ module Spree::GraphQL
     describe 'customerRecover' do
       let!(:query) {
         %q{
-
-              customerRecover(email: "") {
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerRecover(email: "") {
+              userErrors {
+                field
+                message
               }
-
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerRecover: {
+        {
+          data: {
+            customerRecover: {
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3471,100 +3525,102 @@ module Spree::GraphQL
     describe 'customerReset' do
       let!(:query) {
         %q{
-
-              customerReset(
-                id: "ID",
-                input: {
-                  resetToken: "String",
-                  password: "String"
-                }
-              ) {
-                customer {
-                  acceptsMarketing
-                  addresses(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  createdAt
-                  defaultAddress {
-                    # ...
-                  }
-                  displayName
-                  email
-                  firstName
-                  id
-                  lastIncompleteCheckout {
-                    # ...
-                  }
-                  lastName
-                  orders(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
-                    query: ""
-                  ) {
-                    # ...
-                  }
-                  phone
-                  updatedAt
-                }
-                customerAccessToken {
-                  accessToken
-                  expiresAt
-                }
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerReset(
+              id: "ID",
+              input: {
+                resetToken: "String",
+                password: "String"
               }
-
+            ) {
+              customer {
+                acceptsMarketing
+                addresses(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                createdAt
+                defaultAddress {
+                  # ...
+                }
+                displayName
+                email
+                firstName
+                id
+                lastIncompleteCheckout {
+                  # ...
+                }
+                lastName
+                orders(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false,
+                  sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
+                  query: ""
+                ) {
+                  # ...
+                }
+                phone
+                updatedAt
+              }
+              customerAccessToken {
+                accessToken
+                expiresAt
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerReset: {
+        {
+          data: {
+            customerReset: {
               customer: {
-                acceptsMarketing: "Boolean",
+                acceptsMarketing: 'Boolean',
                 addresses: [
                   # ...
                 ],
-                createdAt: "DateTime",
+                createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
                 lastIncompleteCheckout: {
                   # ...
                 },
-                lastName: "String",
+                lastName: 'String',
                 orders: [
                   # ...
                 ],
-                phone: "String",
-                updatedAt: "DateTime",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
               customerAccessToken: {
-                accessToken: "String",
-                expiresAt: "DateTime",
+                accessToken: 'String',
+                expiresAt: 'DateTime',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3579,97 +3635,99 @@ module Spree::GraphQL
     describe 'customerResetByUrl' do
       let!(:query) {
         %q{
-
-              customerResetByUrl(
-                resetUrl: "URL",
-                password: ""
-              ) {
-                customer {
-                  acceptsMarketing
-                  addresses(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  createdAt
-                  defaultAddress {
-                    # ...
-                  }
-                  displayName
-                  email
-                  firstName
-                  id
-                  lastIncompleteCheckout {
-                    # ...
-                  }
-                  lastName
-                  orders(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
-                    query: ""
-                  ) {
-                    # ...
-                  }
-                  phone
-                  updatedAt
+          mutation {
+            customerResetByUrl(
+              resetUrl: "URL",
+              password: ""
+            ) {
+              customer {
+                acceptsMarketing
+                addresses(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
                 }
-                customerAccessToken {
-                  accessToken
-                  expiresAt
+                createdAt
+                defaultAddress {
+                  # ...
                 }
-                userErrors {
-                  field
-                  message
+                displayName
+                email
+                firstName
+                id
+                lastIncompleteCheckout {
+                  # ...
                 }
+                lastName
+                orders(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false,
+                  sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
+                  query: ""
+                ) {
+                  # ...
+                }
+                phone
+                updatedAt
               }
-
+              customerAccessToken {
+                accessToken
+                expiresAt
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerResetByUrl: {
+        {
+          data: {
+            customerResetByUrl: {
               customer: {
-                acceptsMarketing: "Boolean",
+                acceptsMarketing: 'Boolean',
                 addresses: [
                   # ...
                 ],
-                createdAt: "DateTime",
+                createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
                 lastIncompleteCheckout: {
                   # ...
                 },
-                lastName: "String",
+                lastName: 'String',
                 orders: [
                   # ...
                 ],
-                phone: "String",
-                updatedAt: "DateTime",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
               customerAccessToken: {
-                accessToken: "String",
-                expiresAt: "DateTime",
+                accessToken: 'String',
+                expiresAt: 'DateTime',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
@@ -3684,114 +3742,116 @@ module Spree::GraphQL
     describe 'customerUpdate' do
       let!(:query) {
         %q{
-
-              customerUpdate(
-                customerAccessToken: "",
-                customer: {
-                  firstName: "String",
-                  lastName: "String",
-                  email: "String",
-                  phone: "String",
-                  password: "String",
-                  acceptsMarketing: "Boolean"
-                }
-              ) {
-                customer {
-                  acceptsMarketing
-                  addresses(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  createdAt
-                  defaultAddress {
-                    # ...
-                  }
-                  displayName
-                  email
-                  firstName
-                  id
-                  lastIncompleteCheckout {
-                    # ...
-                  }
-                  lastName
-                  orders(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
-                    query: ""
-                  ) {
-                    # ...
-                  }
-                  phone
-                  updatedAt
-                }
-                customerAccessToken {
-                  accessToken
-                  expiresAt
-                }
-                customerUserErrors {
-                  code
-                  field
-                  message
-                }
-                userErrors {
-                  field
-                  message
-                }
+          mutation {
+            customerUpdate(
+              customerAccessToken: "",
+              customer: {
+                firstName: "String",
+                lastName: "String",
+                email: "String",
+                phone: "String",
+                password: "String",
+                acceptsMarketing: "Boolean"
               }
-
+            ) {
+              customer {
+                acceptsMarketing
+                addresses(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false
+                ) {
+                  # ...
+                }
+                createdAt
+                defaultAddress {
+                  # ...
+                }
+                displayName
+                email
+                firstName
+                id
+                lastIncompleteCheckout {
+                  # ...
+                }
+                lastName
+                orders(
+                  first: Int,
+                  after: "",
+                  last: Int,
+                  before: "",
+                  reverse: false,
+                  sortKey: "PROCESSED_AT | TOTAL_PRICE | ID | RELEVANCE",
+                  query: ""
+                ) {
+                  # ...
+                }
+                phone
+                updatedAt
+              }
+              customerAccessToken {
+                accessToken
+                expiresAt
+              }
+              customerUserErrors {
+                code
+                field
+                message
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
         }
       }
       let!(:result) {
-        data: {
-                  customerUpdate: {
+        {
+          data: {
+            customerUpdate: {
               customer: {
-                acceptsMarketing: "Boolean",
+                acceptsMarketing: 'Boolean',
                 addresses: [
                   # ...
                 ],
-                createdAt: "DateTime",
+                createdAt: 'DateTime',
                 defaultAddress: {
                   # ...
                 },
-                displayName: "String",
-                email: "String",
-                firstName: "String",
-                id: "ID",
+                displayName: 'String',
+                email: 'String',
+                firstName: 'String',
+                id: 'ID',
                 lastIncompleteCheckout: {
                   # ...
                 },
-                lastName: "String",
+                lastName: 'String',
                 orders: [
                   # ...
                 ],
-                phone: "String",
-                updatedAt: "DateTime",
+                phone: 'String',
+                updatedAt: 'DateTime',
               },
               customerAccessToken: {
-                accessToken: "String",
-                expiresAt: "DateTime",
+                accessToken: 'String',
+                expiresAt: 'DateTime',
               },
               customerUserErrors: {
-                code: "BLANK | INVALID | TAKEN | TOO_LONG | TOO_SHORT | UNIDENTIFIED_CUSTOMER | CUSTOMER_DISABLED | PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE | CONTAINS_HTML_TAGS | CONTAINS_URL",
-                field: "String",
-                message: "String",
+                code: 'BLANK | INVALID | TAKEN | TOO_LONG | TOO_SHORT | UNIDENTIFIED_CUSTOMER | CUSTOMER_DISABLED | PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE | CONTAINS_HTML_TAGS | CONTAINS_URL',
+                field: 'String',
+                message: 'String',
               },
               userErrors: {
-                field: "String",
-                message: "String",
+                field: 'String',
+                message: 'String',
               },
-            },,
-        },
-        #errors: {},
+            },
+          },
+          #errors: {},
+        }
       }
       #it 'succeeds' do
       #  execute
