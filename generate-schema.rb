@@ -23,7 +23,7 @@ POSTAMBLE = 50
 
 $overwrite = true
 
-$max_level= 3
+$max_level= 5
 
 $log= Logger.new STDOUT
 $log.level = Logger::DEBUG
@@ -172,6 +172,7 @@ def run
 
   #pp $catalog
   puts "Done. Methods: #{$catalog[:total]}."
+  puts $fc
 
   exit 0
 end
@@ -321,9 +322,9 @@ def parse_types_2(v)
     helper = make_helper_for type
 
     prepare_headers_for type, helper
+    parse_fields_for type, helper
     parse_interfaces_for type, helper
     parse_possible_types_for type, helper
-    parse_fields_for type, helper
     parse_enum_values_for(type, helper)
     parse_args_for(type, helper, nil, 'inputFields')
   end
@@ -577,20 +578,23 @@ def parse_enum_values_for(type, helper)
   $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend"
 end
 
+$fc= 0
 def parse_fields_for(type, helper)
   new_name = helper[:new_name]
+  #puts "PARSING TYPE #{new_name}"
 
   if type['fields']
     type['fields'].each do |field|
       next if field['isDeprecated']
-
-      base_type, return_type, short, is_connection, is_array= type_of_field(field, type)
+      $fc+= 1
+      #puts "PARSING #{type['name']} -> #{field['name']}"
+      base_type, return_type, short, is_array= type_of_field(field, type, true)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{field :#{field['name'].underscore}, #{return_type} do
   description }) + description
 
-      method_args= parse_args_for(type, helper, field, 'args', is_connection)
+      method_args= parse_args_for(type, helper, field, 'args')
       
       $catalog[:schema_contents][new_name][FIELDS].push indent 1, 'end'
 
@@ -607,14 +611,13 @@ end
 }
       $catalog[:total]+= 1
 
+      # TODO THIS IS THE PLACE WHERE IS_ARRAY IS KNOWN
       type_hash= type_to_hash(base_type)
-      if is_connection and is_array
+      if field[:is_connection] and field[:is_array]
         raise Exception.new "Didn't expect it"
       end
-      if is_connection
+      if field[:is_connection]
         type_hash = wrap_to_connection type_hash
-      #elsif is_array
-      #  type_hash = [type_hash]
       end
       query_string= nil
 
@@ -670,7 +673,7 @@ end
     end # endif type['fields']
 end
 
-def parse_args_for(type, helper, field, key, is_connection = false)
+def parse_args_for(type, helper, field, key)
   new_name = helper[:new_name]
   method_args= []
 
@@ -686,7 +689,7 @@ def parse_args_for(type, helper, field, key, is_connection = false)
   if args
     args.each do |arg|
       next if arg['isDeprecated']
-      if is_connection
+      if thing[:is_connection]
         next if %w/first last before after pageInfo/.include? arg['name']
       end
 
@@ -707,7 +710,7 @@ def parse_args_for(type, helper, field, key, is_connection = false)
           suffix = ''
           arg_type= t2['name']
           if arg_type.sub! /Connection$/, ''
-            suffix = '.connection_type'
+            raise Exception.new "Not expected to find connection here"
           end
           method_args.push [arg['name'].underscore]
           arg_type = $catalog[:type_names][arg_type]
@@ -759,7 +762,7 @@ end
 ################################################################################
 # Helper methods
 
-# type_of_field(field) - returns [base, string, short(string), is_connection]
+# type_of_field(field) - returns [base, string, short(string)]
 # type_to_hash(type) - expands type into nested hash of inputs
 # hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
 # field_args_to_hash - expands field args into hash
@@ -776,11 +779,11 @@ def hash_to_method_args(hash)
   ret= []
   hash.each{ |k,v|
     is_array= false
-    if Array=== v
-      v0= v[0]
-      is_array= v[1]
+    v0 = if Array=== v
+      #is_array= v[1]
+      v[0]
     else
-      v0= v
+      v
     end
 
     unless k.is_a? Array
@@ -823,10 +826,7 @@ def field_args_to_hash(field)
 
   if field['args']
     field['args'].each {|a|
-      base, return_type, short, is_connection, is_array = type_of_field(a)
-      if is_connection
-        raise Exception.new "Didn't expect connection here"
-      end
+      base, return_type, short, is_array = type_of_field(a)
       name= a['name']
       value=
         if base== 'Int' or base== 'Float'
@@ -842,25 +842,28 @@ def field_args_to_hash(field)
         else
           # What remains? OBJs and INPUT OBJs?
           #raise Exception.new "Not seen: #{base} (#{p a})"
-          bt, _, _, is_connection, is_array = type_of_field(a)
-          if is_connection
-            raise Exception.new "Didn't expect connection here"
-          end
+          bt, _, _, is_array = type_of_field(a)
           type_to_hash($schema_type_map[bt])
         end
-      ret[name]= [value, (is_array ? true : false)]
+      ret[name]= value
     }
   end
 
   ret.size> 0 ? ret : nil #.map{|k,v| "#{k}: #{v}"}.join(', ') : nil
 end
 
-def type_of_field(field, type= nil)
+def type_of_field(field, type= nil, action= false)
   new_name = nil
+  trace=false
   if type
     new_name = $catalog[:type_names][type['name']]
     unless new_name
       raise Exception.new "Unknown/unseen type #{type['name']}?"
+    end
+    if type['name']=='Customer' and field['name']=='addresses'
+      puts 'IN TYPE_OF CUST->ADDRESSES'
+      puts field['type'].inspect
+      trace=true
     end
   end
 
@@ -872,18 +875,20 @@ def type_of_field(field, type= nil)
       ft = ft['ofType']
     end
   end
+  if trace
+    puts chain.inspect
+  end
   string = ''
-  is_connection = false
   is_array = false
   chain.each do |f2|
     if f2['kind'] == 'NON_NULL' and !f2['name']; string.sub! /true$/, 'false'
-    elsif f2['kind'] == 'LIST' and !f2['name']; is_array= true; string = "[#{string}], null: true"
+    elsif f2['kind'] == 'LIST' and !f2['name']; is_array= true; field[:is_array]= true; string = "[#{string}], null: true"
     else
       suffix= ''
       ret_name= f2['name']
-      if ret_name.sub! /Connection$/, ''
+      if ret_name.sub!(/Connection$/, '') or field[:is_connection]
         suffix = '.connection_type'
-        is_connection = true
+        field[:is_connection]= true
       end
       ret_name= $catalog[:type_names][ret_name]
       ret_type= f2['name']
@@ -892,7 +897,7 @@ def type_of_field(field, type= nil)
         exit 1
       end
 
-      if type
+      if action
         $catalog[:depends][new_name] ||= {}
         $catalog[:depends][new_name][ret_name] = true
         if (new_name != ret_name) && ($catalog[:depends][ret_name]) && ($catalog[:depends][ret_name][new_name])
@@ -922,7 +927,7 @@ def type_of_field(field, type= nil)
   # 3. String suitable for field definition in GraphQL (e.g. [Type!]!)
   # 4. Boolean whether that field returns a connection
   # 5. Boolean whether the field is an array
-  [ ret_type, string, shorten(string), is_connection, is_array ]
+  [ ret_type, string, shorten(string), is_array ]
 end
 
 $resolving= {}
@@ -956,9 +961,9 @@ def type_to_hash(type)
       ret= {}
       fields= t['fields'] || t['inputFields']
       fields.each do |f|
-        base, _, _, is_connection= type_of_field(f)
+        base, _, _ = type_of_field(f)
         content= type_to_hash(base)
-        if is_connection
+        if f[:is_connection]
           content = wrap_to_connection content
         end
         ret.merge!( [f['name'], field_args_to_hash(f)] => content )
@@ -993,7 +998,7 @@ def hash_to_graphql_query(hash)
     end
 
     case v
-    when String
+    when String, TrueClass, FalseClass
       string += "\n#{k_string}"
     else
       pre= ' {'
@@ -1015,7 +1020,7 @@ def type_hash_to_result(hash)
   hash.inject({}) { |h, (k, v)|
     is_array= false
     k_name = if Array=== k
-      is_array= k[1]
+      #is_array= k[1]
       k[0]
     else
       k
@@ -1137,6 +1142,9 @@ def oneline(s)
 end
 
 def wrap_to_connection(content)
+  if Hash=== content and content.keys.include? [:edges]
+    raise Exception.new %q{Doubly-wrapped - shouldn't happen}
+  end
   { [:edges] => { [:node] => content}, [:pageInfo] => { [:hasNextPage] => true, [:hasPreviousPage] => false}}
 end
 
