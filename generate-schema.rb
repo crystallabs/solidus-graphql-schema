@@ -616,18 +616,9 @@ end
       #  type_hash = [type_hash]
       end
       query_string= indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => type_hash)
-      result_hash= indent 4, hash_to_string(type_hash_to_result(field['name'] => type_hash))
+      result_hash= indent 5, hash_to_string(type_hash_to_result(field['name'] => type_hash))
 
       query_type = type['name'] == $mutation ? 'mutation' : 'query'
-
-      main_spec_part=
-        if type['name']== $mutation
-%Q{      #{result_hash},}
-        else
-%Q{      #{type['name'].camelize(:lower)}: {
-#{result_hash}
-      },}
-        end
 
       main_query_part=
         if type['name']== $mutation
@@ -639,6 +630,16 @@ end
         }
       }}
       end
+
+      main_result_part=
+        if type['name']== $mutation
+%Q{      #{result_hash}}
+        else
+%Q{        #{type['name'].camelize(:lower)}: {
+#{result_hash}
+        }}
+        end
+      main_result_part.gsub! '"', %q{'}
       $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_for_spec).size>0 ? "\n" + args_for_spec : ''}
 # @return [#{shorten return_type}]
 describe '#{field['name']}' do
@@ -648,10 +649,12 @@ describe '#{field['name']}' do
     }
   }
   let!(:result) {
-    data: {
-#{main_spec_part}
-    },
-    #errors: {},
+    {
+      data: {
+#{main_result_part}
+      },
+      #errors: {},
+    }
   }
   #it 'succeeds' do
   #  execute
@@ -1016,7 +1019,7 @@ def type_hash_to_result(hash)
 
     v_val=
     case v
-      when String
+      when String, TrueClass, FalseClass
         v
       when Hash
         type_hash_to_result(v)
@@ -1036,7 +1039,7 @@ def hash_to_string(h)
   h.each do |k,v|
     v=
     case v
-    when String
+    when String, TrueClass, FalseClass
       ret+= "#{k}: #{v},\n"
     when Hash
       val= if $level2 < $max_level then hash_to_string(v) else %q{# ...} end
@@ -1046,7 +1049,7 @@ def hash_to_string(h)
     when Array
       ret+= "#{k}: " +
       case v[0]
-      when String
+      when String, TrueClass, FalseClass
         '[' + v[0] + '],'
       else
         val= if $level2 < $max_level then hash_to_string(v[0]) else %q{# ...} end
@@ -1124,7 +1127,7 @@ def oneline(s)
 end
 
 def wrap_to_connection(content)
-  { [:edges] => { [:node] => content}, [:pageInfo] => { [:hasNextPage] => '', [:hasPreviousPage] => ''}}
+  { [:edges] => { [:node] => content}, [:pageInfo] => { [:hasNextPage] => true, [:hasPreviousPage] => false}}
 end
 
 ####
