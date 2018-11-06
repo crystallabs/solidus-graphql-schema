@@ -8,12 +8,8 @@ module Spree::GraphQL
     let!(:variables) { }
 
     # fulfillmentLineItems: List of the fulfillment's line items.
-    # @param first [Types::Int]
-    # @param after [Types::String]
-    # @param last [Types::Int]
-    # @param before [Types::String]
     # @param reverse [Types::Boolean] (false)
-    # @return [Types::FulfillmentLineItem!]
+    # @return [Types::FulfillmentLineItem.connection_type!]
     describe 'fulfillmentLineItems' do
       let!(:query) {
         %q{
@@ -26,20 +22,28 @@ module Spree::GraphQL
                 before: "",
                 reverse: false
               ) {
-                lineItem {
-                  customAttributes {
-                    # ...
-                  }
-                  discountAllocations {
-                    # ...
-                  }
-                  quantity
-                  title
-                  variant {
-                    # ...
+                edges {
+                  node {
+                    lineItem {
+                      customAttributes {
+                        # ...
+                      }
+                      discountAllocations {
+                        # ...
+                      }
+                      quantity
+                      title
+                      variant {
+                        # ...
+                      }
+                    }
+                    quantity
                   }
                 }
-                quantity
+                pageInfo {
+                  hasNextPage
+                  hasPreviousPage
+                }
               }
             }
           }
@@ -50,20 +54,28 @@ module Spree::GraphQL
           data: {
             fulfillment: {
               fulfillmentLineItems: {
-                lineItem: {
-                  customAttributes: {
-                    # ...
-                  },
-                  discountAllocations: {
-                    # ...
-                  },
-                  quantity: 'Int',
-                  title: 'String',
-                  variant: {
-                    # ...
+                edges: {
+                  node: {
+                    lineItem: {
+                      customAttributes: {
+                        # ...
+                      },
+                      discountAllocations: {
+                        # ...
+                      },
+                      quantity: 'Int',
+                      title: 'String',
+                      variant: {
+                        # ...
+                      },
+                    },
+                    quantity: 'Int',
                   },
                 },
-                quantity: 'Int',
+                pageInfo: {
+                  hasNextPage: true,
+                  hasPreviousPage: false,
+                },
               },
             }
           },

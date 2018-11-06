@@ -57,10 +57,18 @@ module Spree::GraphQL
               blog {
                 articleByHandle(handle: "") {
                   author {
-                    # ...
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
                   }
                   authorV2 {
-                    # ...
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
                   }
                   blog
                   comments(
@@ -70,7 +78,15 @@ module Spree::GraphQL
                     before: "",
                     reverse: false
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   content(truncateAt: Int)
                   contentHtml
@@ -84,7 +100,17 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    # ...
+                    altText
+                    id
+                    originalSrc
+                    src
+                    transformedSrc(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int,
+                      preferredContentType: "PNG | JPG | WEBP"
+                    )
                   }
                   publishedAt
                   tags
@@ -98,40 +124,48 @@ module Spree::GraphQL
                   before: "",
                   reverse: false
                 ) {
-                  author {
-                    # ...
+                  edges {
+                    node {
+                      author {
+                        # ...
+                      }
+                      authorV2 {
+                        # ...
+                      }
+                      blog
+                      comments(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      content(truncateAt: Int)
+                      contentHtml
+                      excerpt(truncateAt: Int)
+                      excerptHtml
+                      handle
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      publishedAt
+                      tags
+                      title
+                      url
+                    }
                   }
-                  authorV2 {
-                    # ...
+                  pageInfo {
+                    hasNextPage
+                    hasPreviousPage
                   }
-                  blog
-                  comments(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  content(truncateAt: Int)
-                  contentHtml
-                  excerpt(truncateAt: Int)
-                  excerptHtml
-                  handle
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
-                  }
-                  publishedAt
-                  tags
-                  title
-                  url
                 }
                 authors {
                   bio
@@ -156,14 +190,30 @@ module Spree::GraphQL
               blog: {
                 articleByHandle: {
                   author: {
-                    # ...
+                    bio: 'String',
+                    email: 'String',
+                    firstName: 'String',
+                    lastName: 'String',
+                    name: 'String',
                   },
                   authorV2: {
-                    # ...
+                    bio: 'String',
+                    email: 'String',
+                    firstName: 'String',
+                    lastName: 'String',
+                    name: 'String',
                   },
                   blog: 'Blog...',
                   comments: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   content: 'String',
                   contentHtml: 'HTML',
@@ -172,7 +222,11 @@ module Spree::GraphQL
                   handle: 'String',
                   id: 'ID',
                   image: {
-                    # ...
+                    altText: 'String',
+                    id: 'ID',
+                    originalSrc: 'URL',
+                    src: 'URL',
+                    transformedSrc: 'URL',
                   },
                   publishedAt: 'DateTime',
                   tags: 'String',
@@ -180,29 +234,37 @@ module Spree::GraphQL
                   url: 'URL',
                 },
                 articles: {
-                  author: {
-                    # ...
+                  edges: {
+                    node: {
+                      author: {
+                        # ...
+                      },
+                      authorV2: {
+                        # ...
+                      },
+                      blog: 'Blog...',
+                      comments: {
+                        # ...
+                      },
+                      content: 'String',
+                      contentHtml: 'HTML',
+                      excerpt: 'String',
+                      excerptHtml: 'HTML',
+                      handle: 'String',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      publishedAt: 'DateTime',
+                      tags: 'String',
+                      title: 'String',
+                      url: 'URL',
+                    },
                   },
-                  authorV2: {
-                    # ...
+                  pageInfo: {
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
-                  blog: 'Blog...',
-                  comments: {
-                    # ...
-                  },
-                  content: 'String',
-                  contentHtml: 'HTML',
-                  excerpt: 'String',
-                  excerptHtml: 'HTML',
-                  handle: 'String',
-                  id: 'ID',
-                  image: {
-                    # ...
-                  },
-                  publishedAt: 'DateTime',
-                  tags: 'String',
-                  title: 'String',
-                  url: 'URL',
                 },
                 authors: {
                   bio: 'String',
@@ -228,12 +290,8 @@ module Spree::GraphQL
     end
 
     # comments: List of comments posted on the article.
-    # @param first [Types::Int]
-    # @param after [Types::String]
-    # @param last [Types::Int]
-    # @param before [Types::String]
     # @param reverse [Types::Boolean] (false)
-    # @return [Types::Comment!]
+    # @return [Types::Comment.connection_type!]
     describe 'comments' do
       let!(:query) {
         %q{
@@ -246,13 +304,21 @@ module Spree::GraphQL
                 before: "",
                 reverse: false
               ) {
-                author {
-                  email
-                  name
+                edges {
+                  node {
+                    author {
+                      email
+                      name
+                    }
+                    content(truncateAt: Int)
+                    contentHtml
+                    id
+                  }
                 }
-                content(truncateAt: Int)
-                contentHtml
-                id
+                pageInfo {
+                  hasNextPage
+                  hasPreviousPage
+                }
               }
             }
           }
@@ -263,13 +329,21 @@ module Spree::GraphQL
           data: {
             article: {
               comments: {
-                author: {
-                  email: 'String',
-                  name: 'String',
+                edges: {
+                  node: {
+                    author: {
+                      email: 'String',
+                      name: 'String',
+                    },
+                    content: 'String',
+                    contentHtml: 'HTML',
+                    id: 'ID',
+                  },
                 },
-                content: 'String',
-                contentHtml: 'HTML',
-                id: 'ID',
+                pageInfo: {
+                  hasNextPage: true,
+                  hasPreviousPage: false,
+                },
               },
             }
           },

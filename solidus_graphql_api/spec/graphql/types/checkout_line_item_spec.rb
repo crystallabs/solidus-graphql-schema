@@ -215,7 +215,15 @@ module Spree::GraphQL
                     before: "",
                     reverse: false
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   createdAt
                   description(truncateAt: Int)
@@ -234,14 +242,31 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   onlineStoreUrl
                   options(first: Int) {
-                    # ...
+                    id
+                    name
+                    values
                   }
                   priceRange {
-                    # ...
+                    maxVariantPrice {
+                      amount
+                      currencyCode
+                    }
+                    minVariantPrice {
+                      amount
+                      currencyCode
+                    }
                   }
                   productType
                   publishedAt
@@ -261,7 +286,15 @@ module Spree::GraphQL
                     before: "",
                     reverse: false,
                     sortKey: "TITLE | SKU | POSITION | ID | RELEVANCE"
-                  )
+                  ) {
+                    edges {
+                      node
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
+                  }
                   vendor
                 }
                 selectedOptions {
@@ -297,7 +330,15 @@ module Spree::GraphQL
                 product: {
                   availableForSale: 'Boolean',
                   collections: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   createdAt: 'DateTime',
                   description: 'String',
@@ -305,14 +346,31 @@ module Spree::GraphQL
                   handle: 'String',
                   id: 'ID',
                   images: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   onlineStoreUrl: 'URL',
                   options: {
-                    # ...
+                    id: 'ID',
+                    name: 'String',
+                    values: 'String',
                   },
                   priceRange: {
-                    # ...
+                    maxVariantPrice: {
+                      amount: 'Decimal',
+                      currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                    },
+                    minVariantPrice: {
+                      amount: 'Decimal',
+                      currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                    },
                   },
                   productType: 'String',
                   publishedAt: 'DateTime',
@@ -320,7 +378,15 @@ module Spree::GraphQL
                   title: 'String',
                   updatedAt: 'DateTime',
                   variantBySelectedOptions: 'ProductVariant...',
-                  variants: 'ProductVariant...',
+                  variants: {
+                    edges: {
+                      node: 'ProductVariant...',
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
+                  },
                   vendor: 'String',
                 },
                 selectedOptions: {

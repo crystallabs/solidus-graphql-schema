@@ -28,16 +28,86 @@ module Spree::GraphQL
               ) {
                 edges {
                   node {
-                    # ...
+                    author {
+                      bio
+                      email
+                      firstName
+                      lastName
+                      name
+                    }
+                    authorV2 {
+                      bio
+                      email
+                      firstName
+                      lastName
+                      name
+                    }
+                    blog {
+                      articleByHandle(handle: "")
+                      articles(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      authors {
+                        # ...
+                      }
+                      handle
+                      id
+                      title
+                      url
+                    }
+                    comments(
+                      first: Int,
+                      after: "",
+                      last: Int,
+                      before: "",
+                      reverse: false
+                    ) {
+                      edges {
+                        # ...
+                      }
+                      pageInfo {
+                        # ...
+                      }
+                    }
+                    content(truncateAt: Int)
+                    contentHtml
+                    excerpt(truncateAt: Int)
+                    excerptHtml
+                    handle
+                    id
+                    image(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int
+                    ) {
+                      altText
+                      id
+                      originalSrc
+                      src
+                      transformedSrc(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int,
+                        preferredContentType: "PNG | JPG | WEBP"
+                      )
+                    }
+                    publishedAt
+                    tags
+                    title
+                    url
                   }
                 }
                 pageInfo {
-                  hasNextPage {
-                    # ...
-                  }
-                  hasPreviousPage {
-                    # ...
-                  }
+                  hasNextPage
+                  hasPreviousPage
                 }
               }
             }
@@ -51,7 +121,58 @@ module Spree::GraphQL
               articles: {
                 edges: {
                   node: {
-                    # ...
+                    author: {
+                      bio: 'String',
+                      email: 'String',
+                      firstName: 'String',
+                      lastName: 'String',
+                      name: 'String',
+                    },
+                    authorV2: {
+                      bio: 'String',
+                      email: 'String',
+                      firstName: 'String',
+                      lastName: 'String',
+                      name: 'String',
+                    },
+                    blog: {
+                      articleByHandle: 'Article...',
+                      articles: {
+                        # ...
+                      },
+                      authors: {
+                        # ...
+                      },
+                      handle: 'String',
+                      id: 'ID',
+                      title: 'String',
+                      url: 'URL',
+                    },
+                    comments: {
+                      edges: {
+                        # ...
+                      },
+                      pageInfo: {
+                        # ...
+                      },
+                    },
+                    content: 'String',
+                    contentHtml: 'HTML',
+                    excerpt: 'String',
+                    excerptHtml: 'HTML',
+                    handle: 'String',
+                    id: 'ID',
+                    image: {
+                      altText: 'String',
+                      id: 'ID',
+                      originalSrc: 'URL',
+                      src: 'URL',
+                      transformedSrc: 'URL',
+                    },
+                    publishedAt: 'DateTime',
+                    tags: 'String',
+                    title: 'String',
+                    url: 'URL',
                   },
                 },
                 pageInfo: {
@@ -81,10 +202,18 @@ module Spree::GraphQL
               blogByHandle(handle: "") {
                 articleByHandle(handle: "") {
                   author {
-                    # ...
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
                   }
                   authorV2 {
-                    # ...
+                    bio
+                    email
+                    firstName
+                    lastName
+                    name
                   }
                   blog
                   comments(
@@ -94,7 +223,15 @@ module Spree::GraphQL
                     before: "",
                     reverse: false
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   content(truncateAt: Int)
                   contentHtml
@@ -108,7 +245,17 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    # ...
+                    altText
+                    id
+                    originalSrc
+                    src
+                    transformedSrc(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int,
+                      preferredContentType: "PNG | JPG | WEBP"
+                    )
                   }
                   publishedAt
                   tags
@@ -122,40 +269,48 @@ module Spree::GraphQL
                   before: "",
                   reverse: false
                 ) {
-                  author {
-                    # ...
+                  edges {
+                    node {
+                      author {
+                        # ...
+                      }
+                      authorV2 {
+                        # ...
+                      }
+                      blog
+                      comments(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      content(truncateAt: Int)
+                      contentHtml
+                      excerpt(truncateAt: Int)
+                      excerptHtml
+                      handle
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      publishedAt
+                      tags
+                      title
+                      url
+                    }
                   }
-                  authorV2 {
-                    # ...
+                  pageInfo {
+                    hasNextPage
+                    hasPreviousPage
                   }
-                  blog
-                  comments(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false
-                  ) {
-                    # ...
-                  }
-                  content(truncateAt: Int)
-                  contentHtml
-                  excerpt(truncateAt: Int)
-                  excerptHtml
-                  handle
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
-                  }
-                  publishedAt
-                  tags
-                  title
-                  url
                 }
                 authors {
                   bio
@@ -180,14 +335,30 @@ module Spree::GraphQL
               blogByHandle: {
                 articleByHandle: {
                   author: {
-                    # ...
+                    bio: 'String',
+                    email: 'String',
+                    firstName: 'String',
+                    lastName: 'String',
+                    name: 'String',
                   },
                   authorV2: {
-                    # ...
+                    bio: 'String',
+                    email: 'String',
+                    firstName: 'String',
+                    lastName: 'String',
+                    name: 'String',
                   },
                   blog: 'Blog...',
                   comments: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   content: 'String',
                   contentHtml: 'HTML',
@@ -196,7 +367,11 @@ module Spree::GraphQL
                   handle: 'String',
                   id: 'ID',
                   image: {
-                    # ...
+                    altText: 'String',
+                    id: 'ID',
+                    originalSrc: 'URL',
+                    src: 'URL',
+                    transformedSrc: 'URL',
                   },
                   publishedAt: 'DateTime',
                   tags: 'String',
@@ -204,29 +379,37 @@ module Spree::GraphQL
                   url: 'URL',
                 },
                 articles: {
-                  author: {
-                    # ...
+                  edges: {
+                    node: {
+                      author: {
+                        # ...
+                      },
+                      authorV2: {
+                        # ...
+                      },
+                      blog: 'Blog...',
+                      comments: {
+                        # ...
+                      },
+                      content: 'String',
+                      contentHtml: 'HTML',
+                      excerpt: 'String',
+                      excerptHtml: 'HTML',
+                      handle: 'String',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      publishedAt: 'DateTime',
+                      tags: 'String',
+                      title: 'String',
+                      url: 'URL',
+                    },
                   },
-                  authorV2: {
-                    # ...
+                  pageInfo: {
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
-                  blog: 'Blog...',
-                  comments: {
-                    # ...
-                  },
-                  content: 'String',
-                  contentHtml: 'HTML',
-                  excerpt: 'String',
-                  excerptHtml: 'HTML',
-                  handle: 'String',
-                  id: 'ID',
-                  image: {
-                    # ...
-                  },
-                  publishedAt: 'DateTime',
-                  tags: 'String',
-                  title: 'String',
-                  url: 'URL',
                 },
                 authors: {
                   bio: 'String',
@@ -272,16 +455,72 @@ module Spree::GraphQL
               ) {
                 edges {
                   node {
-                    # ...
+                    articleByHandle(handle: "") {
+                      author {
+                        # ...
+                      }
+                      authorV2 {
+                        # ...
+                      }
+                      blog
+                      comments(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      content(truncateAt: Int)
+                      contentHtml
+                      excerpt(truncateAt: Int)
+                      excerptHtml
+                      handle
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      publishedAt
+                      tags
+                      title
+                      url
+                    }
+                    articles(
+                      first: Int,
+                      after: "",
+                      last: Int,
+                      before: "",
+                      reverse: false
+                    ) {
+                      edges {
+                        # ...
+                      }
+                      pageInfo {
+                        # ...
+                      }
+                    }
+                    authors {
+                      bio
+                      email
+                      firstName
+                      lastName
+                      name
+                    }
+                    handle
+                    id
+                    title
+                    url
                   }
                 }
                 pageInfo {
-                  hasNextPage {
-                    # ...
-                  }
-                  hasPreviousPage {
-                    # ...
-                  }
+                  hasNextPage
+                  hasPreviousPage
                 }
               }
             }
@@ -295,7 +534,50 @@ module Spree::GraphQL
               blogs: {
                 edges: {
                   node: {
-                    # ...
+                    articleByHandle: {
+                      author: {
+                        # ...
+                      },
+                      authorV2: {
+                        # ...
+                      },
+                      blog: 'Blog...',
+                      comments: {
+                        # ...
+                      },
+                      content: 'String',
+                      contentHtml: 'HTML',
+                      excerpt: 'String',
+                      excerptHtml: 'HTML',
+                      handle: 'String',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      publishedAt: 'DateTime',
+                      tags: 'String',
+                      title: 'String',
+                      url: 'URL',
+                    },
+                    articles: {
+                      edges: {
+                        # ...
+                      },
+                      pageInfo: {
+                        # ...
+                      },
+                    },
+                    authors: {
+                      bio: 'String',
+                      email: 'String',
+                      firstName: 'String',
+                      lastName: 'String',
+                      name: 'String',
+                    },
+                    handle: 'String',
+                    id: 'ID',
+                    title: 'String',
+                    url: 'URL',
                   },
                 },
                 pageInfo: {
@@ -332,10 +614,34 @@ module Spree::GraphQL
                   reverse: false
                 ) {
                   edges {
-                    # ...
+                    node {
+                      address1
+                      address2
+                      city
+                      company
+                      country
+                      countryCode
+                      countryCodeV2
+                      firstName
+                      formatted(
+                        withName: false,
+                        withCompany: true
+                      )
+                      formattedArea
+                      id
+                      lastName
+                      latitude
+                      longitude
+                      name
+                      phone
+                      province
+                      provinceCode
+                      zip
+                    }
                   }
                   pageInfo {
-                    # ...
+                    hasNextPage
+                    hasPreviousPage
                   }
                 }
                 createdAt
@@ -369,16 +675,25 @@ module Spree::GraphQL
                 id
                 lastIncompleteCheckout {
                   appliedGiftCards {
-                    # ...
+                    amountUsed
+                    balance
+                    id
+                    lastCharacters
                   }
                   availableShippingRates {
-                    # ...
+                    ready
+                    shippingRates {
+                      handle
+                      price
+                      title
+                    }
                   }
                   completedAt
                   createdAt
                   currencyCode
                   customAttributes {
-                    # ...
+                    key
+                    value
                   }
                   customer
                   discountApplications(
@@ -388,7 +703,15 @@ module Spree::GraphQL
                     before: "",
                     reverse: false
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   email
                   id
@@ -399,24 +722,153 @@ module Spree::GraphQL
                     before: "",
                     reverse: false
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   note
                   order {
-                    # ...
+                    currencyCode
+                    customerLocale
+                    customerUrl
+                    discountApplications(
+                      first: Int,
+                      after: "",
+                      last: Int,
+                      before: "",
+                      reverse: false
+                    ) {
+                      edges {
+                        # ...
+                      }
+                      pageInfo {
+                        # ...
+                      }
+                    }
+                    email
+                    id
+                    lineItems(
+                      first: Int,
+                      after: "",
+                      last: Int,
+                      before: "",
+                      reverse: false
+                    ) {
+                      edges {
+                        # ...
+                      }
+                      pageInfo {
+                        # ...
+                      }
+                    }
+                    name
+                    orderNumber
+                    phone
+                    processedAt
+                    shippingAddress {
+                      address1
+                      address2
+                      city
+                      company
+                      country
+                      countryCode
+                      countryCodeV2
+                      firstName
+                      formatted(
+                        withName: false,
+                        withCompany: true
+                      )
+                      formattedArea
+                      id
+                      lastName
+                      latitude
+                      longitude
+                      name
+                      phone
+                      province
+                      provinceCode
+                      zip
+                    }
+                    shippingDiscountAllocations {
+                      allocatedAmount {
+                        # ...
+                      }
+                      discountApplication {
+                        # ...
+                      }
+                    }
+                    statusUrl
+                    subtotalPrice
+                    successfulFulfillments(first: Int) {
+                      fulfillmentLineItems(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      trackingCompany
+                      trackingInfo(first: Int) {
+                        # ...
+                      }
+                    }
+                    totalPrice
+                    totalRefunded
+                    totalShippingPrice
+                    totalTax
                   }
                   orderStatusUrl
                   paymentDue
                   ready
                   requiresShipping
                   shippingAddress {
-                    # ...
+                    address1
+                    address2
+                    city
+                    company
+                    country
+                    countryCode
+                    countryCodeV2
+                    firstName
+                    formatted(
+                      withName: false,
+                      withCompany: true
+                    )
+                    formattedArea
+                    id
+                    lastName
+                    latitude
+                    longitude
+                    name
+                    phone
+                    province
+                    provinceCode
+                    zip
                   }
                   shippingDiscountAllocations {
-                    # ...
+                    allocatedAmount {
+                      amount
+                      currencyCode
+                    }
+                    discountApplication {
+                      allocationMethod
+                      targetSelection
+                      targetType
+                      value
+                    }
                   }
                   shippingLine {
-                    # ...
+                    handle
+                    price
+                    title
                   }
                   subtotalPrice
                   taxExempt
@@ -437,10 +889,54 @@ module Spree::GraphQL
                   query: ""
                 ) {
                   edges {
-                    # ...
+                    node {
+                      currencyCode
+                      customerLocale
+                      customerUrl
+                      discountApplications(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      email
+                      id
+                      lineItems(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      name
+                      orderNumber
+                      phone
+                      processedAt
+                      shippingAddress {
+                        # ...
+                      }
+                      shippingDiscountAllocations {
+                        # ...
+                      }
+                      statusUrl
+                      subtotalPrice
+                      successfulFulfillments(first: Int) {
+                        # ...
+                      }
+                      totalPrice
+                      totalRefunded
+                      totalShippingPrice
+                      totalTax
+                    }
                   }
                   pageInfo {
-                    # ...
+                    hasNextPage
+                    hasPreviousPage
                   }
                 }
                 phone
@@ -458,10 +954,31 @@ module Spree::GraphQL
                 acceptsMarketing: 'Boolean',
                 addresses: {
                   edges: {
-                    # ...
+                    node: {
+                      address1: 'String',
+                      address2: 'String',
+                      city: 'String',
+                      company: 'String',
+                      country: 'String',
+                      countryCode: 'String',
+                      countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                      firstName: 'String',
+                      formatted: 'String',
+                      formattedArea: 'String',
+                      id: 'ID',
+                      lastName: 'String',
+                      latitude: 'Float',
+                      longitude: 'Float',
+                      name: 'String',
+                      phone: 'String',
+                      province: 'String',
+                      provinceCode: 'String',
+                      zip: 'String',
+                    },
                   },
                   pageInfo: {
-                    # ...
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
                 },
                 createdAt: 'DateTime',
@@ -492,42 +1009,164 @@ module Spree::GraphQL
                 id: 'ID',
                 lastIncompleteCheckout: {
                   appliedGiftCards: {
-                    # ...
+                    amountUsed: 'Money',
+                    balance: 'Money',
+                    id: 'ID',
+                    lastCharacters: 'String',
                   },
                   availableShippingRates: {
-                    # ...
+                    ready: 'Boolean',
+                    shippingRates: {
+                      handle: 'String',
+                      price: 'Money',
+                      title: 'String',
+                    },
                   },
                   completedAt: 'DateTime',
                   createdAt: 'DateTime',
                   currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                   customAttributes: {
-                    # ...
+                    key: 'String',
+                    value: 'String',
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   note: 'String',
                   order: {
-                    # ...
+                    currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                    customerLocale: 'String',
+                    customerUrl: 'URL',
+                    discountApplications: {
+                      edges: {
+                        # ...
+                      },
+                      pageInfo: {
+                        # ...
+                      },
+                    },
+                    email: 'String',
+                    id: 'ID',
+                    lineItems: {
+                      edges: {
+                        # ...
+                      },
+                      pageInfo: {
+                        # ...
+                      },
+                    },
+                    name: 'String',
+                    orderNumber: 'Int',
+                    phone: 'String',
+                    processedAt: 'DateTime',
+                    shippingAddress: {
+                      address1: 'String',
+                      address2: 'String',
+                      city: 'String',
+                      company: 'String',
+                      country: 'String',
+                      countryCode: 'String',
+                      countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                      firstName: 'String',
+                      formatted: 'String',
+                      formattedArea: 'String',
+                      id: 'ID',
+                      lastName: 'String',
+                      latitude: 'Float',
+                      longitude: 'Float',
+                      name: 'String',
+                      phone: 'String',
+                      province: 'String',
+                      provinceCode: 'String',
+                      zip: 'String',
+                    },
+                    shippingDiscountAllocations: {
+                      allocatedAmount: {
+                        # ...
+                      },
+                      discountApplication: {
+                        # ...
+                      },
+                    },
+                    statusUrl: 'URL',
+                    subtotalPrice: 'Money',
+                    successfulFulfillments: {
+                      fulfillmentLineItems: {
+                        # ...
+                      },
+                      trackingCompany: 'String',
+                      trackingInfo: {
+                        # ...
+                      },
+                    },
+                    totalPrice: 'Money',
+                    totalRefunded: 'Money',
+                    totalShippingPrice: 'Money',
+                    totalTax: 'Money',
                   },
                   orderStatusUrl: 'URL',
                   paymentDue: 'Money',
                   ready: 'Boolean',
                   requiresShipping: 'Boolean',
                   shippingAddress: {
-                    # ...
+                    address1: 'String',
+                    address2: 'String',
+                    city: 'String',
+                    company: 'String',
+                    country: 'String',
+                    countryCode: 'String',
+                    countryCodeV2: 'AF | AX | AL | DZ | AD | AO | AI | AG | AR | AM | AW | AU | AT | AZ | BS | BH | BD | BB | BY | BE | BZ | BJ | BM | BT | BO | BQ | BA | BW | BV | BR | IO | BN | BG | BF | BI | KH | CA | CV | KY | CF | TD | CL | CN | CX | CC | CO | KM | CG | CD | CK | CR | HR | CU | CW | CY | CZ | CI | DK | DJ | DM | DO | EC | EG | SV | GQ | ER | EE | ET | FK | FO | FJ | FI | FR | GF | PF | TF | GA | GM | GE | DE | GH | GI | GR | GL | GD | GP | GT | GG | GN | GW | GY | HT | HM | VA | HN | HK | HU | IS | IN | ID | IR | IQ | IE | IM | IL | IT | JM | JP | JE | JO | KZ | KE | KI | KP | XK | KW | KG | LA | LV | LB | LS | LR | LY | LI | LT | LU | MO | MK | MG | MW | MY | MV | ML | MT | MQ | MR | MU | YT | MX | MD | MC | MN | ME | MS | MA | MZ | MM | NA | NR | NP | NL | AN | NC | NZ | NI | NE | NG | NU | NF | NO | OM | PK | PS | PA | PG | PY | PE | PH | PN | PL | PT | QA | CM | RE | RO | RU | RW | BL | SH | KN | LC | MF | PM | WS | SM | ST | SA | SN | RS | SC | SL | SG | SX | SK | SI | SB | SO | ZA | GS | KR | SS | ES | LK | VC | SD | SR | SJ | SZ | SE | CH | SY | TW | TJ | TZ | TH | TL | TG | TK | TO | TT | TN | TR | TM | TC | TV | UG | UA | AE | GB | US | UM | UY | UZ | VU | VE | VN | VG | WF | EH | YE | ZM | ZW',
+                    firstName: 'String',
+                    formatted: 'String',
+                    formattedArea: 'String',
+                    id: 'ID',
+                    lastName: 'String',
+                    latitude: 'Float',
+                    longitude: 'Float',
+                    name: 'String',
+                    phone: 'String',
+                    province: 'String',
+                    provinceCode: 'String',
+                    zip: 'String',
                   },
                   shippingDiscountAllocations: {
-                    # ...
+                    allocatedAmount: {
+                      amount: 'Decimal',
+                      currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                    },
+                    discountApplication: {
+                      allocationMethod: 'ACROSS | EACH | ONE',
+                      targetSelection: 'ALL | ENTITLED | EXPLICIT',
+                      targetType: 'LINE_ITEM | SHIPPING_LINE',
+                      value: PricingPercentageValue | MoneyV2,
+                    },
                   },
                   shippingLine: {
-                    # ...
+                    handle: 'String',
+                    price: 'Money',
+                    title: 'String',
                   },
                   subtotalPrice: 'Money',
                   taxExempt: 'Boolean',
@@ -540,10 +1179,42 @@ module Spree::GraphQL
                 lastName: 'String',
                 orders: {
                   edges: {
-                    # ...
+                    node: {
+                      currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                      customerLocale: 'String',
+                      customerUrl: 'URL',
+                      discountApplications: {
+                        # ...
+                      },
+                      email: 'String',
+                      id: 'ID',
+                      lineItems: {
+                        # ...
+                      },
+                      name: 'String',
+                      orderNumber: 'Int',
+                      phone: 'String',
+                      processedAt: 'DateTime',
+                      shippingAddress: {
+                        # ...
+                      },
+                      shippingDiscountAllocations: {
+                        # ...
+                      },
+                      statusUrl: 'URL',
+                      subtotalPrice: 'Money',
+                      successfulFulfillments: {
+                        # ...
+                      },
+                      totalPrice: 'Money',
+                      totalRefunded: 'Money',
+                      totalShippingPrice: 'Money',
+                      totalTax: 'Money',
+                    },
                   },
                   pageInfo: {
-                    # ...
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
                 },
                 phone: 'String',
@@ -644,10 +1315,48 @@ module Spree::GraphQL
                   query: ""
                 ) {
                   edges {
-                    # ...
+                    node {
+                      author {
+                        # ...
+                      }
+                      authorV2 {
+                        # ...
+                      }
+                      blog {
+                        # ...
+                      }
+                      comments(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      content(truncateAt: Int)
+                      contentHtml
+                      excerpt(truncateAt: Int)
+                      excerptHtml
+                      handle
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      publishedAt
+                      tags
+                      title
+                      url
+                    }
                   }
                   pageInfo {
-                    # ...
+                    hasNextPage
+                    hasPreviousPage
                   }
                 }
                 blogs(
@@ -660,10 +1369,31 @@ module Spree::GraphQL
                   query: ""
                 ) {
                   edges {
-                    # ...
+                    node {
+                      articleByHandle(handle: "") {
+                        # ...
+                      }
+                      articles(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      authors {
+                        # ...
+                      }
+                      handle
+                      id
+                      title
+                      url
+                    }
                   }
                   pageInfo {
-                    # ...
+                    hasNextPage
+                    hasPreviousPage
                   }
                 }
                 cardVaultUrl
@@ -678,7 +1408,17 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    # ...
+                    altText
+                    id
+                    originalSrc
+                    src
+                    transformedSrc(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int,
+                      preferredContentType: "PNG | JPG | WEBP"
+                    )
                   }
                   products(
                     first: Int,
@@ -688,7 +1428,15 @@ module Spree::GraphQL
                     reverse: false,
                     sortKey: "TITLE | PRICE | BEST_SELLING | CREATED | ID | MANUAL | COLLECTION_DEFAULT | RELEVANCE"
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   title
                   updatedAt
@@ -703,10 +1451,36 @@ module Spree::GraphQL
                   query: ""
                 ) {
                   edges {
-                    # ...
+                    node {
+                      description(truncateAt: Int)
+                      descriptionHtml
+                      handle
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      products(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false,
+                        sortKey: "TITLE | PRICE | BEST_SELLING | CREATED | ID | MANUAL | COLLECTION_DEFAULT | RELEVANCE"
+                      ) {
+                        # ...
+                      }
+                      title
+                      updatedAt
+                    }
                   }
                   pageInfo {
-                    # ...
+                    hasNextPage
+                    hasPreviousPage
                   }
                 }
                 currencyCode
@@ -741,7 +1515,15 @@ module Spree::GraphQL
                     before: "",
                     reverse: false
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   createdAt
                   description(truncateAt: Int)
@@ -760,14 +1542,31 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   onlineStoreUrl
                   options(first: Int) {
-                    # ...
+                    id
+                    name
+                    values
                   }
                   priceRange {
-                    # ...
+                    maxVariantPrice {
+                      amount
+                      currencyCode
+                    }
+                    minVariantPrice {
+                      amount
+                      currencyCode
+                    }
                   }
                   productType
                   publishedAt
@@ -780,7 +1579,38 @@ module Spree::GraphQL
                       value: "String"
                     }
                   ) {
-                    # ...
+                    available
+                    availableForSale
+                    compareAtPrice
+                    id
+                    image(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int
+                    ) {
+                      altText
+                      id
+                      originalSrc
+                      src
+                      transformedSrc(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int,
+                        preferredContentType: "PNG | JPG | WEBP"
+                      )
+                    }
+                    price
+                    product
+                    selectedOptions {
+                      name
+                      value
+                    }
+                    sku
+                    title
+                    weight
+                    weightUnit
                   }
                   variants(
                     first: Int,
@@ -790,16 +1620,25 @@ module Spree::GraphQL
                     reverse: false,
                     sortKey: "TITLE | SKU | POSITION | ID | RELEVANCE"
                   ) {
-                    # ...
+                    edges {
+                      node {
+                        # ...
+                      }
+                    }
+                    pageInfo {
+                      hasNextPage
+                      hasPreviousPage
+                    }
                   }
                   vendor
                 }
                 productTypes(first: Int) {
                   edges {
-                    # ...
+                    node
                   }
                   pageInfo {
-                    # ...
+                    hasNextPage
+                    hasPreviousPage
                   }
                 }
                 products(
@@ -812,10 +1651,72 @@ module Spree::GraphQL
                   query: ""
                 ) {
                   edges {
-                    # ...
+                    node {
+                      availableForSale
+                      collections(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false
+                      ) {
+                        # ...
+                      }
+                      createdAt
+                      description(truncateAt: Int)
+                      descriptionHtml
+                      handle
+                      id
+                      images(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false,
+                        sortKey: "CREATED_AT | POSITION | ID | RELEVANCE",
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      onlineStoreUrl
+                      options(first: Int) {
+                        # ...
+                      }
+                      priceRange {
+                        # ...
+                      }
+                      productType
+                      publishedAt
+                      tags
+                      title
+                      updatedAt
+                      variantBySelectedOptions(
+                        selectedOptions: {
+                          name: "String",
+                          value: "String"
+                        }
+                      ) {
+                        # ...
+                      }
+                      variants(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false,
+                        sortKey: "TITLE | SKU | POSITION | ID | RELEVANCE"
+                      ) {
+                        # ...
+                      }
+                      vendor
+                    }
                   }
                   pageInfo {
-                    # ...
+                    hasNextPage
+                    hasPreviousPage
                   }
                 }
                 refundPolicy {
@@ -844,18 +1745,60 @@ module Spree::GraphQL
               shop: {
                 articles: {
                   edges: {
-                    # ...
+                    node: {
+                      author: {
+                        # ...
+                      },
+                      authorV2: {
+                        # ...
+                      },
+                      blog: {
+                        # ...
+                      },
+                      comments: {
+                        # ...
+                      },
+                      content: 'String',
+                      contentHtml: 'HTML',
+                      excerpt: 'String',
+                      excerptHtml: 'HTML',
+                      handle: 'String',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      publishedAt: 'DateTime',
+                      tags: 'String',
+                      title: 'String',
+                      url: 'URL',
+                    },
                   },
                   pageInfo: {
-                    # ...
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
                 },
                 blogs: {
                   edges: {
-                    # ...
+                    node: {
+                      articleByHandle: {
+                        # ...
+                      },
+                      articles: {
+                        # ...
+                      },
+                      authors: {
+                        # ...
+                      },
+                      handle: 'String',
+                      id: 'ID',
+                      title: 'String',
+                      url: 'URL',
+                    },
                   },
                   pageInfo: {
-                    # ...
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
                 },
                 cardVaultUrl: 'URL',
@@ -865,20 +1808,46 @@ module Spree::GraphQL
                   handle: 'String',
                   id: 'ID',
                   image: {
-                    # ...
+                    altText: 'String',
+                    id: 'ID',
+                    originalSrc: 'URL',
+                    src: 'URL',
+                    transformedSrc: 'URL',
                   },
                   products: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   title: 'String',
                   updatedAt: 'DateTime',
                 },
                 collections: {
                   edges: {
-                    # ...
+                    node: {
+                      description: 'String',
+                      descriptionHtml: 'HTML',
+                      handle: 'String',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      products: {
+                        # ...
+                      },
+                      title: 'String',
+                      updatedAt: 'DateTime',
+                    },
                   },
                   pageInfo: {
-                    # ...
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
                 },
                 currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
@@ -907,7 +1876,15 @@ module Spree::GraphQL
                 productByHandle: {
                   availableForSale: 'Boolean',
                   collections: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   createdAt: 'DateTime',
                   description: 'String',
@@ -915,14 +1892,31 @@ module Spree::GraphQL
                   handle: 'String',
                   id: 'ID',
                   images: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   onlineStoreUrl: 'URL',
                   options: {
-                    # ...
+                    id: 'ID',
+                    name: 'String',
+                    values: 'String',
                   },
                   priceRange: {
-                    # ...
+                    maxVariantPrice: {
+                      amount: 'Decimal',
+                      currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                    },
+                    minVariantPrice: {
+                      amount: 'Decimal',
+                      currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
+                    },
                   },
                   productType: 'String',
                   publishedAt: 'DateTime',
@@ -930,27 +1924,89 @@ module Spree::GraphQL
                   title: 'String',
                   updatedAt: 'DateTime',
                   variantBySelectedOptions: {
-                    # ...
+                    available: 'Boolean',
+                    availableForSale: 'Boolean',
+                    compareAtPrice: 'Money',
+                    id: 'ID',
+                    image: {
+                      altText: 'String',
+                      id: 'ID',
+                      originalSrc: 'URL',
+                      src: 'URL',
+                      transformedSrc: 'URL',
+                    },
+                    price: 'Money',
+                    product: 'Product...',
+                    selectedOptions: {
+                      name: 'String',
+                      value: 'String',
+                    },
+                    sku: 'String',
+                    title: 'String',
+                    weight: 'Float',
+                    weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
                   },
                   variants: {
-                    # ...
+                    edges: {
+                      node: {
+                        # ...
+                      },
+                    },
+                    pageInfo: {
+                      hasNextPage: true,
+                      hasPreviousPage: false,
+                    },
                   },
                   vendor: 'String',
                 },
                 productTypes: {
                   edges: {
-                    # ...
+                    node: 'String',
                   },
                   pageInfo: {
-                    # ...
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
                 },
                 products: {
                   edges: {
-                    # ...
+                    node: {
+                      availableForSale: 'Boolean',
+                      collections: {
+                        # ...
+                      },
+                      createdAt: 'DateTime',
+                      description: 'String',
+                      descriptionHtml: 'HTML',
+                      handle: 'String',
+                      id: 'ID',
+                      images: {
+                        # ...
+                      },
+                      onlineStoreUrl: 'URL',
+                      options: {
+                        # ...
+                      },
+                      priceRange: {
+                        # ...
+                      },
+                      productType: 'String',
+                      publishedAt: 'DateTime',
+                      tags: 'String',
+                      title: 'String',
+                      updatedAt: 'DateTime',
+                      variantBySelectedOptions: {
+                        # ...
+                      },
+                      variants: {
+                        # ...
+                      },
+                      vendor: 'String',
+                    },
                   },
                   pageInfo: {
-                    # ...
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
                 },
                 refundPolicy: {

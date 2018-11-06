@@ -190,28 +190,38 @@ module Spree::GraphQL
                   before: "",
                   reverse: false
                 ) {
-                  description(truncateAt: Int)
-                  descriptionHtml
-                  handle
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
+                  edges {
+                    node {
+                      description(truncateAt: Int)
+                      descriptionHtml
+                      handle
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      products(
+                        first: Int,
+                        after: "",
+                        last: Int,
+                        before: "",
+                        reverse: false,
+                        sortKey: "TITLE | PRICE | BEST_SELLING | CREATED | ID | MANUAL | COLLECTION_DEFAULT | RELEVANCE"
+                      ) {
+                        # ...
+                      }
+                      title
+                      updatedAt
+                    }
                   }
-                  products(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "TITLE | PRICE | BEST_SELLING | CREATED | ID | MANUAL | COLLECTION_DEFAULT | RELEVANCE"
-                  )
-                  title
-                  updatedAt
+                  pageInfo {
+                    hasNextPage
+                    hasPreviousPage
+                  }
                 }
                 createdAt
                 description(truncateAt: Int)
@@ -230,17 +240,25 @@ module Spree::GraphQL
                   crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                   scale: Int
                 ) {
-                  altText
-                  id
-                  originalSrc
-                  src
-                  transformedSrc(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int,
-                    preferredContentType: "PNG | JPG | WEBP"
-                  )
+                  edges {
+                    node {
+                      altText
+                      id
+                      originalSrc
+                      src
+                      transformedSrc(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int,
+                        preferredContentType: "PNG | JPG | WEBP"
+                      )
+                    }
+                  }
+                  pageInfo {
+                    hasNextPage
+                    hasPreviousPage
+                  }
                 }
                 onlineStoreUrl
                 options(first: Int) {
@@ -250,10 +268,12 @@ module Spree::GraphQL
                 }
                 priceRange {
                   maxVariantPrice {
-                    # ...
+                    amount
+                    currencyCode
                   }
                   minVariantPrice {
-                    # ...
+                    amount
+                    currencyCode
                   }
                 }
                 productType
@@ -277,12 +297,23 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    # ...
+                    altText
+                    id
+                    originalSrc
+                    src
+                    transformedSrc(
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int,
+                      preferredContentType: "PNG | JPG | WEBP"
+                    )
                   }
                   price
                   product
                   selectedOptions {
-                    # ...
+                    name
+                    value
                   }
                   sku
                   title
@@ -297,27 +328,35 @@ module Spree::GraphQL
                   reverse: false,
                   sortKey: "TITLE | SKU | POSITION | ID | RELEVANCE"
                 ) {
-                  available
-                  availableForSale
-                  compareAtPrice
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
+                  edges {
+                    node {
+                      available
+                      availableForSale
+                      compareAtPrice
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      price
+                      product
+                      selectedOptions {
+                        # ...
+                      }
+                      sku
+                      title
+                      weight
+                      weightUnit
+                    }
                   }
-                  price
-                  product
-                  selectedOptions {
-                    # ...
+                  pageInfo {
+                    hasNextPage
+                    hasPreviousPage
                   }
-                  sku
-                  title
-                  weight
-                  weightUnit
                 }
                 vendor
               }
@@ -332,16 +371,26 @@ module Spree::GraphQL
               product: {
                 availableForSale: 'Boolean',
                 collections: {
-                  description: 'String',
-                  descriptionHtml: 'HTML',
-                  handle: 'String',
-                  id: 'ID',
-                  image: {
-                    # ...
+                  edges: {
+                    node: {
+                      description: 'String',
+                      descriptionHtml: 'HTML',
+                      handle: 'String',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      products: {
+                        # ...
+                      },
+                      title: 'String',
+                      updatedAt: 'DateTime',
+                    },
                   },
-                  products: 'Product...',
-                  title: 'String',
-                  updatedAt: 'DateTime',
+                  pageInfo: {
+                    hasNextPage: true,
+                    hasPreviousPage: false,
+                  },
                 },
                 createdAt: 'DateTime',
                 description: 'String',
@@ -349,11 +398,19 @@ module Spree::GraphQL
                 handle: 'String',
                 id: 'ID',
                 images: {
-                  altText: 'String',
-                  id: 'ID',
-                  originalSrc: 'URL',
-                  src: 'URL',
-                  transformedSrc: 'URL',
+                  edges: {
+                    node: {
+                      altText: 'String',
+                      id: 'ID',
+                      originalSrc: 'URL',
+                      src: 'URL',
+                      transformedSrc: 'URL',
+                    },
+                  },
+                  pageInfo: {
+                    hasNextPage: true,
+                    hasPreviousPage: false,
+                  },
                 },
                 onlineStoreUrl: 'URL',
                 options: {
@@ -363,10 +420,12 @@ module Spree::GraphQL
                 },
                 priceRange: {
                   maxVariantPrice: {
-                    # ...
+                    amount: 'Decimal',
+                    currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                   },
                   minVariantPrice: {
-                    # ...
+                    amount: 'Decimal',
+                    currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                   },
                 },
                 productType: 'String',
@@ -380,12 +439,17 @@ module Spree::GraphQL
                   compareAtPrice: 'Money',
                   id: 'ID',
                   image: {
-                    # ...
+                    altText: 'String',
+                    id: 'ID',
+                    originalSrc: 'URL',
+                    src: 'URL',
+                    transformedSrc: 'URL',
                   },
                   price: 'Money',
                   product: 'Product...',
                   selectedOptions: {
-                    # ...
+                    name: 'String',
+                    value: 'String',
                   },
                   sku: 'String',
                   title: 'String',
@@ -393,22 +457,30 @@ module Spree::GraphQL
                   weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
                 },
                 variants: {
-                  available: 'Boolean',
-                  availableForSale: 'Boolean',
-                  compareAtPrice: 'Money',
-                  id: 'ID',
-                  image: {
-                    # ...
+                  edges: {
+                    node: {
+                      available: 'Boolean',
+                      availableForSale: 'Boolean',
+                      compareAtPrice: 'Money',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      price: 'Money',
+                      product: 'Product...',
+                      selectedOptions: {
+                        # ...
+                      },
+                      sku: 'String',
+                      title: 'String',
+                      weight: 'Float',
+                      weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+                    },
                   },
-                  price: 'Money',
-                  product: 'Product...',
-                  selectedOptions: {
-                    # ...
+                  pageInfo: {
+                    hasNextPage: true,
+                    hasPreviousPage: false,
                   },
-                  sku: 'String',
-                  title: 'String',
-                  weight: 'Float',
-                  weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
                 },
                 vendor: 'String',
               },

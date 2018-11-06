@@ -176,13 +176,9 @@ module Spree::GraphQL
     end
 
     # products: List of products in the collection.
-    # @param first [Types::Int]
-    # @param after [Types::String]
-    # @param last [Types::Int]
-    # @param before [Types::String]
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ProductCollectionSortKeys] ('COLLECTION_DEFAULT')
-    # @return [Types::Product!]
+    # @return [Types::Product.connection_type!]
     describe 'products' do
       let!(:query) {
         %q{
@@ -196,144 +192,116 @@ module Spree::GraphQL
                 reverse: false,
                 sortKey: "TITLE | PRICE | BEST_SELLING | CREATED | ID | MANUAL | COLLECTION_DEFAULT | RELEVANCE"
               ) {
-                availableForSale
-                collections(
-                  first: Int,
-                  after: "",
-                  last: Int,
-                  before: "",
-                  reverse: false
-                ) {
-                  description(truncateAt: Int)
-                  descriptionHtml
-                  handle
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
+                edges {
+                  node {
+                    availableForSale
+                    collections(
+                      first: Int,
+                      after: "",
+                      last: Int,
+                      before: "",
+                      reverse: false
+                    ) {
+                      edges {
+                        # ...
+                      }
+                      pageInfo {
+                        # ...
+                      }
+                    }
+                    createdAt
+                    description(truncateAt: Int)
+                    descriptionHtml
+                    handle
+                    id
+                    images(
+                      first: Int,
+                      after: "",
+                      last: Int,
+                      before: "",
+                      reverse: false,
+                      sortKey: "CREATED_AT | POSITION | ID | RELEVANCE",
+                      maxWidth: Int,
+                      maxHeight: Int,
+                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                      scale: Int
+                    ) {
+                      edges {
+                        # ...
+                      }
+                      pageInfo {
+                        # ...
+                      }
+                    }
+                    onlineStoreUrl
+                    options(first: Int) {
+                      id
+                      name
+                      values
+                    }
+                    priceRange {
+                      maxVariantPrice {
+                        # ...
+                      }
+                      minVariantPrice {
+                        # ...
+                      }
+                    }
+                    productType
+                    publishedAt
+                    tags
+                    title
+                    updatedAt
+                    variantBySelectedOptions(
+                      selectedOptions: {
+                        name: "String",
+                        value: "String"
+                      }
+                    ) {
+                      available
+                      availableForSale
+                      compareAtPrice
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      price
+                      product
+                      selectedOptions {
+                        # ...
+                      }
+                      sku
+                      title
+                      weight
+                      weightUnit
+                    }
+                    variants(
+                      first: Int,
+                      after: "",
+                      last: Int,
+                      before: "",
+                      reverse: false,
+                      sortKey: "TITLE | SKU | POSITION | ID | RELEVANCE"
+                    ) {
+                      edges {
+                        # ...
+                      }
+                      pageInfo {
+                        # ...
+                      }
+                    }
+                    vendor
                   }
-                  products(
-                    first: Int,
-                    after: "",
-                    last: Int,
-                    before: "",
-                    reverse: false,
-                    sortKey: "TITLE | PRICE | BEST_SELLING | CREATED | ID | MANUAL | COLLECTION_DEFAULT | RELEVANCE"
-                  )
-                  title
-                  updatedAt
                 }
-                createdAt
-                description(truncateAt: Int)
-                descriptionHtml
-                handle
-                id
-                images(
-                  first: Int,
-                  after: "",
-                  last: Int,
-                  before: "",
-                  reverse: false,
-                  sortKey: "CREATED_AT | POSITION | ID | RELEVANCE",
-                  maxWidth: Int,
-                  maxHeight: Int,
-                  crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                  scale: Int
-                ) {
-                  altText
-                  id
-                  originalSrc
-                  src
-                  transformedSrc(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int,
-                    preferredContentType: "PNG | JPG | WEBP"
-                  )
+                pageInfo {
+                  hasNextPage
+                  hasPreviousPage
                 }
-                onlineStoreUrl
-                options(first: Int) {
-                  id
-                  name
-                  values
-                }
-                priceRange {
-                  maxVariantPrice {
-                    # ...
-                  }
-                  minVariantPrice {
-                    # ...
-                  }
-                }
-                productType
-                publishedAt
-                tags
-                title
-                updatedAt
-                variantBySelectedOptions(
-                  selectedOptions: {
-                    name: "String",
-                    value: "String"
-                  }
-                ) {
-                  available
-                  availableForSale
-                  compareAtPrice
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
-                  }
-                  price
-                  product
-                  selectedOptions {
-                    # ...
-                  }
-                  sku
-                  title
-                  weight
-                  weightUnit
-                }
-                variants(
-                  first: Int,
-                  after: "",
-                  last: Int,
-                  before: "",
-                  reverse: false,
-                  sortKey: "TITLE | SKU | POSITION | ID | RELEVANCE"
-                ) {
-                  available
-                  availableForSale
-                  compareAtPrice
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
-                  }
-                  price
-                  product
-                  selectedOptions {
-                    # ...
-                  }
-                  sku
-                  title
-                  weight
-                  weightUnit
-                }
-                vendor
               }
             }
           }
@@ -344,87 +312,82 @@ module Spree::GraphQL
           data: {
             collection: {
               products: {
-                availableForSale: 'Boolean',
-                collections: {
-                  description: 'String',
-                  descriptionHtml: 'HTML',
-                  handle: 'String',
-                  id: 'ID',
-                  image: {
-                    # ...
+                edges: {
+                  node: {
+                    availableForSale: 'Boolean',
+                    collections: {
+                      edges: {
+                        # ...
+                      },
+                      pageInfo: {
+                        # ...
+                      },
+                    },
+                    createdAt: 'DateTime',
+                    description: 'String',
+                    descriptionHtml: 'HTML',
+                    handle: 'String',
+                    id: 'ID',
+                    images: {
+                      edges: {
+                        # ...
+                      },
+                      pageInfo: {
+                        # ...
+                      },
+                    },
+                    onlineStoreUrl: 'URL',
+                    options: {
+                      id: 'ID',
+                      name: 'String',
+                      values: 'String',
+                    },
+                    priceRange: {
+                      maxVariantPrice: {
+                        # ...
+                      },
+                      minVariantPrice: {
+                        # ...
+                      },
+                    },
+                    productType: 'String',
+                    publishedAt: 'DateTime',
+                    tags: 'String',
+                    title: 'String',
+                    updatedAt: 'DateTime',
+                    variantBySelectedOptions: {
+                      available: 'Boolean',
+                      availableForSale: 'Boolean',
+                      compareAtPrice: 'Money',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      price: 'Money',
+                      product: 'Product...',
+                      selectedOptions: {
+                        # ...
+                      },
+                      sku: 'String',
+                      title: 'String',
+                      weight: 'Float',
+                      weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+                    },
+                    variants: {
+                      edges: {
+                        # ...
+                      },
+                      pageInfo: {
+                        # ...
+                      },
+                    },
+                    vendor: 'String',
                   },
-                  products: 'Product...',
-                  title: 'String',
-                  updatedAt: 'DateTime',
                 },
-                createdAt: 'DateTime',
-                description: 'String',
-                descriptionHtml: 'HTML',
-                handle: 'String',
-                id: 'ID',
-                images: {
-                  altText: 'String',
-                  id: 'ID',
-                  originalSrc: 'URL',
-                  src: 'URL',
-                  transformedSrc: 'URL',
+                pageInfo: {
+                  hasNextPage: true,
+                  hasPreviousPage: false,
                 },
-                onlineStoreUrl: 'URL',
-                options: {
-                  id: 'ID',
-                  name: 'String',
-                  values: 'String',
-                },
-                priceRange: {
-                  maxVariantPrice: {
-                    # ...
-                  },
-                  minVariantPrice: {
-                    # ...
-                  },
-                },
-                productType: 'String',
-                publishedAt: 'DateTime',
-                tags: 'String',
-                title: 'String',
-                updatedAt: 'DateTime',
-                variantBySelectedOptions: {
-                  available: 'Boolean',
-                  availableForSale: 'Boolean',
-                  compareAtPrice: 'Money',
-                  id: 'ID',
-                  image: {
-                    # ...
-                  },
-                  price: 'Money',
-                  product: 'Product...',
-                  selectedOptions: {
-                    # ...
-                  },
-                  sku: 'String',
-                  title: 'String',
-                  weight: 'Float',
-                  weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
-                },
-                variants: {
-                  available: 'Boolean',
-                  availableForSale: 'Boolean',
-                  compareAtPrice: 'Money',
-                  id: 'ID',
-                  image: {
-                    # ...
-                  },
-                  price: 'Money',
-                  product: 'Product...',
-                  selectedOptions: {
-                    # ...
-                  },
-                  sku: 'String',
-                  title: 'String',
-                  weight: 'Float',
-                  weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
-                },
-                vendor: 'String',
               },
             }
           },

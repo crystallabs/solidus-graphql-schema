@@ -10,12 +10,8 @@ class Spree::GraphQL::Schema::Types::Article < Spree::GraphQL::Schema::Types::Ba
   field :blog, ::Spree::GraphQL::Schema::Types::Blog, null: false do
     description %q{The blog that the article belongs to.}
   end
-  field :comments, ::Spree::GraphQL::Schema::Types::Comment, null: false do
+  field :comments, ::Spree::GraphQL::Schema::Types::Comment.connection_type, null: false do
     description %q{List of comments posted on the article.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
-    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
-    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
-    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
   end
   field :content, ::GraphQL::Types::String, null: false do

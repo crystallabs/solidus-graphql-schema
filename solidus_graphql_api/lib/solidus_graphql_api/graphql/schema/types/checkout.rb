@@ -24,12 +24,8 @@ the shipping address is valid.
   field :custom_attributes, [::Spree::GraphQL::Schema::Types::Attribute], null: false do
     description %q{A list of extra information that is added to the checkout.}
   end
-  field :discount_applications, ::Spree::GraphQL::Schema::Interfaces::DiscountApplication, null: false do
+  field :discount_applications, ::Spree::GraphQL::Schema::Interfaces::DiscountApplication.connection_type, null: false do
     description %q{Discounts that have been applied on the checkout.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
-    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
-    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
-    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
   end
   field :email, ::GraphQL::Types::String, null: true do
@@ -38,12 +34,8 @@ the shipping address is valid.
   field :id, ::GraphQL::Types::ID, null: false do
     description %q{Globally unique identifier.}
   end
-  field :line_items, ::Spree::GraphQL::Schema::Types::CheckoutLineItem, null: false do
+  field :line_items, ::Spree::GraphQL::Schema::Types::CheckoutLineItem.connection_type, null: false do
     description %q{A list of line item objects, each one containing information about an item in the checkout.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
-    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
-    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
-    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
   end
   field :note, ::GraphQL::Types::String, null: true do

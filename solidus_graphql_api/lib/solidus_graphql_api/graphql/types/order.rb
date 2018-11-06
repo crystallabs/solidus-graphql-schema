@@ -21,13 +21,9 @@ module Spree::GraphQL::Types::Order
   end
 
   # discountApplications: Discounts that have been applied on the order.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Interfaces::DiscountApplication!]
-  def discount_applications(first:, after:, last:, before:, reverse:)
+  # @return [Interfaces::DiscountApplication.connection_type!]
+  def discount_applications(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -44,13 +40,9 @@ module Spree::GraphQL::Types::Order
   end
 
   # lineItems: List of the order’s line items.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::OrderLineItem!]
-  def line_items(first:, after:, last:, before:, reverse:)
+  # @return [Types::OrderLineItem.connection_type!]
+  def line_items(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 

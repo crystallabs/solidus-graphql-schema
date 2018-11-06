@@ -26,12 +26,8 @@ Limit of 255 characters.
     argument :crop, ::Spree::GraphQL::Schema::Types::CropRegion, required: false, description: %q{Crops the image according to the specified region. This argument is deprecated: Use `crop` on `Image.transformedSrc` instead.}
     argument :scale, ::GraphQL::Types::Int, required: false, default_value: 1, description: %q{Image size multiplier for high-resolution retina displays. Must be between 1 and 3. This argument is deprecated: Use `scale` on `Image.transformedSrc` instead.}
   end
-  field :products, ::Spree::GraphQL::Schema::Types::Product, null: false do
+  field :products, ::Spree::GraphQL::Schema::Types::Product.connection_type, null: false do
     description %q{List of products in the collection.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
-    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
-    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
-    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
     argument :sort_key, ::Spree::GraphQL::Schema::Types::ProductCollectionSortKeys, required: false, default_value: 'COLLECTION_DEFAULT', description: %q{Sort the underlying list by the given key.}
   end

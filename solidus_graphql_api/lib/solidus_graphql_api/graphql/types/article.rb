@@ -15,13 +15,9 @@ module Spree::GraphQL::Types::Article
   end
 
   # comments: List of comments posted on the article.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::Comment!]
-  def comments(first:, after:, last:, before:, reverse:)
+  # @return [Types::Comment.connection_type!]
+  def comments(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 

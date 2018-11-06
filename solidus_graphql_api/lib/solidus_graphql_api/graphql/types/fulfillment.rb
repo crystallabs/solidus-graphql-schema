@@ -2,13 +2,9 @@
 module Spree::GraphQL::Types::Fulfillment
 
   # fulfillmentLineItems: List of the fulfillment's line items.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::FulfillmentLineItem!]
-  def fulfillment_line_items(first:, after:, last:, before:, reverse:)
+  # @return [Types::FulfillmentLineItem.connection_type!]
+  def fulfillment_line_items(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 

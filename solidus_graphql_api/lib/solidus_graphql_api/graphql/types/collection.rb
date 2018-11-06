@@ -38,14 +38,10 @@ module Spree::GraphQL::Types::Collection
   end
 
   # products: List of products in the collection.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::ProductCollectionSortKeys] ('COLLECTION_DEFAULT') Sort the underlying list by the given key.
-  # @return [Types::Product!]
-  def products(first:, after:, last:, before:, reverse:, sort_key:)
+  # @return [Types::Product.connection_type!]
+  def products(reverse:, sort_key:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 

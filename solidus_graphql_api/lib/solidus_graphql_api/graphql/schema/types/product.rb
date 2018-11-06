@@ -8,12 +8,8 @@ For example, a digital download (such as a movie, music or ebook file) also qual
   field :available_for_sale, ::GraphQL::Types::Boolean, null: false do
     description %q{Indicates if at least one product variant is available for sale.}
   end
-  field :collections, ::Spree::GraphQL::Schema::Types::Collection, null: false do
+  field :collections, ::Spree::GraphQL::Schema::Types::Collection.connection_type, null: false do
     description %q{List of collections a product belongs to.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
-    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
-    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
-    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
   end
   field :created_at, ::Spree::GraphQL::Schema::Types::DateTime, null: false do
@@ -34,12 +30,8 @@ They are used by the Liquid templating language to refer to objects.
   field :id, ::GraphQL::Types::ID, null: false do
     description %q{Globally unique identifier.}
   end
-  field :images, ::Spree::GraphQL::Schema::Types::Image, null: false do
+  field :images, ::Spree::GraphQL::Schema::Types::Image.connection_type, null: false do
     description %q{List of images associated with the product.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
-    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
-    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
-    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
     argument :sort_key, ::Spree::GraphQL::Schema::Types::ProductImageSortKeys, required: false, default_value: 'POSITION', description: %q{Sort the underlying list by the given key.}
     argument :max_width, ::GraphQL::Types::Int, required: false, description: %q{Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.}
@@ -83,12 +75,8 @@ If there is not a variant for the selected options, `null` will be returned.
 }
     argument :selected_options, [::Spree::GraphQL::Schema::Inputs::SelectedOption], required: true, description: nil
   end
-  field :variants, ::Spree::GraphQL::Schema::Types::ProductVariant, null: false do
+  field :variants, ::Spree::GraphQL::Schema::Types::ProductVariant.connection_type, null: false do
     description %q{List of the product’s variants.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the first `n` elements from the list.}
-    argument :after, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come after the specified cursor.}
-    argument :last, ::GraphQL::Types::Int, required: false, description: %q{Returns up to the last `n` elements from the list.}
-    argument :before, ::GraphQL::Types::String, required: false, description: %q{Returns the elements that come before the specified cursor.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}
     argument :sort_key, ::Spree::GraphQL::Schema::Types::ProductVariantSortKeys, required: false, default_value: 'POSITION', description: %q{Sort the underlying list by the given key.}
   end

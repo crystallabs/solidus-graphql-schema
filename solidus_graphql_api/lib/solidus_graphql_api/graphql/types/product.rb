@@ -9,13 +9,9 @@ module Spree::GraphQL::Types::Product
   end
 
   # collections: List of collections a product belongs to.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::Collection!]
-  def collections(first:, after:, last:, before:, reverse:)
+  # @return [Types::Collection.connection_type!]
+  def collections(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -51,18 +47,14 @@ module Spree::GraphQL::Types::Product
   end
 
   # images: List of images associated with the product.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::ProductImageSortKeys] ('POSITION') Sort the underlying list by the given key.
   # @param max_width [Types::Int] Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.
   # @param max_height [Types::Int] Image height in pixels between 1 and 2048. This argument is deprecated: Use `maxHeight` on `Image.transformedSrc` instead.
   # @param crop [Types::CropRegion] Crops the image according to the specified region. This argument is deprecated: Use `crop` on `Image.transformedSrc` instead.
   # @param scale [Types::Int] (1) Image size multiplier for high-resolution retina displays. Must be between 1 and 3. This argument is deprecated: Use `scale` on `Image.transformedSrc` instead.
-  # @return [Types::Image!]
-  def images(first:, after:, last:, before:, reverse:, sort_key:, max_width:, max_height:, crop:, scale:)
+  # @return [Types::Image.connection_type!]
+  def images(reverse:, sort_key:, max_width:, max_height:, crop:, scale:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
@@ -123,14 +115,10 @@ module Spree::GraphQL::Types::Product
   end
 
   # variants: List of the product’s variants.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @param sort_key [Types::ProductVariantSortKeys] ('POSITION') Sort the underlying list by the given key.
-  # @return [Types::ProductVariant!]
-  def variants(first:, after:, last:, before:, reverse:, sort_key:)
+  # @return [Types::ProductVariant.connection_type!]
+  def variants(reverse:, sort_key:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 

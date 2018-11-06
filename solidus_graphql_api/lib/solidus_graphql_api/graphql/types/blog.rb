@@ -10,13 +10,9 @@ module Spree::GraphQL::Types::Blog
   end
 
   # articles: List of the blog's articles.
-  # @param first [Types::Int] Returns up to the first `n` elements from the list.
-  # @param after [Types::String] Returns the elements that come after the specified cursor.
-  # @param last [Types::Int] Returns up to the last `n` elements from the list.
-  # @param before [Types::String] Returns the elements that come before the specified cursor.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
-  # @return [Types::Article!]
-  def articles(first:, after:, last:, before:, reverse:)
+  # @return [Types::Article.connection_type!]
+  def articles(reverse:)
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 

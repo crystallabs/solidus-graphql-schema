@@ -92,12 +92,8 @@ module Spree::GraphQL
     end
 
     # discountApplications: Discounts that have been applied on the order.
-    # @param first [Types::Int]
-    # @param after [Types::String]
-    # @param last [Types::Int]
-    # @param before [Types::String]
     # @param reverse [Types::Boolean] (false)
-    # @return [Interfaces::DiscountApplication!]
+    # @return [Interfaces::DiscountApplication.connection_type!]
     describe 'discountApplications' do
       let!(:query) {
         %q{
@@ -110,10 +106,18 @@ module Spree::GraphQL
                 before: "",
                 reverse: false
               ) {
-                allocationMethod
-                targetSelection
-                targetType
-                value
+                edges {
+                  node {
+                    allocationMethod
+                    targetSelection
+                    targetType
+                    value
+                  }
+                }
+                pageInfo {
+                  hasNextPage
+                  hasPreviousPage
+                }
               }
             }
           }
@@ -124,10 +128,18 @@ module Spree::GraphQL
           data: {
             order: {
               discountApplications: {
-                allocationMethod: 'ACROSS | EACH | ONE',
-                targetSelection: 'ALL | ENTITLED | EXPLICIT',
-                targetType: 'LINE_ITEM | SHIPPING_LINE',
-                value: PricingPercentageValue | MoneyV2,
+                edges: {
+                  node: {
+                    allocationMethod: 'ACROSS | EACH | ONE',
+                    targetSelection: 'ALL | ENTITLED | EXPLICIT',
+                    targetType: 'LINE_ITEM | SHIPPING_LINE',
+                    value: PricingPercentageValue | MoneyV2,
+                  },
+                },
+                pageInfo: {
+                  hasNextPage: true,
+                  hasPreviousPage: false,
+                },
               },
             }
           },
@@ -197,12 +209,8 @@ module Spree::GraphQL
     end
 
     # lineItems: List of the order’s line items.
-    # @param first [Types::Int]
-    # @param after [Types::String]
-    # @param last [Types::Int]
-    # @param before [Types::String]
     # @param reverse [Types::Boolean] (false)
-    # @return [Types::OrderLineItem!]
+    # @return [Types::OrderLineItem.connection_type!]
     describe 'lineItems' do
       let!(:query) {
         %q{
@@ -215,44 +223,52 @@ module Spree::GraphQL
                 before: "",
                 reverse: false
               ) {
-                customAttributes {
-                  key
-                  value
+                edges {
+                  node {
+                    customAttributes {
+                      key
+                      value
+                    }
+                    discountAllocations {
+                      allocatedAmount {
+                        # ...
+                      }
+                      discountApplication {
+                        # ...
+                      }
+                    }
+                    quantity
+                    title
+                    variant {
+                      available
+                      availableForSale
+                      compareAtPrice
+                      id
+                      image(
+                        maxWidth: Int,
+                        maxHeight: Int,
+                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
+                        scale: Int
+                      ) {
+                        # ...
+                      }
+                      price
+                      product {
+                        # ...
+                      }
+                      selectedOptions {
+                        # ...
+                      }
+                      sku
+                      title
+                      weight
+                      weightUnit
+                    }
+                  }
                 }
-                discountAllocations {
-                  allocatedAmount {
-                    # ...
-                  }
-                  discountApplication {
-                    # ...
-                  }
-                }
-                quantity
-                title
-                variant {
-                  available
-                  availableForSale
-                  compareAtPrice
-                  id
-                  image(
-                    maxWidth: Int,
-                    maxHeight: Int,
-                    crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                    scale: Int
-                  ) {
-                    # ...
-                  }
-                  price
-                  product {
-                    # ...
-                  }
-                  selectedOptions {
-                    # ...
-                  }
-                  sku
-                  title
-                  weight
-                  weightUnit
+                pageInfo {
+                  hasNextPage
+                  hasPreviousPage
                 }
               }
             }
@@ -264,39 +280,47 @@ module Spree::GraphQL
           data: {
             order: {
               lineItems: {
-                customAttributes: {
-                  key: 'String',
-                  value: 'String',
+                edges: {
+                  node: {
+                    customAttributes: {
+                      key: 'String',
+                      value: 'String',
+                    },
+                    discountAllocations: {
+                      allocatedAmount: {
+                        # ...
+                      },
+                      discountApplication: {
+                        # ...
+                      },
+                    },
+                    quantity: 'Int',
+                    title: 'String',
+                    variant: {
+                      available: 'Boolean',
+                      availableForSale: 'Boolean',
+                      compareAtPrice: 'Money',
+                      id: 'ID',
+                      image: {
+                        # ...
+                      },
+                      price: 'Money',
+                      product: {
+                        # ...
+                      },
+                      selectedOptions: {
+                        # ...
+                      },
+                      sku: 'String',
+                      title: 'String',
+                      weight: 'Float',
+                      weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+                    },
+                  },
                 },
-                discountAllocations: {
-                  allocatedAmount: {
-                    # ...
-                  },
-                  discountApplication: {
-                    # ...
-                  },
-                },
-                quantity: 'Int',
-                title: 'String',
-                variant: {
-                  available: 'Boolean',
-                  availableForSale: 'Boolean',
-                  compareAtPrice: 'Money',
-                  id: 'ID',
-                  image: {
-                    # ...
-                  },
-                  price: 'Money',
-                  product: {
-                    # ...
-                  },
-                  selectedOptions: {
-                    # ...
-                  },
-                  sku: 'String',
-                  title: 'String',
-                  weight: 'Float',
-                  weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
+                pageInfo: {
+                  hasNextPage: true,
+                  hasPreviousPage: false,
                 },
               },
             }
@@ -615,10 +639,18 @@ module Spree::GraphQL
                   before: "",
                   reverse: false
                 ) {
-                  lineItem {
-                    # ...
+                  edges {
+                    node {
+                      lineItem {
+                        # ...
+                      }
+                      quantity
+                    }
                   }
-                  quantity
+                  pageInfo {
+                    hasNextPage
+                    hasPreviousPage
+                  }
                 }
                 trackingCompany
                 trackingInfo(first: Int) {
@@ -636,10 +668,18 @@ module Spree::GraphQL
             order: {
               successfulFulfillments: {
                 fulfillmentLineItems: {
-                  lineItem: {
-                    # ...
+                  edges: {
+                    node: {
+                      lineItem: {
+                        # ...
+                      },
+                      quantity: 'Int',
+                    },
                   },
-                  quantity: 'Int',
+                  pageInfo: {
+                    hasNextPage: true,
+                    hasPreviousPage: false,
+                  },
                 },
                 trackingCompany: 'String',
                 trackingInfo: {
