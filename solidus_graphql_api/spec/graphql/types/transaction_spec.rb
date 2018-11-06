@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          transaction: {
+            amount: "Money",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # kind: The kind of the transaction.
     # @return [Types::TransactionKind!]
     describe 'kind' do
@@ -37,12 +45,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          transaction: {
+            kind: "SALE | CAPTURE | AUTHORIZATION | EMV_AUTHORIZATION | CHANGE",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # status: The status of the transaction
     # @return [Types::TransactionStatus!]
     describe 'status' do
@@ -55,12 +71,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          transaction: {
+            status: "PENDING | SUCCESS | FAILURE | ERROR",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # test: Whether the transaction was done in test mode or not
     # @return [Types::Boolean!]
     describe 'test' do
@@ -73,7 +97,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          transaction: {
+            test: "Boolean",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

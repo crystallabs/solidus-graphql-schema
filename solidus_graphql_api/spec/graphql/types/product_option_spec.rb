@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          productOption: {
+            id: "ID",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # name: The product option’s name.
     # @return [Types::String!]
     describe 'name' do
@@ -37,12 +45,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          productOption: {
+            name: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # values: The corresponding value to the product option name.
     # @return [[Types::String!]!]
     describe 'values' do
@@ -55,7 +71,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          productOption: {
+            values: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

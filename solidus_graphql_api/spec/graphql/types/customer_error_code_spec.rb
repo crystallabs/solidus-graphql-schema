@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:customer_error_code) { create(:customer_error_code) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

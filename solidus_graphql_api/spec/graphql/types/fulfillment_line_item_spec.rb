@@ -21,14 +21,10 @@ module Spree::GraphQL
                 }
                 discountAllocations {
                   allocatedAmount {
-                    amount
-                    currencyCode
+                    # ...
                   }
                   discountApplication {
-                    allocationMethod
-                    targetSelection
-                    targetType
-                    value
+                    # ...
                   }
                 }
                 quantity
@@ -44,130 +40,14 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    altText
-                    id
-                    originalSrc
-                    src
-                    transformedSrc(
-                      maxWidth: Int,
-                      maxHeight: Int,
-                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                      scale: Int,
-                      preferredContentType: "PNG | JPG | WEBP"
-                    )
+                    # ...
                   }
                   price
                   product {
-                    availableForSale
-                    collections(
-                      first: Int,
-                      after: "",
-                      last: Int,
-                      before: "",
-                      reverse: false
-                    ) {
-                      description(truncateAt: Int)
-                      descriptionHtml
-                      handle
-                      id
-                      image(
-                        maxWidth: Int,
-                        maxHeight: Int,
-                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                        scale: Int
-                      ) {
-                        altText
-                        id
-                        originalSrc
-                        src
-                        transformedSrc(
-                          maxWidth: Int,
-                          maxHeight: Int,
-                          crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                          scale: Int,
-                          preferredContentType: "PNG | JPG | WEBP"
-                        )
-                      }
-                      products(
-                        first: Int,
-                        after: "",
-                        last: Int,
-                        before: "",
-                        reverse: false,
-                        sortKey: "TITLE | PRICE | BEST_SELLING | CREATED | ID | MANUAL | COLLECTION_DEFAULT | RELEVANCE"
-                      )
-                      title
-                      updatedAt
-                    }
-                    createdAt
-                    description(truncateAt: Int)
-                    descriptionHtml
-                    handle
-                    id
-                    images(
-                      first: Int,
-                      after: "",
-                      last: Int,
-                      before: "",
-                      reverse: false,
-                      sortKey: "CREATED_AT | POSITION | ID | RELEVANCE",
-                      maxWidth: Int,
-                      maxHeight: Int,
-                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                      scale: Int
-                    ) {
-                      altText
-                      id
-                      originalSrc
-                      src
-                      transformedSrc(
-                        maxWidth: Int,
-                        maxHeight: Int,
-                        crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                        scale: Int,
-                        preferredContentType: "PNG | JPG | WEBP"
-                      )
-                    }
-                    onlineStoreUrl
-                    options(first: Int) {
-                      id
-                      name
-                      values
-                    }
-                    priceRange {
-                      maxVariantPrice {
-                        amount
-                        currencyCode
-                      }
-                      minVariantPrice {
-                        amount
-                        currencyCode
-                      }
-                    }
-                    productType
-                    publishedAt
-                    tags
-                    title
-                    updatedAt
-                    variantBySelectedOptions(
-                      selectedOptions: {
-                        name: "String",
-                        value: "String"
-                      }
-                    )
-                    variants(
-                      first: Int,
-                      after: "",
-                      last: Int,
-                      before: "",
-                      reverse: false,
-                      sortKey: "TITLE | SKU | POSITION | ID | RELEVANCE"
-                    )
-                    vendor
+                    # ...
                   }
                   selectedOptions {
-                    name
-                    value
+                    # ...
                   }
                   sku
                   title
@@ -179,12 +59,55 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          fulfillmentLineItem: {
+            lineItem: {
+              customAttributes: {
+                key: "String",
+                value: "String",
+              },
+              discountAllocations: {
+                allocatedAmount: {
+                  # ...
+                },
+                discountApplication: {
+                  # ...
+                },
+              },
+              quantity: "Int",
+              title: "String",
+              variant: {
+                available: "Boolean",
+                availableForSale: "Boolean",
+                compareAtPrice: "Money",
+                id: "ID",
+                image: [
+                  # ...
+                ],
+                price: "Money",
+                product: {
+                  # ...
+                },
+                selectedOptions: {
+                  # ...
+                },
+                sku: "String",
+                title: "String",
+                weight: "Float",
+                weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
+              },
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # quantity: The amount fulfilled in this fulfillment.
     # @return [Types::Int!]
     describe 'quantity' do
@@ -197,7 +120,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          fulfillmentLineItem: {
+            quantity: "Int",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

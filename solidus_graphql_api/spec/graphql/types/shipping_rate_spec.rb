@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          shippingRate: {
+            handle: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # price: Price of this shipping rate.
     # @return [Types::Money!]
     describe 'price' do
@@ -37,12 +45,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          shippingRate: {
+            price: "Money",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # title: Title of this shipping rate.
     # @return [Types::String!]
     describe 'title' do
@@ -55,7 +71,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          shippingRate: {
+            title: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

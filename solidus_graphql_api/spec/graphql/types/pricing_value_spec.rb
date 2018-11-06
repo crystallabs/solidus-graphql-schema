@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:pricing_value) { create(:pricing_value) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

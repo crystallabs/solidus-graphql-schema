@@ -23,6 +23,8 @@ POSTAMBLE = 50
 
 $overwrite = true
 
+$max_level= 3
+
 $log= Logger.new STDOUT
 $log.level = Logger::DEBUG
 $log.formatter = proc do |severity, datetime, progname, msg| "#{severity.to_s}: #{msg}\n" end
@@ -124,8 +126,7 @@ $catalog = {
 
   base_type: {},
 
-  # TODO remove when no longer referenced from anywhere
-  snippets: {}
+  total: 0,
 }
 
 # List types which aren't database models here!
@@ -169,7 +170,7 @@ def run
   output_files()
 
   #pp $catalog
-  puts 'Done.'
+  puts "Done. Methods: #{$catalog[:total]}."
 
   exit 0
 end
@@ -514,8 +515,7 @@ module Spree::GraphQL
   describe '#{new_name}' do
     let!(:#{type['name'].underscore}) { create(:#{$catalog[:factories][type['name'].underscore] || type['name'].underscore}) }
     let!(:ctx) { { current_store: current_store } }
-    let!(:variables) { }
-}
+    let!(:variables) { }}
 end
 
 def parse_interfaces_for(type, helper)
@@ -604,33 +604,55 @@ def #{field['name'].underscore}#{args}
   raise ::Spree::GraphQL::NotImplementedError.new
 end
 }
+      $catalog[:total]+= 1
 
-      query_content= type_to_hash(base_type)
+      type_hash= type_to_hash(base_type)
       if is_connection and is_array
         raise Exception.new "Didn't expect it"
       end
       if is_connection
-        query_content = wrap_to_connection query_content
+        type_hash = wrap_to_connection type_hash
       #elsif is_array
-      #  query_content = [query_content]
+      #  type_hash = [type_hash]
       end
-      fields_hash_string = indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => query_content)
-
-      # TODO complete the print of input query and expected response
+      query_string= indent 5, hash_to_graphql_query([ field['name'], field_args_to_hash(field)] => type_hash)
+      result_hash= indent 4, hash_to_string(type_hash_to_result(field['name'] => type_hash))
 
       query_type = type['name'] == $mutation ? 'mutation' : 'query'
-      $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_for_spec).size>0 ? "\n" + args_for_spec : ''}
+
+      main_spec_part=
+        if type['name']== $mutation
+%Q{      #{result_hash},}
+        else
+%Q{      #{type['name'].camelize(:lower)}: {
+#{result_hash}
+      },}
+        end
+
+      main_query_part=
+        if type['name']== $mutation
+%Q{      #{query_string}
+      }
+      else
+%Q{      #{query_type} {
+        #{type['name'].camelize(:lower)} {#{query_string}
+        }
+      }}
+      end
+      $catalog[:spec_contents][new_name][FIELDS].push indent 2, %Q{\n# #{field['name']}#{ field['description'] ? (': '+ oneline(field['description'])) : ''}#{(args_for_spec).size>0 ? "\n" + args_for_spec : ''}
 # @return [#{shorten return_type}]
 describe '#{field['name']}' do
   let!(:query) {
     %q{
-      #{query_type} {
-        #{type['name'].camelize(:lower)} {#{fields_hash_string}
-        }
-      }
+#{main_query_part}
     }
   }
-  let!(:result) { result_body(type, helper) }
+  let!(:result) {
+    data: {
+#{main_spec_part}
+    },
+    #errors: {},
+  }
   #it 'succeeds' do
   #  execute
   #  expect(response_hash).to eq(result_hash)
@@ -727,6 +749,19 @@ def parse_args_for(type, helper, field, key, is_connection = false)
   method_args
 end
 
+################################################################################
+# Helper methods
+
+# type_of_field(field) - returns [base, string, short(string), is_connection]
+# type_to_hash(type) - expands type into nested hash of inputs
+# hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
+# field_args_to_hash - expands field args into hash
+# hash_to_method_args - hash returned from above to string
+# shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
+# old_to_new_name - maps original GraphQL name to our class name
+# indent - indents by given level
+# oneline - converts whatever to oneliner
+
 def hash_to_method_args(hash)
   unless Hash=== hash
     raise Exception.new "Not expected type #{hash.class}--#{hash}"
@@ -812,19 +847,6 @@ def field_args_to_hash(field)
 
   ret.size> 0 ? ret : nil #.map{|k,v| "#{k}: #{v}"}.join(', ') : nil
 end
-
-################################################################################
-# Helper methods
-
-# type_of_field(field) - returns [base, string, short(string), is_connection]
-# type_to_hash(type) - expands type into nested hash of inputs
-# hash_to_graphql_query - converts hash from type_to_hash to graphql query syntax
-# field_args_to_hash - expands field args into hash
-# hash_to_method_args - hash returned from above to string
-# shorten - shortens ruby type definition string into graphql notation (e.g. '[X], null: false' -> '[X]!')
-# old_to_new_name - maps original GraphQL name to our class name
-# indent - indents by given level
-# oneline - converts whatever to oneliner
 
 def type_of_field(field, type= nil)
   new_name = nil
@@ -943,9 +965,10 @@ def type_to_hash(type)
   retval
 end
 
-$level= 0
+$level1= 0
 def hash_to_graphql_query(hash)
   string= ''
+  $level1+= 1
   hash.each do |k,v|
     k_string = if k[1]
       pre= '('
@@ -968,16 +991,73 @@ def hash_to_graphql_query(hash)
     else
       pre= ' {'
       post= "\n}"
-      if args= hash_to_graphql_query(v)
-        #if args.lines.size > 1
-        #  pre+= "\n"
-        #end
+      args= if $level1 < $max_level
+        hash_to_graphql_query(v)
+      else
+        %Q{\n# ...}
       end
-      string += "\n#{k_string}#{pre}" + indent($level + 1, args) + post
+      string += "\n#{k_string}#{pre}" + indent(1, args) + post
     end
   end
-  $level = 0 if $level < 0
+  $level1-= 1
+  $level1= 0 if $level1 < 0
   string
+end
+
+def type_hash_to_result(hash)
+  hash.inject({}) { |h, (k, v)|
+    is_array= false
+    k_name = if Array=== k
+      is_array= k[1]
+      k[0]
+    else
+      k
+    end
+
+    v_val=
+    case v
+      when String
+        v
+      when Hash
+        type_hash_to_result(v)
+      else
+        raise Exception.new "Unhandled type: #{v.class}"
+    end
+
+    h[k_name] = is_array ? [ v_val ] : v_val
+    h
+  }
+end
+
+$level2= 0
+def hash_to_string(h)
+  $level2+= 1
+  ret= ''
+  h.each do |k,v|
+    v=
+    case v
+    when String
+      ret+= "#{k}: #{v},\n"
+    when Hash
+      val= if $level2 < $max_level then hash_to_string(v) else %q{# ...} end
+      ret+= "#{k}: {\n"+
+        indent(1, val) +
+        "\n},\n"
+    when Array
+      ret+= "#{k}: " +
+      case v[0]
+      when String
+        '[' + v[0] + '],'
+      else
+        val= if $level2 < $max_level then hash_to_string(v[0]) else %q{# ...} end
+        "[\n" + indent(1, val) + "\n],"
+      end  + "\n"
+    else
+      raise Exception.new "Shouldn't happen"
+    end
+  end
+  $level2-= 1
+  ret
 end
 
 def shorten(s)

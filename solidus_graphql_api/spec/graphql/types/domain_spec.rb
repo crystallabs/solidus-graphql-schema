@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          domain: {
+            host: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # sslEnabled: Whether SSL is enabled or not.
     # @return [Types::Boolean!]
     describe 'sslEnabled' do
@@ -37,12 +45,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          domain: {
+            sslEnabled: "Boolean",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # url: The URL of the domain (eg: `https://example.com`).
     # @return [Types::URL!]
     describe 'url' do
@@ -55,7 +71,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          domain: {
+            url: "URL",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

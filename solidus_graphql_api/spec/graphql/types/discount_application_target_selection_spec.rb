@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:discount_application_target_selection) { create(:discount_application_target_selection) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

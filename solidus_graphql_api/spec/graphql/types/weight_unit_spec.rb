@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:weight_unit) { create(:weight_unit) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

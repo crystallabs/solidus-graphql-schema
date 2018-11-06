@@ -22,12 +22,23 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          comment: {
+            author: {
+              email: "String",
+              name: "String",
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # content: Stripped content of the comment, single line with HTML tags removed.
     # @param truncate_at [Types::Int]
     # @return [Types::String!]
@@ -41,12 +52,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          comment: {
+            content: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # contentHtml: The content of the comment, complete with HTML formatting.
     # @return [Types::HTML!]
     describe 'contentHtml' do
@@ -59,12 +78,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          comment: {
+            contentHtml: "HTML",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
@@ -77,7 +104,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          comment: {
+            id: "ID",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

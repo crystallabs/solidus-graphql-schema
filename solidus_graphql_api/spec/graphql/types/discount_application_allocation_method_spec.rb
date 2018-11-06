@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:discount_application_allocation_method) { create(:discount_application_allocation_method) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

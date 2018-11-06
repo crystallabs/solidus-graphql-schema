@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:country_code) { create(:country_code) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

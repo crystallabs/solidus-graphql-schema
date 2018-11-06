@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          customerUserError: {
+            code: "BLANK | INVALID | TAKEN | TOO_LONG | TOO_SHORT | UNIDENTIFIED_CUSTOMER | CUSTOMER_DISABLED | PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE | CONTAINS_HTML_TAGS | CONTAINS_URL",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # field: Path to the input field which caused the error.
     # @return [[Types::String!]]
     describe 'field' do
@@ -37,12 +45,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          customerUserError: {
+            field: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # message: The error message.
     # @return [Types::String!]
     describe 'message' do
@@ -55,7 +71,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          customerUserError: {
+            message: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

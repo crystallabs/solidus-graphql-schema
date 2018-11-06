@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:date_time) { create(:date_time) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

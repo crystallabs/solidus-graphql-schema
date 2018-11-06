@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:card_brand) { create(:card_brand) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

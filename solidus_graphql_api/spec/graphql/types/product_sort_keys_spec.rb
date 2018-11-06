@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:product_sort_keys) { create(:product_sort_keys) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

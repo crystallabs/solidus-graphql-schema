@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          discountApplication: {
+            allocationMethod: "ACROSS | EACH | ONE",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # targetSelection: Which lines of targetType that the discount is allocated over.
     # @return [Types::DiscountApplicationTargetSelection!]
     describe 'targetSelection' do
@@ -37,12 +45,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          discountApplication: {
+            targetSelection: "ALL | ENTITLED | EXPLICIT",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # targetType: The type of line that the discount is applicable towards.
     # @return [Types::DiscountApplicationTargetType!]
     describe 'targetType' do
@@ -55,12 +71,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          discountApplication: {
+            targetType: "LINE_ITEM | SHIPPING_LINE",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # value: The value of the discount application.
     # @return [Types::PricingValue!]
     describe 'value' do
@@ -73,7 +97,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          discountApplication: {
+            value: PricingPercentageValue | MoneyV2,
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

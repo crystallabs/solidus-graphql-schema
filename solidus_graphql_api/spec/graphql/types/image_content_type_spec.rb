@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:image_content_type) { create(:image_content_type) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

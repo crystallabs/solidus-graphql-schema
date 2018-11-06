@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          checkoutUserError: {
+            code: "BLANK | INVALID | TOO_LONG | PRESENT | LESS_THAN | ALREADY_COMPLETED | LOCKED | NOT_SUPPORTED | INVALID_FOR_COUNTRY_AND_PROVINCE | INVALID_STATE_IN_COUNTRY | INVALID_PROVINCE_IN_COUNTRY | INVALID_REGION_IN_COUNTRY | SHIPPING_RATE_EXPIRED | GIFT_CARD_UNUSABLE | CART_DOES_NOT_MEET_DISCOUNT_REQUIREMENTS_NOTICE | DISCOUNT_EXPIRED | DISCOUNT_DISABLED | DISCOUNT_LIMIT_REACHED | DISCOUNT_NOT_FOUND | CUSTOMER_ALREADY_USED_ONCE_PER_CUSTOMER_DISCOUNT_NOTICE | EMPTY | NOT_ENOUGH_IN_STOCK",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # field: Path to the input field which caused the error.
     # @return [[Types::String!]]
     describe 'field' do
@@ -37,12 +45,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          checkoutUserError: {
+            field: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # message: The error message.
     # @return [Types::String!]
     describe 'message' do
@@ -55,7 +71,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          checkoutUserError: {
+            message: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

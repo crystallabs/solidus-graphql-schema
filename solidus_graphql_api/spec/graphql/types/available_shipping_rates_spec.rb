@@ -19,12 +19,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          availableShippingRates: {
+            ready: "Boolean",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # shippingRates: The fetched shipping rates. `null` until the `ready` field is `true`.
     # @return [[Types::ShippingRate!]]
     describe 'shippingRates' do
@@ -41,7 +49,18 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          availableShippingRates: {
+            shippingRates: {
+              handle: "String",
+              price: "Money",
+              title: "String",
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

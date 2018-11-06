@@ -40,11 +40,7 @@ module Spree::GraphQL
                     reverse: false
                   )
                   authors {
-                    bio
-                    email
-                    firstName
-                    lastName
-                    name
+                    # ...
                   }
                   handle
                   id
@@ -59,8 +55,7 @@ module Spree::GraphQL
                   reverse: false
                 ) {
                   author {
-                    email
-                    name
+                    # ...
                   }
                   content(truncateAt: Int)
                   contentHtml
@@ -99,12 +94,71 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          blog: {
+            articleByHandle: {
+              author: {
+                bio: "String",
+                email: "String",
+                firstName: "String",
+                lastName: "String",
+                name: "String",
+              },
+              authorV2: {
+                bio: "String",
+                email: "String",
+                firstName: "String",
+                lastName: "String",
+                name: "String",
+              },
+              blog: {
+                articleByHandle: ["Article..."],
+                articles: ["Article..."],
+                authors: {
+                  # ...
+                },
+                handle: "String",
+                id: "ID",
+                title: "String",
+                url: "URL",
+              },
+              comments: [
+                author: {
+                  # ...
+                },
+                content: ["String"],
+                contentHtml: "HTML",
+                id: "ID",
+              ],
+              content: ["String"],
+              contentHtml: "HTML",
+              excerpt: ["String"],
+              excerptHtml: "HTML",
+              handle: "String",
+              id: "ID",
+              image: [
+                altText: "String",
+                id: "ID",
+                originalSrc: "URL",
+                src: "URL",
+                transformedSrc: ["URL"],
+              ],
+              publishedAt: "DateTime",
+              tags: "String",
+              title: "String",
+              url: "URL",
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # articles: List of the blog's articles.
     # @param first [Types::Int]
     # @param after [Types::String]
@@ -148,11 +202,7 @@ module Spree::GraphQL
                     reverse: false
                   )
                   authors {
-                    bio
-                    email
-                    firstName
-                    lastName
-                    name
+                    # ...
                   }
                   handle
                   id
@@ -167,8 +217,7 @@ module Spree::GraphQL
                   reverse: false
                 ) {
                   author {
-                    email
-                    name
+                    # ...
                   }
                   content(truncateAt: Int)
                   contentHtml
@@ -207,12 +256,71 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          blog: {
+            articles: {
+              author: {
+                bio: "String",
+                email: "String",
+                firstName: "String",
+                lastName: "String",
+                name: "String",
+              },
+              authorV2: {
+                bio: "String",
+                email: "String",
+                firstName: "String",
+                lastName: "String",
+                name: "String",
+              },
+              blog: {
+                articleByHandle: ["Article..."],
+                articles: ["Article..."],
+                authors: {
+                  # ...
+                },
+                handle: "String",
+                id: "ID",
+                title: "String",
+                url: "URL",
+              },
+              comments: [
+                author: {
+                  # ...
+                },
+                content: ["String"],
+                contentHtml: "HTML",
+                id: "ID",
+              ],
+              content: ["String"],
+              contentHtml: "HTML",
+              excerpt: ["String"],
+              excerptHtml: "HTML",
+              handle: "String",
+              id: "ID",
+              image: [
+                altText: "String",
+                id: "ID",
+                originalSrc: "URL",
+                src: "URL",
+                transformedSrc: ["URL"],
+              ],
+              publishedAt: "DateTime",
+              tags: "String",
+              title: "String",
+              url: "URL",
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # authors: The authors who have contributed to the blog.
     # @return [[Types::ArticleAuthor!]!]
     describe 'authors' do
@@ -231,12 +339,26 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          blog: {
+            authors: {
+              bio: "String",
+              email: "String",
+              firstName: "String",
+              lastName: "String",
+              name: "String",
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # handle: A human-friendly unique string for the Blog automatically generated from its title.
     # @return [Types::String!]
     describe 'handle' do
@@ -249,12 +371,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          blog: {
+            handle: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
@@ -267,12 +397,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          blog: {
+            id: "ID",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # title: The blogs’s title.
     # @return [Types::String!]
     describe 'title' do
@@ -285,12 +423,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          blog: {
+            title: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # url: The url pointing to the blog accessible from the web.
     # @return [Types::URL!]
     describe 'url' do
@@ -303,7 +449,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          blog: {
+            url: "URL",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)

@@ -6,6 +6,5 @@ module Spree::GraphQL
     let!(:digital_wallet) { create(:digital_wallet) }
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
-
   end
 end

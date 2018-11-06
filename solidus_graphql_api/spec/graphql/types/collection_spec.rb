@@ -20,12 +20,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            description: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # descriptionHtml: The description of the collection, complete with HTML formatting.
     # @return [Types::HTML!]
     describe 'descriptionHtml' do
@@ -38,12 +46,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            descriptionHtml: "HTML",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # handle: A human-friendly unique string for the collection automatically generated from its title. Limit of 255 characters.
     # @return [Types::String!]
     describe 'handle' do
@@ -56,12 +72,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            handle: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # id: Globally unique identifier.
     # @return [Types::ID!]
     describe 'id' do
@@ -74,12 +98,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            id: "ID",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # image: Image associated with the collection.
     # @param max_width [Types::Int]
     # @param max_height [Types::Int]
@@ -113,12 +145,26 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            image: {
+              altText: "String",
+              id: "ID",
+              originalSrc: "URL",
+              src: "URL",
+              transformedSrc: ["URL"],
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # products: List of products in the collection.
     # @param first [Types::Int]
     # @param after [Types::String]
@@ -158,17 +204,7 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    altText
-                    id
-                    originalSrc
-                    src
-                    transformedSrc(
-                      maxWidth: Int,
-                      maxHeight: Int,
-                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                      scale: Int,
-                      preferredContentType: "PNG | JPG | WEBP"
-                    )
+                    # ...
                   }
                   products(
                     first: Int,
@@ -218,12 +254,10 @@ module Spree::GraphQL
                 }
                 priceRange {
                   maxVariantPrice {
-                    amount
-                    currencyCode
+                    # ...
                   }
                   minVariantPrice {
-                    amount
-                    currencyCode
+                    # ...
                   }
                 }
                 productType
@@ -232,10 +266,12 @@ module Spree::GraphQL
                 title
                 updatedAt
                 variantBySelectedOptions(
-                  selectedOptions: {
-                    name: "String",
-                    value: "String"
-                  }
+                  selectedOptions: [
+                    {
+                      name: "String",
+                      value: "String"
+                    }
+                  ]
                 ) {
                   available
                   availableForSale
@@ -247,23 +283,12 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    altText
-                    id
-                    originalSrc
-                    src
-                    transformedSrc(
-                      maxWidth: Int,
-                      maxHeight: Int,
-                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                      scale: Int,
-                      preferredContentType: "PNG | JPG | WEBP"
-                    )
+                    # ...
                   }
                   price
                   product
                   selectedOptions {
-                    name
-                    value
+                    # ...
                   }
                   sku
                   title
@@ -288,23 +313,12 @@ module Spree::GraphQL
                     crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
                     scale: Int
                   ) {
-                    altText
-                    id
-                    originalSrc
-                    src
-                    transformedSrc(
-                      maxWidth: Int,
-                      maxHeight: Int,
-                      crop: "CENTER | TOP | BOTTOM | LEFT | RIGHT",
-                      scale: Int,
-                      preferredContentType: "PNG | JPG | WEBP"
-                    )
+                    # ...
                   }
                   price
                   product
                   selectedOptions {
-                    name
-                    value
+                    # ...
                   }
                   sku
                   title
@@ -317,12 +331,102 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            products: {
+              availableForSale: "Boolean",
+              collections: [
+                description: ["String"],
+                descriptionHtml: "HTML",
+                handle: "String",
+                id: "ID",
+                image: [
+                  # ...
+                ],
+                products: ["Product..."],
+                title: "String",
+                updatedAt: "DateTime",
+              ],
+              createdAt: "DateTime",
+              description: ["String"],
+              descriptionHtml: "HTML",
+              handle: "String",
+              id: "ID",
+              images: [
+                altText: "String",
+                id: "ID",
+                originalSrc: "URL",
+                src: "URL",
+                transformedSrc: ["URL"],
+              ],
+              onlineStoreUrl: "URL",
+              options: [
+                id: "ID",
+                name: "String",
+                values: "String",
+              ],
+              priceRange: {
+                maxVariantPrice: {
+                  # ...
+                },
+                minVariantPrice: {
+                  # ...
+                },
+              },
+              productType: "String",
+              publishedAt: "DateTime",
+              tags: "String",
+              title: "String",
+              updatedAt: "DateTime",
+              variantBySelectedOptions: [
+                available: "Boolean",
+                availableForSale: "Boolean",
+                compareAtPrice: "Money",
+                id: "ID",
+                image: [
+                  # ...
+                ],
+                price: "Money",
+                product: "Product...",
+                selectedOptions: {
+                  # ...
+                },
+                sku: "String",
+                title: "String",
+                weight: "Float",
+                weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
+              ],
+              variants: [
+                available: "Boolean",
+                availableForSale: "Boolean",
+                compareAtPrice: "Money",
+                id: "ID",
+                image: [
+                  # ...
+                ],
+                price: "Money",
+                product: "Product...",
+                selectedOptions: {
+                  # ...
+                },
+                sku: "String",
+                title: "String",
+                weight: "Float",
+                weightUnit: "KILOGRAMS | GRAMS | POUNDS | OUNCES",
+              ],
+              vendor: "String",
+            },
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # title: The collection’s name. Limit of 255 characters.
     # @return [Types::String!]
     describe 'title' do
@@ -335,12 +439,20 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            title: "String",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
       #end
     end
+
     # updatedAt: The date and time when the collection was last modified.
     # @return [Types::DateTime!]
     describe 'updatedAt' do
@@ -353,7 +465,14 @@ module Spree::GraphQL
           }
         }
       }
-      let!(:result) { result_body(type, helper) }
+      let!(:result) {
+        data: {
+          collection: {
+            updatedAt: "DateTime",
+          },
+        },
+        #errors: {},
+      }
       #it 'succeeds' do
       #  execute
       #  expect(response_hash).to eq(result_hash)
