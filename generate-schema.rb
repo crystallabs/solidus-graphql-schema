@@ -961,7 +961,7 @@ def type_to_hash(type)
       ret= {}
       fields= t['fields'] || t['inputFields']
       fields.each do |f|
-        base, _, _ = type_of_field(f)
+        base, _ = type_of_field(f)
         content= type_to_hash(base)
         if f[:is_connection]
           content = wrap_to_connection content
