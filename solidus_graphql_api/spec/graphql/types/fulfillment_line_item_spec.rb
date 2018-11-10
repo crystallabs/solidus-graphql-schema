@@ -192,9 +192,9 @@ module Spree::GraphQL
                   product: {
                     availableForSale: 'Boolean',
                     collections: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -205,9 +205,9 @@ module Spree::GraphQL
                     handle: 'String',
                     id: 'ID',
                     images: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -233,9 +233,9 @@ module Spree::GraphQL
                     updatedAt: 'DateTime',
                     variantBySelectedOptions: 'ProductVariant...',
                     variants: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },

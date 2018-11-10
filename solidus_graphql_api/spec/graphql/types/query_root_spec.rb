@@ -119,8 +119,8 @@ module Spree::GraphQL
           data: {
             queryRoot: {
               articles: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     author: {
                       bio: 'String',
                       email: 'String',
@@ -149,9 +149,9 @@ module Spree::GraphQL
                       url: 'URL',
                     },
                     comments: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -173,8 +173,8 @@ module Spree::GraphQL
                     tags: 'String',
                     title: 'String',
                     url: 'URL',
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,
@@ -350,11 +350,11 @@ module Spree::GraphQL
                   },
                   blog: 'Blog...',
                   comments: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -379,8 +379,8 @@ module Spree::GraphQL
                   url: 'URL',
                 },
                 articles: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       author: {
                         # ...
                       },
@@ -404,8 +404,8 @@ module Spree::GraphQL
                       tags: 'String',
                       title: 'String',
                       url: 'URL',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -532,8 +532,8 @@ module Spree::GraphQL
           data: {
             queryRoot: {
               blogs: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     articleByHandle: {
                       author: {
                         # ...
@@ -560,9 +560,9 @@ module Spree::GraphQL
                       url: 'URL',
                     },
                     articles: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -578,8 +578,8 @@ module Spree::GraphQL
                     id: 'ID',
                     title: 'String',
                     url: 'URL',
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,
@@ -953,8 +953,8 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       address1: 'String',
                       address2: 'String',
                       city: 'String',
@@ -974,8 +974,8 @@ module Spree::GraphQL
                       province: 'String',
                       provinceCode: 'String',
                       zip: 'String',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -1031,11 +1031,11 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -1044,11 +1044,11 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -1060,9 +1060,9 @@ module Spree::GraphQL
                     customerLocale: 'String',
                     customerUrl: 'URL',
                     discountApplications: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -1070,9 +1070,9 @@ module Spree::GraphQL
                     email: 'String',
                     id: 'ID',
                     lineItems: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -1178,8 +1178,8 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       currencyCode: 'USD | EUR | GBP | CAD | AFN | ALL | DZD | AOA | ARS | AMD | AWG | AUD | BBD | AZN | BDT | BSD | BHD | BIF | BYR | BZD | BTN | BAM | BRL | BOB | BWP | BND | BGN | MMK | KHR | CVE | KYD | XAF | CLP | CNY | COP | KMF | CDF | CRC | HRK | CZK | DKK | DOP | XCD | EGP | ETB | XPF | FJD | GMD | GHS | GTQ | GYD | GEL | HTG | HNL | HKD | HUF | ISK | INR | IDR | ILS | IQD | JMD | JPY | JEP | JOD | KZT | KES | KWD | KGS | LAK | LVL | LBP | LSL | LRD | LTL | MGA | MKD | MOP | MWK | MVR | MXN | MYR | MUR | MDL | MAD | MNT | MZN | NAD | NPR | ANG | NZD | NIO | NGN | NOK | OMR | PKR | PGK | PYG | PEN | PHP | PLN | QAR | RON | RUB | RWF | WST | SAR | STD | RSD | SCR | SGD | SDG | SYP | ZAR | KRW | SSP | SBD | LKR | SRD | SZL | SEK | CHF | TWD | THB | TZS | TTD | TND | TRY | TMT | UGX | UAH | AED | UYU | UZS | VUV | VEF | VND | XOF | YER | ZMW',
                       customerLocale: 'String',
                       customerUrl: 'URL',
@@ -1210,8 +1210,8 @@ module Spree::GraphQL
                       totalRefunded: 'Money',
                       totalShippingPrice: 'Money',
                       totalTax: 'Money',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -1744,8 +1744,8 @@ module Spree::GraphQL
             queryRoot: {
               shop: {
                 articles: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       author: {
                         # ...
                       },
@@ -1771,16 +1771,16 @@ module Spree::GraphQL
                       tags: 'String',
                       title: 'String',
                       url: 'URL',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
                   },
                 },
                 blogs: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       articleByHandle: {
                         # ...
                       },
@@ -1794,8 +1794,8 @@ module Spree::GraphQL
                       id: 'ID',
                       title: 'String',
                       url: 'URL',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -1815,11 +1815,11 @@ module Spree::GraphQL
                     transformedSrc: 'URL',
                   },
                   products: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -1829,8 +1829,8 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 collections: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       description: 'String',
                       descriptionHtml: 'HTML',
                       handle: 'String',
@@ -1843,8 +1843,8 @@ module Spree::GraphQL
                       },
                       title: 'String',
                       updatedAt: 'DateTime',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -1876,11 +1876,11 @@ module Spree::GraphQL
                 productByHandle: {
                   availableForSale: 'Boolean',
                   collections: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -1892,11 +1892,11 @@ module Spree::GraphQL
                   handle: 'String',
                   id: 'ID',
                   images: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -1947,11 +1947,11 @@ module Spree::GraphQL
                     weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
                   },
                   variants: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -1960,17 +1960,17 @@ module Spree::GraphQL
                   vendor: 'String',
                 },
                 productTypes: {
-                  edges: {
-                    node: ['String'],
-                  },
+                  edges: [{
+                    node: 'String',
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
                   },
                 },
                 products: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       availableForSale: 'Boolean',
                       collections: {
                         # ...
@@ -2002,8 +2002,8 @@ module Spree::GraphQL
                         # ...
                       },
                       vendor: 'String',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,

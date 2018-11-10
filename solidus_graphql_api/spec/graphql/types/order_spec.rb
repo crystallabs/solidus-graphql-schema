@@ -128,14 +128,14 @@ module Spree::GraphQL
           data: {
             order: {
               discountApplications: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     allocationMethod: 'ACROSS | EACH | ONE',
                     targetSelection: 'ALL | ENTITLED | EXPLICIT',
                     targetType: 'LINE_ITEM | SHIPPING_LINE',
                     value: PricingPercentageValue | MoneyV2,
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,
@@ -280,8 +280,8 @@ module Spree::GraphQL
           data: {
             order: {
               lineItems: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     customAttributes: {
                       key: 'String',
                       value: 'String',
@@ -316,8 +316,8 @@ module Spree::GraphQL
                       weight: 'Float',
                       weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
                     },
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,
@@ -668,14 +668,14 @@ module Spree::GraphQL
             order: {
               successfulFulfillments: [{
                 fulfillmentLineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       lineItem: {
                         # ...
                       },
                       quantity: 'Int',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,

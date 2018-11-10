@@ -54,8 +54,8 @@ module Spree::GraphQL
           data: {
             fulfillment: {
               fulfillmentLineItems: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     lineItem: {
                       customAttributes: {
                         # ...
@@ -70,8 +70,8 @@ module Spree::GraphQL
                       },
                     },
                     quantity: 'Int',
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,

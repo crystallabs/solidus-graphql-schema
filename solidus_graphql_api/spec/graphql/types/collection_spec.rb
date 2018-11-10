@@ -312,13 +312,13 @@ module Spree::GraphQL
           data: {
             collection: {
               products: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     availableForSale: 'Boolean',
                     collections: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -329,9 +329,9 @@ module Spree::GraphQL
                     handle: 'String',
                     id: 'ID',
                     images: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -374,16 +374,16 @@ module Spree::GraphQL
                       weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
                     },
                     variants: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
                     },
                     vendor: 'String',
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,

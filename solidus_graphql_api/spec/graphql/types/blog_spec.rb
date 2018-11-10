@@ -136,9 +136,9 @@ module Spree::GraphQL
                 blog: {
                   articleByHandle: 'Article...',
                   articles: {
-                    edges: {
-                      node: ['Article...'],
-                    },
+                    edges: [{
+                      node: 'Article...',
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -157,16 +157,16 @@ module Spree::GraphQL
                   url: 'URL',
                 },
                 comments: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       author: {
                         # ...
                       },
                       content: 'String',
                       contentHtml: 'HTML',
                       id: 'ID',
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -309,8 +309,8 @@ module Spree::GraphQL
           data: {
             blog: {
               articles: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     author: {
                       bio: 'String',
                       email: 'String',
@@ -339,9 +339,9 @@ module Spree::GraphQL
                       url: 'URL',
                     },
                     comments: {
-                      edges: {
+                      edges: [{
                         # ...
-                      },
+                      }],
                       pageInfo: {
                         # ...
                       },
@@ -363,8 +363,8 @@ module Spree::GraphQL
                     tags: 'String',
                     title: 'String',
                     url: 'URL',
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,

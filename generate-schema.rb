@@ -1052,11 +1052,9 @@ def type_hash_to_result(hash)
       k
     end
 
-    if k_name == :edges
-      unless Hash=== v and v.keys== [[:node]]
-        raise Exception.new "Value of edges must be hash with one key -- node! Instead it is #{v.keys}"
-      end
-      v[[:node]]= [v[[:node]]]
+    if Hash=== v and v.has_key?([:edges])
+      puts :HAS
+      v[[:edges]]= [v[[:edges]]]
     end
 
     v_val=

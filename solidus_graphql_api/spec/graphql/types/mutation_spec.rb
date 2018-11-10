@@ -333,9 +333,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -369,9 +369,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -380,11 +380,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -393,11 +393,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -409,9 +409,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -419,9 +419,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -855,9 +855,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -891,9 +891,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -902,11 +902,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -915,11 +915,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -931,9 +931,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -941,9 +941,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -1628,9 +1628,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -1664,9 +1664,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -1675,11 +1675,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -1688,11 +1688,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -1704,9 +1704,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -1714,9 +1714,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -1885,9 +1885,9 @@ module Spree::GraphQL
                     updatedAt: 'DateTime',
                   },
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -1895,9 +1895,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -2586,9 +2586,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -2622,9 +2622,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -2633,11 +2633,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -2646,11 +2646,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -2662,9 +2662,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -2672,9 +2672,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -2843,9 +2843,9 @@ module Spree::GraphQL
                     updatedAt: 'DateTime',
                   },
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -2853,9 +2853,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -3326,9 +3326,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -3362,9 +3362,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -3373,11 +3373,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -3386,11 +3386,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -3402,9 +3402,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -3412,9 +3412,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4073,9 +4073,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4109,9 +4109,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4120,11 +4120,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -4133,11 +4133,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -4149,9 +4149,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4159,9 +4159,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4268,11 +4268,11 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -4326,9 +4326,9 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4336,9 +4336,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4424,11 +4424,11 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -4767,9 +4767,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4803,9 +4803,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4814,11 +4814,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -4827,11 +4827,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -4843,9 +4843,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -4853,9 +4853,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5293,9 +5293,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5329,9 +5329,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5340,11 +5340,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -5353,11 +5353,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -5369,9 +5369,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5379,9 +5379,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5815,9 +5815,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5851,9 +5851,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5862,11 +5862,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -5875,11 +5875,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -5891,9 +5891,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -5901,9 +5901,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6341,9 +6341,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6377,9 +6377,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6388,11 +6388,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -6401,11 +6401,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -6417,9 +6417,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6427,9 +6427,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6867,9 +6867,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6903,9 +6903,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6914,11 +6914,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -6927,11 +6927,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -6943,9 +6943,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -6953,9 +6953,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -7393,9 +7393,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -7429,9 +7429,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -7440,11 +7440,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -7453,11 +7453,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -7469,9 +7469,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -7479,9 +7479,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -7926,9 +7926,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -7962,9 +7962,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -7973,11 +7973,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -7986,11 +7986,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -8002,9 +8002,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -8012,9 +8012,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -8452,9 +8452,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -8488,9 +8488,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -8499,11 +8499,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -8512,11 +8512,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -8528,9 +8528,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -8538,9 +8538,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -8986,9 +8986,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -9022,9 +9022,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -9033,11 +9033,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -9046,11 +9046,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -9062,9 +9062,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -9072,9 +9072,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -9523,9 +9523,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -9559,9 +9559,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -9570,11 +9570,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -9583,11 +9583,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -9599,9 +9599,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -9609,9 +9609,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -10049,9 +10049,9 @@ module Spree::GraphQL
                 customer: {
                   acceptsMarketing: 'Boolean',
                   addresses: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -10085,9 +10085,9 @@ module Spree::GraphQL
                   lastIncompleteCheckout: 'Checkout...',
                   lastName: 'String',
                   orders: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -10096,11 +10096,11 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                 },
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -10109,11 +10109,11 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -10125,9 +10125,9 @@ module Spree::GraphQL
                   customerLocale: 'String',
                   customerUrl: 'URL',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -10135,9 +10135,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -10646,11 +10646,11 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -10704,9 +10704,9 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -10714,9 +10714,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -10802,11 +10802,11 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -11320,11 +11320,11 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -11378,9 +11378,9 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -11388,9 +11388,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -11476,11 +11476,11 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -11752,11 +11752,11 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -11810,9 +11810,9 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -11820,9 +11820,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -11908,11 +11908,11 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -12221,11 +12221,11 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -12279,9 +12279,9 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -12289,9 +12289,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -12377,11 +12377,11 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -12656,11 +12656,11 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -12714,9 +12714,9 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -12724,9 +12724,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -12812,11 +12812,11 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -13103,11 +13103,11 @@ module Spree::GraphQL
               customer: {
                 acceptsMarketing: 'Boolean',
                 addresses: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -13161,9 +13161,9 @@ module Spree::GraphQL
                   },
                   customer: 'Customer...',
                   discountApplications: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -13171,9 +13171,9 @@ module Spree::GraphQL
                   email: 'String',
                   id: 'ID',
                   lineItems: {
-                    edges: {
+                    edges: [{
                       # ...
-                    },
+                    }],
                     pageInfo: {
                       # ...
                     },
@@ -13259,11 +13259,11 @@ module Spree::GraphQL
                 },
                 lastName: 'String',
                 orders: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       # ...
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,

@@ -242,14 +242,14 @@ module Spree::GraphQL
           data: {
             checkout: {
               discountApplications: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     allocationMethod: 'ACROSS | EACH | ONE',
                     targetSelection: 'ALL | ENTITLED | EXPLICIT',
                     targetType: 'LINE_ITEM | SHIPPING_LINE',
                     value: PricingPercentageValue | MoneyV2,
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,
@@ -395,8 +395,8 @@ module Spree::GraphQL
           data: {
             checkout: {
               lineItems: {
-                edges: {
-                  node: [{
+                edges: [{
+                  node: {
                     customAttributes: {
                       key: 'String',
                       value: 'String',
@@ -432,8 +432,8 @@ module Spree::GraphQL
                       weight: 'Float',
                       weightUnit: 'KILOGRAMS | GRAMS | POUNDS | OUNCES',
                     },
-                  }],
-                },
+                  },
+                }],
                 pageInfo: {
                   hasNextPage: true,
                   hasPreviousPage: false,
@@ -622,14 +622,14 @@ module Spree::GraphQL
                 customerLocale: 'String',
                 customerUrl: 'URL',
                 discountApplications: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       allocationMethod: 'ACROSS | EACH | ONE',
                       targetSelection: 'ALL | ENTITLED | EXPLICIT',
                       targetType: 'LINE_ITEM | SHIPPING_LINE',
                       value: PricingPercentageValue | MoneyV2,
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -638,8 +638,8 @@ module Spree::GraphQL
                 email: 'String',
                 id: 'ID',
                 lineItems: {
-                  edges: {
-                    node: [{
+                  edges: [{
+                    node: {
                       customAttributes: {
                         # ...
                       },
@@ -651,8 +651,8 @@ module Spree::GraphQL
                       variant: {
                         # ...
                       },
-                    }],
-                  },
+                    },
+                  }],
                   pageInfo: {
                     hasNextPage: true,
                     hasPreviousPage: false,
@@ -699,11 +699,11 @@ module Spree::GraphQL
                 subtotalPrice: 'Money',
                 successfulFulfillments: {
                   fulfillmentLineItems: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,

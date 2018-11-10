@@ -330,11 +330,11 @@ module Spree::GraphQL
                 product: {
                   availableForSale: 'Boolean',
                   collections: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -346,11 +346,11 @@ module Spree::GraphQL
                   handle: 'String',
                   id: 'ID',
                   images: {
-                    edges: {
-                      node: [{
+                    edges: [{
+                      node: {
                         # ...
-                      }],
-                    },
+                      },
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
@@ -379,9 +379,9 @@ module Spree::GraphQL
                   updatedAt: 'DateTime',
                   variantBySelectedOptions: 'ProductVariant...',
                   variants: {
-                    edges: {
-                      node: ['ProductVariant...'],
-                    },
+                    edges: [{
+                      node: 'ProductVariant...',
+                    }],
                     pageInfo: {
                       hasNextPage: true,
                       hasPreviousPage: false,
