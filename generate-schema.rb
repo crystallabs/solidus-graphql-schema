@@ -133,8 +133,9 @@ $catalog = {
   field_list: {},
 }
 
-# List types which aren't database models here!
-$catalog[:base_type]['Types::Domain'] = 'Types::BaseObjectNoId'
+# List types which have special base classes her.
+# This list will be also populated during parse_interfaces.
+$catalog[:base_type]['Types::Domain'] = 'Types::BaseObject'
 
 
 # This is the entry point into the program. It invokes all necessary functions,
@@ -323,9 +324,9 @@ def parse_types_2(v)
 
     helper = make_helper_for type
 
+    parse_interfaces_for type, helper
     prepare_headers_for type, helper
     parse_fields_for type, helper
-    parse_interfaces_for type, helper
     parse_possible_types_for type, helper
     parse_enum_values_for(type, helper)
     parse_args_for(type, helper, nil, 'inputFields')
@@ -538,8 +539,12 @@ def parse_interfaces_for(type, helper)
         $log.error "Found type #{type['name']} which implements interface #{i['name']}, but can't parse that interface because of its 'kind' and/or 'ofType' fields. This needs to be looked into and improved in the generator script; exiting."
         exit 1
       end
-      $catalog[:schema_contents][new_name][INTERFACES].push indent 1, "implements ::Spree::GraphQL::Schema::#{$catalog[:type_names][i['name']]}"
-      $catalog[:contents][new_name][INTERFACES].push indent 1, "include ::Spree::GraphQL::#{$catalog[:type_names][i['name']]}"
+      if i['name']== 'Node'
+          $catalog[:base_type][new_name]= 'Types::BaseObjectNode'
+      else
+        $catalog[:schema_contents][new_name][INTERFACES].push indent 1, "implements ::Spree::GraphQL::Schema::#{$catalog[:type_names][i['name']]}"
+        $catalog[:contents][new_name][INTERFACES].push indent 1, "include ::Spree::GraphQL::#{$catalog[:type_names][i['name']]}"
+      end
     end
   end
 end
