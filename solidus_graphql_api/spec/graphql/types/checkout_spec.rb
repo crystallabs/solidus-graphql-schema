@@ -294,34 +294,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            checkout {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            checkout: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # lineItems: A list of line item objects, each one containing information about an item in the checkout.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::CheckoutLineItem.connection_type!]

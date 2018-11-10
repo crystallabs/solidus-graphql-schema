@@ -26,9 +26,6 @@ For example, a digital download (such as a movie, music or ebook file) also qual
 They are used by the Liquid templating language to refer to objects.
 }
   end
-  field :id, ::GraphQL::Types::ID, null: false do
-    description %q{Globally unique identifier.}
-  end
   field :images, ::Spree::GraphQL::Schema::Types::Image.connection_type, null: false do
     description %q{List of images associated with the product.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}

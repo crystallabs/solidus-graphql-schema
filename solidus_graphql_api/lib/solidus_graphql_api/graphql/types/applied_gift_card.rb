@@ -13,12 +13,6 @@ module Spree::GraphQL::Types::AppliedGiftCard
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
-
   # lastCharacters: The last characters of the Gift Card code
   # @return [Types::String!]
   def last_characters()

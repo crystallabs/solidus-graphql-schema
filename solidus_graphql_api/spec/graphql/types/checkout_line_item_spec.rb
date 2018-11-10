@@ -91,34 +91,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            checkoutLineItem {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            checkoutLineItem: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # quantity: The quantity of the line item.
     # @return [Types::Int!]
     describe 'quantity' do

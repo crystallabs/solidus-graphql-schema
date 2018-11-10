@@ -598,6 +598,8 @@ def parse_fields_for(type, helper)
   if type['fields']
     type['fields'].each do |field|
       next if field['isDeprecated']
+      next if field['name']== 'id' and $catalog[:base_type][new_name]== 'Types::BaseObjectNode'
+
       base_type, return_type, short= type_of_field(field, type, true)
       description= field['description'] ? "%q{#{field['description']}}" : 'nil'
 

@@ -31,9 +31,6 @@ class Spree::GraphQL::Schema::Types::Article < Spree::GraphQL::Schema::Types::Ba
     description %q{A human-friendly unique string for the Article automatically generated from its title.
 }
   end
-  field :id, ::GraphQL::Types::ID, null: false do
-    description %q{Globally unique identifier.}
-  end
   field :image, ::Spree::GraphQL::Schema::Types::Image, null: true do
     description %q{The image associated with the article.}
     argument :max_width, ::GraphQL::Types::Int, required: false, default_value: nil, description: %q{Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.}

@@ -50,12 +50,6 @@ module Spree::GraphQL::Types::Checkout
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
-
   # lineItems: A list of line item objects, each one containing information about an item in the checkout.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @return [Types::CheckoutLineItem.connection_type!]

@@ -35,34 +35,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            shopPolicy {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            shopPolicy: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # title: Policy’s title.
     # @return [Types::String!]
     describe 'title' do

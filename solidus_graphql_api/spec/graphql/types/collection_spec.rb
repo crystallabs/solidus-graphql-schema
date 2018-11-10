@@ -92,34 +92,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            collection {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            collection: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # image: Image associated with the collection.
     # @param max_width [Types::Int] (nil)
     # @param max_height [Types::Int] (nil)

@@ -12,7 +12,4 @@ class Spree::GraphQL::Schema::Types::Comment < Spree::GraphQL::Schema::Types::Ba
   field :content_html, ::Spree::GraphQL::Schema::Types::HTML, null: false do
     description %q{The content of the comment, complete with HTML formatting.}
   end
-  field :id, ::GraphQL::Types::ID, null: false do
-    description %q{Globally unique identifier.}
-  end
 end

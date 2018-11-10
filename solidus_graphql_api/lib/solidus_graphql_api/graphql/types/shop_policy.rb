@@ -7,12 +7,6 @@ module Spree::GraphQL::Types::ShopPolicy
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
-
   # title: Policy’s title.
   # @return [Types::String!]
   def title()

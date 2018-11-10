@@ -180,34 +180,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            order {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            order: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # lineItems: List of the order’s line items.
     # @param reverse [Types::Boolean] (false)
     # @return [Types::OrderLineItem.connection_type!]

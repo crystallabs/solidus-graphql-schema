@@ -57,12 +57,6 @@ module Spree::GraphQL::Types::MailingAddress
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
-
   # lastName: The last name of the customer.
   # @return [Types::String]
   def last_name()

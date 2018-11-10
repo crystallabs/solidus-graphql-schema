@@ -13,12 +13,6 @@ module Spree::GraphQL::Types::CheckoutLineItem
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
-
   # quantity: The quantity of the line item.
   # @return [Types::Int!]
   def quantity()

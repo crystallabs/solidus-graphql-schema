@@ -7,34 +7,6 @@ module Spree::GraphQL
     let!(:ctx) { { current_store: current_store } }
     let!(:variables) { }
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            productOption {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            productOption: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # name: The product option’s name.
     # @return [Types::String!]
     describe 'name' do

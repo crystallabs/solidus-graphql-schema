@@ -27,12 +27,6 @@ module Spree::GraphQL::Types::Blog
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
-
   # title: The blogs’s title.
   # @return [Types::String!]
   def title()

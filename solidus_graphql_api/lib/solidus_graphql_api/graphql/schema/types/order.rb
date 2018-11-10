@@ -18,9 +18,6 @@ class Spree::GraphQL::Schema::Types::Order < Spree::GraphQL::Schema::Types::Base
   field :email, ::GraphQL::Types::String, null: true do
     description %q{The customer's email address.}
   end
-  field :id, ::GraphQL::Types::ID, null: false do
-    description %q{Globally unique identifier.}
-  end
   field :line_items, ::Spree::GraphQL::Schema::Types::OrderLineItem.connection_type, null: false do
     description %q{List of the order’s line items.}
     argument :reverse, ::GraphQL::Types::Boolean, required: false, default_value: false, description: %q{Reverse the order of the underlying list.}

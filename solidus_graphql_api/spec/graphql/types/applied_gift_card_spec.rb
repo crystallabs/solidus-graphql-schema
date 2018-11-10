@@ -63,34 +63,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            appliedGiftCard {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            appliedGiftCard: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # lastCharacters: The last characters of the Gift Card code
     # @return [Types::String!]
     describe 'lastCharacters' do

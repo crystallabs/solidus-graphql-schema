@@ -765,34 +765,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            payment {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            payment: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # idempotencyKey: A client-side generated token to identify a payment and perform idempotent operations.
     # @return [Types::String]
     describe 'idempotencyKey' do

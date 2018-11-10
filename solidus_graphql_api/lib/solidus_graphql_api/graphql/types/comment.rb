@@ -19,10 +19,4 @@ module Spree::GraphQL::Types::Comment
   def content_html()
     raise ::Spree::GraphQL::NotImplementedError.new
   end
-
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
 end

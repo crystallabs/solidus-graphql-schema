@@ -32,12 +32,6 @@ module Spree::GraphQL::Types::Order
     raise ::Spree::GraphQL::NotImplementedError.new
   end
 
-  # id: Globally unique identifier.
-  # @return [Types::ID!]
-  def id()
-    raise ::Spree::GraphQL::NotImplementedError.new
-  end
-
   # lineItems: List of the order’s line items.
   # @param reverse [Types::Boolean] (false) Reverse the order of the underlying list.
   # @return [Types::OrderLineItem.connection_type!]

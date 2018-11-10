@@ -264,34 +264,6 @@ module Spree::GraphQL
       #end
     end
 
-    # id: Globally unique identifier.
-    # @return [Types::ID!]
-    describe 'id' do
-      let!(:query) {
-        %q{
-          query {
-            mailingAddress {
-              id
-            }
-          }
-        }
-      }
-      let!(:result) {
-        {
-          data: {
-            mailingAddress: {
-              id: 'ID',
-            }
-          },
-          #errors: {},
-        }
-      }
-      #it 'succeeds' do
-      #  execute
-      #  expect(response_hash).to eq(result_hash)
-      #end
-    end
-
     # lastName: The last name of the customer.
     # @return [Types::String]
     describe 'lastName' do

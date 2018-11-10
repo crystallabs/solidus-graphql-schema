@@ -8,9 +8,6 @@ class Spree::GraphQL::Schema::Types::ProductVariant < Spree::GraphQL::Schema::Ty
   field :compare_at_price, ::Spree::GraphQL::Schema::Types::Money, null: true do
     description %q{The compare at price of the variant. This can be used to mark a variant as on sale, when `compareAtPrice` is higher than `price`.}
   end
-  field :id, ::GraphQL::Types::ID, null: false do
-    description %q{Globally unique identifier.}
-  end
   field :image, ::Spree::GraphQL::Schema::Types::Image, null: true do
     description %q{Image associated with the product variant. This field falls back to the product image if no image is available.}
     argument :max_width, ::GraphQL::Types::Int, required: false, default_value: nil, description: %q{Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.}
