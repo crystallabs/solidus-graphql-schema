@@ -339,11 +339,11 @@ def output_files
   query ::Spree::GraphQL::Schema::Types::#{$query}
   mutation ::Spree::GraphQL::Schema::Types::#{$mutation}
 
-  def self.id_from_object(object, type_definition, query_context)
+  def self.id_from_object(object, type_definition = nil, query_context = nil)
     ::GraphQL::Schema::UniqueWithinType.encode(object.class.name, object.id)
   end
 
-  def self.object_from_id(id, query_context)
+  def self.object_from_id(id, query_context = nil)
     class_name, item_id = ::GraphQL::Schema::UniqueWithinType.decode(id)
     ::Object.const_get(class_name).find(item_id)
   end
@@ -363,6 +363,7 @@ end"
   name= 'Types::BaseObjectNode'
   $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseObjectNode < GraphQL::Schema::Object
   global_id_field :id
+  implements ::GraphQL::Relay::Node.interface
   include ::Spree::GraphQL::Types::BaseObject
 end"
   $catalog[:schema_outputs][name]= 'types/base_object_node'
