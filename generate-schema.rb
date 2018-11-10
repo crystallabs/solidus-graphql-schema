@@ -352,7 +352,6 @@ end}
 
   name= 'Types::BaseObject'
   $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
-  global_id_field :id
   include ::Spree::GraphQL::Types::BaseObject
 end"
   $catalog[:schema_outputs][name]= 'types/base_object'
@@ -361,11 +360,12 @@ end"
   $catalog[:outputs][name]= 'types/base_object'
   #$catalog[:spec_outputs][name]= 'types/base_object'
 
-  name= 'Types::BaseObjectNoId'
-  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseObjectNoId < GraphQL::Schema::Object
+  name= 'Types::BaseObjectNode'
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseObjectNode < GraphQL::Schema::Object
+  global_id_field :id
   include ::Spree::GraphQL::Types::BaseObject
 end"
-  $catalog[:schema_outputs][name]= 'types/base_object_no_id'
+  $catalog[:schema_outputs][name]= 'types/base_object_node'
   # (User part is the same as for BaseObject)
 
   name= 'Types::BaseEnum'
