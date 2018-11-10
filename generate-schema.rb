@@ -743,12 +743,15 @@ def parse_args_for(type, helper, field, key)
 
       arg_type= string
       # Determine if default value needs to be set
+      set_default= false
       unless string=~ /required: true/
-        default_value= 'nil'
+        set_default= true
       end
-      if arg['defaultValue']
+      if !arg['defaultValue'].nil? or set_default
         val=
-          (if arg['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
+          (if arg['defaultValue'].nil?
+            'nil'
+          elsif arg['defaultValue']=~ /^(?:\d+(?:\.\d+)?|false|true)$/
             arg['defaultValue']
           else
             %q{'}+ arg['defaultValue']+ %q{'}
@@ -1053,7 +1056,6 @@ def type_hash_to_result(hash)
     end
 
     if Hash=== v and v.has_key?([:edges])
-      puts :HAS
       v[[:edges]]= [v[[:edges]]]
     end
 

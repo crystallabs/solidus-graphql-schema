@@ -624,7 +624,7 @@ module Spree::GraphQL
     end
 
     # successfulFulfillments: List of the order’s successful fulfillments.
-    # @param first [Types::Int]
+    # @param first [Types::Int] (nil)
     # @return [[Types::Fulfillment!]]
     describe 'successfulFulfillments' do
       let!(:query) {

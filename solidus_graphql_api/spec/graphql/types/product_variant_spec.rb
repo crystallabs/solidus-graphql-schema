@@ -92,9 +92,9 @@ module Spree::GraphQL
     end
 
     # image: Image associated with the product variant. This field falls back to the product image if no image is available.
-    # @param max_width [Types::Int]
-    # @param max_height [Types::Int]
-    # @param crop [Types::CropRegion]
+    # @param max_width [Types::Int] (nil)
+    # @param max_height [Types::Int] (nil)
+    # @param crop [Types::CropRegion] (nil)
     # @param scale [Types::Int] (1)
     # @return [Types::Image]
     describe 'image' do

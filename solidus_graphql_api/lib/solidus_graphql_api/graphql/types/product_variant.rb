@@ -21,9 +21,9 @@ module Spree::GraphQL::Types::ProductVariant
   end
 
   # image: Image associated with the product variant. This field falls back to the product image if no image is available.
-  # @param max_width [Types::Int] Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.
-  # @param max_height [Types::Int] Image height in pixels between 1 and 2048. This argument is deprecated: Use `maxHeight` on `Image.transformedSrc` instead.
-  # @param crop [Types::CropRegion] Crops the image according to the specified region. This argument is deprecated: Use `crop` on `Image.transformedSrc` instead.
+  # @param max_width [Types::Int] (nil) Image width in pixels between 1 and 2048. This argument is deprecated: Use `maxWidth` on `Image.transformedSrc` instead.
+  # @param max_height [Types::Int] (nil) Image height in pixels between 1 and 2048. This argument is deprecated: Use `maxHeight` on `Image.transformedSrc` instead.
+  # @param crop [Types::CropRegion] (nil) Crops the image according to the specified region. This argument is deprecated: Use `crop` on `Image.transformedSrc` instead.
   # @param scale [Types::Int] (1) Image size multiplier for high-resolution retina displays. Must be between 1 and 3. This argument is deprecated: Use `scale` on `Image.transformedSrc` instead.
   # @return [Types::Image]
   def image(max_width:, max_height:, crop:, scale:)

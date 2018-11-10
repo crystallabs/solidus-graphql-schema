@@ -9,7 +9,7 @@ module Spree::GraphQL::Types::Comment
   end
 
   # content: Stripped content of the comment, single line with HTML tags removed.
-  # @param truncate_at [Types::Int] Truncates string after the given length.
+  # @param truncate_at [Types::Int] (nil) Truncates string after the given length.
   # @return [Types::String!]
   def content(truncate_at:)
     raise ::Spree::GraphQL::NotImplementedError.new

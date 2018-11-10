@@ -10,7 +10,7 @@ module Spree::GraphQL
     # articles: List of the shop's articles.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ArticleSortKeys] ('ID')
-    # @param query [Types::String]
+    # @param query [Types::String] (nil)
     # @return [Types::Article.connection_type!]
     describe 'articles' do
       let!(:query) {
@@ -437,7 +437,7 @@ module Spree::GraphQL
     # blogs: List of the shop's blogs.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::BlogSortKeys] ('ID')
-    # @param query [Types::String]
+    # @param query [Types::String] (nil)
     # @return [Types::Blog.connection_type!]
     describe 'blogs' do
       let!(:query) {

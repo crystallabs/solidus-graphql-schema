@@ -117,7 +117,7 @@ module Spree::GraphQL
     end
 
     # trackingInfo: Tracking information associated with the fulfillment, such as the tracking number and tracking URL.
-    # @param first [Types::Int]
+    # @param first [Types::Int] (nil)
     # @return [[Types::FulfillmentTrackingInfo!]!]
     describe 'trackingInfo' do
       let!(:query) {

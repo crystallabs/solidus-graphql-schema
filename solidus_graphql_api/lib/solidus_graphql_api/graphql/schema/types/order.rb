@@ -58,7 +58,7 @@ If no value is provided, it will be auto-generated based on current date and tim
   end
   field :successful_fulfillments, [::Spree::GraphQL::Schema::Types::Fulfillment], null: true do
     description %q{List of the order’s successful fulfillments.}
-    argument :first, ::GraphQL::Types::Int, required: false, description: %q{Truncate the array result to this size.}
+    argument :first, ::GraphQL::Types::Int, required: false, default_value: nil, description: %q{Truncate the array result to this size.}
   end
   field :total_price, ::Spree::GraphQL::Schema::Types::Money, null: false do
     description %q{The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).}

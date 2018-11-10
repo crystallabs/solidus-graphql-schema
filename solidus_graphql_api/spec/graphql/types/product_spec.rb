@@ -177,7 +177,7 @@ module Spree::GraphQL
     end
 
     # description: Stripped description of the product, single line with HTML tags removed.
-    # @param truncate_at [Types::Int]
+    # @param truncate_at [Types::Int] (nil)
     # @return [Types::String!]
     describe 'description' do
       let!(:query) {
@@ -292,9 +292,9 @@ module Spree::GraphQL
     # images: List of images associated with the product.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::ProductImageSortKeys] ('POSITION')
-    # @param max_width [Types::Int]
-    # @param max_height [Types::Int]
-    # @param crop [Types::CropRegion]
+    # @param max_width [Types::Int] (nil)
+    # @param max_height [Types::Int] (nil)
+    # @param crop [Types::CropRegion] (nil)
     # @param scale [Types::Int] (1)
     # @return [Types::Image.connection_type!]
     describe 'images' do
@@ -397,7 +397,7 @@ module Spree::GraphQL
     end
 
     # options: List of custom product options (maximum of 3 per product).
-    # @param first [Types::Int]
+    # @param first [Types::Int] (nil)
     # @return [[Types::ProductOption!]!]
     describe 'options' do
       let!(:query) {

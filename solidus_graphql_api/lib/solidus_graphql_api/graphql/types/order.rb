@@ -95,7 +95,7 @@ module Spree::GraphQL::Types::Order
   end
 
   # successfulFulfillments: List of the order’s successful fulfillments.
-  # @param first [Types::Int] Truncate the array result to this size.
+  # @param first [Types::Int] (nil) Truncate the array result to this size.
   # @return [[Types::Fulfillment!]]
   def successful_fulfillments(first:)
     raise ::Spree::GraphQL::NotImplementedError.new

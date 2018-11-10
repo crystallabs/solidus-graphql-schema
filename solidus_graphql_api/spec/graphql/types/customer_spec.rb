@@ -956,7 +956,7 @@ module Spree::GraphQL
     # orders: The orders associated with the customer.
     # @param reverse [Types::Boolean] (false)
     # @param sort_key [Types::OrderSortKeys] ('ID')
-    # @param query [Types::String]
+    # @param query [Types::String] (nil)
     # @return [Types::Order.connection_type!]
     describe 'orders' do
       let!(:query) {

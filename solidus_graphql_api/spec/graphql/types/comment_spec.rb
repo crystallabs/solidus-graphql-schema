@@ -42,7 +42,7 @@ module Spree::GraphQL
     end
 
     # content: Stripped content of the comment, single line with HTML tags removed.
-    # @param truncate_at [Types::Int]
+    # @param truncate_at [Types::Int] (nil)
     # @return [Types::String!]
     describe 'content' do
       let!(:query) {

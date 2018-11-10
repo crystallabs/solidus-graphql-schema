@@ -8,7 +8,7 @@ class Spree::GraphQL::Schema::Types::Comment < Spree::GraphQL::Schema::Types::Ba
   end
   field :content, ::GraphQL::Types::String, null: false do
     description %q{Stripped content of the comment, single line with HTML tags removed.}
-    argument :truncate_at, ::GraphQL::Types::Int, required: false, description: %q{Truncates string after the given length.}
+    argument :truncate_at, ::GraphQL::Types::Int, required: false, default_value: nil, description: %q{Truncates string after the given length.}
   end
   field :content_html, ::Spree::GraphQL::Schema::Types::HTML, null: false do
     description %q{The content of the comment, complete with HTML formatting.}

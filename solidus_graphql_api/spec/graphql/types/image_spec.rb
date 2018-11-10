@@ -92,11 +92,11 @@ module Spree::GraphQL
     end
 
     # transformedSrc: The location of the transformed image as a URL. All transformation arguments are considered "best-effort". If they can be applied to an image, they will be. Otherwise any transformations which an image type does not support will be ignored.
-    # @param max_width [Types::Int]
-    # @param max_height [Types::Int]
-    # @param crop [Types::CropRegion]
+    # @param max_width [Types::Int] (nil)
+    # @param max_height [Types::Int] (nil)
+    # @param crop [Types::CropRegion] (nil)
     # @param scale [Types::Int] (1)
-    # @param preferred_content_type [Types::ImageContentType]
+    # @param preferred_content_type [Types::ImageContentType] (nil)
     # @return [Types::URL!]
     describe 'transformedSrc' do
       let!(:query) {
