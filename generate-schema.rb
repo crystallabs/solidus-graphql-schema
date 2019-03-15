@@ -347,16 +347,17 @@ def output_files
     class_name, item_id = ::GraphQL::Schema::UniqueWithinType.decode(id)
     ::Object.const_get(class_name).find(item_id)
   end
-end}
+end
+}
   $catalog[:schema_outputs][name] = 'schema'
 
   name= 'Types::BaseObject'
   $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseObject < GraphQL::Schema::Object
   include ::Spree::GraphQL::Types::BaseObject
-end"
+end\n"
   $catalog[:schema_outputs][name]= 'types/base_object'
   # User part:
-  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseObject\nend"
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseObject\nend\n"
   $catalog[:outputs][name]= 'types/base_object'
   #$catalog[:spec_outputs][name]= 'types/base_object'
 
@@ -365,63 +366,63 @@ end"
   global_id_field :id
   implements ::GraphQL::Relay::Node.interface
   include ::Spree::GraphQL::Types::BaseObject
-end"
+end\n"
   $catalog[:schema_outputs][name]= 'types/base_object_node'
   # (User part is the same as for BaseObject)
 
   name= 'Types::BaseEnum'
   $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseEnum < GraphQL::Schema::Enum
   include ::Spree::GraphQL::Types::BaseEnum
-end"
+end\n"
   $catalog[:schema_outputs][name]= 'types/base_enum'
   # User part:
-  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseEnum\nend"
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseEnum\nend\n"
   $catalog[:outputs][name]= 'types/base_enum'
   #$catalog[:spec_outputs][name]= 'types/base_enum'
 
   name= 'Types::BaseScalar'
   $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseScalar < GraphQL::Schema::Scalar
   include ::Spree::GraphQL::Types::BaseScalar
-end"
+end\n"
   $catalog[:schema_outputs][name]= 'types/base_scalar'
   # User part:
-  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseScalar\nend"
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseScalar\nend\n"
   $catalog[:outputs][name]= 'types/base_scalar'
   #$catalog[:spec_outputs][name]= 'types/base_scalar'
 
   name= 'Interfaces::BaseInterface'
   $catalog[:schema_contents][name]= "module Spree::GraphQL::Schema::Interfaces::BaseInterface
   include ::GraphQL::Schema::Interface
-end"
+end\n"
   $catalog[:schema_outputs][name]= 'interfaces/base_interface'
   # User part:
-  $catalog[:contents][name]= "module Spree::GraphQL::Interfaces::BaseInterface\nend"
+  $catalog[:contents][name]= "module Spree::GraphQL::Interfaces::BaseInterface\nend\n"
   $catalog[:outputs][name]= 'interfaces/base_interface'
   #$catalog[:spec_outputs][name]= 'interfaces/base_interface'
 
   name= 'Types::BaseUnion'
   $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Types::BaseUnion < GraphQL::Schema::Union
   include ::Spree::GraphQL::Types::BaseUnion
-end"
+end\n"
   $catalog[:schema_outputs][name]= 'types/base_union'
   # User part:
-  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseUnion\nend"
+  $catalog[:contents][name]= "module Spree::GraphQL::Types::BaseUnion\nend\n"
   $catalog[:outputs][name]= 'types/base_union'
   #$catalog[:spec_outputs][name]= 'types/base_union'
 
   name= 'Inputs::BaseInput'
-  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Inputs::BaseInput < GraphQL::Schema::InputObject\nend"
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Inputs::BaseInput < GraphQL::Schema::InputObject\nend\n"
   $catalog[:schema_outputs][name]= 'inputs/base_input'
   # User part:
-  #$catalog[:contents][name]= "module Spree::GraphQL::Inputs::BaseInput\nend"
+  #$catalog[:contents][name]= "module Spree::GraphQL::Inputs::BaseInput\nend\n"
   #$catalog[:outputs][name]= 'inputs/base_input'
   #$catalog[:spec_outputs][name]= 'inputs/base_input'
 
   name= 'Payloads::BasePayload'
-  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Payloads::BasePayload < GraphQL::Schema::Object\nend"
+  $catalog[:schema_contents][name]= "class Spree::GraphQL::Schema::Payloads::BasePayload < GraphQL::Schema::Object\nend\n"
   $catalog[:schema_outputs][name]= 'payloads/base_payload'
   # User part:
-  #$catalog[:contents][name]= "module Spree::GraphQL::Payloads::BasePayload\nend"
+  #$catalog[:contents][name]= "module Spree::GraphQL::Payloads::BasePayload\nend\n"
   #$catalog[:outputs][name]= 'payloads/base_payload'
   #$catalog[:spec_outputs][name]= 'payloads/base_payload'
 
@@ -507,7 +508,7 @@ def prepare_headers_for(type, helper)
   graphql_name '#{type['name']}'
   description #{desc}}
     $catalog[:schema_contents][new_name][INCLUDES].push indent 1, "include ::Spree::GraphQL::#{new_name}"
-    $catalog[:schema_contents][new_name][DEF_METHODS].push indent 1, "definition_methods do\nend"
+    $catalog[:schema_contents][new_name][DEF_METHODS].push indent 1, "definition_methods do\nend\n"
 
   else
     $catalog[:schema_contents][new_name][HEADER].push %Q{class Spree::GraphQL::Schema::#{new_name} < Spree::GraphQL::Schema::#{$catalog[:base_type][new_name]}
@@ -569,7 +570,7 @@ def parse_possible_types_for(type, helper)
   end
 
   if types.size> 0
-    string= types.map{|t| "class Spree::GraphQL::Schema::#{t} < Spree::GraphQL::Schema::#{$catalog[:base_type][t]}; end"}.join("\n")
+    string= types.map{|t| "class Spree::GraphQL::Schema::#{t} < Spree::GraphQL::Schema::#{$catalog[:base_type][t]}; end\n"}.join("\n")
     $catalog[:schema_contents][new_name][PREAMBLE].unshift string
 
     string= indent 1, "possible_types \\\n"+ types.map{|t| "  ::Spree::GraphQL::Schema::#{t}"}.join(",\n")
@@ -587,10 +588,10 @@ def parse_enum_values_for(type, helper)
       $catalog[:schema_contents][new_name][FIELDS].push indent(1, %Q{value '#{v['name']}', }) + description
     end
   end
-  
-  $catalog[:schema_contents][new_name][POSTAMBLE].push 'end'
-  $catalog[:contents][new_name][POSTAMBLE].push 'end'
-  $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend"
+
+  $catalog[:schema_contents][new_name][POSTAMBLE].push "end\n"
+  $catalog[:contents][new_name][POSTAMBLE].push "end\n"
+  $catalog[:spec_contents][new_name][POSTAMBLE].push "  end\nend\n"
 end
 
 def parse_fields_for(type, helper)
@@ -608,8 +609,8 @@ def parse_fields_for(type, helper)
   description }) + description
 
       method_args= parse_args_for(type, helper, field, 'args')
-      
-      $catalog[:schema_contents][new_name][FIELDS].push indent 1, 'end'
+
+      $catalog[:schema_contents][new_name][FIELDS].push indent 1, "end\n"
 
       args_with_desc= method_args.map{|a| "# @param #{a[0]} [#{a[1]}]#{a[3] ? ' ('+a[3]+')' : ''}#{ a[2] ? ' ' + oneline(a[2]) : ''}"}.join("\n")
       args= '(' + method_args.map{|a| a[0]+ ':'}.join(', ')+ ')'
@@ -798,7 +799,7 @@ def args_hash_to_args_string(hash)
   end
   ret= []
   hash.each{ |k,v|
-    if k.is_a? Array 
+    if k.is_a? Array
       k_string = if k[1]
         "#{k[0]}(#{args_hash_to_args_string k[1]})"
       else
@@ -925,7 +926,7 @@ def type_of_field(field, type= nil, action= false)
         $catalog[:depends][new_name][ret_name] = true
         if (new_name != ret_name) && ($catalog[:depends][ret_name]) && ($catalog[:depends][ret_name][new_name])
           $log.info "Class #{new_name} depends on #{ret_name} and vice-versa. Will handle accordingly."
-          preamble_text= "class Spree::GraphQL::Schema::#{ret_name} < Spree::GraphQL::Schema::#{$catalog[:base_type][ret_name]}; end"
+          preamble_text= "class Spree::GraphQL::Schema::#{ret_name} < Spree::GraphQL::Schema::#{$catalog[:base_type][ret_name]}; end\n"
           $catalog[:schema_contents][new_name][PREAMBLE].unshift(preamble_text) unless $catalog[:schema_contents][new_name][PREAMBLE].include?(preamble_text)
         end
       end
