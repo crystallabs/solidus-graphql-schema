@@ -1,3 +1,9 @@
+# Obsolete
+
+The contents of this repository were obsoleted by recent developments in https://github.com/solidusio-contrib/solidus_graphql_api.
+
+The repository is kept available for reference.
+
 # Solidus GraphQL Schema Generator
 
 This repository provides scripts used to generate (and periodically update) GraphQL files in Solidus extension [solidus_graphql_api](https://github.com/boomerdigital/solidus_graphql_api).
